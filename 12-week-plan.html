@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Daniel — 12-Week Plan</title>
+<style>
+:root{
+  --gold:#C9A84C;--gl:rgba(201,168,76,.12);--gll:rgba(201,168,76,.06);
+  --ok:#22C55E;--okl:rgba(34,197,94,.12);--okll:rgba(34,197,94,.06);
+  --warn:#F59E0B;--warnl:rgba(245,158,11,.12);
+  --err:#EF4444;--errl:rgba(239,68,68,.12);
+  --blue:#60A5FA;--bluel:rgba(96,165,250,.12);
+  --purple:#A78BFA;--purplel:rgba(167,139,250,.12);
+  --bg:#0D0D0D;--card:#141412;--card2:#1C1C1A;
+  --txt:#F0EDE8;--txt2:#9A9690;--mu:#4A4A46;--bd:#252522;
+  --sb:#0A0A0A;--sbd:#1A1A18;--stxt:#C8C5BE;--smu:#444;--sact:#161614;
+}
+body.light{
+  --bg:#F7F6F3;--card:#FFFFFF;--card2:#F0EFE9;
+  --txt:#1A1916;--txt2:#5A5650;--mu:#9A9690;--bd:#E5E3DC;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:14px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--txt);height:100vh;overflow:hidden;line-height:1.5;transition:background .2s,color .2s}
+.app{display:flex;height:100vh}
+
+/* Sidebar */
+.sb{width:220px;min-width:220px;height:100vh;background:var(--sb);border-right:1px solid var(--sbd);display:flex;flex-direction:column;overflow:hidden}
+.sb-brand{padding:18px 18px 14px;border-bottom:1px solid var(--sbd)}
+.sb-name{font-size:14px;font-weight:800;color:#fff;letter-spacing:-.01em}
+.sb-sub{font-size:9.5px;text-transform:uppercase;letter-spacing:.09em;color:var(--smu);margin-top:2px}
+.sb-toggle{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+.sb-toggle-lbl{font-size:9.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--smu)}
+.tog{position:relative;width:30px;height:16px}
+.tog input{display:none}
+.tog-track{position:absolute;inset:0;border-radius:16px;background:#1E1E1E;cursor:pointer;transition:background .2s}
+.tog-track::after{content:'';position:absolute;width:10px;height:10px;background:#3A3A3A;border-radius:50%;top:3px;left:3px;transition:transform .2s,background .2s}
+.tog input:checked~.tog-track{background:rgba(201,168,76,.25)}
+.tog input:checked~.tog-track::after{transform:translateX(14px);background:var(--gold)}
+.sb-nav{flex:1;overflow-y:auto;padding:8px 0}
+.sb-nav::-webkit-scrollbar{width:0}
+.sb-grp{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--smu);padding:12px 18px 4px;display:block}
+.sb-btn{display:flex;align-items:center;gap:8px;width:100%;padding:7px 18px;background:none;border:none;border-left:2px solid transparent;font-family:inherit;font-size:12.5px;color:var(--stxt);cursor:pointer;text-align:left;transition:all .1s}
+.sb-btn:hover{background:var(--sact);color:#fff}
+.sb-btn.on{background:var(--sact);border-left-color:var(--gold);color:var(--gold)}
+.sb-btn.cur-wk{color:#93C5FD}
+.sb-ic{font-size:11px;width:18px;text-align:center;flex-shrink:0;font-style:normal}
+.sb-dot{width:5px;height:5px;border-radius:50%;margin-left:auto;flex-shrink:0}
+.dot-d{background:var(--ok)}
+.dot-c{background:var(--gold);box-shadow:0 0 5px var(--gold)}
+.dot-l{background:var(--warn)}
+.dot-f{background:#2A2A2A}
+.sb-footer{padding:12px 18px;border-top:1px solid var(--sbd);display:grid;gap:5px}
+.sb-stat{display:flex;justify-content:space-between;align-items:center}
+.sb-sl{font-size:10px;color:var(--smu)}
+.sb-sv{font-size:11px;font-weight:700;color:var(--stxt)}
+.sv-gold{color:var(--gold)}
+
+/* Main */
+.main{flex:1;height:100vh;overflow-y:auto;padding:36px 40px;background:var(--bg)}
+.main::-webkit-scrollbar{width:4px}
+.main::-webkit-scrollbar-thumb{background:var(--bd);border-radius:2px}
+.panel{display:none}
+.panel.on{display:block}
+
+/* Page header */
+.pg-eye{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:6px}
+.pg-h{font-size:24px;font-weight:900;letter-spacing:-.025em;color:var(--txt);margin-bottom:4px}
+.pg-desc{font-size:13px;color:var(--txt2);line-height:1.6;margin-bottom:28px}
+
+/* Cards */
+.card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:20px;margin-bottom:12px}
+.card-gold{border-color:rgba(201,168,76,.3);background:var(--gll)}
+.card-ok{border-color:rgba(34,197,94,.2);background:var(--okll)}
+
+/* Current week banner */
+.cur-banner{background:linear-gradient(135deg,#1A1200,#0D0D0B);border:1px solid rgba(201,168,76,.3);border-radius:10px;padding:20px 24px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;position:relative;overflow:hidden}
+.cur-banner::before{content:'NOW';position:absolute;right:-4px;top:-16px;font-size:80px;font-weight:900;color:rgba(201,168,76,.04);pointer-events:none;letter-spacing:-3px}
+.cb-lbl{font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:rgba(201,168,76,.6);margin-bottom:5px}
+.cb-title{font-size:18px;font-weight:800;color:#fff;letter-spacing:-.01em}
+.cb-dates{font-size:12px;color:rgba(255,255,255,.35);margin-top:3px}
+.cb-days{font-size:38px;font-weight:900;color:var(--gold);line-height:1;text-align:right}
+.cb-days-lbl{font-size:10px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.07em;text-align:right;margin-top:2px}
+
+/* Stats */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px}
+.stat{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:14px 16px}
+.stat-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--mu);margin-bottom:4px}
+.stat-val{font-size:26px;font-weight:900;color:var(--txt);letter-spacing:-.03em;line-height:1}
+.stat-val.g{color:var(--gold)}
+.stat-val.ok{color:var(--ok)}
+.stat-val.bl{color:var(--blue)}
+.stat-sub{font-size:11px;color:var(--mu);margin-top:3px}
+
+/* Progress */
+.prog-bar{height:5px;background:var(--bd);border-radius:3px;overflow:hidden;margin-bottom:4px}
+.prog-fill{height:100%;border-radius:3px;transition:width .4s}
+.fill-gold{background:var(--gold)}
+.fill-ok{background:var(--ok)}
+.flex-bc{display:flex;justify-content:space-between;align-items:center}
+
+/* Goal box */
+.goal-box{background:var(--gll);border:1px solid rgba(201,168,76,.2);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:12px 16px;font-size:13px;color:var(--txt2);line-height:1.65;margin-bottom:16px}
+.goal-box strong{color:var(--txt)}
+
+/* Section label */
+.sec-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--mu);display:block;margin-bottom:10px}
+
+/* Task cards */
+.tasks{display:grid;gap:6px;margin-bottom:16px}
+.tc{background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:13px 14px;display:flex;gap:12px;cursor:pointer;transition:border-color .15s,opacity .2s}
+.tc:hover{border-color:rgba(201,168,76,.4)}
+.tc.done{opacity:.5}
+.tc.done .tc-title{text-decoration:line-through;color:var(--mu)}
+.cb-check{width:18px;height:18px;min-width:18px;border:1.5px solid var(--bd);border-radius:5px;appearance:none;-webkit-appearance:none;position:relative;margin-top:2px;background:var(--card);cursor:pointer;transition:all .15s;flex-shrink:0}
+.cb-check:checked{background:var(--gold);border-color:var(--gold)}
+.cb-check:checked::after{content:'';position:absolute;top:2px;left:5px;width:5px;height:9px;border:1.5px solid #000;border-top:none;border-left:none;transform:rotate(45deg)}
+.tc-body{flex:1;min-width:0}
+.tc-title{font-size:13.5px;font-weight:500;color:var(--txt);line-height:1.45}
+.tc-why{font-size:12px;color:var(--mu);margin-top:4px;line-height:1.55}
+.tc-note{font-size:11px;color:var(--ok);font-weight:600;margin-top:4px}
+.tc-meta{flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;gap:4px;padding-top:2px}
+.time-tag{font-size:10px;font-weight:600;color:var(--mu);background:var(--card2);border:1px solid var(--bd);border-radius:4px;padding:2px 8px;white-space:nowrap}
+.deadline-tag{font-size:10px;font-weight:700;color:var(--err);background:var(--errl);border-radius:4px;padding:2px 8px;text-transform:uppercase;letter-spacing:.05em}
+
+/* Deliverables */
+.del-wrap{display:flex;flex-wrap:wrap;gap:6px}
+.del{font-size:11.5px;font-weight:500;color:var(--gold);background:var(--gl);border:1px solid rgba(201,168,76,.2);border-radius:20px;padding:3px 12px}
+
+/* Divider */
+.div{height:1px;background:var(--bd);margin:18px 0}
+
+/* Log tabs */
+.log-tabs{display:flex;border-bottom:1px solid var(--bd);margin-bottom:18px}
+.lt{padding:8px 16px;font-size:12.5px;font-weight:500;color:var(--mu);cursor:pointer;border:none;border-bottom:2px solid transparent;background:none;font-family:inherit;transition:all .12s}
+.lt:hover{color:var(--txt)}
+.lt.on{color:var(--gold);border-bottom-color:var(--gold)}
+.log-pane{display:none}
+.log-pane.on{display:block}
+
+/* Forms */
+.field{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
+.fl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--mu)}
+.inp{background:var(--card2);border:1px solid var(--bd);border-radius:7px;padding:9px 12px;font-size:13px;color:var(--txt);outline:none;font-family:inherit;transition:border-color .15s;width:100%}
+.inp:focus{border-color:var(--gold)}
+.inp::placeholder{color:var(--mu)}
+.ta{resize:vertical;min-height:72px;line-height:1.55}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.obj-row{display:grid;grid-template-columns:1fr auto;gap:8px;margin-bottom:8px;align-items:center}
+.obj-sel{padding:8px 11px;font-size:12px;border:1px solid var(--bd);border-radius:7px;background:var(--card2);color:var(--txt);cursor:pointer;font-family:inherit;outline:none;transition:all .12s}
+.obj-sel.met{border-color:var(--ok);background:var(--okl);color:var(--ok)}
+.obj-sel.partial{border-color:var(--warn);background:var(--warnl);color:var(--warn)}
+.obj-sel.missed{border-color:var(--err);background:var(--errl);color:var(--err)}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:6px;border:none;border-radius:7px;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:opacity .15s}
+.btn-gold{background:var(--gold);color:#0D0D0D;padding:9px 20px}
+.btn-gold:hover{opacity:.85}
+.btn-ghost{background:none;border:1px solid var(--bd);color:var(--txt2);padding:8px 16px}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.btn-sm{font-size:11px;padding:5px 12px}
+
+/* Tags */
+.tag{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;border-radius:4px;padding:2px 7px}
+.tg{background:var(--gl);color:var(--gold)}
+.to{background:var(--okl);color:var(--ok)}
+.tw{background:var(--warnl);color:var(--warn)}
+.te{background:var(--errl);color:var(--err)}
+.tb{background:var(--bluel);color:var(--blue)}
+.tp{background:var(--purplel);color:var(--purple)}
+.tm{background:var(--card2);color:var(--mu);border:1px solid var(--bd)}
+
+/* Week header */
+.wk-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:3px}
+.wk-h{font-size:22px;font-weight:900;letter-spacing:-.02em}
+.wk-dates{font-size:13px;color:var(--mu);margin-bottom:14px}
+.prog-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+
+/* Table */
+.tbl{width:100%;border-collapse:collapse;font-size:12.5px}
+.tbl th{padding:9px 10px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--mu);border-bottom:1px solid var(--bd);background:var(--card2);text-align:left}
+.tbl td{padding:10px 10px;border-bottom:1px solid var(--bd);color:var(--txt2);vertical-align:top;line-height:1.45}
+.tbl tr.hl td{background:var(--gll);color:var(--txt)}
+.tbl tr:last-child td{border-bottom:none}
+
+/* Project cards */
+.proj{background:var(--card);border:1px solid var(--bd);border-radius:10px;margin-bottom:14px;overflow:hidden}
+.proj-head{display:flex;align-items:flex-start;justify-content:space-between;padding:18px 20px 12px;gap:12px}
+.proj-name{font-size:16px;font-weight:800;color:var(--txt);letter-spacing:-.01em}
+.proj-when{font-size:11px;color:var(--mu);margin-top:2px}
+.proj-body{padding:0 20px 16px}
+.proj-desc{font-size:13px;color:var(--txt2);line-height:1.65;margin-bottom:8px}
+.proj-why{font-size:12px;color:var(--ok);border-left:2px solid rgba(34,197,94,.25);padding-left:10px;line-height:1.6;margin-bottom:10px}
+.proj-stack{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px}
+.bp-toggle{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;cursor:pointer;font-size:12px;font-weight:600;color:var(--txt2);background:none;border:none;border-top:1px solid var(--bd);width:100%;font-family:inherit;text-align:left;transition:color .12s}
+.bp-toggle:hover{color:var(--gold)}
+.bp-body{display:none;padding:12px 20px 18px}
+.bp-body.open{display:block}
+.bp-steps{list-style:none;display:grid;gap:6px}
+.bp-steps li{display:flex;gap:10px;font-size:12.5px;color:var(--txt2);line-height:1.5;padding:9px 12px;background:var(--card2);border-radius:6px;border:1px solid var(--bd)}
+.step-n{min-width:20px;height:20px;border-radius:50%;background:var(--gl);color:var(--gold);font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+
+/* SOP cards */
+.sop-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.sop-card{background:var(--card);border:1px solid var(--bd);border-left:3px solid;border-radius:10px;padding:16px}
+.sop-n{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px}
+.sop-title{font-size:14px;font-weight:800;color:var(--txt);margin-bottom:2px}
+.sop-sub{font-size:11px;color:var(--mu);margin-bottom:10px}
+.sop-done{font-size:11.5px;color:var(--ok);background:var(--okl);border:1px solid rgba(34,197,94,.15);border-radius:6px;padding:8px 10px;line-height:1.5;margin-bottom:10px}
+.sop-steps{list-style:none;display:grid;gap:3px}
+.sop-steps li{font-size:11.5px;color:var(--txt2);padding-left:14px;position:relative;line-height:1.5}
+.sop-steps li::before{content:'→';position:absolute;left:0;color:var(--mu);font-size:10px;top:2px}
+
+/* Demo arch */
+.arch{display:flex;align-items:flex-start;overflow-x:auto;padding-bottom:6px;gap:0;margin-bottom:14px}
+.arch-node{flex:1;min-width:90px;text-align:center;padding:0 4px}
+.arch-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#0D0D0D;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 6px}
+.arch-lbl{font-size:11px;font-weight:700;color:var(--txt)}
+.arch-detail{font-size:10px;color:var(--mu);margin-top:2px;line-height:1.4}
+.arch-arr{padding-top:8px;font-size:13px;color:var(--bd);flex-shrink:0}
+
+/* Guard */
+.guard-grid{display:grid;gap:8px}
+.guard{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:14px 16px;transition:border-color .15s}
+.guard:hover{border-color:rgba(201,168,76,.3)}
+.guard-icon{font-size:18px;flex-shrink:0}
+.guard-txt{font-size:13px;color:var(--txt2);line-height:1.65}
+.guard-txt strong{color:var(--txt)}
+
+/* Money timeline */
+.money-row{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:12px}
+.mc{background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:10px 12px}
+.mc.cur{border-color:var(--gold);background:var(--gll)}
+.mc-lbl{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--mu);margin-bottom:3px}
+.mc-t{font-size:13px;font-weight:700;color:var(--txt2)}
+.mc-a{font-size:12px;color:var(--ok);font-weight:600;margin-top:2px}
+
+/* Toast */
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(8px);background:var(--txt);color:var(--bg);padding:8px 18px;border-radius:8px;font-size:13px;font-weight:500;opacity:0;transition:all .2s;pointer-events:none;z-index:9999}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+.mt4{margin-top:4px}.mt8{margin-top:8px}.mt12{margin-top:12px}.mt16{margin-top:16px}
+.mb4{margin-bottom:4px}.mb8{margin-bottom:8px}.mb12{margin-bottom:12px}
+.gap6{gap:6px}.gap8{gap:8px}.gap10{gap:10px}
+.info-box{background:var(--card2);border:1px solid var(--bd);border-radius:8px;padding:12px 14px;font-size:12.5px;color:var(--txt2);line-height:1.6}
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- Sidebar -->
+<aside class="sb">
+  <div class="sb-brand">
+    <div class="sb-name">Daniel Ikusawe</div>
+    <div class="sb-sub">12-Week Operating Plan</div>
+    <div class="sb-toggle">
+      <span class="sb-toggle-lbl">Dark mode</span>
+      <label class="tog"><input type="checkbox" id="themeChk" checked onchange="setTheme(this.checked)"><span class="tog-track"></span></label>
+    </div>
+  </div>
+  <nav class="sb-nav">
+    <span class="sb-grp">Overview</span>
+    <button class="sb-btn on" onclick="nav('overview',this)"><i class="sb-ic">⊞</i>Dashboard</button>
+    <span class="sb-grp">Term Weeks</span>
+    <button class="sb-btn" onclick="nav('w1',this)" id="nb-w1"><i class="sb-ic">1</i><span style="flex:1">Setup &amp; CLI</span><span class="sb-dot"></span></button>
+    <button class="sb-btn" onclick="nav('w2',this)" id="nb-w2"><i class="sb-ic">2</i><span style="flex:1">Deploy</span><span class="sb-dot"></span></button>
+    <span class="sb-grp">Mocks</span>
+    <button class="sb-btn" onclick="nav('w34',this)" id="nb-w34"><i class="sb-ic" style="font-size:9px">3–4</i><span style="flex:1">Mock Protocol</span><span class="sb-dot"></span></button>
+    <span class="sb-grp">Summer Weeks</span>
+    <button class="sb-btn" onclick="nav('w5',this)" id="nb-w5"><i class="sb-ic">5</i><span style="flex:1">GCP + Claude API</span><span class="sb-dot"></span></button>
+    <button class="sb-btn" onclick="nav('w6',this)" id="nb-w6"><i class="sb-ic">6</i><span style="flex:1">Ship Mini Product</span><span class="sb-dot"></span></button>
+    <button class="sb-btn" onclick="nav('w7',this)" id="nb-w7"><i class="sb-ic">7</i><span style="flex:1">TMUA + Agentic</span><span class="sb-dot"></span></button>
+    <button class="sb-btn" onclick="nav('w8',this)" id="nb-w8"><i class="sb-ic">8</i><span style="flex:1">Agentic Build</span><span class="sb-dot"></span></button>
+    <button class="sb-btn" onclick="nav('w9',this)" id="nb-w9"><i class="sb-ic">9</i><span style="flex:1">Demo Rebuild</span><span class="sb-dot"></span></button>
+    <button class="sb-btn" onclick="nav('w10',this)" id="nb-w10"><i class="sb-ic">10</i><span style="flex:1">Demo 10/10</span><span class="sb-dot"></span></button>
+    <button class="sb-btn" onclick="nav('w11',this)" id="nb-w11"><i class="sb-ic">11</i><span style="flex:1">MVP Build</span><span class="sb-dot"></span></button>
+    <button class="sb-btn" onclick="nav('w12',this)" id="nb-w12"><i class="sb-ic">12</i><span style="flex:1">Ship &amp; Demo</span><span class="sb-dot"></span></button>
+    <span class="sb-grp">Reference</span>
+    <button class="sb-btn" onclick="nav('projects',this)"><i class="sb-ic">⊕</i>Projects</button>
+    <button class="sb-btn" onclick="nav('goals',this)"><i class="sb-ic">◎</i>Goals Matrix</button>
+    <button class="sb-btn" onclick="nav('sops',this)"><i class="sb-ic">◉</i>Vekora SOPs</button>
+    <button class="sb-btn" onclick="nav('guardrails',this)"><i class="sb-ic">⊖</i>Guardrails</button>
+  </nav>
+  <div class="sb-footer">
+    <div class="sb-stat"><span class="sb-sl">Friday streak</span><span class="sb-sv sv-gold" id="sb-streak">0/12</span></div>
+    <div class="sb-stat"><span class="sb-sl">Money banked</span><span class="sb-sv" id="sb-money">£0</span></div>
+    <div class="sb-stat"><span class="sb-sl">Programme ends</span><span class="sb-sv" style="color:var(--smu)">30 Aug 2026</span></div>
+  </div>
+</aside>
+
+<!-- Main -->
+<main class="main">
+
+<!-- OVERVIEW -->
+<div id="panel-overview" class="panel on">
+  <div class="pg-eye">Command Centre</div>
+  <div class="pg-h">Dashboard</div>
+  <div class="pg-desc" id="ov-desc"></div>
+  <div id="ov-banner"></div>
+  <div class="stats-grid" id="ov-stats"></div>
+  <div class="card">
+    <div class="flex-bc mb8"><span class="sec-lbl" style="margin:0">Programme progress</span><span id="ov-wk-lbl" style="font-size:12px;font-weight:700"></span></div>
+    <div class="prog-bar mb4"><div class="prog-fill fill-gold" id="ov-wk-bar" style="width:0%"></div></div>
+    <div class="flex-bc mb8" style="margin-top:10px"><span class="sec-lbl" style="margin:0">Tasks completed</span><span id="ov-task-lbl" style="font-size:12px;font-weight:700"></span></div>
+    <div class="prog-bar"><div class="prog-fill fill-ok" id="ov-task-bar" style="width:0%"></div></div>
+  </div>
+  <div class="card">
+    <span class="sec-lbl">Money timeline — cumulative banked targets</span>
+    <div class="money-row" id="ov-money"></div>
+    <p style="font-size:11px;color:var(--mu)">Enter weekly amounts in each week → Numbers tab. Timeline updates automatically.</p>
+  </div>
+  <div class="card">
+    <span class="sec-lbl">What success looks like by 30 August</span>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:10px">
+      <div>
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px">Mentorship</div>
+        <ul style="font-size:13px;color:var(--txt2);line-height:1.85;padding-left:16px">
+          <li>Terminal, Git, GCP, Claude Code fluency</li>
+          <li>2+ apps deployed to live URLs</li>
+          <li>One agentic build (MCP-connected)</li>
+          <li>MVP built, deployed, Loom demoed</li>
+          <li>12/12 Fridays submitted</li>
+          <li>CCA Foundations done, exam attempted</li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--ok);margin-bottom:8px">Vekora</div>
+        <ul style="font-size:13px;color:var(--txt2);line-height:1.85;padding-left:16px">
+          <li>£2,500–4,000 total banked</li>
+          <li>2+ Foundation builds delivered</li>
+          <li>1–2 GBP retainers live (£250/mo each)</li>
+          <li>Ltd, ICO, business bank all done</li>
+          <li>Demo 1 rebuilt — 10/10 consecutive</li>
+          <li>Tier 1 conversation started</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WEEK PANELS -->
+<div id="panel-w1" class="panel"></div>
+<div id="panel-w2" class="panel"></div>
+<div id="panel-w34" class="panel"></div>
+<div id="panel-w5" class="panel"></div>
+<div id="panel-w6" class="panel"></div>
+<div id="panel-w7" class="panel"></div>
+<div id="panel-w8" class="panel"></div>
+<div id="panel-w9" class="panel"></div>
+<div id="panel-w10" class="panel"></div>
+<div id="panel-w11" class="panel"></div>
+<div id="panel-w12" class="panel"></div>
+
+<!-- PROJECTS -->
+<div id="panel-projects" class="panel">
+  <div class="pg-eye">Builds &amp; Portfolio</div>
+  <div class="pg-h">Projects</div>
+  <div class="pg-desc">One active side project at a time in summer (W7+). Friday deliverables always come first. "Built" = deployed, has a README, has a Loom.</div>
+  <div id="projects-list"></div>
+</div>
+
+<!-- GOALS MATRIX -->
+<div id="panel-goals" class="panel">
+  <div class="pg-eye">12-Week Overview</div>
+  <div class="pg-h">Goals Matrix</div>
+  <div class="pg-desc">3 objectives per week max. The matrix doesn't change unless reality forces it — and only with Dee's agreement.</div>
+  <div class="card" style="padding:0;overflow:hidden"><table class="tbl" id="goals-tbl"></table></div>
+  <div class="card mt12">
+    <span class="sec-lbl">Workstream dashboard</span>
+    <table class="tbl" style="margin-top:8px">
+      <thead><tr><th>WS</th><th>Workstream</th><th>Active</th><th>Term hrs/wk</th><th>Summer hrs/wk</th></tr></thead>
+      <tbody>
+        <tr><td><strong>WS1</strong></td><td>Mentorship core (Dee's weekly tasks)</td><td>Weeks 1–12</td><td>8–12</td><td>15–20</td></tr>
+        <tr><td><strong>WS2</strong></td><td>Vekora sales &amp; outreach</td><td>W1–2, W5+</td><td>3–5</td><td>7–10</td></tr>
+        <tr><td><strong>WS3</strong></td><td>Vekora delivery + legal + ops</td><td>As sold</td><td>0–5</td><td>5–10</td></tr>
+        <tr><td><strong>WS4</strong></td><td>School / TMUA / Imperial</td><td>Always</td><td>Whatever needed</td><td>5–7</td></tr>
+        <tr><td><strong>WS5</strong></td><td>Portfolio builds</td><td>W7+</td><td>0</td><td>4–6</td></tr>
+        <tr><td><strong>WS6</strong></td><td>CCA Foundations</td><td>W5+</td><td>0</td><td>4–6</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- SOPS -->
+<div id="panel-sops" class="panel">
+  <div class="pg-eye">Standard Operating Procedures</div>
+  <div class="pg-h">Vekora SOPs v1.0</div>
+  <div class="pg-desc">8 procedures. A trained VA can execute any of these without asking questions. Full doc: vekora_sop_v1.docx in Week-01 folder.</div>
+  <div class="card card-gold">
+    <span class="sec-lbl">Demo 1 system architecture — SOP 01</span>
+    <div class="arch" id="demo-arch"></div>
+    <div class="g3" style="margin-top:4px">
+      <div style="background:var(--card2);border:1px solid var(--bd);border-radius:7px;padding:12px;text-align:center"><div style="font-size:24px;font-weight:900;color:var(--gold)">30s</div><div style="font-size:11px;color:var(--mu)">Form → SMS max</div></div>
+      <div style="background:var(--card2);border:1px solid var(--bd);border-radius:7px;padding:12px;text-align:center"><div style="font-size:24px;font-weight:900;color:var(--gold)">4 min</div><div style="font-size:11px;color:var(--mu)">Demo from memory</div></div>
+      <div style="background:var(--card2);border:1px solid var(--bd);border-radius:7px;padding:12px;text-align:center"><div style="font-size:24px;font-weight:900;color:var(--gold)">10×</div><div style="font-size:11px;color:var(--mu)">Consecutive passes before first call</div></div>
+    </div>
+  </div>
+  <div class="card"><span class="sec-lbl">Tool requirements</span><div class="g2" id="sop-tools"></div></div>
+  <div class="sop-grid" id="sop-list"></div>
+</div>
+
+<!-- GUARDRAILS -->
+<div id="panel-guardrails" class="panel">
+  <div class="pg-eye">Non-Negotiable</div>
+  <div class="pg-h">Guardrails</div>
+  <div class="pg-desc">These don't flex. If you're reasoning around one of them, that's the problem — not the guardrail.</div>
+  <div class="guard-grid" id="guard-list"></div>
+</div>
+
+</main>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+// ─── DATA ───────────────────────────────────────────────────────────────────
+
+const WKS = [
+ {id:'w1',n:1,label:'Setup, CLI, Git, Claude Code',range:'9–14 June',mode:'term',
+  start:new Date(2026,5,9),end:new Date(2026,5,14),
+  goal:'Environment live, first commits pushed, Claude Code running, Build Log started — plus deliverables submitted and two repair messages sent.',
+  mlo:0,mhi:450,sends:0,
+  tasks:[
+   {t:'Tools, repos, portfolio, tracker',why:'Your dev environment is set. Claude Code, Git, GitHub — the three tools you\'ll use every day of this programme.',time:'Done',note:'Over-delivered ✅',pre:true},
+   {t:'Fri 12: Loom + Week 1 Check-In + Build Log Day 5 + repo links sent to Dee by EOD UK',why:'The streak is everything. 12/12 Fridays is your headline metric by 30 August. This is the first one — set the tone now.',time:'~45 min',dl:true},
+   {t:'Flag mock weeks (W3–4) to Dee in the check-in',why:'One sentence: "Mocks are 22 Jun–5 Jul, switching to minimal protocol." Dee needs to plan. Do it in the same Friday message.',time:'~1 min'},
+   {t:'Vas repair message sent ✓ → when he replies, present the 3 options clearly',why:'Options: (1) full handover at an agreed fee, (2) editor access added, (3) free 24h edits for 90 days. The Vas lesson is now Guardrail #2.',time:'~15 min when he replies',note:'Message sent ✓ — waiting on reply'},
+   {t:'Rubbish removal lead: book 15-min discovery call',why:'Don\'t pitch. Book the call. One question: "What happens when a job enquiry comes in at 9pm?" Then listen. That\'s the whole discovery.',time:'~10 min'},
+   {t:'Buy domain + pro email (~£10) · create UAT-UK account · CV v14 truth rewrite',why:'Clients Google you before calling back. A pro email signals you\'re serious. The CV rewrite is about accuracy, not padding.',time:'~2–3 hrs total'},
+  ],
+  del:['Week 1 check-in sent to Dee','Mocks flagged','UAT-UK account live','Domain + pro email live','CV v14 saved'],
+  obj:['Week 1 deliverables in + mocks flagged to Dee','Lead discovery message sent','UAT-UK + domain + pro email + CV v14'],
+ },
+ {id:'w2',n:2,label:'Deploy + Claude Code as Build Tool',range:'15–21 June',mode:'term',
+  start:new Date(2026,5,15),end:new Date(2026,5,21),
+  goal:'A real project on a public Vercel URL, built with Claude Code. Lead progressed. Revision ramping.',
+  mlo:450,mhi:900,sends:30,
+  tasks:[
+   {t:'Build the trades website template — 5 pages, mobile-first, booking form, small commits, pushed from terminal, deployed to Vercel',why:'This is your flagship Foundation Build template. Every future £900 client gets a version of this. Build it once, clone it for every deal.',time:'~6–8 hrs'},
+   {t:'Use Claude Code to refactor/add one feature — note in Build Log what it did well and what it got wrong',why:'Dee\'s task. This is how you develop a real opinion on AI tools — not by reading about them but by using them critically.',time:'~1–2 hrs'},
+   {t:'Lead call → close at £900 fixed, £450 upfront — ownership terms in writing before deposit',why:'The pricing floor is law. If they push back, trim scope. Never drop the price. Ownership clause must be written — the Vas lesson.',time:'~45 min call'},
+   {t:'Outreach: 10 audit pitches total this week — log every send',why:'The audit (£200) is your foot-in-the-door. It\'s credited against a build. Volume builds pipeline. Log every message.',time:'~3–5 hrs across week'},
+   {t:'Legal: register Vekora Ltd (£12, SIC 62020) · ICO registration (£40/yr) · open Tide or Starling business account',why:'You\'re taking money from real businesses. Ltd + ICO + business bank = professional and legal. One evening, all three done.',time:'~1–2 hrs, one evening'},
+   {t:'Revision: daily maths from Wednesday. Business capped at 45 min/evening from here.',why:'School beats business — this is Guardrail #1. Maths A* → Imperial → everything else. The 45-min cap is non-negotiable.',time:'Daily from Wed'},
+  ],
+  del:['Live Vercel URL','2–3+ commits','Build Log days 6–10','Week 2 check-in to Dee','Ltd + ICO + bank done'],
+  obj:['Template built + live on Vercel','Lead closed £900 (£450 deposit received)','Ltd + ICO + bank all done'],
+  demo:true,
+ },
+ {id:'w34',n:'3–4',label:'Mock Protocol — Flexible Week',range:'22 June – 5 July',mode:'mock',
+  start:new Date(2026,5,22),end:new Date(2026,6,5),
+  goal:'Mocks finished with maths defended. Friday streak unbroken. Nothing else.',
+  mlo:450,mhi:900,sends:0,
+  tasks:[
+   {t:'FILL IN: First mock = ___ · Last mock = ___ · Term ends = ___',why:'Edit this now so you know exactly what you\'re working with. Vague dates create vague planning.',time:'2 min'},
+   {t:'Revision only. No new outreach. Reply to live deals within 24h — nothing more.',why:'This is the mock protocol. One job: defend maths. Everything else waits.',time:'Full focus'},
+   {t:'Fri 26 Jun: minimum deliverable — 2-min verbal Loom + one Build Log entry',why:'The streak survives even in mock weeks. A 2-min honest Loom beats a polished one in a bad week.',time:'~15 min',dl:true},
+   {t:'Fri 3 Jul: minimum deliverable — 2-min verbal Loom + one Build Log entry',why:'Second minimum Friday. Same rule. Honest and brief is better than missing.',time:'~15 min',dl:true},
+   {t:'Pause CCA thinking, demo building, everything heavy. Revision only.',why:'Spreading attention in mock week costs you marks. The summer will fix everything else. Maths A* cannot be recovered later.',time:'—'},
+   {t:'Last mock done → 48 hours fully off before Week 5 begins',why:'You\'ve earned it. Rest is not weakness — it\'s how you perform at summer intensity. Then Week 5 hits properly.',time:'48 hrs'},
+  ],
+  del:['Two minimum Fridays submitted','Mocks sat','Maths self-assessment written honestly'],
+  obj:['Mocks: maths defended','Fri 26 Jun minimum submitted','Fri 3 Jul minimum submitted'],
+ },
+ {id:'w5',n:5,label:'GCP + Claude API + Month 1 Retro',range:'6–12 July',mode:'summer',
+  start:new Date(2026,6,6),end:new Date(2026,6,12),
+  goal:'First Claude API call from Python in the terminal. Cloud Run attempted. Retro done. CCA: yes.',
+  mlo:900,mhi:1400,sends:30,
+  tasks:[
+   {t:'GCP: create project "daniel-ai-mentorship" · explore IAM, Cloud Run, Firebase · screenshot dashboard',why:'GCP is the production stack for everything you build in this programme. Get comfortable in the console now — before you need it under pressure.',time:'~2 hrs'},
+   {t:'Anthropic API key (stored in password manager, never in code) · build claude_test.py using the Python SDK · run from terminal',why:'This is the first time Claude responds to your code. Not the playground — your code. That\'s the shift.',time:'~1–2 hrs'},
+   {t:'Cloud Run deploy attempted (success OR documented failure both count) · Firestore: add one doc, read it back from code',why:'Attempting and documenting a failure is a legitimate deliverable. The goal is to touch the stack, not to get it perfect first time.',time:'~2–3 hrs'},
+   {t:'"What I understand about auth" — half-page note in your own words',why:'Every production system needs auth. Writing it in your own words is how you find the gaps before they bite you in a client build.',time:'~30 min'},
+   {t:'Month 1 retro call with Dee: scorecard, CCA decision (yes/no), stack decision, ask the £1k/day question',why:'Ask Dee: "What would I need to show you to be worth £1,000/day?" Write the answer down. That\'s your roadmap for Month 2.',time:'~1 hr call'},
+   {t:'Outreach resumes: 10 audit pitches per evening · metric-logging sheet created',why:'The pipeline died in mocks. Restart it now. The sheet makes your numbers real — without it you\'re guessing.',time:'~1 hr/evening'},
+  ],
+  del:['GCP console screenshot','Terminal screenshot of Claude responding','Cloud Run URL or documented failure','Working frontend+backend app','Auth note written','Week 5 check-in to Dee'],
+  obj:['First Claude API call + GCP console set up','Month 1 retro: CCA yes + stack decided','Outreach restarted + metric sheet exists'],
+ },
+ {id:'w6',n:6,label:'Ship the Mini Product',range:'13–19 July',mode:'summer',
+  start:new Date(2026,6,13),end:new Date(2026,6,19),
+  goal:'One small thing shipped that does one useful job with a whiff of real business use.',
+  mlo:1400,mhi:2000,sends:30,
+  tasks:[
+   {t:'Build the Audit Generator: input a trade business\'s details → outputs loss estimate + GBP comparison structure used in £200 audits',why:'This is the tool that makes audits scalable. Right now every audit is manual. This makes it a 20-minute job instead of 2 hours.',time:'~8–10 hrs'},
+   {t:'Deploy (Vercel or Cloud Run) + full README + 3–5 min Loom selling the outcome not the tech',why:'The Loom is the product demo. Talk about missed jobs and lost revenue — not "it\'s built with React." The README is your portfolio evidence.',time:'~2 hrs'},
+   {t:'Write 1-page Month 1 retrospective: what I learned, what surprised me, what I struggled with, 3 Month 2 priorities',why:'Retros are how you learn faster. Writing it cements the lesson. It also shows Dee you\'re operating like a professional.',time:'~45 min'},
+   {t:'Outreach continues: 10 pitches/evening · deliver any sold audits within 48h of yes',why:'The audit (£200) is credited against a Foundation Build. That makes it a no-brainer for the client. Keep the volume up.',time:'~1 hr/evening + delivery'},
+  ],
+  del:['Live Audit Generator URL','Repo + README','Loom demo (outcome-focused)','1-page retro doc','Week 6 check-in'],
+  obj:['Audit Generator shipped (URL + README + Loom)','Month 1 retro written','2 audits delivered'],
+ },
+ {id:'w7',n:7,label:'TMUA Booked + Agentic Month Begins',range:'20–26 July',mode:'summer',
+  start:new Date(2026,6,20),end:new Date(2026,6,26),
+  goal:'TMUA October slot booked. First MCP/agentic experiment working. CCA module 1 done.',
+  mlo:1600,mhi:2200,sends:50,
+  tasks:[
+   {t:'⚡ MON 20 JULY 15:00 UK: book the October TMUA slot within 24h of bookings opening',why:'This is the highest-priority single action of the entire summer. Miss the window and you can\'t sit TMUA this year. Imperial requires it.',time:'15 min · non-negotiable',dl:true},
+   {t:'TMUA daily hour starts now: past papers + per-question review, every weekday until test day',why:'TMUA is not intuition — it\'s a learnable skill. Spaced repetition of past papers is how you score in the top 10%.',time:'1 hr/weekday'},
+   {t:'WS1: first MCP experiment in Claude Code — read Anthropic tool use + MCP docs, then build something that connects',why:'Tool use is what turns Claude from a chat tool into an agent. This is the Month 2 core skill. Even a broken experiment counts.',time:'~4–6 hrs'},
+   {t:'CCA module 1 on anthropic.skilljar.com — 4–6 hrs/wk from here until done',why:'CCA Foundations unlocks the subcontractor pathway. Module 1 is the foundation — concepts, not code. Do it in one sitting if you can.',time:'4–6 hrs'},
+   {t:'Vekora: deliver any sold work · push for Foundation Build #2 · GBP retainer pitch (£250/mo) to every delivered client at 30-day mark',why:'The retainer is where monthly recurring income starts. Ask every delivered client at day 30. Most say yes if the build was clean.',time:'Ongoing'},
+   {t:'Open source: first contribution — a documentation fix on a tool you actually use. Learn the PR workflow.',why:'This goes on your GitHub, your CV, and your Imperial PS. It also proves you can navigate a real codebase you didn\'t write.',time:'~2–3 hrs'},
+  ],
+  del:['TMUA booking confirmation screenshot','MCP experiment repo','CCA module 1 progress screenshot','Week 7 check-in'],
+  obj:['TMUA booked Mon 20 Jul + daily hour started','First MCP experiment working or documented','CCA module 1 completed'],
+ },
+ {id:'w8',n:8,label:'Agentic Build + Problem Discovery',range:'27 Jul – 2 Aug',mode:'summer',
+  start:new Date(2026,6,27),end:new Date(2026,7,2),
+  goal:'A multi-step agent doing something genuinely useful. Three real problem candidates heard from real business owners.',
+  mlo:2000,mhi:2800,sends:50,
+  tasks:[
+   {t:'Build the agentic project: a multi-step agent or MCP tool that does one genuinely useful job',why:'This is Month 2\'s core deliverable. It doesn\'t need to be perfect. It needs to work, have a README, and have a Loom explaining the outcome.',time:'~10–15 hrs'},
+   {t:'Problem discovery: in every client/audit conversation ask "What\'s the most expensive manual process in your business?" Log every answer verbatim — 3 candidates by month-end',why:'Your MVP in W11 comes from this list. "Verbatim" means word-for-word — the language clients use is what you put in the pitch back to them.',time:'Ongoing in conversations'},
+   {t:'CCA module 2 · TMUA daily · outreach steady at 50/week',why:'Compound habits. TMUA daily is non-negotiable. CCA module 2 is 4–6 hrs. Outreach keeps the pipeline alive.',time:'Parallel tracks'},
+   {t:'Hackathon: find one, check age eligibility, register',why:'Hackathons give you compressed shipping experience, networking, and portfolio evidence. MLH events list has UK-eligible ones. Register now.',time:'~30 min research + registration'},
+   {t:'Open source: take one "good first issue" on a real project',why:'One step harder than documentation. Writing code in someone else\'s codebase is a distinct skill — and it\'s on your GitHub forever.',time:'~3–5 hrs'},
+  ],
+  del:['Agentic build repo + Loom','Problem log (3 verbatim candidates)','Hackathon registration screenshot','Week 8 check-in'],
+  obj:['Agentic build shipped','3 validated problems logged verbatim','Hackathon registered + CCA module 2'],
+ },
+ {id:'w9',n:9,label:'Demo 1 Rebuild + PS Draft 1',range:'3–9 August',mode:'summer',
+  start:new Date(2026,7,3),end:new Date(2026,7,9),
+  goal:'Demo 1 v2 on the approved stack passing the 20-lead stress test. PS draft 1 exists.',
+  mlo:2200,mhi:3000,sends:50,
+  tasks:[
+   {t:'Rebuild Demo 1 Claude-native: GHL form → n8n qualifier endpoint → Firestore → SMS. SOP 01 step-gating and 20-test matrix survive — only the plumbing changes.',why:'The demo is the business. Everything else in Vekora runs on "can you demo this in under 4 minutes and have an SMS arrive?" Build it to that spec.',time:'~12–15 hrs'},
+   {t:'Run the full 20-lead stress test · fix every failure · log every fix in the Build Log',why:'SOP 01 says: 10 consecutive clean runs before your first sales call. The 20-lead matrix is how you get there. Do not skip test cases.',time:'~3–4 hrs testing'},
+   {t:'Personal statement draft 1: spine = NEA story + eval-harness idea + market simulation intent + Vekora as applied evidence',why:'Imperial CS asks for evidence of thinking, not just projects. The Vekora story is the strongest concrete evidence you have. Get it into words now.',time:'~2–3 hrs'},
+   {t:'CCA module 3 · TMUA daily · deliver any outstanding client work',why:'Three parallel tracks. Don\'t let any of them slip — log progress on all three in the weekly check-in.',time:'Parallel tracks'},
+  ],
+  del:['Demo 1 repo','20-lead stress test log','PS draft 1','Week 9 check-in'],
+  obj:['Demo 1 rebuilt + 20-test log documented','PS draft 1 written','CCA module 3 completed'],
+  stress:true,
+ },
+ {id:'w10',n:10,label:'Demo 10/10 + Hackathon',range:'10–16 August',mode:'summer',
+  start:new Date(2026,7,10),end:new Date(2026,7,16),
+  goal:'Demo runs 10/10 from memory. Hackathon shipped. Tier 1 unlock criteria met.',
+  mlo:2300,mhi:3300,sends:50,
+  tasks:[
+   {t:'Demo: 10 consecutive clean runs from memory, under 4 minutes, SMS every time — ONLY then does Tier 1 unlock for sales calls',why:'A broken demo on a sales call is worse than no demo. SOP 01 is explicit: 10 consecutive passes. Don\'t compromise. Tier 1 is worth £950/mo + £500 setup.',time:'~2–3 hrs practice'},
+   {t:'Hackathon weekend: ship something, get the project page, document it',why:'Win or not, you shipped something in 24–48 hrs with strangers. That\'s the evidence. The GitHub link is the deliverable.',time:'Full weekend'},
+   {t:'First Tier 1 conversations with any Foundation client at their 30-day mark — ask: "What happens when an enquiry comes in at 9pm on a Friday?"',why:'The upsell question. Ask it. Then stop talking. Let them answer. The answer tells you whether to pitch Tier 1 or not.',time:'~20 min per conversation'},
+   {t:'CCA module 4 · TMUA daily · PS draft 2 if feedback received',why:'Month 3 home stretch. Don\'t let TMUA slip — it\'s 3 weeks from test day.',time:'Parallel tracks'},
+  ],
+  del:['10/10 demo Loom proof','Hackathon project link','Week 10 check-in'],
+  obj:['Demo 10/10 → Tier 1 unlocked','Hackathon weekend shipped','First Tier 1 conversation had'],
+ },
+ {id:'w11',n:11,label:'MVP Build',range:'17–23 August',mode:'summer',
+  start:new Date(2026,7,17),end:new Date(2026,7,23),
+  goal:'MVP scoped to a validated problem, build underway.',
+  mlo:2400,mhi:3600,sends:50,
+  tasks:[
+   {t:'Pick the MVP from the W8 problem log — validated = a real owner said it costs them real money',why:'Default if uncertain: the productised Tier 1 system — one codebase, per-client config file. You\'ve already built the parts. Now make it a product.',time:'~2 hrs scoping'},
+   {t:'Build with Claude Code: small commits, README as you go, no skipping the docs',why:'Treat this like a real product, not a school project. Small commits = reversible mistakes. README as you go = you can Loom it immediately.',time:'~15–20 hrs'},
+   {t:'CCA: access attestation submitted + exam prep begins · TMUA daily',why:'CCA exam is the credential. Book it early. TMUA is this week or next — every day counts.',time:'Parallel tracks'},
+   {t:'Professional indemnity insurance: get a quote if any retainer is live (~£10–15/mo)',why:'One unhappy retainer client who threatens legal action with no insurance is catastrophic. This is cheap. Do it.',time:'~30 min'},
+  ],
+  del:['MVP repo with commits','Scoping note (problem, who validated, success measure)','Week 11 check-in'],
+  obj:['MVP scoped (validated) + build underway','CCA access attestation + exam prep','PS draft 2 revised'],
+ },
+ {id:'w12',n:12,label:'Ship, Demo, Assess',range:'24–30 August',mode:'summer',
+  start:new Date(2026,7,24),end:new Date(2026,7,30),
+  goal:'MVP live + demoed. Subcontractor readiness scored. Programme retrospective done.',
+  mlo:2500,mhi:4000,sends:50,
+  tasks:[
+   {t:'MVP deployed · Loom demo pitched on outcome not features · first outreach sequence sent',why:'The Loom is the close. Talk about the problem it solves and who for. Then send it to 5–10 people who have that problem.',time:'~3–4 hrs'},
+   {t:'Subcontractor readiness checklist scored with Dee: availability, equipment, pro email, LinkedIn, GitHub, 24h response, confidentiality, agreements via Michelle/Dee',why:'This is the conversation that determines whether you\'re deployable as a subcontractor in Year 13. Be honest in the scoring.',time:'~45 min call'},
+   {t:'Programme retrospective: 12-Friday streak is the headline metric — write what you learned, what surprised you, what you\'d do differently',why:'The retro is for you. It\'s also evidence of professional self-reflection for any future conversation about your capability.',time:'~1 hr'},
+   {t:'September preview agreed with Dee: CCA exam date · Year 13 cadence · subcontract availability',why:'Don\'t let this programme end with no plan for what comes next. September is decided in August.',time:'~30 min'},
+  ],
+  del:['MVP URL + Loom','Readiness checklist scored','Week 12 check-in','12/12 Fridays confirmed'],
+  obj:['MVP live + Loom + outreach sequence','Subcontractor readiness scored with Dee','12/12 Fridays confirmed'],
+ },
+];
+
+const GMTX = [
+ {w:1,o1:'Week 1 deliverables in + mocks flagged',o2:'Lead discovery message sent',o3:'UAT-UK + domain + pro email + CV v14',m:'£0–450',s:'—'},
+ {w:2,o1:'Template built + live on Vercel',o2:'Lead closed £900 (£450 deposit in)',o3:'Ltd + ICO + bank done',m:'£450–900',s:'30'},
+ {w:3,o1:'Mocks: maths defended',o2:'Fri 26 Jun minimum submitted',o3:'—',m:'hold',s:'0'},
+ {w:4,o1:'Mocks finished strong',o2:'Fri 3 Jul minimum submitted',o3:'48h off taken',m:'hold',s:'0'},
+ {w:5,o1:'First Claude API call + GCP set up',o2:'Month 1 retro: CCA yes + stack decided',o3:'Outreach restarted + metric sheet exists',m:'£900–1,400',s:'30'},
+ {w:6,o1:'Audit Generator shipped (URL+README+Loom)',o2:'Month 1 retro written',o3:'2 audits delivered',m:'£1,400–2,000',s:'30'},
+ {w:7,o1:'TMUA booked Mon 20 Jul + daily hour started',o2:'First MCP experiment working',o3:'CCA module 1 done',m:'£1,600–2,200',s:'50'},
+ {w:8,o1:'Agentic build shipped',o2:'3 validated problems logged verbatim',o3:'Hackathon registered + CCA module 2',m:'£2,000–2,800',s:'50'},
+ {w:9,o1:'Demo 1 rebuilt + 20-test log documented',o2:'PS draft 1 written',o3:'CCA module 3 done',m:'£2,200–3,000',s:'50'},
+ {w:10,o1:'Demo 10/10 → Tier 1 unlocked',o2:'Hackathon shipped',o3:'First Tier 1 conversation had',m:'£2,300–3,300',s:'50'},
+ {w:11,o1:'MVP scoped (validated) + build underway',o2:'CCA access attestation + exam prep',o3:'PS draft 2 revised',m:'£2,400–3,600',s:'50'},
+ {w:12,o1:'MVP live + Loom + outreach sequence',o2:'Subcontractor readiness scored with Dee',o3:'12/12 Fridays confirmed',m:'£2,500–4,000',s:'50'},
+];
+
+const PROJS = [
+ {name:'Daily Tracker',status:'built',when:'Week 1 ✅',hours:'Done',
+  desc:'Personal productivity tool — daily tasks, time blocks with priority levels, daily log entries, weekly and monthly goals. Dark/light mode. Full localStorage persistence.',
+  why:'Built in Week 1 to demonstrate single-file HTML competence. Lives at daniel-ikusawe.github.io/daily-tracker/',
+  stack:['HTML','CSS','JavaScript','localStorage'],
+  steps:['Single HTML file, zero dependencies','Tasks stored per day-key in localStorage','Timetable sorted by time with H/M/L priority','Daily log with collapsible previous entries','Export/import backup as JSON file'],
+ },
+ {name:'Finance Calculator',status:'built',when:'Week 1 ✅',hours:'Done',
+  desc:'15 trading and finance calculators — position sizing, risk/reward, P&L, Kelly Criterion, Sharpe Ratio, CAGR, leverage and margin, compound interest, drawdown, break-even win rate, expected value, statistics, and a functional basic calculator. Variable storage, history, glass UI.',
+  why:'Portfolio piece demonstrating complex JS logic, XSS prevention, and stateful UI. Lives at daniel-ikusawe.github.io/finance-calculator/',
+  stack:['HTML','CSS','JavaScript','localStorage'],
+  steps:['15 calculator panels, single HTML file','Variable storage — store a result and reference it by name in later calculations','Calculation history (max 100 entries)','XSS prevention via esc() on all user input — no eval() anywhere','Light/dark glass UI with CSS custom properties'],
+ },
+ {name:'Trades Website Template',status:'planned',when:'Week 2',hours:'~6–8 hrs',
+  desc:'5-page mobile-first website for trades and commercial security businesses. Homepage, Services, About, Gallery, and Contact with a booking inquiry form. Deployed to Vercel.',
+  why:'This is the Foundation Build template. Every £900 client deal starts from a clone of this. Build it once, delivered to every trade client in under 5 hours.',
+  stack:['Next.js 14','Vercel','Tailwind CSS','React'],
+  steps:['Set up Next.js project, push to GitHub','Homepage: hero, services overview, social proof, CTA','Services page: detailed offerings, pricing tiers','Contact/booking page: form with validation','Mobile-first responsive design throughout','Deploy to Vercel — live URL is the deliverable'],
+ },
+ {name:'Audit Generator',status:'planned',when:'Week 6',hours:'~8–10 hrs',
+  desc:'Input a trade business\'s details → outputs a formatted loss estimate showing missed enquiries cost + GBP optimisation comparison. The tool that makes £200 audits scalable from 2 hours to 20 minutes.',
+  why:'Right now audits are manual. This tool makes them repeatable without losing quality. It\'s also a portfolio piece showing business-specific AI product thinking.',
+  stack:['Next.js 14','Claude API','Vercel','Tailwind CSS'],
+  steps:['Input form: business name, niche, monthly leads, avg job value, response time, current GBP status','Claude API call: generate structured loss estimate + 3 recommendations','Output: formatted PDF-style report with £ numbers prominently displayed','Deploy to Vercel, shareable URL for each audit','README + Loom explaining the business outcome'],
+ },
+ {name:'TMUA Tracker',status:'planned',when:'Week 7 weekend',hours:'~12 hrs',
+  desc:'Log every practice paper. Track per-question accuracy by topic. Automatically surface weak areas. The scientific alternative to "doing a paper and hoping."',
+  why:'TMUA in October for Imperial CS. Tracking by topic means you study what you\'re weak at, not what you feel like. SM-2 scheduling for maximum retention.',
+  stack:['Next.js 14','Firestore','Vercel','Google Auth'],
+  steps:['Define topic taxonomy: Pure Maths (12 topics), Stats, Mechanics, Applied','Paper input: date, score, per-question scores mapped to topics','Auto-calculate accuracy per topic over rolling 30 days','Dashboard: topic accuracy heat map, trend lines, "weakest 3 topics today"','Streak tracker, revision reminders','Auth: Google login, personal queue — private data'],
+ },
+ {name:'Missed-Call Text-Back',status:'planned',when:'Week 8–9',hours:'~8 hrs',
+  desc:'When a call to a business goes unanswered, the caller instantly receives an SMS. "Hi, we missed your call. We\'ll ring you back shortly." Logs to Firestore.',
+  why:'The #1 objection from trade clients: "I miss jobs when I\'m on site." This solves it with one integration. It\'s a Vekora Tier 1 feature and a standalone product.',
+  stack:['Twilio','Cloud Run','Node.js','Firestore'],
+  steps:['Buy a Twilio number, configure voice webhook URL pointing to Cloud Run','Cloud Run: Node.js server handles no-answer call event (statusCallbackEvent)','Extract caller number, send SMS: "Hi, we missed your call..." + business name','Log to Firestore: caller, timestamp, callback sent, any reply','Test with own phone x5 before any client goes live'],
+ },
+ {name:'AI Revision Tutor',status:'planned',when:'August (W10–11)',hours:'~20 hrs',
+  desc:'A-level Maths, Econ, and CS. Spaced repetition using the SM-2 algorithm. Answers marked and explained by Claude. Better than Anki for subject-specific revision.',
+  why:'TMUA + A-levels + Imperial PS. Building the tool you actually use is the strongest portfolio story. The technical challenge (SM-2 + Claude grading) is real.',
+  stack:['Claude API','Next.js 14','Firestore','Vercel'],
+  steps:['Topic taxonomy: Maths (Pure/Stats/Mech), Econ (Micro/Macro), CS (Data structures/Algorithms)','Question database: seed from past papers, user-add custom cards','SM-2 scheduler: easiness factor, interval, repetition count per card in Firestore','Answer submission → Claude grades + explains + rates difficulty → updates SM-2 state','Dashboard: due today, accuracy by topic, streak','Auth: Google login — all data private'],
+ },
+ {name:'Agent-Based Market Simulation',status:'planned',when:'August',hours:'~15 hrs',
+  desc:'Multiple agents with simple decision rules → emergent price dynamics. Buyers with budgets and utility functions, sellers with cost and markup strategies. Claude-powered strategy advice as a tool use demonstration.',
+  why:'Imperial CS personal statement signature piece. Shows computational thinking, finance interest, and agentic AI usage — all three in one project.',
+  stack:['Python','Claude API (tool use)','Plotly','Claude Code'],
+  steps:['Define agent types: buyers (budget, utility function), sellers (cost, markup target)','Market clearing: double auction mechanism, each timestep','Claude tool use: agents can call "get_market_advice" tool — Claude returns strategic suggestion','Visualise: price convergence over time, volume traded, Gini coefficient','Run scenarios: monopoly, perfect competition, information asymmetry','Write-up: 500-word explanation of what emerged and why'],
+ },
+];
+
+const TOOLS = [
+ {n:'GoHighLevel (GHL)',r:'CRM + forms + automation + SMS/email delivery',c:'£297/mo SaaS Pro',tag:'CRM'},
+ {n:'n8n on Railway',r:'Workflow automation — processes the lead between GHL and Claude',c:'Railway free tier (upgrade if you hit limits)',tag:'Automation'},
+ {n:'Anthropic API',r:'Claude (claude-sonnet-4) — entity extraction + lead qualification (2 calls)',c:'Pay-per-token. Set a billing alert before going live.',tag:'AI'},
+ {n:'UptimeRobot',r:'Pings n8n every 5 min to prevent Railway cold starts killing the demo',c:'Free tier sufficient',tag:'Monitoring'},
+ {n:'Loom',r:'Record every build step — becomes VA training videos + portfolio evidence',c:'Free tier',tag:'Docs'},
+];
+
+const ARCH = [
+ {n:'1',l:'GHL Form',d:'Lead submits on your site'},
+ {n:'2',l:'n8n Webhook',d:'Receives JSON payload'},
+ {n:'3',l:'Claude: Extract',d:'Entity signals JSON'},
+ {n:'4',l:'Claude: Qualify',d:'7-field score 1–10'},
+ {n:'5',l:'GHL PATCH',d:'Updates 7 custom fields'},
+ {n:'6',l:'Owner SMS',d:'Score + action to phone'},
+ {n:'7',l:'Lead Email',d:'AI-written opener'},
+];
+
+const SOPS = [
+ {n:'01',t:'Demo 1 Build',s:'GHL → n8n → Claude → SMS under 30s',
+  done:'Run demo live from memory, under 4 min, form-to-SMS under 30s. 10 consecutive clean runs before first real sales call. If it fails once — fix before calling anyone.',
+  c:'var(--gold)',
+  steps:['GHL: demo sub-account + lead form (7 custom fields: lead_score, lead_tier, score_reasoning, recommended_action, email_opener, estimated_value, follow_up_timing)','Deploy n8n to Railway + UptimeRobot monitoring (pings /healthz every 5 min)','n8n: Webhook → Set node maps all GHL form fields','Claude call 1: entity extraction → JSON (sites, urgency, deadline, authority, budget, incident trigger, multi-site)','Claude call 2: lead qualifier → 7-field JSON (score 1–10, tier hot/warm/cold, reasoning, action, opener, value, timing)','GHL PATCH: update contact with all 7 qualifier results','GHL automation: SMS to owner + email to lead on contact field updated trigger'],
+ },
+ {n:'02',t:'New Client Onboarding',s:'Tier 1–2',
+  done:'Client has signed agreement, paid 50% deposit, received welcome email, and all access credentials are in your password manager.',
+  c:'var(--ok)',
+  steps:['Countersigned agreement received (via Michelle/Dee if under-18)','50% deposit confirmed in Tide/Starling','Welcome email sent (template)','Asset collection: domain login, current hosting, existing branding files','GHL sub-account created — named "ClientName – Vekora"','Onboarding call booked within 48h'],
+ },
+ {n:'03',t:'System Health Check',s:'Weekly — every Monday',
+  done:'All monitored workflows green. UptimeRobot 100% uptime. Test lead SMS received within 30s.',
+  c:'var(--warn)',
+  steps:['UptimeRobot dashboard — all monitors green','Submit one test lead per active client system','Confirm SMS arrives within 30 seconds','n8n execution log — no failed runs since last check','GHL contact fields populated correctly on test contact','Log result: date, client, status, any issues'],
+ },
+ {n:'04',t:'Monthly Report',s:'First Friday of each month',
+  done:'Report sent to client. Numbers are real. No rounding up. Sent by first Friday.',
+  c:'var(--blue)',
+  steps:['Pull lead volume from GHL this month','Pull score distribution (hot/warm/cold split)','Calculate average response time (form submit → SMS)','Pull any audit results or follow-up conversions','Write 3-bullet plain-English summary','Send via email: subject "Vekora Monthly Report — [Client] — [Month]"'],
+ },
+ {n:'05',t:'Sales Call Execution',s:'Discovery + Demo + Close',
+  done:'Call ends with a signed agreement + deposit, or a clear next step with a specific date.',
+  c:'var(--ok)',
+  steps:['Pre-call: run a test lead, confirm SMS arrives on your phone','Opening: "Tell me what happens when an enquiry comes in right now" — listen, don\'t pitch','Discovery: monthly lead volume, current response time, busiest period, biggest job this year','Frame the loss: calculate the number using their answers','Run the demo live — form, then SMS arrives during the call','Price: "£900 fixed, £450 today, rest on delivery" — then stop talking','If yes: payment link now. If no: "What\'s your hesitation?" Address once, then stop.'],
+ },
+ {n:'06',t:'Outreach — WhatsApp + LinkedIn',s:'Term 30/wk · Summer 50/wk',
+  done:'Messages logged in the outreach sheet with date, platform, name, response. Reply rate tracked.',
+  c:'var(--purple)',
+  steps:['Research: Google Maps → "commercial security [area]" / "waste removal [area]" → find decision-maker\'s name','WhatsApp: "Hi [Name], I help [niche] businesses recover missed enquiries with an automated follow-up system. Can I show you a 5-min demo?"','LinkedIn: connect first (no note) → message after accept','Log every send in the metric sheet: date, platform, recipient, response','Reply within 4 hours during business hours','Audit pitch: "Free audit showing what your current setup is costing you" → book 20-min call'],
+ },
+ {n:'07',t:'Client Offboarding',s:'When contract ends or is cancelled',
+  done:'All access returned. Final invoice paid. Testimonial requested (written or Loom).',
+  c:'var(--err)',
+  steps:['Final invoice sent (if any balance outstanding)','Return all client credentials (domain, hosting, any GHL login)','Archive n8n workflow (don\'t delete — keep 90 days)','Archive GHL sub-account','Send thank-you email + testimonial request (written or 2-min Loom)','Log outcome: why they left, what worked, what to fix'],
+ },
+ {n:'08',t:'System Failure Response',s:'When something breaks',
+  done:'Root cause identified and documented. System tested clean. Client notified if affected.',
+  c:'var(--err)',
+  steps:['UptimeRobot alert → check n8n execution log immediately','Identify failed node — open and read the full error message','Common fixes: API key expired (regenerate), Railway cold start (ping URL), GHL field key changed (re-map)','Fix taking >30 min → notify client proactively: "Brief delay in your system — investigating now, will update shortly."','Confirmed fix: run 3 test leads consecutively before marking resolved','Document in failure log: date, root cause, fix, minutes to resolution'],
+ },
+];
+
+const STRESS = [
+ {n:1,t:'Hot lead',d:'Specific service, multi-site, urgent timeline, decision-maker language'},
+ {n:2,t:'Warm lead',d:'Clear service need, no urgency expressed'},
+ {n:3,t:'Cold lead',d:'One vague sentence, no detail'},
+ {n:4,t:'Blank message',d:'Name and email only — message field empty'},
+ {n:5,t:'Very long',d:'300+ words describing a complex project'},
+ {n:6,t:'Budget stated',d:'"Budget of around £15k" — explicit number in message'},
+ {n:7,t:'Competitor named',d:'"We\'ve had a quote from X" — direct comparison'},
+ {n:8,t:'Incident trigger',d:'"We had a break-in last week" — event-driven urgency'},
+ {n:9,t:'Informal slang',d:'"Just need some cams innit" — casual language'},
+ {n:10,t:'Special characters',d:'!@£$%^&* in message field — injection/XSS test'},
+ {n:11,t:'All caps',d:'ENTIRE MESSAGE WRITTEN IN CAPITAL LETTERS'},
+ {n:12,t:'Unusual phone',d:'Phone formatted with spaces, brackets, or country code'},
+ {n:13,t:'Special name',d:'Company name: "O\'Brien & Sons Ltd" — apostrophes + ampersand'},
+ {n:14,t:'Duplicate',d:'Same lead submitted twice within 2 minutes — idempotency'},
+ {n:15,t:'Service: Other',d:'Dropdown set to Other — message doesn\'t clarify service'},
+ {n:16,t:'Residential',d:'Clearly residential job — should score low (not commercial)'},
+ {n:17,t:'Very short',d:'Two words only: "need cameras"'},
+ {n:18,t:'Specific deadline',d:'Exact date mentioned — triggers urgency signals'},
+ {n:19,t:'No company',d:'Company name field left blank — only personal name given'},
+ {n:20,t:'Multi-site + all signals',d:'5+ sites, large budget, decision-maker, incident trigger — should score 10/10'},
+];
+
+const GUARDS = [
+ {i:'📚',t:'<strong>School beats business.</strong> Until maths papers hit A, revision wins every collision. Maths A* → Imperial → everything else. This is the load-bearing wall of the entire plan.'},
+ {i:'📅',t:'<strong>Friday is sacred.</strong> 12/12 submissions. A 2-minute honest Loom in a terrible week beats a polished one in a good week. The streak is the audition for Year 13 subcontracting.'},
+ {i:'🔍',t:'<strong>Documents describe reality.</strong> No claim in any CV, check-in, plan, or pitch that wouldn\'t survive a probing question. Honest and unimpressive beats impressive and false, every time.'},
+ {i:'⏱️',t:'<strong>Stuck 45 minutes → escalate.</strong> Write the blocker clearly. Send to Dee (BLOCKED protocol) or ask Claude. Then switch tasks. Streaks die from stalls, not laziness.'},
+ {i:'💷',t:'<strong>Pricing floor is law.</strong> £900 build · £200 audit · £250/mo GBP retainer · £950/mo + £500 setup Tier 1. No discounts. Trim scope instead.'},
+ {i:'📝',t:'<strong>Ownership in writing before deposit.</strong> Who owns the domain, hosting, content, what the client can edit — one paragraph, every deal. (The Vas lesson, institutionalised.)'},
+ {i:'🎯',t:'<strong>Sell outcomes, never "AI" or "automation."</strong> Missed jobs. Slow response. Money recovered. That\'s the pitch. Features are for the delivery call, not the close.'},
+ {i:'🏠',t:'<strong>One niche until 3 clients in it.</strong> Waste/trades cluster now. Commercial security is the Tier 1 graduation, decided on evidence: £2–3k Foundation revenue banked.'},
+ {i:'💰',t:'<strong>Money rules:</strong> 20–25% of every invoice set aside for tax · fixed costs &lt;£30/mo · API billing alert set before any client system goes live · no GHL before 2 Tier 1 clients.'},
+ {i:'🔒',t:'<strong>Security basics:</strong> no keys in code, ever · .env + Secret Manager · least privilege · no real client data in builds without Dee\'s written agreement first.'},
+ {i:'😴',t:'<strong>Sleep and the rest day.</strong> Stop at 21:30 on school nights. Sunday is rest, faith, family. A 17-year-old running on no sleep fails mocks and misses clients.'},
+ {i:'👨‍👩‍👦',t:'<strong>Parents informed.</strong> They see the money, the contracts, and this plan. At 17, passive parents are a legal and practical liability. Informed parents are an asset.'},
+ {i:'🚫',t:'<strong>No new strategy documents. Ever.</strong> This is the last one. Artifacts only: code, Looms, messages, invoices, check-ins. If you\'re drafting Blueprint V23 — close the tab and do the next send.'},
+];
+
+// ─── STATE ───────────────────────────────────────────────────────────────────
+
+const SK='plan12v2';
+const S={tasks:{},logs:{},money:{},sends:{},dark:true};
+
+function loadS(){try{const d=JSON.parse(localStorage.getItem(SK)||'{}');Object.assign(S,d);S.dark=S.dark!==undefined?S.dark:true;}catch(e){}}
+function saveS(){try{localStorage.setItem(SK,JSON.stringify(S));}catch(e){}}
+
+// ─── THEME ───────────────────────────────────────────────────────────────────
+
+function setTheme(dark){
+  S.dark=dark;
+  document.body.classList.toggle('light',!dark);
+  saveS();
+}
+
+// ─── NAV ─────────────────────────────────────────────────────────────────────
+
+let curPanel='overview';
+function nav(id,el){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.sb-btn').forEach(b=>b.classList.remove('on'));
+  document.getElementById('panel-'+id).classList.add('on');
+  el.classList.add('on');
+  curPanel=id;
+}
+function goTo(id){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.sb-btn').forEach(b=>b.classList.remove('on'));
+  document.getElementById('panel-'+id).classList.add('on');
+  curPanel=id;
+}
+
+// ─── DATE HELPERS ─────────────────────────────────────────────────────────────
+
+function getCurWk(){
+  const t=new Date();
+  for(const w of WKS){if(t>=w.start&&t<=new Date(w.end.getTime()+86400000))return w.id;}
+  if(new Date()<WKS[0].start)return WKS[0].id;
+  return WKS[WKS.length-1].id;
+}
+function daysLeft(end){return Math.max(0,Math.ceil((new Date(end.getTime()+86400000)-new Date())/86400000));}
+
+// ─── COMPUTED ─────────────────────────────────────────────────────────────────
+
+function streak(){
+  const today=new Date();let s=0;
+  for(const w of WKS){const l=S.logs[w.id];if(l&&l.submitted)s++;else if(today>new Date(w.end.getTime()+86400000))break;else break;}
+  return s;
+}
+function totalBanked(){return Object.values(S.money).reduce((a,b)=>a+(parseFloat(b)||0),0);}
+function tasksDone(){return Object.values(S.tasks).filter(Boolean).length;}
+function totalTasks(){return WKS.reduce((a,w)=>a+w.tasks.length,0)+STRESS.length;}
+function wksDone(){const t=new Date();return WKS.filter(w=>t>new Date(w.end.getTime()+86400000)&&S.logs[w.id]&&S.logs[w.id].submitted).length;}
+
+// ─── SIDEBAR DOTS ─────────────────────────────────────────────────────────────
+
+function updateDots(){
+  const today=new Date();const cur=getCurWk();
+  WKS.forEach(w=>{
+    const dot=document.querySelector(`#nb-${w.id} .sb-dot`);
+    if(!dot)return;
+    const l=S.logs[w.id];
+    const past=today>new Date(w.end.getTime()+86400000);
+    dot.className='sb-dot';
+    if(l&&l.submitted)dot.classList.add('dot-d');
+    else if(w.id===cur)dot.classList.add('dot-c');
+    else if(past)dot.classList.add('dot-l');
+    else dot.classList.add('dot-f');
+    const btn=document.getElementById('nb-'+w.id);
+    btn.classList.toggle('cur-wk',w.id===cur);
+  });
+}
+function updateSbStats(){
+  document.getElementById('sb-streak').textContent=streak()+'/12';
+  document.getElementById('sb-money').textContent='£'+totalBanked().toLocaleString('en-GB',{maximumFractionDigits:0});
+}
+
+// ─── OVERVIEW ─────────────────────────────────────────────────────────────────
+
+function renderOverview(){
+  const today=new Date();const cur=getCurWk();const curW=WKS.find(w=>w.id===cur);
+  const prog=new Date(2026,7,30);
+  const totalDays=Math.ceil((prog-WKS[0].start)/86400000);
+  const doneDays=Math.min(totalDays,Math.max(0,Math.ceil((today-WKS[0].start)/86400000)));
+  document.getElementById('ov-desc').textContent='9 June – 30 August 2026 · '+Math.max(0,Math.ceil((prog-today)/86400000))+' days remaining';
+  if(curW){
+    const dl=daysLeft(curW.end);
+    document.getElementById('ov-banner').innerHTML=`<div class="cur-banner">
+      <div><div class="cb-lbl">You are here</div><div class="cb-title">Week ${esc(String(curW.n))}: ${esc(curW.label)}</div><div class="cb-dates">${esc(curW.range)}</div></div>
+      <div><div class="cb-days">${dl}</div><div class="cb-days-lbl">${dl===1?'day':'days'} left this week</div></div>
+    </div>`;
+  }
+  const banked=totalBanked();const strk=streak();const td=tasksDone();const tt=totalTasks();
+  document.getElementById('ov-stats').innerHTML=`
+    <div class="stat"><div class="stat-lbl">Friday streak</div><div class="stat-val g">${strk}<span style="font-size:14px;font-weight:500">/12</span></div><div class="stat-sub">Fridays submitted</div></div>
+    <div class="stat"><div class="stat-lbl">Money banked</div><div class="stat-val ok">£${banked.toLocaleString('en-GB',{maximumFractionDigits:0})}</div><div class="stat-sub">Target: £${curW?curW.mhi.toLocaleString('en-GB'):4000} cum.</div></div>
+    <div class="stat"><div class="stat-lbl">Tasks done</div><div class="stat-val bl">${td}</div><div class="stat-sub">of ${tt} across 12 weeks</div></div>
+    <div class="stat"><div class="stat-lbl">Programme</div><div class="stat-val">${Math.round(doneDays/totalDays*100)}<span style="font-size:14px">%</span></div><div class="stat-sub">${doneDays} of ${totalDays} days</div></div>`;
+  const wkd=wksDone();
+  document.getElementById('ov-wk-lbl').textContent=wkd+' of 12 weeks';
+  document.getElementById('ov-wk-bar').style.width=(wkd/12*100)+'%';
+  document.getElementById('ov-task-lbl').textContent=td+' / '+tt;
+  document.getElementById('ov-task-bar').style.width=(tt?td/tt*100:0)+'%';
+  const groups=[{l:'W1–2',t:'£900',ids:['w1','w2']},{l:'W3–6',t:'£2,000',ids:['w34','w5','w6']},{l:'W7–8',t:'£2,800',ids:['w7','w8']},{l:'W9',t:'£3,000',ids:['w9']},{l:'W10–11',t:'£3,600',ids:['w10','w11']},{l:'W12',t:'£4,000',ids:['w12']}];
+  document.getElementById('ov-money').innerHTML=groups.map(g=>{
+    const isCur=g.ids.includes(cur);
+    const amt=g.ids.reduce((a,id)=>a+(parseFloat(S.money[id])||0),0);
+    return `<div class="mc${isCur?' cur':''}"><div class="mc-lbl">${g.l}</div><div class="mc-t">${g.t}</div>${amt>0?`<div class="mc-a">+£${amt.toFixed(0)}</div>`:''}</div>`;
+  }).join('');
+}
+
+// ─── WEEK PANEL ───────────────────────────────────────────────────────────────
+
+function renderWk(w){
+  const el=document.getElementById('panel-'+w.id);
+  const today=new Date();const cur=getCurWk();const isCur=w.id===cur;
+  const isPast=today>new Date(w.end.getTime()+86400000);
+  const log=S.logs[w.id]||{};
+  let doneCnt=0;
+  w.tasks.forEach((_,i)=>{const k=w.id+'-'+i;if(w.tasks[i].pre||S.tasks[k])doneCnt++;});
+  const prog=Math.round(doneCnt/w.tasks.length*100);
+  const modeTag={term:'tg',mock:'tw',summer:'to'}[w.mode];
+  const modeTxt={term:'Term',mock:'Mocks',summer:'Summer'}[w.mode];
+
+  const bannerHtml=isCur?`<div class="cur-banner" style="margin-bottom:14px">
+    <div><div class="cb-lbl">Current week</div><div class="cb-title">Week ${esc(String(w.n))}: ${esc(w.label)}</div><div class="cb-dates">Deadline: Friday ${esc(w.range.split('–')[1]||w.range)}</div></div>
+    <div><div class="cb-days">${daysLeft(w.end)}</div><div class="cb-days-lbl">days left</div></div>
+  </div>`:'';
+
+  const tasksHtml=w.tasks.map((t,i)=>{
+    const k=w.id+'-'+i;const done=t.pre||!!S.tasks[k];
+    return `<div class="tc${done?' done':''}" onclick="toggleTask('${k}',this,${t.pre?'true':'false'})">
+      <input class="cb-check" type="checkbox" ${done?'checked':''} onclick="event.stopPropagation()" onchange="toggleTask('${k}',this.parentElement,${t.pre?'true':'false'})">
+      <div class="tc-body">
+        <div class="tc-title">${esc(t.t)}</div>
+        ${t.why?`<div class="tc-why">${esc(t.why)}</div>`:''}
+        ${t.note?`<div class="tc-note">↳ ${esc(t.note)}</div>`:''}
+      </div>
+      <div class="tc-meta">
+        <span class="time-tag">${esc(t.time||'')}</span>
+        ${t.dl?'<span class="deadline-tag">Deadline</span>':''}
+      </div>
+    </div>`;
+  }).join('');
+
+  const delHtml=w.del.map(d=>`<span class="del">${esc(d)}</span>`).join('');
+
+  // Demo1 reference card for W2
+  const demoCard=w.demo?`<div class="card card-gold mt12" style="margin-top:12px">
+    <div class="flex-bc mb12" style="margin-bottom:10px">
+      <span class="sec-lbl" style="margin:0">SOP 01 — Demo 1 spec</span>
+      <button class="btn btn-ghost btn-sm" onclick="goTo('sops')">View full SOP →</button>
+    </div>
+    <div class="g3" style="margin-bottom:10px">
+      <div style="background:var(--card2);border:1px solid var(--bd);border-radius:7px;padding:10px;text-align:center"><div style="font-size:20px;font-weight:900;color:var(--gold)">30s</div><div style="font-size:10px;color:var(--mu)">Form → SMS max</div></div>
+      <div style="background:var(--card2);border:1px solid var(--bd);border-radius:7px;padding:10px;text-align:center"><div style="font-size:20px;font-weight:900;color:var(--gold)">4 min</div><div style="font-size:10px;color:var(--mu)">Demo from memory</div></div>
+      <div style="background:var(--card2);border:1px solid var(--bd);border-radius:7px;padding:10px;text-align:center"><div style="font-size:20px;font-weight:900;color:var(--gold)">10×</div><div style="font-size:10px;color:var(--mu)">Consecutive before first call</div></div>
+    </div>
+    <div style="font-size:12px;color:var(--txt2);line-height:1.6"><strong style="color:var(--txt)">Stack:</strong> GHL form → n8n (Railway) → Claude entity extract → Claude lead qualify → GHL PATCH (7 fields) → SMS to owner + email to lead</div>
+  </div>`:'';
+
+  // Stress test for W9
+  const stressCard=w.stress?`<div class="card mt12" style="margin-top:12px">
+    <div class="flex-bc mb12" style="margin-bottom:12px">
+      <span class="sec-lbl" style="margin:0">SOP 01 — 20-Lead Stress Test Matrix</span>
+      <span style="font-size:12px;font-weight:700;color:var(--txt)">${STRESS.filter((_,i)=>!!S.tasks['stress-w9-'+i]).length}/${STRESS.length}</span>
+    </div>
+    <div class="info-box mb12" style="margin-bottom:12px;font-size:12px">Run all 20 in order. For each: SMS fires ✓ · GHL fields populated ✓ · email opener references message ✓ · score in expected range ✓. Log every failure. Fix before moving on.</div>
+    <div class="tasks" style="gap:4px">${STRESS.map((s,i)=>{
+      const k='stress-w9-'+i;const done=!!S.tasks[k];
+      return `<div class="tc${done?' done':''}" onclick="toggleTask('${k}',this,false)">
+        <input class="cb-check" type="checkbox" ${done?'checked':''} onclick="event.stopPropagation()" onchange="toggleTask('${k}',this.parentElement,false)">
+        <div class="tc-body"><span style="font-size:11px;font-weight:700;color:var(--mu);margin-right:6px">#${s.n}</span><strong style="font-size:13px;color:var(--txt)">${esc(s.t)}</strong><span style="font-size:12px;color:var(--mu)"> — ${esc(s.d)}</span></div>
+      </div>`;
+    }).join('')}</div>
+  </div>`:'';
+
+  el.innerHTML=`
+    ${bannerHtml}
+    <div class="wk-top"><div class="wk-h">Week ${esc(String(w.n))}: ${esc(w.label)}</div><span class="tag ${modeTag}">${esc(modeTxt)}</span></div>
+    <div class="wk-dates">${esc(w.range)}</div>
+    <div class="goal-box"><strong>Good by Sunday:</strong> ${esc(w.goal)}</div>
+
+    <div class="card">
+      <div class="prog-header mb8" style="margin-bottom:8px">
+        <span class="sec-lbl" style="margin:0">Tasks (${doneCnt}/${w.tasks.length})</span>
+        <span style="font-size:13px;font-weight:800;color:${prog===100?'var(--ok)':'var(--gold)'}">${prog}%</span>
+      </div>
+      <div class="prog-bar" style="margin-bottom:14px"><div class="prog-fill ${prog===100?'fill-ok':'fill-gold'}" style="width:${prog}%"></div></div>
+      <div class="tasks">${tasksHtml}</div>
+      <div class="div"></div>
+      <span class="sec-lbl">Deliverables</span>
+      <div class="del-wrap">${delHtml}</div>
+    </div>
+
+    <div class="card">
+      <div class="log-tabs">
+        <button class="lt on" onclick="switchTab('${w.id}','log',this)">Friday Log</button>
+        <button class="lt" onclick="switchTab('${w.id}','nums',this)">Numbers</button>
+      </div>
+      <div id="lp-log-${w.id}" class="log-pane on">${renderLogForm(w,log)}</div>
+      <div id="lp-nums-${w.id}" class="log-pane">${renderNums(w)}</div>
+    </div>
+
+    ${demoCard}${stressCard}
+  `;
+}
+
+function renderLogForm(w,log){
+  const objs=w.obj||[];
+  const objHtml=objs.map((o,i)=>`<div class="obj-row">
+    <input class="inp" value="${esc(log['ot'+i]||o)}" placeholder="${esc(o)}" id="ot-${w.id}-${i}">
+    <select class="obj-sel${log['os'+i]?' '+log['os'+i]:''}" id="os-${w.id}-${i}" onchange="styleObjSel(this)">
+      <option value="">Status</option>
+      <option value="met"${log['os'+i]==='met'?' selected':''}>Met ✓</option>
+      <option value="partial"${log['os'+i]==='partial'?' selected':''}>Partial ~</option>
+      <option value="missed"${log['os'+i]==='missed'?' selected':''}>Missed ✗</option>
+    </select>
+  </div>`).join('');
+
+  return `<div class="field mb12" style="margin-bottom:12px">
+    <span class="fl">Submitted on time?</span>
+    <div style="display:flex;gap:12px;align-items:center">
+      <label style="display:flex;align-items:center;gap:6px;font-size:13px;cursor:pointer"><input type="radio" name="sub-${w.id}" value="yes" ${log.submitted?'checked':''} onchange="logRadio('${w.id}',true)"> Yes ✓</label>
+      <label style="display:flex;align-items:center;gap:6px;font-size:13px;cursor:pointer"><input type="radio" name="sub-${w.id}" value="no" ${log.submitted===false?'checked':''} onchange="logRadio('${w.id}',false)"> No</label>
+    </div>
+  </div>
+  <span class="fl">3 objectives — from the matrix</span>
+  <div style="margin-bottom:12px">${objHtml}</div>
+  <div class="g2" style="margin-bottom:12px">
+    <div class="field mb0"><span class="fl">What I actually did</span><textarea class="inp ta" id="ld-${w.id}" placeholder="Bullet list of the week's receipts...">${esc(log.did||'')}</textarea></div>
+    <div class="field mb0"><span class="fl">Blockers + 45-min rule honoured?</span><textarea class="inp ta" id="lb-${w.id}" placeholder="What blocked you? When did you escalate?">${esc(log.block||'')}</textarea></div>
+  </div>
+  <div class="g2" style="margin-bottom:12px">
+    <div class="field mb0"><span class="fl">What I learned</span><textarea class="inp ta" id="ll-${w.id}" placeholder="Key insight this week...">${esc(log.learn||'')}</textarea></div>
+    <div class="field mb0"><span class="fl">Next week's 3 objectives</span><textarea class="inp ta" id="ln-${w.id}" placeholder="From the matrix, adjusted to reality...">${esc(log.next||'')}</textarea></div>
+  </div>
+  <div class="field" style="margin-bottom:14px"><span class="fl">One-line honest summary (the sentence Dee reads)</span><input class="inp" id="ls-${w.id}" placeholder="One sentence." value="${esc(log.summary||'')}"></div>
+  <button class="btn btn-gold" onclick="saveLog('${w.id}')">Save Log</button>
+  ${log.savedAt?`<span style="font-size:11px;color:var(--mu);margin-left:12px">Saved ${esc(log.savedAt)}</span>`:''}`;
+}
+
+function renderNums(w){
+  const m=S.money[w.id]||'';const sd=S.sends[w.id]||{};
+  return `<div class="g2" style="margin-bottom:12px">
+    <div class="field mb0"><span class="fl">£ Banked This Week</span><input class="inp" type="number" id="mn-${w.id}" value="${esc(String(m))}" placeholder="0" oninput="saveMoney('${w.id}')"></div>
+    <div class="field mb0"><span class="fl">Cumulative Total (auto)</span><input class="inp" readonly value="£${totalBanked().toFixed(0)}" style="opacity:.5"></div>
+  </div>
+  <div class="g3" style="margin-bottom:12px">
+    <div class="field mb0"><span class="fl">Sends / Quota (${w.sends||0})</span><input class="inp" type="number" id="ss-${w.id}" value="${esc(String(sd.sends||''))}" placeholder="0" oninput="saveSends('${w.id}')"></div>
+    <div class="field mb0"><span class="fl">Follow-ups</span><input class="inp" type="number" id="sf-${w.id}" value="${esc(String(sd.followups||''))}" placeholder="0" oninput="saveSends('${w.id}')"></div>
+    <div class="field mb0"><span class="fl">Replies</span><input class="inp" type="number" id="sr-${w.id}" value="${esc(String(sd.replies||''))}" placeholder="0" oninput="saveSends('${w.id}')"></div>
+  </div>
+  <div class="g4" style="margin-bottom:12px">
+    <div class="field mb0"><span class="fl">Calls Booked</span><input class="inp" type="number" id="sc-${w.id}" value="${esc(String(sd.calls||''))}" placeholder="0" oninput="saveSends('${w.id}')"></div>
+    <div class="field mb0"><span class="fl">Audits Delivered</span><input class="inp" type="number" id="sa-${w.id}" value="${esc(String(sd.audits||''))}" placeholder="0" oninput="saveSends('${w.id}')"></div>
+    <div class="field mb0"><span class="fl">Maths Hours</span><input class="inp" type="number" id="sm-${w.id}" value="${esc(String(sd.maths||''))}" placeholder="0" oninput="saveSends('${w.id}')"></div>
+    <div class="field mb0"><span class="fl">Reply Rate %</span><input class="inp" type="number" id="sq-${w.id}" value="${esc(String(sd.rr||''))}" placeholder="%" oninput="saveSends('${w.id}')"></div>
+  </div>
+  <div class="field"><span class="fl">Builds Shipped (URL or "none")</span><input class="inp" id="sb2-${w.id}" value="${esc(String(sd.builds||''))}" placeholder='e.g. https://... or "none"' oninput="saveSends('${w.id}')"></div>`;
+}
+
+// ─── PROJECTS ─────────────────────────────────────────────────────────────────
+
+function renderProjects(){
+  const statusTag={built:'<span class="tag to">Built ✓</span>',planned:'<span class="tag tm">Planned</span>'};
+  document.getElementById('projects-list').innerHTML=PROJS.map((p,idx)=>`
+    <div class="proj">
+      <div class="proj-head">
+        <div>
+          <div class="proj-name">${esc(p.name)}</div>
+          <div class="proj-when">${esc(p.when)} · ${esc(p.hours)}</div>
+        </div>
+        ${statusTag[p.status]||''}
+      </div>
+      <div class="proj-body">
+        <div class="proj-desc">${esc(p.desc)}</div>
+        <div class="proj-why">${esc(p.why)}</div>
+        <div class="proj-stack">${p.stack.map(s=>`<span class="tag tb">${esc(s)}</span>`).join('')}</div>
+      </div>
+      <button class="bp-toggle" onclick="toggleBP(${idx})">
+        Build Plan (${p.steps.length} steps) <span id="bp-arr-${idx}">↓</span>
+      </button>
+      <div class="bp-body" id="bp-${idx}">
+        <ol class="bp-steps">${p.steps.map((s,si)=>`<li><div class="step-n">${si+1}</div><span>${esc(s)}</span></li>`).join('')}</ol>
+      </div>
+    </div>`).join('');
+}
+function toggleBP(idx){
+  const b=document.getElementById('bp-'+idx);
+  const a=document.getElementById('bp-arr-'+idx);
+  b.classList.toggle('open');
+  a.textContent=b.classList.contains('open')?'↑':'↓';
+}
+
+// ─── GOALS MATRIX ─────────────────────────────────────────────────────────────
+
+function renderGoals(){
+  const cur=getCurWk();const curW=WKS.find(w=>w.id===cur);const curN=curW?parseInt(String(curW.n)):0;
+  document.getElementById('goals-tbl').innerHTML='<thead><tr><th>Wk</th><th>Objective 1</th><th>Objective 2</th><th>Objective 3</th><th>£ Target</th><th>Sends</th></tr></thead><tbody>'+
+    GMTX.map(g=>`<tr${g.w===curN?' class="hl"':''}>
+      <td style="font-weight:700;color:var(--txt);white-space:nowrap">W${g.w}</td>
+      <td>${esc(g.o1)}</td><td>${esc(g.o2)}</td><td>${esc(g.o3)}</td>
+      <td style="color:var(--ok);font-weight:700">${esc(g.m)}</td>
+      <td style="color:var(--blue);font-weight:600">${esc(g.s)}</td>
+    </tr>`).join('')+'</tbody>';
+}
+
+// ─── SOPS ─────────────────────────────────────────────────────────────────────
+
+function renderSOPs(){
+  document.getElementById('demo-arch').innerHTML=ARCH.map((a,i)=>`
+    <div class="arch-node">
+      <div class="arch-num">${esc(a.n)}</div>
+      <div class="arch-lbl">${esc(a.l)}</div>
+      <div class="arch-detail">${esc(a.d)}</div>
+    </div>${i<ARCH.length-1?'<div class="arch-arr">→</div>':''}
+  `).join('');
+  document.getElementById('sop-tools').innerHTML=TOOLS.map(t=>`
+    <div style="background:var(--card2);border:1px solid var(--bd);border-radius:8px;padding:12px 14px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+        <div style="font-size:13px;font-weight:700;color:var(--txt)">${esc(t.n)}</div>
+        <span class="tag tm">${esc(t.tag)}</span>
+      </div>
+      <div style="font-size:12px;color:var(--txt2);margin-bottom:3px;line-height:1.5">${esc(t.r)}</div>
+      <div style="font-size:11px;color:var(--mu)">${esc(t.c)}</div>
+    </div>`).join('');
+  document.getElementById('sop-list').innerHTML=SOPS.map(s=>`
+    <div class="sop-card" style="border-left-color:${s.c}">
+      <div class="sop-n" style="color:${s.c}">SOP ${esc(s.n)}</div>
+      <div class="sop-title">${esc(s.t)}</div>
+      <div class="sop-sub">${esc(s.s)}</div>
+      <div class="sop-done">✓ Done when: ${esc(s.done)}</div>
+      <ul class="sop-steps">${s.steps.map(st=>`<li>${esc(st)}</li>`).join('')}</ul>
+    </div>`).join('');
+}
+
+// ─── GUARDRAILS ───────────────────────────────────────────────────────────────
+
+function renderGuards(){
+  document.getElementById('guard-list').innerHTML=GUARDS.map(g=>`
+    <div class="guard"><span class="guard-icon">${g.i}</span><div class="guard-txt">${g.t}</div></div>`).join('');
+}
+
+// ─── INTERACTIONS ─────────────────────────────────────────────────────────────
+
+function toggleTask(key,row,isPre){
+  if(isPre)return;
+  S.tasks[key]=!S.tasks[key];saveS();
+  const chk=row.querySelector('.cb-check');
+  if(chk)chk.checked=S.tasks[key];
+  row.classList.toggle('done',!!S.tasks[key]);
+  updateSbStats();
+  refreshWkProg(key.replace(/-\d+$/,'').replace(/-\d+$/,''));
+  if(S.tasks[key])showToast('Task done ✓');
+}
+function refreshWkProg(wid){
+  const w=WKS.find(x=>x.id===wid);if(!w)return;
+  let done=0;w.tasks.forEach((_,i)=>{if(w.tasks[i].pre||S.tasks[wid+'-'+i])done++;});
+  const prog=Math.round(done/w.tasks.length*100);
+  const bar=document.querySelector(`#panel-${wid} .prog-fill`);
+  if(bar){bar.style.width=prog+'%';bar.className=`prog-fill ${prog===100?'fill-ok':'fill-gold'}`;}
+  const lbl=document.querySelector(`#panel-${wid} .sec-lbl`);
+  if(lbl&&lbl.textContent.startsWith('Tasks'))lbl.textContent=`Tasks (${done}/${w.tasks.length})`;
+  const pct=document.querySelector(`#panel-${wid} .prog-header span:last-child`);
+  if(pct)pct.textContent=prog+'%';
+}
+function switchTab(wid,tab,el){
+  document.querySelector(`#lp-log-${wid}`).classList.toggle('on',tab==='log');
+  document.querySelector(`#lp-nums-${wid}`).classList.toggle('on',tab==='nums');
+  el.parentElement.querySelectorAll('.lt').forEach(t=>t.classList.remove('on'));
+  el.classList.add('on');
+}
+function saveLog(wid){
+  const w=WKS.find(x=>x.id===wid);if(!w)return;
+  const log=S.logs[wid]||{};
+  const sub=document.querySelector(`[name="sub-${wid}"]:checked`);
+  log.submitted=sub?sub.value==='yes':undefined;
+  w.obj.forEach((_,i)=>{
+    const ot=document.getElementById(`ot-${wid}-${i}`);
+    const os=document.getElementById(`os-${wid}-${i}`);
+    if(ot)log['ot'+i]=ot.value;if(os)log['os'+i]=os.value;
+  });
+  const g=id=>{const e=document.getElementById(id);return e?e.value:'';};
+  log.did=g('ld-'+wid);log.block=g('lb-'+wid);log.learn=g('ll-'+wid);log.next=g('ln-'+wid);log.summary=g('ls-'+wid);
+  log.savedAt=new Date().toLocaleDateString('en-GB')+' '+new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+  S.logs[wid]=log;saveS();updateDots();updateSbStats();showToast('Log saved ✓');
+}
+function saveMoney(wid){
+  const e=document.getElementById('mn-'+wid);
+  S.money[wid]=parseFloat(e?.value)||0;saveS();updateSbStats();
+}
+function saveSends(wid){
+  const g=id=>{const e=document.getElementById(id);return e?e.value:'';};
+  S.sends[wid]={sends:g('ss-'+wid),followups:g('sf-'+wid),replies:g('sr-'+wid),calls:g('sc-'+wid),audits:g('sa-'+wid),maths:g('sm-'+wid),rr:g('sq-'+wid),builds:g('sb2-'+wid)};
+  saveS();
+}
+function logRadio(wid,val){const l=S.logs[wid]||{};l.submitted=val;S.logs[wid]=l;saveS();updateDots();updateSbStats();}
+function styleObjSel(el){el.className='obj-sel'+(el.value?' '+el.value:'');}
+
+// ─── UTILS ────────────────────────────────────────────────────────────────────
+
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+let toastT;
+function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),2200);}
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+
+loadS();
+setTheme(S.dark);
+document.getElementById('themeChk').checked=S.dark;
+WKS.forEach(w=>w.tasks.forEach((t,i)=>{if(t.pre)S.tasks[w.id+'-'+i]=true;}));
+saveS();
+WKS.forEach(w=>renderWk(w));
+renderProjects();
+renderGoals();
+renderSOPs();
+renderGuards();
+renderOverview();
+updateDots();
+updateSbStats();
+</script>
+</body>
+</html>
