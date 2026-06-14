@@ -6,72 +6,73 @@
 <title>Daniel — 12-Week Plan</title>
 <style>
 :root{
-  --gold:#C9A84C;--gl:rgba(201,168,76,.12);--gll:rgba(201,168,76,.06);
-  --ok:#22C55E;--okl:rgba(34,197,94,.12);--okll:rgba(34,197,94,.06);
-  --warn:#F59E0B;--warnl:rgba(245,158,11,.12);
-  --err:#EF4444;--errl:rgba(239,68,68,.12);
-  --blue:#60A5FA;--bluel:rgba(96,165,250,.12);
-  --purple:#A78BFA;--purplel:rgba(167,139,250,.12);
-  --bg:#0D0D0D;--card:#141412;--card2:#1C1C1A;
-  --txt:#F0EDE8;--txt2:#9A9690;--mu:#4A4A46;--bd:#252522;
-  --sb:#0A0A0A;--sbd:#1A1A18;--stxt:#C8C5BE;--smu:#444;--sact:#161614;
+  --gold:#C9A84C;--gl:rgba(201,168,76,.15);--gll:rgba(201,168,76,.06);
+  --ok:#30D158;--okl:rgba(48,209,88,.15);--okll:rgba(48,209,88,.06);
+  --warn:#FF9F0A;--warnl:rgba(255,159,10,.15);
+  --err:#FF453A;--errl:rgba(255,69,58,.15);
+  --blue:#0A84FF;--bluel:rgba(10,132,255,.15);
+  --purple:#BF5AF2;--purplel:rgba(191,90,242,.15);
+  --bg:#000000;--card:#1C1C1E;--card2:#2C2C2E;
+  --txt:#FFFFFF;--txt2:rgba(235,235,245,.6);--mu:rgba(235,235,245,.28);--bd:rgba(255,255,255,.1);
+  --sb:#0D0D0F;--sbd:rgba(255,255,255,.07);--stxt:rgba(235,235,245,.85);--smu:rgba(235,235,245,.3);--sact:#1C1C1E;
 }
 body.light{
-  --bg:#F7F6F3;--card:#FFFFFF;--card2:#F0EFE9;
-  --txt:#1A1916;--txt2:#5A5650;--mu:#9A9690;--bd:#E5E3DC;
+  --bg:#F2F2F7;--card:#FFFFFF;--card2:#F2F2F7;
+  --txt:#000000;--txt2:rgba(60,60,67,.6);--mu:rgba(60,60,67,.35);--bd:rgba(0,0,0,.09);
+  --sb:#FFFFFF;--sbd:rgba(0,0,0,.07);--stxt:rgba(60,60,67,.9);--smu:rgba(60,60,67,.35);--sact:rgba(0,0,0,.05);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:14px}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--txt);height:100vh;overflow:hidden;line-height:1.5;transition:background .2s,color .2s}
+body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--txt);height:100vh;overflow:hidden;line-height:1.5;transition:background .2s,color .2s;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .app{display:flex;height:100vh}
 
 /* Sidebar */
-.sb{width:220px;min-width:220px;height:100vh;background:var(--sb);border-right:1px solid var(--sbd);display:flex;flex-direction:column;overflow:hidden}
-.sb-brand{padding:18px 18px 14px;border-bottom:1px solid var(--sbd)}
-.sb-name{font-size:14px;font-weight:800;color:#fff;letter-spacing:-.01em}
-.sb-sub{font-size:9.5px;text-transform:uppercase;letter-spacing:.09em;color:var(--smu);margin-top:2px}
-.sb-toggle{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
-.sb-toggle-lbl{font-size:9.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--smu)}
+.sb{width:234px;min-width:234px;height:100vh;background:var(--sb);border-right:1px solid var(--sbd);display:flex;flex-direction:column;overflow:hidden}
+.sb-brand{padding:20px 20px 15px;border-bottom:1px solid var(--sbd)}
+.sb-name{font-size:14px;font-weight:800;color:#fff;letter-spacing:-.015em}
+.sb-sub{font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--smu);margin-top:3px}
+.sb-toggle{display:flex;justify-content:space-between;align-items:center;margin-top:13px}
+.sb-toggle-lbl{font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:var(--smu)}
 .tog{position:relative;width:30px;height:16px}
 .tog input{display:none}
 .tog-track{position:absolute;inset:0;border-radius:16px;background:#1E1E1E;cursor:pointer;transition:background .2s}
 .tog-track::after{content:'';position:absolute;width:10px;height:10px;background:#3A3A3A;border-radius:50%;top:3px;left:3px;transition:transform .2s,background .2s}
 .tog input:checked~.tog-track{background:rgba(201,168,76,.25)}
 .tog input:checked~.tog-track::after{transform:translateX(14px);background:var(--gold)}
-.sb-nav{flex:1;overflow-y:auto;padding:8px 0}
+.sb-nav{flex:1;overflow-y:auto;padding:6px 0}
 .sb-nav::-webkit-scrollbar{width:0}
-.sb-grp{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--smu);padding:12px 18px 4px;display:block}
-.sb-btn{display:flex;align-items:center;gap:8px;width:100%;padding:7px 18px;background:none;border:none;border-left:2px solid transparent;font-family:inherit;font-size:12.5px;color:var(--stxt);cursor:pointer;text-align:left;transition:all .1s}
+.sb-grp{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--smu);padding:14px 20px 4px;display:block}
+.sb-btn{display:flex;align-items:center;gap:8px;width:100%;padding:8px 20px;background:none;border:none;border-left:2px solid transparent;font-family:inherit;font-size:12.5px;color:var(--stxt);cursor:pointer;text-align:left;transition:all .1s}
 .sb-btn:hover{background:var(--sact);color:#fff}
 .sb-btn.on{background:var(--sact);border-left-color:var(--gold);color:var(--gold)}
 .sb-btn.cur-wk{color:#93C5FD}
 .sb-ic{font-size:11px;width:18px;text-align:center;flex-shrink:0;font-style:normal}
-.sb-dot{width:5px;height:5px;border-radius:50%;margin-left:auto;flex-shrink:0}
+.sb-dot{width:6px;height:6px;border-radius:50%;margin-left:auto;flex-shrink:0}
 .dot-d{background:var(--ok)}
-.dot-c{background:var(--gold);box-shadow:0 0 5px var(--gold)}
+.dot-c{background:var(--gold);box-shadow:0 0 6px var(--gold)}
 .dot-l{background:var(--warn)}
-.dot-f{background:#2A2A2A}
-.sb-footer{padding:12px 18px;border-top:1px solid var(--sbd);display:grid;gap:5px}
+.dot-f{background:#252520}
+.sb-footer{padding:14px 20px;border-top:1px solid var(--sbd);display:grid;gap:6px}
 .sb-stat{display:flex;justify-content:space-between;align-items:center}
 .sb-sl{font-size:10px;color:var(--smu)}
 .sb-sv{font-size:11px;font-weight:700;color:var(--stxt)}
 .sv-gold{color:var(--gold)}
 
 /* Main */
-.main{flex:1;height:100vh;overflow-y:auto;padding:36px 40px;background:var(--bg)}
+.main{flex:1;height:100vh;overflow-y:auto;padding:40px 48px;background:var(--bg)}
 .main::-webkit-scrollbar{width:4px}
 .main::-webkit-scrollbar-thumb{background:var(--bd);border-radius:2px}
-.panel{display:none}
+.panel{display:none;max-width:860px}
 .panel.on{display:block}
 
 /* Page header */
-.pg-eye{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:6px}
-.pg-h{font-size:24px;font-weight:900;letter-spacing:-.025em;color:var(--txt);margin-bottom:4px}
-.pg-desc{font-size:13px;color:var(--txt2);line-height:1.6;margin-bottom:28px}
+.pg-eye{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--gold);margin-bottom:8px;opacity:.7}
+.pg-h{font-size:32px;font-weight:900;letter-spacing:-.04em;color:var(--txt);margin-bottom:6px;line-height:1.1}
+.pg-desc{font-size:13.5px;color:var(--txt2);line-height:1.65;margin-bottom:32px;max-width:600px}
 
 /* Cards */
-.card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:20px;margin-bottom:12px}
-.card-gold{border-color:rgba(201,168,76,.3);background:var(--gll)}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:22px 24px;margin-bottom:14px}
+.card-gold{border-color:rgba(201,168,76,.25);background:var(--gll)}
 .card-ok{border-color:rgba(34,197,94,.2);background:var(--okll)}
 
 /* Current week banner */
@@ -101,32 +102,32 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
 .flex-bc{display:flex;justify-content:space-between;align-items:center}
 
 /* Goal box */
-.goal-box{background:var(--gll);border:1px solid rgba(201,168,76,.2);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:12px 16px;font-size:13px;color:var(--txt2);line-height:1.65;margin-bottom:16px}
+.goal-box{background:var(--gll);border:1px solid rgba(201,168,76,.18);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:14px 18px;font-size:13.5px;color:var(--txt2);line-height:1.7;margin-bottom:20px}
 .goal-box strong{color:var(--txt)}
 
 /* Section label */
-.sec-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--mu);display:block;margin-bottom:10px}
+.sec-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.11em;color:var(--mu);display:block;margin-bottom:12px}
 
 /* Task cards */
-.tasks{display:grid;gap:6px;margin-bottom:16px}
-.tc{background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:13px 14px;display:flex;gap:12px;cursor:pointer;transition:border-color .15s,opacity .2s}
-.tc:hover{border-color:rgba(201,168,76,.4)}
-.tc.done{opacity:.5}
+.tasks{display:grid;gap:8px;margin-bottom:18px}
+.tc{background:var(--card2);border:1px solid var(--bd);border-radius:10px;padding:15px 16px;display:flex;gap:14px;cursor:pointer;transition:border-color .15s,background .15s,opacity .2s}
+.tc:hover{border-color:rgba(201,168,76,.35);background:rgba(201,168,76,.03)}
+.tc.done{opacity:.45}
 .tc.done .tc-title{text-decoration:line-through;color:var(--mu)}
-.cb-check{width:18px;height:18px;min-width:18px;border:1.5px solid var(--bd);border-radius:5px;appearance:none;-webkit-appearance:none;position:relative;margin-top:2px;background:var(--card);cursor:pointer;transition:all .15s;flex-shrink:0}
+.cb-check{width:18px;height:18px;min-width:18px;border:1.5px solid var(--mu);border-radius:5px;appearance:none;-webkit-appearance:none;position:relative;margin-top:2px;background:transparent;cursor:pointer;transition:all .15s;flex-shrink:0}
 .cb-check:checked{background:var(--gold);border-color:var(--gold)}
 .cb-check:checked::after{content:'';position:absolute;top:2px;left:5px;width:5px;height:9px;border:1.5px solid #000;border-top:none;border-left:none;transform:rotate(45deg)}
 .tc-body{flex:1;min-width:0}
-.tc-title{font-size:13.5px;font-weight:500;color:var(--txt);line-height:1.45}
-.tc-why{font-size:12px;color:var(--mu);margin-top:4px;line-height:1.55}
-.tc-note{font-size:11px;color:var(--ok);font-weight:600;margin-top:4px}
+.tc-title{font-size:13.5px;font-weight:600;color:var(--txt);line-height:1.45}
+.tc-why{font-size:12px;color:var(--txt2);margin-top:5px;line-height:1.6;border-left:2px solid var(--bd);padding-left:10px}
+.tc-note{font-size:11px;color:var(--ok);font-weight:600;margin-top:5px}
 .tc-meta{flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;gap:4px;padding-top:2px}
-.time-tag{font-size:10px;font-weight:600;color:var(--mu);background:var(--card2);border:1px solid var(--bd);border-radius:4px;padding:2px 8px;white-space:nowrap}
-.deadline-tag{font-size:10px;font-weight:700;color:var(--err);background:var(--errl);border-radius:4px;padding:2px 8px;text-transform:uppercase;letter-spacing:.05em}
+.time-tag{font-size:10px;font-weight:600;color:var(--mu);background:var(--card);border:1px solid var(--bd);border-radius:4px;padding:2px 9px;white-space:nowrap}
+.deadline-tag{font-size:10px;font-weight:700;color:var(--err);background:var(--errl);border-radius:4px;padding:2px 9px;text-transform:uppercase;letter-spacing:.05em}
 
 /* Deliverables */
-.del-wrap{display:flex;flex-wrap:wrap;gap:6px}
-.del{font-size:11.5px;font-weight:500;color:var(--gold);background:var(--gl);border:1px solid rgba(201,168,76,.2);border-radius:20px;padding:3px 12px}
+.del-wrap{display:flex;flex-wrap:wrap;gap:7px}
+.del{font-size:11.5px;font-weight:600;color:var(--gold);background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.22);border-radius:6px;padding:4px 12px}
 
 /* Divider */
 .div{height:1px;background:var(--bd);margin:18px 0}
@@ -174,9 +175,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
 .tm{background:var(--card2);color:var(--mu);border:1px solid var(--bd)}
 
 /* Week header */
-.wk-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:3px}
-.wk-h{font-size:22px;font-weight:900;letter-spacing:-.02em}
-.wk-dates{font-size:13px;color:var(--mu);margin-bottom:14px}
+.wk-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:4px}
+.wk-h{font-size:30px;font-weight:900;letter-spacing:-.035em}
+.wk-dates{font-size:13px;color:var(--mu);margin-bottom:18px}
 .prog-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
 
 /* Table */
@@ -246,13 +247,136 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
 .mb4{margin-bottom:4px}.mb8{margin-bottom:8px}.mb12{margin-bottom:12px}
 .gap6{gap:6px}.gap8{gap:8px}.gap10{gap:10px}
 .info-box{background:var(--card2);border:1px solid var(--bd);border-radius:8px;padding:12px 14px;font-size:12.5px;color:var(--txt2);line-height:1.6}
+
+/* Scenario tracker */
+.sc-row{border-radius:8px;padding:13px 15px;border:1px solid;margin-bottom:8px}
+.sc-base{background:rgba(96,165,250,.05);border-color:rgba(96,165,250,.2)}
+.sc-target{background:rgba(201,168,76,.05);border-color:rgba(201,168,76,.25)}
+.sc-stretch{background:rgba(34,197,94,.05);border-color:rgba(34,197,94,.18)}
+.sc-label{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;padding:2px 8px;border-radius:3px}
+.sc-base .sc-label{color:var(--blue);background:var(--bluel)}
+.sc-target .sc-label{color:var(--gold);background:var(--gl)}
+.sc-stretch .sc-label{color:var(--ok);background:var(--okl)}
+.sc-amounts{font-size:12px;font-weight:700;color:var(--txt)}
+.sc-cond{font-size:11px;color:var(--mu);margin-top:5px;line-height:1.5}
+.sc-bar{height:4px;background:var(--bd);border-radius:2px;margin-top:9px;overflow:hidden}
+.fill-blue{background:var(--blue)}
+
+/* Offer ladder */
+.ladder-tbl{width:100%;border-collapse:collapse;font-size:12.5px}
+.ladder-tbl th{padding:10px 12px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--mu);border-bottom:1px solid var(--bd);background:var(--card2);text-align:left}
+.ladder-tbl td{padding:12px 12px;border-bottom:1px solid var(--bd);color:var(--txt2);vertical-align:top;line-height:1.5}
+.ladder-tbl tr:last-child td{border-bottom:none}
+.gate-cell{background:rgba(201,168,76,.05)}
+.ladder-tbl th.gate-cell{color:var(--gold)}
+.stage-cell{font-weight:800;color:var(--txt);min-width:130px}
+.rules-strip{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-left:3px solid var(--err);border-radius:0 8px 8px 0;padding:12px 16px;font-size:12.5px;font-weight:500;color:var(--err);line-height:1.65}
+/* ── Markets & Outreach ── */
+.script-box{background:#060606;border:1px solid #1a2b1a;border-radius:8px;padding:14px 16px;font-family:'Cascadia Code','Monaco',monospace;font-size:11.5px;color:#7DEFA1;line-height:1.75;white-space:pre-wrap}
+.cadence-row{display:flex;gap:10px;margin-bottom:8px;align-items:flex-start}
+.cad-day{min-width:56px;font-size:10px;font-weight:800;color:var(--gold);text-transform:uppercase;padding-top:2px}
+.cad-txt{font-size:12px;color:var(--txt2);line-height:1.5}
+/* ── Build Pipeline ── */
+.pipe-flow{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:4px}
+.pipe-step{min-width:116px;flex:1;background:var(--card2);border:1px solid var(--bd);border-radius:8px;padding:12px 10px}
+.pipe-num{width:24px;height:24px;border-radius:50%;background:var(--gold);color:#000;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-bottom:7px}
+.pipe-name{font-size:10px;font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px}
+.pipe-det{font-size:11px;color:var(--mu);line-height:1.55}
+/* ── Income Streams ── */
+.income-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.income-col{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:14px}
+.income-era{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--mu);margin-bottom:2px}
+.income-title{font-size:14px;font-weight:800;color:var(--txt);margin-bottom:8px;line-height:1.2}
+.income-item{font-size:12px;color:var(--txt2);padding:5px 0;border-bottom:1px solid var(--bd);line-height:1.5}
+.income-item:last-child{border-bottom:none}
+.income-rt{font-size:11.5px;font-weight:700;color:var(--gold);margin-top:10px;padding-top:8px;border-top:1px solid var(--bd);line-height:1.5}
+/* ── Legal ── */
+.legal-grp{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:var(--mu);margin:18px 0 8px;padding-bottom:5px;border-bottom:1px solid var(--bd)}
+/* ── Nav week badge ── */
+.sb-wk-badge{font-size:9px;font-weight:800;color:var(--smu);margin-left:auto;padding-left:4px;letter-spacing:.03em;white-space:nowrap}
+/* ── Sidebar extras ── */
+.sb-friday-btn{width:100%;margin-top:8px;padding:8px 10px;border:none;border-radius:7px;font-size:11px;font-weight:800;cursor:pointer;background:var(--gold);color:#000;letter-spacing:.04em;transition:background .2s,color .2s}
+.sb-friday-btn.done{background:var(--ok);color:#fff}
+.sb-today3{margin-top:10px;border-top:1px solid var(--sbd);padding-top:10px}
+.sb-t3-lbl{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--smu);margin-bottom:7px}
+.sb-t3-inp{display:block;width:100%;background:var(--card2);border:1px solid var(--sbd);border-radius:6px;padding:6px 9px;font-size:11px;color:var(--stxt);margin-bottom:5px;outline:none;font-family:inherit}
+.sb-t3-inp:focus{border-color:var(--gold)}
+.sb-t3-inp::placeholder{color:var(--smu);font-size:10.5px}
+
+/* ── Card depth ── */
+.card{box-shadow:0 1px 5px rgba(0,0,0,.22)}
+body.light .card{box-shadow:0 1px 3px rgba(0,0,0,.07)}
+.card:hover{box-shadow:0 2px 10px rgba(0,0,0,.32)}
+
+/* ── Pillar tags (AIC · Vekora · Future Self) ── */
+.ptag{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;border-radius:3px;padding:1px 5px;vertical-align:middle;margin-left:6px}
+.ptag-aic{background:rgba(201,168,76,.18);color:var(--gold)}
+.ptag-vek{background:rgba(10,132,255,.15);color:var(--blue)}
+.ptag-fs{background:rgba(48,209,88,.15);color:var(--ok)}
+
+/* ── CV Tracker ── */
+.cv-grp{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--mu);margin:16px 0 8px;padding-bottom:5px;border-bottom:1px solid var(--bd)}
+
+/* ── Collapsible reference nav ── */
+.sb-ref-hdr{display:flex;align-items:center;justify-content:space-between;width:100%;padding:10px 20px 4px;background:none;border:none;cursor:pointer;font-family:inherit;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--smu);transition:color .12s}
+.sb-ref-hdr:hover{color:var(--stxt)}
+.sb-ref-arr{font-size:10px;transition:transform .2s;display:inline-block;margin-left:4px}
+.sb-ref-body{overflow:hidden;max-height:0;transition:max-height .3s ease}
+
+/* ── Mobile overlay ── */
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:49;touch-action:none}
+.sb-overlay.show{display:block}
+
+/* ── Mobile top bar ── */
+.mob-bar{display:none;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--bg);border-bottom:1px solid var(--bd);position:sticky;top:0;z-index:40}
+.mob-bar-t{font-size:13px;font-weight:800;color:var(--txt);letter-spacing:-.015em}
+.hbg{display:flex;align-items:center;justify-content:center;background:var(--card2);border:1px solid var(--bd);border-radius:7px;width:34px;height:34px;cursor:pointer;font-size:16px;color:var(--txt);line-height:1}
+.hbg:active{opacity:.65}
+
+/* ── Week done banner ── */
+.wk-done-banner{background:linear-gradient(135deg,rgba(48,209,88,.09),rgba(48,209,88,.03));border:1px solid rgba(48,209,88,.22);border-radius:10px;padding:12px 18px;margin-bottom:12px;display:flex;align-items:center;gap:12px}
+
+/* ── Mock date fields ── */
+.mock-dates-card{border-left:3px solid var(--warn)!important;margin-bottom:12px}
+
+/* ══ RESPONSIVE — ~380px phone ══════════════════════════════════════════════ */
+@media(max-width:680px){
+  .mob-bar{display:flex;margin:-12px -14px 0;width:calc(100% + 28px)}
+  .sb{position:fixed;top:0;left:0;height:100dvh;width:260px;min-width:260px;z-index:50;transform:translateX(-100%);transition:transform .25s cubic-bezier(.4,0,.2,1)}
+  .sb.mob-open{transform:translateX(0);box-shadow:8px 0 40px rgba(0,0,0,.55)}
+  .main{padding:12px 14px 80px}
+  .pg-h{font-size:21px;margin-bottom:4px}
+  .pg-desc{font-size:12.5px;margin-bottom:16px}
+  .stats-grid{grid-template-columns:1fr 1fr;gap:8px}
+  .stat{padding:11px 12px}
+  .stat-val{font-size:20px}
+  .g2{grid-template-columns:1fr!important}
+  .g3{grid-template-columns:1fr!important}
+  .g4{grid-template-columns:1fr 1fr!important}
+  .income-grid{grid-template-columns:1fr!important}
+  .sop-grid{grid-template-columns:1fr!important}
+  .money-row{grid-template-columns:1fr 1fr}
+  .tc{padding:11px 12px}
+  .tc-meta{display:none}
+  .cur-banner{flex-direction:column;align-items:flex-start;gap:6px}
+  .cb-days{font-size:24px}
+  .wk-h{font-size:20px}
+  .card{padding:14px 16px;border-radius:10px}
+  .pipe-step{min-width:150px}
+  .tbl th,.tbl td{padding:8px;font-size:11.5px}
+  .ladder-tbl th,.ladder-tbl td{padding:7px 5px;font-size:10.5px}
+  .cb-check{width:22px;height:22px;min-width:22px;border-radius:6px}
+  .sb-footer{padding:12px 16px}
+  .wk-top{flex-wrap:wrap;gap:6px}
+  .goal-box{font-size:13px}
+}
 </style>
 </head>
 <body>
 <div class="app">
-
+<div class="sb-overlay" id="sb-overlay" onclick="closeSidebar()"></div>
 <!-- Sidebar -->
-<aside class="sb">
+<aside class="sb" id="sb">
   <div class="sb-brand">
     <div class="sb-name">Daniel Ikusawe</div>
     <div class="sb-sub">12-Week Operating Plan</div>
@@ -262,40 +386,65 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     </div>
   </div>
   <nav class="sb-nav">
-    <span class="sb-grp">Overview</span>
-    <button class="sb-btn on" onclick="nav('overview',this)"><i class="sb-ic">⊞</i>Dashboard</button>
-    <span class="sb-grp">Term Weeks</span>
+    <span class="sb-grp">Daily / Weekly</span>
+    <button class="sb-btn" onclick="nav('future',this)" id="nb-future"><i class="sb-ic">★</i><span style="flex:1">Future Self</span></button>
+    <button class="sb-btn" onclick="nav('overview',this)"><i class="sb-ic">⊞</i><span style="flex:1">Dashboard</span></button>
+    <button class="sb-btn" onclick="navCurWk(this)" id="nb-curwk"><i class="sb-ic">→</i><span style="flex:1">Current Week</span></button>
+    <button class="sb-btn" onclick="nav('skills',this)"><i class="sb-ic">✓</i><span style="flex:1">Skills &amp; Proofs</span></button>
+    <button class="sb-btn" onclick="nav('cv',this)"><i class="sb-ic">◻</i><span style="flex:1">CV Tracker</span></button>
+    <span class="sb-grp">Programme — Term</span>
     <button class="sb-btn" onclick="nav('w1',this)" id="nb-w1"><i class="sb-ic">1</i><span style="flex:1">Setup &amp; CLI</span><span class="sb-dot"></span></button>
-    <button class="sb-btn" onclick="nav('w2',this)" id="nb-w2"><i class="sb-ic">2</i><span style="flex:1">Deploy</span><span class="sb-dot"></span></button>
-    <span class="sb-grp">Mocks</span>
-    <button class="sb-btn" onclick="nav('w34',this)" id="nb-w34"><i class="sb-ic" style="font-size:9px">3–4</i><span style="flex:1">Mock Protocol</span><span class="sb-dot"></span></button>
-    <span class="sb-grp">Summer Weeks</span>
+    <button class="sb-btn" onclick="nav('w2',this)" id="nb-w2"><i class="sb-ic">2</i><span style="flex:1">Away With It</span><span class="sb-dot"></span></button>
+    <span class="sb-grp">Programme — Mocks</span>
+    <button class="sb-btn" onclick="nav('w3',this)" id="nb-w3"><i class="sb-ic">3</i><span style="flex:1">Mocks Week 1</span><span class="sb-dot"></span></button>
+    <button class="sb-btn" onclick="nav('w4',this)" id="nb-w4"><i class="sb-ic">4</i><span style="flex:1">Mocks Week 2</span><span class="sb-dot"></span></button>
+    <span class="sb-grp">Programme — Summer</span>
     <button class="sb-btn" onclick="nav('w5',this)" id="nb-w5"><i class="sb-ic">5</i><span style="flex:1">GCP + Claude API</span><span class="sb-dot"></span></button>
-    <button class="sb-btn" onclick="nav('w6',this)" id="nb-w6"><i class="sb-ic">6</i><span style="flex:1">Ship Mini Product</span><span class="sb-dot"></span></button>
+    <button class="sb-btn" onclick="nav('w6',this)" id="nb-w6"><i class="sb-ic">6</i><span style="flex:1">Mini Product</span><span class="sb-dot"></span></button>
     <button class="sb-btn" onclick="nav('w7',this)" id="nb-w7"><i class="sb-ic">7</i><span style="flex:1">TMUA + Agentic</span><span class="sb-dot"></span></button>
     <button class="sb-btn" onclick="nav('w8',this)" id="nb-w8"><i class="sb-ic">8</i><span style="flex:1">Agentic Build</span><span class="sb-dot"></span></button>
     <button class="sb-btn" onclick="nav('w9',this)" id="nb-w9"><i class="sb-ic">9</i><span style="flex:1">Demo Rebuild</span><span class="sb-dot"></span></button>
     <button class="sb-btn" onclick="nav('w10',this)" id="nb-w10"><i class="sb-ic">10</i><span style="flex:1">Demo 10/10</span><span class="sb-dot"></span></button>
     <button class="sb-btn" onclick="nav('w11',this)" id="nb-w11"><i class="sb-ic">11</i><span style="flex:1">MVP Build</span><span class="sb-dot"></span></button>
     <button class="sb-btn" onclick="nav('w12',this)" id="nb-w12"><i class="sb-ic">12</i><span style="flex:1">Ship &amp; Demo</span><span class="sb-dot"></span></button>
-    <span class="sb-grp">Reference</span>
-    <button class="sb-btn" onclick="nav('projects',this)"><i class="sb-ic">⊕</i>Projects</button>
-    <button class="sb-btn" onclick="nav('goals',this)"><i class="sb-ic">◎</i>Goals Matrix</button>
-    <button class="sb-btn" onclick="nav('sops',this)"><i class="sb-ic">◉</i>Vekora SOPs</button>
-    <button class="sb-btn" onclick="nav('guardrails',this)"><i class="sb-ic">⊖</i>Guardrails</button>
+    <button class="sb-ref-hdr" id="sb-ref-hdr" onclick="toggleRef()">Reference<span class="sb-ref-arr" id="sb-ref-arr">▾</span></button>
+    <div class="sb-ref-body" id="sb-ref-body">
+    <button class="sb-btn" onclick="nav('offer',this)"><i class="sb-ic">◈</i><span style="flex:1">Offer Ladder</span><span class="sb-wk-badge">W1</span></button>
+    <button class="sb-btn" onclick="nav('markets',this)"><i class="sb-ic">◎</i><span style="flex:1">Markets</span><span class="sb-wk-badge">W1</span></button>
+    <button class="sb-btn" onclick="nav('pipeline',this)"><i class="sb-ic">◉</i><span style="flex:1">Pipeline</span><span class="sb-wk-badge">W2</span></button>
+    <button class="sb-btn" onclick="nav('income',this)"><i class="sb-ic">$</i><span style="flex:1">Income</span><span class="sb-wk-badge">Ref</span></button>
+    <button class="sb-btn" onclick="nav('legal',this)"><i class="sb-ic">⚖</i><span style="flex:1">Legal</span><span class="sb-wk-badge">W1</span></button>
+    <button class="sb-btn" onclick="nav('tier',this)"><i class="sb-ic">▲</i><span style="flex:1">Tier Tracker</span><span class="sb-wk-badge">W1</span></button>
+    <button class="sb-btn" onclick="nav('dest',this)"><i class="sb-ic">◎</i><span style="flex:1">30 Aug Target</span><span class="sb-wk-badge">W1</span></button>
+    <button class="sb-btn" onclick="nav('offermenu',this)"><i class="sb-ic">≡</i><span style="flex:1">Client Offers</span><span class="sb-wk-badge">W1</span></button>
+    <button class="sb-btn" onclick="nav('projects',this)"><i class="sb-ic">⊕</i><span style="flex:1">Projects</span><span class="sb-wk-badge">W7</span></button>
+    <button class="sb-btn" onclick="nav('goals',this)"><i class="sb-ic">◎</i><span style="flex:1">Goals</span><span class="sb-wk-badge">W1</span></button>
+    <button class="sb-btn" onclick="nav('sops',this)"><i class="sb-ic">◉</i><span style="flex:1">Vekora SOPs</span><span class="sb-wk-badge">W1</span></button>
+    <button class="sb-btn" onclick="nav('guardrails',this)"><i class="sb-ic">⊖</i><span style="flex:1">Guardrails</span><span class="sb-wk-badge">W1</span></button>
+    <button class="sb-btn" onclick="nav('trajectory',this)"><i class="sb-ic">→</i><span style="flex:1">Trajectory</span></button>
+    </div>
   </nav>
   <div class="sb-footer">
     <div class="sb-stat"><span class="sb-sl">Friday streak</span><span class="sb-sv sv-gold" id="sb-streak">0/12</span></div>
     <div class="sb-stat"><span class="sb-sl">Money banked</span><span class="sb-sv" id="sb-money">£0</span></div>
     <div class="sb-stat"><span class="sb-sl">Programme ends</span><span class="sb-sv" style="color:var(--smu)">30 Aug 2026</span></div>
+    <button id="sb-fri-btn" class="sb-friday-btn" onclick="submitFriday()">Mark Friday submitted</button>
+    <div class="sb-today3">
+      <div class="sb-t3-lbl">Today's 3</div>
+      <div id="sb-t3-items"></div>
+    </div>
   </div>
 </aside>
 
 <!-- Main -->
 <main class="main">
+<div class="mob-bar"><span class="mob-bar-t">Daniel — 12 Week Plan</span><button class="hbg" onclick="toggleSidebar()">&#9776;</button></div>
+
+<!-- FUTURE SELF -->
+<div id="panel-future" class="panel"></div>
 
 <!-- OVERVIEW -->
-<div id="panel-overview" class="panel on">
+<div id="panel-overview" class="panel">
   <div class="pg-eye">Command Centre</div>
   <div class="pg-h">Dashboard</div>
   <div class="pg-desc" id="ov-desc"></div>
@@ -308,9 +457,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     <div class="prog-bar"><div class="prog-fill fill-ok" id="ov-task-bar" style="width:0%"></div></div>
   </div>
   <div class="card">
-    <span class="sec-lbl">Money timeline — cumulative banked targets</span>
-    <div class="money-row" id="ov-money"></div>
-    <p style="font-size:11px;color:var(--mu)">Enter weekly amounts in each week → Numbers tab. Timeline updates automatically.</p>
+    <span class="sec-lbl">Money — 3 scenarios (budget base, chase target, bank stretch)</span>
+    <div id="ov-money" style="margin-top:8px"></div>
   </div>
   <div class="card">
     <span class="sec-lbl">What success looks like by 30 August</span>
@@ -334,17 +482,31 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
           <li>1–2 GBP retainers live (£250/mo each)</li>
           <li>Ltd, ICO, business bank all done</li>
           <li>Demo 1 rebuilt — 10/10 consecutive</li>
-          <li>Tier 1 conversation started</li>
+          <li>Stage 2 conversation started</li>
         </ul>
       </div>
     </div>
   </div>
 </div>
 
+<!-- OFFER LADDER -->
+<div id="panel-offer" class="panel"></div>
+<!-- MARKETS --><div id="panel-markets" class="panel"></div>
+<!-- BUILD PIPELINE --><div id="panel-pipeline" class="panel"></div>
+<!-- INCOME STREAMS --><div id="panel-income" class="panel"></div>
+<!-- LEGAL --><div id="panel-legal" class="panel"></div>
+<div id="panel-w3" class="panel"></div>
+<div id="panel-w4" class="panel"></div>
+<!-- TIER TRACKER --><div id="panel-tier" class="panel"></div>
+<!-- CLIENT OFFERS --><div id="panel-offermenu" class="panel"></div>
+<!-- DESTINATION --><div id="panel-dest" class="panel"></div>
+<!-- SKILLS & PROOFS --><div id="panel-skills" class="panel"></div>
+<!-- CV TRACKER --><div id="panel-cv" class="panel"></div>
+<!-- TRAJECTORY --><div id="panel-trajectory" class="panel"></div>
+
 <!-- WEEK PANELS -->
 <div id="panel-w1" class="panel"></div>
 <div id="panel-w2" class="panel"></div>
-<div id="panel-w34" class="panel"></div>
 <div id="panel-w5" class="panel"></div>
 <div id="panel-w6" class="panel"></div>
 <div id="panel-w7" class="panel"></div>
@@ -382,6 +544,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
       </tbody>
     </table>
   </div>
+  <div id="goals-cols"></div>
 </div>
 
 <!-- SOPS -->
@@ -418,7 +581,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
 // ─── DATA ───────────────────────────────────────────────────────────────────
 
 const WKS = [
- {id:'w1',n:1,label:'Setup, CLI, Git, Claude Code',range:'9–14 June',mode:'term',
+ {id:'w1',n:1,label:'Setup, CLI, Git & First Commit',range:'9–14 June',mode:'term',
   start:new Date(2026,5,9),end:new Date(2026,5,14),
   goal:'Environment live, first commits pushed, Claude Code running, Build Log started — plus deliverables submitted and two repair messages sent.',
   mlo:0,mhi:450,sends:0,
@@ -429,40 +592,69 @@ const WKS = [
    {t:'Vas repair message sent ✓ → when he replies, present the 3 options clearly',why:'Options: (1) full handover at an agreed fee, (2) editor access added, (3) free 24h edits for 90 days. The Vas lesson is now Guardrail #2.',time:'~15 min when he replies',note:'Message sent ✓ — waiting on reply'},
    {t:'Rubbish removal lead: book 15-min discovery call',why:'Don\'t pitch. Book the call. One question: "What happens when a job enquiry comes in at 9pm?" Then listen. That\'s the whole discovery.',time:'~10 min'},
    {t:'Buy domain + pro email (~£10) · create UAT-UK account · CV v14 truth rewrite',why:'Clients Google you before calling back. A pro email signals you\'re serious. The CV rewrite is about accuracy, not padding.',time:'~2–3 hrs total'},
+   {t:'Gym: Mon 9, Wed 11, Sat 14 — sessions done',why:'Gym Mon/Wed/Sat is a standing commitment across all 12 weeks. Protein every meal. Sleep by 21:30.',time:'Done',pre:true},
+   {t:'Bible: daily across W1',why:'Non-negotiable. 10 min morning, every day.',time:'Done',pre:true},
+   {t:'Atomic Habits: start reading this week — at least 3 chapters',why:'Atomic Habits is first on the reading list. Read it critically, not for motivation. It applies directly to streak-building in this programme.',time:'Done',pre:true},
+   {t:'21:30 cutoff observed across the week',why:'21:30 is the school-night cutoff. Sleep is revision and recovery. Non-negotiable.',time:'Done',pre:true},
   ],
   del:['Week 1 check-in sent to Dee','Mocks flagged','UAT-UK account live','Domain + pro email live','CV v14 saved'],
   obj:['Week 1 deliverables in + mocks flagged to Dee','Lead discovery message sent','UAT-UK + domain + pro email + CV v14'],
  },
- {id:'w2',n:2,label:'Deploy + Claude Code as Build Tool',range:'15–21 June',mode:'term',
+ {id:'w2',n:2,label:'Away With It Demo + CCA Starts',range:'15–21 June',mode:'term',
   start:new Date(2026,5,15),end:new Date(2026,5,21),
-  goal:'A real project on a public Vercel URL, built with Claude Code. Lead progressed. Revision ramping.',
+  goal:'Away With It demo live on Vercel — real Claude Code project, terminal commits, PERSONAL accounts. Target: DONE by Tue/Wed (Dee\'s instruction). CCA starts immediately when the build clears.',
   mlo:450,mhi:900,sends:30,
   tasks:[
-   {t:'Build the trades website template — 5 pages, mobile-first, booking form, small commits, pushed from terminal, deployed to Vercel',why:'This is your flagship Foundation Build template. Every future £900 client gets a version of this. Build it once, clone it for every deal.',time:'~6–8 hrs'},
-   {t:'Use Claude Code to refactor/add one feature — note in Build Log what it did well and what it got wrong',why:'Dee\'s task. This is how you develop a real opinion on AI tools — not by reading about them but by using them critically.',time:'~1–2 hrs'},
+   {t:'Away With It demo — real Claude Code project, terminal commits, live Vercel URL. PERSONAL accounts only (not AIC). Target done by Tue/Wed per Dee.',why:'This is the W2 deliverable Dee specified. Use Claude Code in the terminal, commit every 2h, push to your own GitHub, deploy to Vercel. Document what Claude Code did well and what it got wrong in the Build Log.',time:'Mon–Wed (priority)'},
+   {t:'CCA: start IMMEDIATELY when the Away With It build clears (Tue/Wed) — not Week 5. Access anthropic.skilljar.com and begin Module 1.',why:'Dee confirmed: CCA is a NOW activity, not a summer one. 6-month market window — every week of delay costs. Module 1 is concepts, do it in one sitting.',time:'When build clears'},
    {t:'Lead call → close at £900 fixed, £450 upfront — ownership terms in writing before deposit',why:'The pricing floor is law. If they push back, trim scope. Never drop the price. Ownership clause must be written — the Vas lesson.',time:'~45 min call'},
    {t:'Outreach: 10 audit pitches total this week — log every send',why:'The audit (£200) is your foot-in-the-door. It\'s credited against a build. Volume builds pipeline. Log every message.',time:'~3–5 hrs across week'},
    {t:'Legal: register Vekora Ltd (£12, SIC 62020) · ICO registration (£40/yr) · open Tide or Starling business account',why:'You\'re taking money from real businesses. Ltd + ICO + business bank = professional and legal. One evening, all three done.',time:'~1–2 hrs, one evening'},
    {t:'Revision: daily maths from Wednesday. Business capped at 45 min/evening from here.',why:'School beats business — this is Guardrail #1. Maths A* → Imperial → everything else. The 45-min cap is non-negotiable.',time:'Daily from Wed'},
+   {t:'Gym: Mon 15, Wed 17, Sat 20',why:'Standing commitment. Protein every meal. Gym Mon/Wed/Sat every week — no exceptions during term.',time:'~45 min x3'},
+   {t:'Bible: daily — 10 min morning',why:'Non-negotiable. Grounds you before the day starts.',time:'Daily'},
+   {t:'Atomic Habits: finish the book this week',why:'Read it to the end. Then shelve it. The system you\'re living IS the book — you don\'t need to re-read it.',time:'~20 min/eve'},
+   {t:'21:30 cutoff — strictly. Business caps at 45 min/evening from Wed.',why:'You\'re now in revision territory. The cutoff protects your sleep and your maths grade.',time:'Non-negotiable'},
   ],
   del:['Live Vercel URL','2–3+ commits','Build Log days 6–10','Week 2 check-in to Dee','Ltd + ICO + bank done'],
   obj:['Template built + live on Vercel','Lead closed £900 (£450 deposit received)','Ltd + ICO + bank all done'],
   demo:true,
  },
- {id:'w34',n:'3–4',label:'Mock Protocol — Flexible Week',range:'22 June – 5 July',mode:'mock',
-  start:new Date(2026,5,22),end:new Date(2026,6,5),
-  goal:'Mocks finished with maths defended. Friday streak unbroken. Nothing else.',
+ {id:'w3',n:3,label:'Mocks Week 1 — Defend Maths',range:'22–28 June',mode:'mock',
+  start:new Date(2026,5,22),end:new Date(2026,5,28),
+  goal:'Maths defended in the exam room. Streak alive. Nothing else matters this week.',
   mlo:450,mhi:900,sends:0,
   tasks:[
-   {t:'FILL IN: First mock = ___ · Last mock = ___ · Term ends = ___',why:'Edit this now so you know exactly what you\'re working with. Vague dates create vague planning.',time:'2 min'},
-   {t:'Revision only. No new outreach. Reply to live deals within 24h — nothing more.',why:'This is the mock protocol. One job: defend maths. Everything else waits.',time:'Full focus'},
-   {t:'Fri 26 Jun: minimum deliverable — 2-min verbal Loom + one Build Log entry',why:'The streak survives even in mock weeks. A 2-min honest Loom beats a polished one in a bad week.',time:'~15 min',dl:true},
-   {t:'Fri 3 Jul: minimum deliverable — 2-min verbal Loom + one Build Log entry',why:'Second minimum Friday. Same rule. Honest and brief is better than missing.',time:'~15 min',dl:true},
-   {t:'Pause CCA thinking, demo building, everything heavy. Revision only.',why:'Spreading attention in mock week costs you marks. The summer will fix everything else. Maths A* cannot be recovered later.',time:'—'},
-   {t:'Last mock done → 48 hours fully off before Week 5 begins',why:'You\'ve earned it. Rest is not weakness — it\'s how you perform at summer intensity. Then Week 5 hits properly.',time:'48 hrs'},
+   {t:'Revision: past paper AM · mark scheme + per-question review PM — every weekday',why:'This is the only job. Maths A* → Imperial → everything else. One week of full focus now is worth months of recovery later.',time:'Full days'},
+   {t:'Revision: Sat/Sun — lighter session, past paper or topic drill only (no burnout)',why:'Don\'t grind yourself into the ground before the second mock week. Lighter Saturday/Sunday keeps you sharp for W4.',time:'~2 hrs/day'},
+   {t:'Gym: Mon 22, Wed 24, Sat 27 — gentle sessions only (no PBs this week)',why:'Movement clears your head. Gentle gym beats no gym — but don\'t exhaust yourself the night before a paper.',time:'~45 min x3'},
+   {t:'Bible: daily — 10 min morning',why:'Non-negotiable. Grounds you before the paper.',time:'Daily'},
+   {t:'Art of War: 10–15 min each evening (breaks from revision, not instead of it)',why:'You\'ve finished Atomic Habits. Art of War is short chapters — evening reading that isn\'t a screen.',time:'10–15 min/eve'},
+   {t:'Outreach: zero new sends. Reply to live deals within 24h only.',why:'Mock protocol. Every hour on outreach is an hour off maths. Live deals only — one sentence reply, no pitching.',time:'<5 min if needed'},
+   {t:'21:30 hard cutoff — strictly. Sleep is revision.',why:'Sleep is when the brain consolidates. A tired exam-day brain loses marks that revision can\'t recover.',time:'Non-negotiable'},
+   {t:'Fri 26 Jun: minimum Loom (2 min verbal) + one Build Log entry sent to Dee by EOD',why:'The streak survives mock week. A 2-min honest Loom beats nothing. This is non-negotiable even in mocks.',time:'~15 min',dl:true},
   ],
-  del:['Two minimum Fridays submitted','Mocks sat','Maths self-assessment written honestly'],
-  obj:['Mocks: maths defended','Fri 26 Jun minimum submitted','Fri 3 Jul minimum submitted'],
+  del:['Fri 26 Jun minimum submitted','Maths papers sat','Per-question review log done'],
+  obj:['Mocks: maths defended','Fri 26 Jun minimum submitted','Per-question review completed'],
+ },
+ {id:'w4',n:4,label:'Mocks Week 2 — Final Push',range:'29 Jun – 5 Jul',mode:'mock',
+  start:new Date(2026,5,29),end:new Date(2026,6,5),
+  goal:'Last mock sat. Maths self-assessment written. 48 hours fully off. Then summer begins.',
+  mlo:450,mhi:900,sends:0,
+  tasks:[
+   {t:'Final revision push: past papers + weak-topic drilling every weekday',why:'Last week to correct the gaps your W3 per-question review revealed. Target the topics you kept dropping marks on.',time:'Full days'},
+   {t:'Gym: Mon 29, Wed 1 Jul, Sat 4 Jul — gentle, energy-preserving sessions',why:'Same rule as W3. Movement clears your head. Don\'t exhaust yourself the night before a paper.',time:'~45 min x3'},
+   {t:'Bible: daily — 10 min morning',why:'Non-negotiable.',time:'Daily'},
+   {t:'Art of War: finish the book this week',why:'Short chapters. Finish it. Gives you a clean slate for Greene books in the summer.',time:'10–15 min/eve'},
+   {t:'Outreach: still zero new sends. Reply to live deals within 24h only.',why:'Same mock protocol. Summer outreach (50/wk) starts W5 — not a day earlier.',time:'<5 min if needed'},
+   {t:'21:30 hard cutoff — strictly throughout.',why:'Last week of school term. Don\'t collapse at the finish line.',time:'Non-negotiable'},
+   {t:'Fri 3 Jul: minimum Loom (2 min verbal) + Build Log entry sent to Dee by EOD',why:'Two minimum Fridays across mocks — that\'s the streak target. Second one is this Friday.',time:'~15 min',dl:true},
+   {t:'Last mock done → write honest maths self-assessment (one page: what held, what didn\'t, what to fix in W5+)',why:'The self-assessment is data. It tells you whether to book TMUA with confidence or book extra Maths sessions. Be honest.',time:'~30 min after last paper'},
+   {t:'48 hours fully off after last mock — no business, no revision, no guilt',why:'You\'ve earned it. Rest is performance infrastructure. W5 hits at full intensity — you can\'t do that on fumes.',time:'48 hrs'},
+   {t:'Summer sprint planning: read W5–W12 in this tracker so Week 5 starts clean',why:'5 minutes of orientation now means Monday 6 July starts with clarity, not scrambling.',time:'~10 min'},
+  ],
+  del:['Fri 3 Jul minimum submitted','All mocks sat','Maths self-assessment written','48h rest taken'],
+  obj:['Mocks finished strong','Fri 3 Jul minimum submitted','48h off + summer sprint plan ready'],
  },
  {id:'w5',n:5,label:'GCP + Claude API + Month 1 Retro',range:'6–12 July',mode:'summer',
   start:new Date(2026,6,6),end:new Date(2026,6,12),
@@ -473,8 +665,13 @@ const WKS = [
    {t:'Anthropic API key (stored in password manager, never in code) · build claude_test.py using the Python SDK · run from terminal',why:'This is the first time Claude responds to your code. Not the playground — your code. That\'s the shift.',time:'~1–2 hrs'},
    {t:'Cloud Run deploy attempted (success OR documented failure both count) · Firestore: add one doc, read it back from code',why:'Attempting and documenting a failure is a legitimate deliverable. The goal is to touch the stack, not to get it perfect first time.',time:'~2–3 hrs'},
    {t:'"What I understand about auth" — half-page note in your own words',why:'Every production system needs auth. Writing it in your own words is how you find the gaps before they bite you in a client build.',time:'~30 min'},
-   {t:'Month 1 retro call with Dee: scorecard, CCA decision (yes/no), stack decision, ask the £1k/day question',why:'Ask Dee: "What would I need to show you to be worth £1,000/day?" Write the answer down. That\'s your roadmap for Month 2.',time:'~1 hr call'},
+   {t:'Month 1 retro call with Dee: scorecard, CCA progress update (started W2), stack decision, ask the £1k/day question',why:'Ask Dee: "What would I need to show you to be worth £1,000/day?" Write the answer down. That\'s your roadmap for Month 2.',time:'~1 hr call'},
    {t:'Outreach resumes: 10 audit pitches per evening · metric-logging sheet created',why:'The pipeline died in mocks. Restart it now. The sheet makes your numbers real — without it you\'re guessing.',time:'~1 hr/evening'},
+   {t:'Gym: Mon 6, Wed 8, Sat 11 Jul',why:'Back to full schedule. Protein every meal. Gym Mon/Wed/Sat is non-negotiable throughout summer.',time:'~45 min x3'},
+   {t:'Bible: daily — 10 min morning',why:'Non-negotiable.',time:'Daily'},
+   {t:'Start Robert Greene (first book) — read critically, not as a playbook',why:'Art of War is done. Greene books are next on the reading list. Read as case studies in human behaviour.',time:'~20 min/eve'},
+   {t:'21:30 cutoff and Sunday rest throughout summer',why:'Summer intensity is sustainable only with consistent sleep and one full rest day.',time:'Non-negotiable'},
+   {t:'Friday W5 check-in to Dee: Loom + Build Log + deliverables list by EOD UK',why:'Streak continues. 5/12 Fridays. Every one matters.',time:'~45 min',dl:true},
   ],
   del:['GCP console screenshot','Terminal screenshot of Claude responding','Cloud Run URL or documented failure','Working frontend+backend app','Auth note written','Week 5 check-in to Dee'],
   obj:['First Claude API call + GCP console set up','Month 1 retro: CCA yes + stack decided','Outreach restarted + metric sheet exists'],
@@ -488,6 +685,10 @@ const WKS = [
    {t:'Deploy (Vercel or Cloud Run) + full README + 3–5 min Loom selling the outcome not the tech',why:'The Loom is the product demo. Talk about missed jobs and lost revenue — not "it\'s built with React." The README is your portfolio evidence.',time:'~2 hrs'},
    {t:'Write 1-page Month 1 retrospective: what I learned, what surprised me, what I struggled with, 3 Month 2 priorities',why:'Retros are how you learn faster. Writing it cements the lesson. It also shows Dee you\'re operating like a professional.',time:'~45 min'},
    {t:'Outreach continues: 10 pitches/evening · deliver any sold audits within 48h of yes',why:'The audit (£200) is credited against a Foundation Build. That makes it a no-brainer for the client. Keep the volume up.',time:'~1 hr/evening + delivery'},
+   {t:'Gym: Mon 13, Wed 15, Sat 18 Jul',why:'Standing commitment. Protein every meal.',time:'~45 min x3'},
+   {t:'Bible: daily',why:'Non-negotiable.',time:'Daily'},
+   {t:'Greene: continue reading',why:'Consistent 20 min/eve — read critically.',time:'~20 min/eve'},
+   {t:'Friday W6 check-in to Dee: Loom + Audit Generator URL + 1-page retro by EOD UK',why:'6/12 Fridays. Audit Generator URL is this week\'s headline deliverable.',time:'~45 min',dl:true},
   ],
   del:['Live Audit Generator URL','Repo + README','Loom demo (outcome-focused)','1-page retro doc','Week 6 check-in'],
   obj:['Audit Generator shipped (URL + README + Loom)','Month 1 retro written','2 audits delivered'],
@@ -503,20 +704,29 @@ const WKS = [
    {t:'CCA module 1 on anthropic.skilljar.com — 4–6 hrs/wk from here until done',why:'CCA Foundations unlocks the subcontractor pathway. Module 1 is the foundation — concepts, not code. Do it in one sitting if you can.',time:'4–6 hrs'},
    {t:'Vekora: deliver any sold work · push for Foundation Build #2 · GBP retainer pitch (£250/mo) to every delivered client at 30-day mark',why:'The retainer is where monthly recurring income starts. Ask every delivered client at day 30. Most say yes if the build was clean.',time:'Ongoing'},
    {t:'Open source: first contribution — a documentation fix on a tool you actually use. Learn the PR workflow.',why:'This goes on your GitHub, your CV, and your Imperial PS. It also proves you can navigate a real codebase you didn\'t write.',time:'~2–3 hrs'},
+   {t:'Gym: Mon 20, Wed 22, Sat 25 Jul',why:'Standing commitment. Protein every meal.',time:'~45 min x3'},
+   {t:'Bible: daily',why:'Non-negotiable.',time:'Daily'},
+   {t:'Greene: continue reading — 20 min/eve',why:'Read critically. Note what rings true vs what is manipulative framing.',time:'~20 min/eve'},
+   {t:'Friday W7 check-in to Dee: Loom + TMUA booking screenshot + MCP progress by EOD UK',why:'7/12 Fridays. TMUA booking is the headline this week.',time:'~45 min',dl:true},
   ],
   del:['TMUA booking confirmation screenshot','MCP experiment repo','CCA module 1 progress screenshot','Week 7 check-in'],
   obj:['TMUA booked Mon 20 Jul + daily hour started','First MCP experiment working or documented','CCA module 1 completed'],
  },
  {id:'w8',n:8,label:'Agentic Build + Problem Discovery',range:'27 Jul – 2 Aug',mode:'summer',
   start:new Date(2026,6,27),end:new Date(2026,7,2),
-  goal:'A multi-step agent doing something genuinely useful. Three real problem candidates heard from real business owners.',
+  goal:'A multi-step agent doing something genuinely useful. 10-workflow shortlist built from mid-market sectors. 3 validated problems logged verbatim.',
   mlo:2000,mhi:2800,sends:50,
   tasks:[
    {t:'Build the agentic project: a multi-step agent or MCP tool that does one genuinely useful job',why:'This is Month 2\'s core deliverable. It doesn\'t need to be perfect. It needs to work, have a README, and have a Loom explaining the outcome.',time:'~10–15 hrs'},
-   {t:'Problem discovery: in every client/audit conversation ask "What\'s the most expensive manual process in your business?" Log every answer verbatim — 3 candidates by month-end',why:'Your MVP in W11 comes from this list. "Verbatim" means word-for-word — the language clients use is what you put in the pitch back to them.',time:'Ongoing in conversations'},
+   {t:'10-workflow shortlist (Dee\'s Week 6 method): rate each workflow on pain · who · hrs/wk · incumbent · why LLM-native · viability — pull from mid-market sectors: recruitment, property, logistics, professional services, sales orgs',why:'This is the W11 MVP source list. The sector focus is deliberate — these are destination-market workflows, not trades. The shortlist trains your eye before you need it.',time:'~4 hrs research'},
+   {t:'3 validated problems logged verbatim: from real conversations, in owners\' exact words — "What\'s the most expensive manual process in your business?" Record the answer word for word',why:'Your MVP in W11 comes from this list. "Verbatim" means verbatim — the language they use is what you put back in the pitch.',time:'Ongoing in conversations'},
    {t:'CCA module 2 · TMUA daily · outreach steady at 50/week',why:'Compound habits. TMUA daily is non-negotiable. CCA module 2 is 4–6 hrs. Outreach keeps the pipeline alive.',time:'Parallel tracks'},
    {t:'Hackathon: find one, check age eligibility, register',why:'Hackathons give you compressed shipping experience, networking, and portfolio evidence. MLH events list has UK-eligible ones. Register now.',time:'~30 min research + registration'},
    {t:'Open source: take one "good first issue" on a real project',why:'One step harder than documentation. Writing code in someone else\'s codebase is a distinct skill — and it\'s on your GitHub forever.',time:'~3–5 hrs'},
+   {t:'Gym: Mon 27, Wed 29, Sat 1 Aug',why:'Standing commitment. Protein every meal.',time:'~45 min x3'},
+   {t:'Bible: daily',why:'Non-negotiable.',time:'Daily'},
+   {t:'Greene: continue reading — 20 min/eve',why:'Read critically.',time:'~20 min/eve'},
+   {t:'Friday W8 check-in to Dee: Loom + agentic build repo + problem log update by EOD UK',why:'8/12 Fridays. Agentic build + 3 verbatim problems are this week\'s headlines.',time:'~45 min',dl:true},
   ],
   del:['Agentic build repo + Loom','Problem log (3 verbatim candidates)','Hackathon registration screenshot','Week 8 check-in'],
   obj:['Agentic build shipped','3 validated problems logged verbatim','Hackathon registered + CCA module 2'],
@@ -530,6 +740,10 @@ const WKS = [
    {t:'Run the full 20-lead stress test · fix every failure · log every fix in the Build Log',why:'SOP 01 says: 10 consecutive clean runs before your first sales call. The 20-lead matrix is how you get there. Do not skip test cases.',time:'~3–4 hrs testing'},
    {t:'Personal statement draft 1: spine = NEA story + eval-harness idea + market simulation intent + Vekora as applied evidence',why:'Imperial CS asks for evidence of thinking, not just projects. The Vekora story is the strongest concrete evidence you have. Get it into words now.',time:'~2–3 hrs'},
    {t:'CCA module 3 · TMUA daily · deliver any outstanding client work',why:'Three parallel tracks. Don\'t let any of them slip — log progress on all three in the weekly check-in.',time:'Parallel tracks'},
+   {t:'Gym: Mon 3, Wed 5, Sat 8 Aug',why:'Standing commitment. Protein every meal.',time:'~45 min x3'},
+   {t:'Bible: daily',why:'Non-negotiable.',time:'Daily'},
+   {t:'Greene: continue reading — 20 min/eve',why:'Read critically.',time:'~20 min/eve'},
+   {t:'Friday W9 check-in to Dee: Loom + Demo 1 repo + PS draft 1 + stress test log by EOD UK',why:'9/12 Fridays. Demo 1 rebuild + PS draft are the big deliverables.',time:'~45 min',dl:true},
   ],
   del:['Demo 1 repo','20-lead stress test log','PS draft 1','Week 9 check-in'],
   obj:['Demo 1 rebuilt + 20-test log documented','PS draft 1 written','CCA module 3 completed'],
@@ -537,39 +751,54 @@ const WKS = [
  },
  {id:'w10',n:10,label:'Demo 10/10 + Hackathon',range:'10–16 August',mode:'summer',
   start:new Date(2026,7,10),end:new Date(2026,7,16),
-  goal:'Demo runs 10/10 from memory. Hackathon shipped. Tier 1 unlock criteria met.',
+  goal:'Demo runs 10/10 from memory. Hackathon shipped. Stage 2 unlocked.',
   mlo:2300,mhi:3300,sends:50,
   tasks:[
-   {t:'Demo: 10 consecutive clean runs from memory, under 4 minutes, SMS every time — ONLY then does Tier 1 unlock for sales calls',why:'A broken demo on a sales call is worse than no demo. SOP 01 is explicit: 10 consecutive passes. Don\'t compromise. Tier 1 is worth £950/mo + £500 setup.',time:'~2–3 hrs practice'},
+   {t:'Demo: 10 consecutive clean runs from memory, under 4 minutes, SMS every time — ONLY then does Stage 2 unlock for sales calls',why:'A broken demo on a sales call is worse than no demo. SOP 01 is explicit: 10 consecutive passes. Don\'t compromise. Stage 2 is worth £950/mo + £500 setup.',time:'~2–3 hrs practice'},
    {t:'Hackathon weekend: ship something, get the project page, document it',why:'Win or not, you shipped something in 24–48 hrs with strangers. That\'s the evidence. The GitHub link is the deliverable.',time:'Full weekend'},
-   {t:'First Tier 1 conversations with any Foundation client at their 30-day mark — ask: "What happens when an enquiry comes in at 9pm on a Friday?"',why:'The upsell question. Ask it. Then stop talking. Let them answer. The answer tells you whether to pitch Tier 1 or not.',time:'~20 min per conversation'},
+   {t:'First Stage 2 conversations with any Foundation client at their 30-day mark — ask: "What happens when an enquiry comes in at 9pm on a Friday?"',why:'The upsell question. Ask it. Then stop talking. Let them answer. The answer tells you whether to pitch Stage 2 or not.',time:'~20 min per conversation'},
    {t:'CCA module 4 · TMUA daily · PS draft 2 if feedback received',why:'Month 3 home stretch. Don\'t let TMUA slip — it\'s 3 weeks from test day.',time:'Parallel tracks'},
+   {t:'Gym: Mon 10, Wed 12, Sat 15 Aug',why:'Standing commitment. Protein every meal.',time:'~45 min x3'},
+   {t:'Bible: daily',why:'Non-negotiable.',time:'Daily'},
+   {t:'Greene: continue reading — 20 min/eve',why:'Read critically.',time:'~20 min/eve'},
+   {t:'Friday W10 check-in to Dee: Loom + 10/10 demo proof + hackathon link by EOD UK',why:'10/12 Fridays. Demo 10/10 is the headline this week.',time:'~45 min',dl:true},
   ],
   del:['10/10 demo Loom proof','Hackathon project link','Week 10 check-in'],
-  obj:['Demo 10/10 → Tier 1 unlocked','Hackathon weekend shipped','First Tier 1 conversation had'],
+  obj:['Demo 10/10 → Stage 2 unlocked','Hackathon weekend shipped','First Stage 2 conversation had'],
  },
  {id:'w11',n:11,label:'MVP Build',range:'17–23 August',mode:'summer',
   start:new Date(2026,7,17),end:new Date(2026,7,23),
   goal:'MVP scoped to a validated problem, build underway.',
   mlo:2400,mhi:3600,sends:50,
   tasks:[
-   {t:'Pick the MVP from the W8 problem log — validated = a real owner said it costs them real money',why:'Default if uncertain: the productised Tier 1 system — one codebase, per-client config file. You\'ve already built the parts. Now make it a product.',time:'~2 hrs scoping'},
-   {t:'Build with Claude Code: small commits, README as you go, no skipping the docs',why:'Treat this like a real product, not a school project. Small commits = reversible mistakes. README as you go = you can Loom it immediately.',time:'~15–20 hrs'},
-   {t:'CCA: access attestation submitted + exam prep begins · TMUA daily',why:'CCA exam is the credential. Book it early. TMUA is this week or next — every day counts.',time:'Parallel tracks'},
+   {t:'Pick the MVP from the W8 problem log — validated = a real owner said it costs them real money',why:'Default if uncertain: the productised Stage 2 system — one codebase, per-client config file. You\'ve already built the parts. Now make it a product.',time:'~2 hrs scoping'},
+   {t:'Spec follows Dee\'s MVP structure BEFORE writing a line of code: one role · 3 JTBD · max 3 must-haves · explicit won\'t-do list — one page, Dee reviews',why:'The spec is the contract with yourself. It also stops scope creep. Write it first, send to Dee, then build.',time:'~1 hr'},
+   {t:'Build with Claude Code: small commits every 2h, README as you go, harden top 3 failure modes',why:'Treat this like a real product. Small commits = reversible mistakes. README as you go = you can Loom it immediately.',time:'~15–20 hrs'},
+   {t:'Loom demo asset: record a 30/30/90/30 structured demo — 30s problem · 30s who it\'s for · 90s live walkthrough · 30s outcome + CTA',why:'This is your W12 sales asset. The Loom goes to 20 prospects. Record it while the build is fresh and you still remember every detail.',time:'~1 hr'},
+   {t:'20-prospect list built: identify 20 people who have the exact problem this MVP solves — name, company, contact route',why:'The list needs to exist before W12. You can\'t prospect without it. Build it this week.',time:'~1–2 hrs'},
+   {t:'CCA module 4 · TMUA daily',why:'CCA module 4 is the last before the exam. TMUA is this week or next — every day counts.',time:'Parallel tracks'},
    {t:'Professional indemnity insurance: get a quote if any retainer is live (~£10–15/mo)',why:'One unhappy retainer client who threatens legal action with no insurance is catastrophic. This is cheap. Do it.',time:'~30 min'},
+   {t:'Gym: Mon 17, Wed 19, Sat 22 Aug',why:'Standing commitment. Protein every meal.',time:'~45 min x3'},
+   {t:'Bible: daily',why:'Non-negotiable.',time:'Daily'},
+   {t:'Greene: finish book, start next if time',why:'Read critically.',time:'~20 min/eve'},
+   {t:'Friday W11 check-in to Dee: Loom + MVP repo + scoping note + Loom demo asset by EOD UK',why:'11/12 Fridays. MVP build + Loom asset are this week\'s headlines.',time:'~45 min',dl:true},
   ],
-  del:['MVP repo with commits','Scoping note (problem, who validated, success measure)','Week 11 check-in'],
-  obj:['MVP scoped (validated) + build underway','CCA access attestation + exam prep','PS draft 2 revised'],
+  del:['MVP repo with commits','Scoping note (problem · validated · success measure)','Loom demo asset (30/30/90/30)','20-prospect list','Week 11 check-in'],
+  obj:['MVP scoped (Dee\'s spec) + build underway','Loom demo asset recorded','20-prospect list built'],
  },
  {id:'w12',n:12,label:'Ship, Demo, Assess',range:'24–30 August',mode:'summer',
   start:new Date(2026,7,24),end:new Date(2026,7,30),
   goal:'MVP live + demoed. Subcontractor readiness scored. Programme retrospective done.',
   mlo:2500,mhi:4000,sends:50,
   tasks:[
-   {t:'MVP deployed · Loom demo pitched on outcome not features · first outreach sequence sent',why:'The Loom is the close. Talk about the problem it solves and who for. Then send it to 5–10 people who have that problem.',time:'~3–4 hrs'},
+   {t:'MVP deployed · Loom demo pitched on outcome not features · outreach sequence drafted past Dee first, then sent to 20-prospect list',why:'The Loom is the close. Talk about the problem it solves and who for. All sequence drafts go past Dee before sending — no exceptions.',time:'~3–4 hrs'},
+   {t:'CCA exam: scheduled (Month 4, cohort-gated) — confirm date with Dee in September preview',why:'CCA exam date is set by cohort, not by you. Confirm in the September preview call — do not sit it without the cohort-gated sign-off.',time:'~10 min (confirm only)'},
    {t:'Subcontractor readiness checklist scored with Dee: availability, equipment, pro email, LinkedIn, GitHub, 24h response, confidentiality, agreements via Michelle/Dee',why:'This is the conversation that determines whether you\'re deployable as a subcontractor in Year 13. Be honest in the scoring.',time:'~45 min call'},
    {t:'Programme retrospective: 12-Friday streak is the headline metric — write what you learned, what surprised you, what you\'d do differently',why:'The retro is for you. It\'s also evidence of professional self-reflection for any future conversation about your capability.',time:'~1 hr'},
    {t:'September preview agreed with Dee: CCA exam date · Year 13 cadence · subcontract availability',why:'Don\'t let this programme end with no plan for what comes next. September is decided in August.',time:'~30 min'},
+   {t:'Gym: Mon 24, Wed 26, Sat 29 Aug',why:'Standing commitment. Protein every meal. Last week of the programme.',time:'~45 min x3'},
+   {t:'Bible: daily',why:'Non-negotiable.',time:'Daily'},
+   {t:'Friday W12 check-in to Dee: Loom + MVP URL + readiness checklist + 12/12 confirmation — EOD UK',why:'12/12 Fridays. The streak is the headline metric of the entire programme. This is the one.',time:'~45 min',dl:true},
   ],
   del:['MVP URL + Loom','Readiness checklist scored','Week 12 check-in','12/12 Fridays confirmed'],
   obj:['MVP live + Loom + outreach sequence','Subcontractor readiness scored with Dee','12/12 Fridays confirmed'],
@@ -586,7 +815,7 @@ const GMTX = [
  {w:7,o1:'TMUA booked Mon 20 Jul + daily hour started',o2:'First MCP experiment working',o3:'CCA module 1 done',m:'£1,600–2,200',s:'50'},
  {w:8,o1:'Agentic build shipped',o2:'3 validated problems logged verbatim',o3:'Hackathon registered + CCA module 2',m:'£2,000–2,800',s:'50'},
  {w:9,o1:'Demo 1 rebuilt + 20-test log documented',o2:'PS draft 1 written',o3:'CCA module 3 done',m:'£2,200–3,000',s:'50'},
- {w:10,o1:'Demo 10/10 → Tier 1 unlocked',o2:'Hackathon shipped',o3:'First Tier 1 conversation had',m:'£2,300–3,300',s:'50'},
+ {w:10,o1:'Demo 10/10 → Stage 2 unlocked',o2:'Hackathon shipped',o3:'First Stage 2 conversation had',m:'£2,300–3,300',s:'50'},
  {w:11,o1:'MVP scoped (validated) + build underway',o2:'CCA access attestation + exam prep',o3:'PS draft 2 revised',m:'£2,400–3,600',s:'50'},
  {w:12,o1:'MVP live + Loom + outreach sequence',o2:'Subcontractor readiness scored with Dee',o3:'12/12 Fridays confirmed',m:'£2,500–4,000',s:'50'},
 ];
@@ -624,7 +853,7 @@ const PROJS = [
  },
  {name:'Missed-Call Text-Back',status:'planned',when:'Week 8–9',hours:'~8 hrs',
   desc:'When a call to a business goes unanswered, the caller instantly receives an SMS. "Hi, we missed your call. We\'ll ring you back shortly." Logs to Firestore.',
-  why:'The #1 objection from trade clients: "I miss jobs when I\'m on site." This solves it with one integration. It\'s a Vekora Tier 1 feature and a standalone product.',
+  why:'The #1 objection from trade clients: "I miss jobs when I\'m on site." This solves it with one integration. It\'s a Vekora Stage 1 feature and a standalone product.',
   stack:['Twilio','Cloud Run','Node.js','Firestore'],
   steps:['Buy a Twilio number, configure voice webhook URL pointing to Cloud Run','Cloud Run: Node.js server handles no-answer call event (statusCallbackEvent)','Extract caller number, send SMS: "Hi, we missed your call..." + business name','Log to Firestore: caller, timestamp, callback sent, any reply','Test with own phone x5 before any client goes live'],
  },
@@ -666,7 +895,7 @@ const SOPS = [
   c:'var(--gold)',
   steps:['GHL: demo sub-account + lead form (7 custom fields: lead_score, lead_tier, score_reasoning, recommended_action, email_opener, estimated_value, follow_up_timing)','Deploy n8n to Railway + UptimeRobot monitoring (pings /healthz every 5 min)','n8n: Webhook → Set node maps all GHL form fields','Claude call 1: entity extraction → JSON (sites, urgency, deadline, authority, budget, incident trigger, multi-site)','Claude call 2: lead qualifier → 7-field JSON (score 1–10, tier hot/warm/cold, reasoning, action, opener, value, timing)','GHL PATCH: update contact with all 7 qualifier results','GHL automation: SMS to owner + email to lead on contact field updated trigger'],
  },
- {n:'02',t:'New Client Onboarding',s:'Tier 1–2',
+ {n:'02',t:'New Client Onboarding',s:'Stage 1–2',
   done:'Client has signed agreement, paid 50% deposit, received welcome email, and all access credentials are in your password manager.',
   c:'var(--ok)',
   steps:['Countersigned agreement received (via Michelle/Dee if under-18)','50% deposit confirmed in Tide/Starling','Welcome email sent (template)','Asset collection: domain login, current hosting, existing branding files','GHL sub-account created — named "ClientName – Vekora"','Onboarding call booked within 48h'],
@@ -731,21 +960,77 @@ const GUARDS = [
  {i:'📅',t:'<strong>Friday is sacred.</strong> 12/12 submissions. A 2-minute honest Loom in a terrible week beats a polished one in a good week. The streak is the audition for Year 13 subcontracting.'},
  {i:'🔍',t:'<strong>Documents describe reality.</strong> No claim in any CV, check-in, plan, or pitch that wouldn\'t survive a probing question. Honest and unimpressive beats impressive and false, every time.'},
  {i:'⏱️',t:'<strong>Stuck 45 minutes → escalate.</strong> Write the blocker clearly. Send to Dee (BLOCKED protocol) or ask Claude. Then switch tasks. Streaks die from stalls, not laziness.'},
- {i:'💷',t:'<strong>Pricing floor is law.</strong> £900 build · £200 audit · £250/mo GBP retainer · £950/mo + £500 setup Tier 1. No discounts. Trim scope instead.'},
+ {i:'💷',t:'<strong>Pricing floor is law.</strong> £900 build · £200 audit · £250/mo GBP retainer · Stage 2 = £950/mo + £500 setup. No discounts. Trim scope instead.'},
  {i:'📝',t:'<strong>Ownership in writing before deposit.</strong> Who owns the domain, hosting, content, what the client can edit — one paragraph, every deal. (The Vas lesson, institutionalised.)'},
  {i:'🎯',t:'<strong>Sell outcomes, never "AI" or "automation."</strong> Missed jobs. Slow response. Money recovered. That\'s the pitch. Features are for the delivery call, not the close.'},
- {i:'🏠',t:'<strong>One niche until 3 clients in it.</strong> Waste/trades cluster now. Commercial security is the Tier 1 graduation, decided on evidence: £2–3k Foundation revenue banked.'},
- {i:'💰',t:'<strong>Money rules:</strong> 20–25% of every invoice set aside for tax · fixed costs &lt;£30/mo · API billing alert set before any client system goes live · no GHL before 2 Tier 1 clients.'},
+ {i:'🏠',t:'<strong>One niche until 3 clients in it.</strong> Driving instructors + waste cluster now. Commercial security is the Stage 2 graduation niche — decided on evidence: £2–3k Foundation revenue banked.'},
+ {i:'💰',t:'<strong>Money rules:</strong> 20–25% of every invoice set aside for tax · fixed costs &lt;£30/mo · API billing alert set before any client system goes live · no GHL before 2 Stage 2 clients.'},
  {i:'🔒',t:'<strong>Security basics:</strong> no keys in code, ever · .env + Secret Manager · least privilege · no real client data in builds without Dee\'s written agreement first.'},
  {i:'😴',t:'<strong>Sleep and the rest day.</strong> Stop at 21:30 on school nights. Sunday is rest, faith, family. A 17-year-old running on no sleep fails mocks and misses clients.'},
  {i:'👨‍👩‍👦',t:'<strong>Parents informed.</strong> They see the money, the contracts, and this plan. At 17, passive parents are a legal and practical liability. Informed parents are an asset.'},
  {i:'🚫',t:'<strong>No new strategy documents. Ever.</strong> This is the last one. Artifacts only: code, Looms, messages, invoices, check-ins. If you\'re drafting Blueprint V23 — close the tab and do the next send.'},
 ];
 
+// ─── FUTURE SELF ENGINE ───────────────────────────────────────────────────────
+
+const FUTURE_ENGINE=[
+ {key:'ship',  icon:'🔨',id:'The builder who ships',  beh:'Builds, ships, or sells something most days — closes the loop.',          vote:'Did I build, ship, or sell today?'},
+ {key:'word',  icon:'🤝',id:'A man of his word',       beh:'Does what he said; escalates instead of going silent.',                   vote:'Kept commitments / Friday submitted?'},
+ {key:'rep',   icon:'🔄',id:'Steady, not swinging',    beh:'One plan, ordinary reps — no emotional pivots or blueprint rewrites.',    vote:'Did the boring rep today?'},
+ {key:'bible', icon:'✝',  id:'Strong in faith',         beh:'Reads Scripture daily, walks toward his denomination.',                  vote:'Bible read today?'},
+ {key:'body',  icon:'💪',id:'Strong in body',          beh:'Trains, eats clean, sleeps — gym Mon/Wed/Sat + protein + 21:30 cutoff.', vote:'Gym / protein / 21:30 today?'},
+ {key:'mind',  icon:'📖',id:'Strong in mind',          beh:'Reads 20 min/day (toward 10+ books) — signal not noise.',               vote:'20 min reading today?'},
+ {key:'scholar',icon:'📐',id:'The scholar',             beh:'Protects the maths grade that protects the future.',                     vote:'Maths / TMUA revision today?'},
+ {key:'peace', icon:'☀', id:'At peace',                beh:'Rest day kept, faith + people + quiet — not just grind.',                vote:'Sunday rest + real friends this week?'},
+];
+
+const FUTURE_MAN=[
+ '7-figure net worth','6–7 figure cash flow','Vekora scaling — multiple high-paying clients',
+ '2nd business: real products at 6 figures+','Whole Bible read · baptised Apostolic',
+ 'Great A-levels + thriving at Imperial','Posting content regularly','10+ books read',
+ 'Lean, strong, healthy','Good, successful friends','Building something greater than himself','At inner peace',
+];
+
+// ─── LEGAL ITEMS ─────────────────────────────────────────────────────────────
+
+const LEGAL_ITEMS=[
+{id:'l0',g:'NOW — This Week',s:'red',t:'Vekora Ltd registered — Companies House £12, SIC 62020',d:'Registered office = home address (visible on public register). Consider a registered-office service later.'},
+{id:'l1',g:'NOW — This Week',s:'red',t:'ICO registration £40/yr — processing lead and personal data',d:''},
+{id:'l2',g:'NOW — This Week',s:'red',t:'Corporation Tax registration with HMRC within 3 months of starting to trade',d:''},
+{id:'l3',g:'NOW — This Week',s:'red',t:'Banking at 17: parent-supported setup; document every business £ in/out from day one',d:'Stripe, Tide, Starling, Google Ads, Twilio all require 18+. Personal transfer fine for first payments.'},
+{id:'l4',g:'NOW — This Week',s:'red',t:'Parents briefed as standing practice',d:'Contracts with a minor are voidable in English law. Mitigation: 50% upfront + simple written terms + parent counter-signature on anything over £1,000.'},
+{id:'l5',g:'NOW — This Week',s:'amb',t:'PSC register (me) + incorporation docs in one folder',d:''},
+{id:'l6',g:'Every Deal',s:'red',t:'Ownership terms in writing BEFORE deposit',d:'Domain, hosting, content, code, what client can edit — one paragraph, every deal. The Vas clause.'},
+{id:'l7',g:'Every Deal',s:'red',t:'One-page terms per deal: scope · price · payment schedule · delivery · ownership · exit terms',d:''},
+{id:'l8',g:'Every Deal',s:'red',t:'IP default: I own the code, client gets a licence — full assignment only on full payment',d:'Licence-first (Dee\'s principle). Stated in writing.'},
+{id:'l9',g:'Every Deal',s:'amb',t:'Late payment clause: statutory interest (8% + base rate) + £40 fee',d:'Under the Late Payment of Commercial Debts Act.'},
+{id:'l10',g:'Every Deal',s:'amb',t:'Open-source compliance: keep MIT/Apache licences attributed in all builds',d:''},
+{id:'l11',g:'Every Deal',s:'grn',t:'Forms collecting names/phones: one-line privacy notice; data kept only as long as needed',d:''},
+{id:'l12',g:'First £1,000 Revenue',s:'red',t:'HMRC Self Assessment registration once past the £1,000 trading allowance',d:''},
+{id:'l13',g:'First £1,000 Revenue',s:'red',t:'Tax pot live: 20–25% of every invoice moved same day, never touched',d:'Separate account or earmarked savings.'},
+{id:'l14',g:'First Retainer',s:'red',t:'Professional indemnity insurance (~£10–15/mo)',d:''},
+{id:'l15',g:'First Retainer',s:'amb',t:'Retainer agreement upgrade: 30-day notice · scope · monthly report · price review at 12 months',d:''},
+{id:'l16',g:'First Retainer',s:'amb',t:'Data Processing Agreement template (Art. 28): purpose · retention · subprocessors · breach notification 72h · deletion on exit',d:'Subprocessors include: Twilio, Google, Anthropic.'},
+{id:'l17',g:'First Retainer',s:'grn',t:'Lawful basis for B2B outreach: legitimate interest + 1-page assessment saved',d:'Sole traders = individuals under PECR. Corporate targets only.'},
+{id:'l18',g:'First Ad Campaign (Sept)',s:'red',t:'Google Ads account is 18+ — parent-held account or wait until birthday',d:''},
+{id:'l19',g:'First Ad Campaign (Sept)',s:'amb',t:'ASA/CAP: ads clearly labelled as ads; loss estimates are estimates, never guarantees',d:''},
+{id:'l20',g:'First Ad Campaign (Sept)',s:'grn',t:'Landing pages: privacy policy + cookie notice on my own site before any ad traffic',d:''},
+{id:'l21',g:'First VA / Delegation',s:'red',t:'Contractor agreement + NDA before any access: scope · pay · confidentiality · IP assignment · no client contact without sign-off',d:''},
+{id:'l22',g:'First VA / Delegation',s:'amb',t:'Least-privilege access: VA gets only the tools/accounts the task needs',d:''},
+{id:'l23',g:'Stage 2.5 / Mid-Market (2027)',s:'red',t:'Performance/rev-share addendum: attribution = MY system\'s log · audit rights · base fee independent of share · payment within 14 days of month-end',d:''},
+{id:'l24',g:'Stage 2.5 / Mid-Market (2027)',s:'amb',t:'Vendor pack ready: PI certificate · DPA · security summary (mid-market procurement may require)',d:''},
+{id:'l25',g:'Stage 2.5 / Mid-Market (2027)',s:'grn',t:'Trademark "Vekora" (UK IPO, ~£170) once revenue justifies defending it',d:''},
+{id:'l26',g:'Equity Deals',s:'red',t:'Never work for equity alone — any equity = signed shareholder agreement + vesting + exit/dilution terms; solicitor-reviewed',d:''},
+{id:'l27',g:'Scale Triggers',s:'red',t:'VAT registration within 30 days of crossing (or forecasting) £90k taxable turnover in any rolling 12 months',d:''},
+{id:'l28',g:'Scale Triggers',s:'amb',t:'Cyber liability insurance once holding meaningful client lead data at scale',d:''},
+{id:'l29',g:'Scale Triggers',s:'amb',t:'At 18: migrate banking, processors, ads, Twilio into my own name within 30 days of birthday — calendar it now',d:''},
+{id:'l30',g:'Annual',s:'grn',t:'Confirmation statement (~£34) · ICO renewal · insurance review · first accounts due 21 months after incorporation',d:'Thereafter: accounts 9 months after year-end · CT payment 9 months +1 day · CT600 filing 12 months after year-end.'},
+];
+
 // ─── STATE ───────────────────────────────────────────────────────────────────
 
 const SK='plan12v2';
-const S={tasks:{},logs:{},money:{},sends:{},dark:true};
+const S={tasks:{},logs:{},money:{},sends:{},legal:{},dest:{},today3:['','',''],votes:{},dark:true};
 
 function loadS(){try{const d=JSON.parse(localStorage.getItem(SK)||'{}');Object.assign(S,d);S.dark=S.dark!==undefined?S.dark:true;}catch(e){}}
 function saveS(){try{localStorage.setItem(SK,JSON.stringify(S));}catch(e){}}
@@ -758,15 +1043,60 @@ function setTheme(dark){
   saveS();
 }
 
+// ─── FUTURE SELF HELPERS ──────────────────────────────────────────────────────
+
+function todayKey(){var d=new Date();return d.getFullYear()+''+String(d.getMonth()+1).padStart(2,'0')+''+String(d.getDate()).padStart(2,'0');}
+function castVote(key,val){if(!S.votes)S.votes={};var dk=todayKey();if(!S.votes[dk])S.votes[dk]={};S.votes[dk][key]=val;saveS();renderFutureSelf();}
+function getDriftPillars(){
+  var drifting=[];var today=new Date();
+  ['bible','body','ship'].forEach(function(k){
+    var missed=0;
+    for(var i=1;i<=3;i++){var d=new Date(today);d.setDate(d.getDate()-i);var dk=d.getFullYear()+''+String(d.getMonth()+1).padStart(2,'0')+''+String(d.getDate()).padStart(2,'0');if(!S.votes||!S.votes[dk]||!S.votes[dk][k])missed++;}
+    if(missed>=3)drifting.push(k);
+  });
+  return drifting;
+}
+
+// ─── MOBILE SIDEBAR ───────────────────────────────────────────────────────────
+
+function toggleSidebar(){
+  var sb=document.getElementById('sb');var ov=document.getElementById('sb-overlay');
+  var open=sb.classList.toggle('mob-open');
+  if(ov)ov.classList.toggle('show',open);
+  document.body.style.overflow=open?'hidden':'';
+}
+function closeSidebar(){
+  var sb=document.getElementById('sb');var ov=document.getElementById('sb-overlay');
+  if(sb)sb.classList.remove('mob-open');
+  if(ov)ov.classList.remove('show');
+  document.body.style.overflow='';
+}
+function toggleRef(){
+  var hdr=document.getElementById('sb-ref-hdr');
+  var body=document.getElementById('sb-ref-body');
+  var arr=document.getElementById('sb-ref-arr');
+  hdr.classList.toggle('sb-ref-open');
+  var isOpen=hdr.classList.contains('sb-ref-open');
+  body.style.maxHeight=isOpen?(body.scrollHeight+200)+'px':'0';
+  if(arr)arr.style.transform=isOpen?'rotate(180deg)':'rotate(0deg)';
+}
+function navCurWk(el){
+  var cur=getCurWk();
+  var btn=document.getElementById('nb-'+cur);
+  if(btn){nav(cur,btn);}else{nav(cur,el);}
+}
+
 // ─── NAV ─────────────────────────────────────────────────────────────────────
 
-let curPanel='overview';
+let curPanel='future';
 function nav(id,el){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
   document.querySelectorAll('.sb-btn').forEach(b=>b.classList.remove('on'));
   document.getElementById('panel-'+id).classList.add('on');
   el.classList.add('on');
   curPanel=id;
+  closeSidebar();
+  document.querySelector('.main').scrollTop=0;
 }
 function goTo(id){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
@@ -818,43 +1148,313 @@ function updateDots(){
 function updateSbStats(){
   document.getElementById('sb-streak').textContent=streak()+'/12';
   document.getElementById('sb-money').textContent='£'+totalBanked().toLocaleString('en-GB',{maximumFractionDigits:0});
+  var cur=getCurWk();
+  var submitted=S.logs[cur]&&S.logs[cur].submitted;
+  var btn=document.getElementById('sb-fri-btn');
+  if(btn){btn.textContent=submitted?'Friday submitted ✓':'Mark Friday submitted';btn.classList.toggle('done',!!submitted);}
+  renderToday3();
+}
+function submitFriday(){
+  var cur=getCurWk();
+  var l=S.logs[cur]||{};
+  l.submitted=!l.submitted;
+  S.logs[cur]=l;
+  saveS();updateDots();updateSbStats();
+  showToast(l.submitted?'Friday submitted ✓':'Friday unmarked');
+}
+function renderToday3(){
+  var el=document.getElementById('sb-t3-items');
+  if(!el)return;
+  var cur=getCurWk();
+  var curW=WKS.find(function(w){return w.id===cur;});
+  var objs=curW&&curW.obj?curW.obj:['Priority 1','Priority 2','Priority 3'];
+  if(!S.today3||S.today3.length<3)S.today3=['','',''];
+  var html='';
+  for(var i=0;i<3;i++){
+    var v=S.today3[i]||'';
+    var ph=objs[i]||('Priority '+(i+1));
+    html+='<input class="sb-t3-inp" type="text" value="'+esc(v)+'" placeholder="'+esc(ph)+'" oninput="saveT3('+i+',this.value)">';
+  }
+  el.innerHTML=html;
+}
+function saveT3(i,val){
+  if(!S.today3||S.today3.length<3)S.today3=['','',''];
+  S.today3[i]=val;
+  saveS();
+}
+
+// ─── SKILLS & PROOFS ──────────────────────────────────────────────────────────
+
+const SKILLS=[
+ {w:1,  skill:'Terminal, Git workflow, Claude Code, first live deploys',
+        proof:'Portfolio site + this tracker live on GitHub. W1 Loom + check-in sent to Dee.',
+        build:'Portfolio site (daniel-ikusawe.github.io) + this 12-week tracker — both already shipped ✓'},
+ {w:2,  skill:'Ship a Claude-powered app end-to-end; own API key workflow; terminal commits',
+        proof:'Live Vercel URL — Away With It demo. Claude API on personal key. Committed via terminal.',
+        build:'Away With It: Next.js 14 form → Claude API qualifies the lead → result page. Personal accounts (not AIC, not Vekora-branded). Vercel deploy. Done by Tue/Wed per Dee.'},
+ {w:3,  skill:'Exam-week discipline: revision strategy, minimum streak, prioritisation under pressure',
+        proof:'Fri 26 Jun minimum Loom submitted. Maths papers sat.',
+        build:'No build — mocks protocol. Revision only.'},
+ {w:4,  skill:'Exam performance; honest written self-assessment; recovery planning',
+        proof:'Fri 3 Jul minimum submitted. Maths self-assessment doc written. 48h rest taken.',
+        build:'No build — final mock push. Summer sprint plan read after rest.'},
+ {w:5,  skill:'GCP console, Claude API from Python, Cloud Run deploy, Firestore CRUD, env-var security',
+        proof:'GCP screenshot. Terminal output of Claude API call. Cloud Run URL or documented failure. claude_test.py repo.',
+        build:'1. claude_test.py — Python + Anthropic SDK: send a prompt, print response. API key in .env, never in code.\n2. Cloud Run wrapper — wrap the call in FastAPI/Flask, deploy to Cloud Run.\n3. Firestore — write one doc from Python, read it back, print it.'},
+ {w:6,  skill:'Ship a self-contained AI product; professional retrospective; audit delivery workflow',
+        proof:'Live Audit Generator URL + README + Loom (outcome-focused). Month 1 retro doc.',
+        build:'Audit Generator: Next.js 14 form (business name, niche, monthly leads, avg job value, response time, GBP status) → Claude API generates loss estimate + 3 recommendations → formatted results page. Deploy to Vercel. README + outcome-focused Loom.'},
+ {w:7,  skill:'MCP architecture and tool use; connecting Claude to a live data source',
+        proof:'MCP experiment repo + Loom. TMUA booking confirmation screenshot. CCA module 1 progress.',
+        build:'MCP experiment — pick one:\n(a) File-reader MCP: custom MCP server that lets Claude read files from a local folder.\n(b) Web-fetch MCP: Claude calls a URL and summarises the page.\n(c) Firestore-reader MCP: Claude queries Firestore and returns structured data.\nREADME + Loom explaining what Claude can now do that it couldn\'t before.'},
+ {w:8,  skill:'Multi-step agentic pipelines; problem discovery; verbatim validation discipline',
+        proof:'Agentic build repo + Loom. 3 verbatim problems logged. Hackathon registered. CCA module 2.',
+        build:'Agentic build — pick one:\n(a) Lead qualifier pipeline: form input → Claude extracts entity signals (JSON) → Claude scores 1-10 + tier + reasoning → Claude drafts reply → logged to Firestore.\n(b) Research agent: topic input → Claude searches/summarises → structured report output.\n(c) Your own: one validated problem, multi-step Claude pipeline, useful output, README.'},
+ {w:9,  skill:'Rebuild to spec under pressure; 20-case test discipline; personal statement narrative',
+        proof:'Demo 1 rebuilt repo. 20-lead stress test log (all 20 cases). PS draft 1.',
+        build:'Demo 1 v2: GHL form → n8n webhook → Claude entity extract (JSON) → Claude qualify (7 fields: lead_score, lead_tier, score_reasoning, recommended_action, email_opener, estimated_value, follow_up_timing) → GHL PATCH → SMS to owner + email to lead. Must pass all 20 stress cases. Form-to-SMS under 30s.'},
+ {w:10, skill:'Demo fluency from memory; hackathon shipping under time pressure; Stage 2 sales motion',
+        proof:'10/10 demo Loom. Hackathon project page + GitHub. First Stage 2 conversation had.',
+        build:'Demo: 10 consecutive clean runs from memory, under 4 min, SMS every time — ONLY then Stage 2 unlocks.\nHackathon: ship something in 24-48h. Document it — the GitHub link is the deliverable, win or not.'},
+ {w:11, skill:'Outcome-led selling; MVP spec discipline; Loom as a sales asset; prospect pipeline',
+        proof:'MVP repo with commits. 1-page spec (Dee-reviewed). Loom 30/30/90/30. 20-prospect list.',
+        build:'MVP — spec FIRST (1 role, 3 JTBD, max 3 must-haves, explicit won\'t-do list). Dee reviews spec before a line of code. Build with Claude Code: small commits every 2h, README as you go, harden top 3 failure modes. Default if uncertain: productised Stage 2 — one codebase, per-client config file.'},
+ {w:12, skill:'Ship outreach; subcontractor readiness scored; programme retrospective; continuity plan',
+        proof:'MVP live URL + Loom. Outreach sent + tracked. Readiness checklist scored with Dee. 12/12 Fridays. 12-week retro.',
+        build:'MVP deployed to production (Vercel or Cloud Run). Outreach sequence drafted, Dee reviews first, THEN sent to the 20-prospect list. Never send before Dee has read it.'},
+];
+
+const WK_LINKS={
+  w1: [{l:'Goals Matrix',p:'goals'},{l:'Tier Tracker',p:'tier'},{l:'Future Self',p:'future'},{l:'Skills Ledger',p:'skills'}],
+  w2: [{l:'Build Pipeline',p:'pipeline'},{l:'Offer Ladder',p:'offer'},{l:'Client Offers',p:'offermenu'},{l:'SOPs',p:'sops'}],
+  w3: [{l:'Goals Matrix',p:'goals'},{l:'Future Self',p:'future'},{l:'Guardrails',p:'guardrails'}],
+  w4: [{l:'Goals Matrix',p:'goals'},{l:'Trajectory',p:'trajectory'},{l:'Guardrails',p:'guardrails'}],
+  w5: [{l:'Build Pipeline',p:'pipeline'},{l:'Projects',p:'projects'},{l:'Legal',p:'legal'},{l:'Skills Ledger',p:'skills'}],
+  w6: [{l:'Build Pipeline',p:'pipeline'},{l:'Client Offers',p:'offermenu'},{l:'Markets',p:'markets'},{l:'Projects',p:'projects'}],
+  w7: [{l:'Build Pipeline',p:'pipeline'},{l:'Projects',p:'projects'},{l:'Destination',p:'dest'},{l:'Skills Ledger',p:'skills'}],
+  w8: [{l:'Markets',p:'markets'},{l:'Build Pipeline',p:'pipeline'},{l:'Offer Ladder',p:'offer'},{l:'Projects',p:'projects'}],
+  w9: [{l:'SOPs',p:'sops'},{l:'Build Pipeline',p:'pipeline'},{l:'Offer Ladder',p:'offer'},{l:'Skills Ledger',p:'skills'}],
+  w10:[{l:'SOPs',p:'sops'},{l:'Offer Ladder',p:'offer'},{l:'Destination',p:'dest'},{l:'Markets',p:'markets'}],
+  w11:[{l:'Build Pipeline',p:'pipeline'},{l:'Markets',p:'markets'},{l:'Client Offers',p:'offermenu'},{l:'Legal',p:'legal'}],
+  w12:[{l:'Destination',p:'dest'},{l:'Tier Tracker',p:'tier'},{l:'Skills Ledger',p:'skills'},{l:'Trajectory',p:'trajectory'}],
+};
+
+function renderSkillsProofs(){
+  var el=document.getElementById('panel-skills');if(!el)return;
+  var cur=getCurWk();var today=new Date();
+  var rows=SKILLS.map(function(s){
+    var wk=WKS.find(function(w){return w.n===s.w;});
+    var isPast=wk&&today>new Date(wk.end.getTime()+86400000);
+    var isCur=wk&&wk.id===cur;
+    var log=wk&&S.logs[wk.id];
+    var done=log&&log.submitted;
+    var stateCol=done?'var(--ok)':isCur?'var(--gold)':isPast?'var(--err)':'var(--mu)';
+    var stateLbl=done?'✓ Done':isCur?'→ Now':isPast?'Missed':'Future';
+    return '<tr>'+
+      '<td style="font-weight:800;color:'+stateCol+';white-space:nowrap">W'+s.w+' <span style="font-size:10px;font-weight:600">'+stateLbl+'</span></td>'+
+      '<td style="font-size:13px;color:var(--txt)">'+esc(s.skill)+'</td>'+
+      '<td style="font-size:12px;color:var(--txt2)">'+esc(s.proof)+'</td>'+
+    '</tr>';
+  }).join('');
+
+  el.innerHTML=
+    '<div class="pg-eye">Evidence Ledger</div>'+
+    '<div class="pg-h">Skills &amp; Proofs</div>'+
+    '<div class="pg-desc">If the week\'s tasks complete, you own the skill AND hold the proof. No proof = the week isn\'t done = it carries. This is what the programme is actually producing.</div>'+
+    '<div class="card" style="padding:0;overflow:hidden">'+
+      '<table class="tbl">'+
+        '<thead><tr><th>Week</th><th>Skill gained</th><th>Proof artifact</th></tr></thead>'+
+        '<tbody>'+rows+'</tbody>'+
+      '</table>'+
+    '</div>'+
+    '<div class="card" style="border-left:3px solid var(--gold);background:var(--gll);font-size:13px;color:var(--txt2);line-height:1.7">'+
+      '"If a week\'s tasks complete, I own the skill AND hold the proof. No proof = the week isn\'t done = it carries."'+
+    '</div>';
+}
+
+// ─── TRAJECTORY ───────────────────────────────────────────────────────────────
+
+const MILESTONES=[
+ {when:'30 Aug 2026',tier:'End of Programme',col:'var(--gold)',
+  target:'Tier-2 profile executed: 12/12 Fridays · £2.5–4k banked · demo 10/10 · MVP shipped · CCA modules done · subcontractor-ready.',
+  gate:'The streak. All 12 Fridays submitted.',
+  base:'£2.5–4k banked',target2:'£4–6k banked',stretch:'£10k+ (if tool build or Stage 2 lands early)'},
+ {when:'Dec 2026',tier:'Mocks → Year 13',col:'var(--blue)',
+  target:'CCA passed · £500/day AIC track open · 2–3 retainers · £3k/mo run rate · school first through exams.',
+  gate:'CCA passed + demo 10/10 + 2–3 retainers live.',
+  base:'£2–4k/mo run rate',target2:'£5–10k cumulative',stretch:'£10k+ cumulative (tool build lands)'},
+ {when:'June 2027',tier:'A-Level Month',col:'var(--ok)',
+  target:'Imperial offer in hand · business in maintenance mode · parents updated · TMUA sat.',
+  gate:'Maths A★ — this is the load-bearing wall.',
+  base:'£25–35k cumulative',target2:'£35–45k',stretch:'£45–70k'},
+ {when:'Summer 2027',tier:'Pre-Imperial Sprint',col:'var(--gold)',
+  target:'Full intensity: £5–10k/mo attempt · first mid-market clients £1.5–3.5k/mo · first ad-managed retainers · LeetCode for internships begins.',
+  gate:'A-levels done + Imperial confirmed + Stage 2 at 10/10.',
+  base:'£5k/mo',target2:'£8k/mo',stretch:'£10k+/mo'},
+ {when:'End 2027',tier:'Year 1 of Vekora',col:'var(--purple)',
+  target:'Vekora established + branded · delegated delivery beginning · productised Stage 2 codebase · outcome-data moat forming. Product SEED grows inside Vekora.',
+  gate:'2–3 retainers + Stage 2 clients + first delegation working.',
+  base:'£5–8k/mo',target2:'£10k/mo',stretch:'£15k+/mo'},
+ {when:'End 2028',tier:'Two-Entity Model',col:'var(--err)',
+  target:'Entity 1 (Product Co — built to sell): tools, apps, enterprise projects; equity / non-linear engine. Entity 2 (Vekora — cash flow): retainers £2.5–5k+ + ad rev-share. First enterprise pilots via AIC; internship summers; ISA compounding.',
+  gate:'Productised codebase + outcome-data moat + first delegation chain + clean IP.',
+  base:'Vekora £8–15k/mo',target2:'£20k/mo blended',stretch:'£50k+/mo (product traction)'},
+];
+
+function renderTrajectory(){
+  var el=document.getElementById('panel-trajectory');if(!el)return;
+  var cards=MILESTONES.map(function(m,i){
+    return '<div class="card" style="border-left:3px solid '+m.col+';margin-bottom:12px">'+
+      '<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">'+
+        '<div style="background:'+m.col+';color:#000;font-size:10px;font-weight:800;padding:2px 8px;border-radius:20px;white-space:nowrap">'+esc(m.when)+'</div>'+
+        '<div style="font-size:11px;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.08em">'+esc(m.tier)+'</div>'+
+      '</div>'+
+      '<div style="font-size:13px;color:var(--txt);line-height:1.65;margin-bottom:8px">'+esc(m.target)+'</div>'+
+      '<div style="font-size:11px;color:var(--txt2);margin-bottom:6px"><span style="color:var(--mu);font-weight:700">Gate: </span>'+esc(m.gate)+'</div>'+
+      '<div style="display:flex;gap:6px;flex-wrap:wrap">'+
+        '<span style="font-size:11px;background:var(--card2);border:1px solid var(--bd);border-radius:5px;padding:2px 8px;color:var(--txt2)">Base: '+esc(m.base)+'</span>'+
+        '<span style="font-size:11px;background:var(--card2);border:1px solid var(--bd);border-radius:5px;padding:2px 8px;color:var(--gold)">Target: '+esc(m.target2)+'</span>'+
+        '<span style="font-size:11px;background:var(--card2);border:1px solid var(--bd);border-radius:5px;padding:2px 8px;color:var(--ok)">Stretch: '+esc(m.stretch)+'</span>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+
+  el.innerHTML=
+    '<div class="pg-eye">Long Game</div>'+
+    '<div class="pg-h">Trajectory</div>'+
+    '<div class="pg-desc">Milestone timeline from the programme to Year 2. Budget base, chase target, collect stretch. Every milestone is downstream of the Friday streak.</div>'+
+    cards+
+    '<div class="card" style="border-top:3px solid var(--gold);background:var(--gll)">'+
+      '<div style="font-size:12px;font-weight:700;color:var(--txt);margin-bottom:6px">Sequence rule</div>'+
+      '<div style="font-size:13px;color:var(--txt2);line-height:1.7">Vekora first — it\'s live, it funds everything, it teaches sales + delivery. The product company EMERGES from Vekora\'s productised system + data. Realistically a Year 2 spin-out. For the next 12 months, "two businesses" = one business with a product seed growing inside it.</div>'+
+      '<div style="font-size:12px;color:var(--mu);margin-top:8px;line-height:1.65"><strong style="color:var(--txt)">Built-to-sell rules (bake in from line 1):</strong> clean IP (own everything, licence-first) · recurring revenue not project revenue · no founder-dependency (productised + delegated).</div>'+
+    '</div>';
+}
+
+// ─── FUTURE SELF ──────────────────────────────────────────────────────────────
+
+function renderFutureSelf(){
+  var el=document.getElementById('panel-future');if(!el)return;
+  if(!S.votes)S.votes={};
+  var dk=todayKey();var tv=S.votes[dk]||{};
+  var voteCnt=Object.values(tv).filter(Boolean).length;
+  var drifting=getDriftPillars();
+
+  var manHtml=FUTURE_MAN.map(function(m){return '<span class="del">'+esc(m)+'</span>';}).join('');
+
+  var driftHtml=drifting.length?
+    '<div class="info-box" style="border-left:3px solid var(--err);background:var(--errl);margin-bottom:14px;font-size:13px;font-weight:600;color:var(--err)">'+
+      '⚠ Drifting from him — 3+ days no '+esc(drifting.join(' / '))+'. Cast one vote today.'+
+    '</div>':'';
+
+  var pct=Math.round(voteCnt/8*100);
+  var fillCls=voteCnt===8?'fill-ok':voteCnt>=5?'fill-gold':'fill-gold';
+  var pctCol=voteCnt===8?'var(--ok)':voteCnt>=5?'var(--gold)':'var(--err)';
+
+  var engineHtml=FUTURE_ENGINE.map(function(e){
+    var checked=!!tv[e.key];
+    return '<div class="tc'+(checked?' done':'')+'" onclick="castVote(\''+e.key+'\','+(checked?'false':'true')+')" style="margin-bottom:6px">'+
+      '<input class="cb-check" type="checkbox"'+(checked?' checked':'')+' onclick="event.stopPropagation()" onchange="castVote(\''+e.key+'\',this.checked)">'+
+      '<div class="tc-body">'+
+        '<div class="tc-title"><span style="margin-right:6px;font-size:15px">'+e.icon+'</span><strong>'+esc(e.id)+'</strong></div>'+
+        '<div class="tc-why">'+esc(e.beh)+'</div>'+
+        '<div style="font-size:12px;color:var(--gold);margin-top:3px;font-weight:600">Today: '+esc(e.vote)+'</div>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+
+  el.innerHTML=
+    '<div class="pg-eye">North Star</div>'+
+    '<div class="pg-h">Future Self</div>'+
+    '<div class="pg-desc">Not a motivation poster — a mirror. Every vote cast is evidence. Every vote missed is data. The reps are the identity.</div>'+
+    driftHtml+
+    '<div class="card" style="border-top:3px solid var(--gold);margin-bottom:14px">'+
+      '<span class="sec-lbl">The Man (19–21) — where the votes are taking you</span>'+
+      '<div class="del-wrap" style="margin-top:10px">'+manHtml+'</div>'+
+    '</div>'+
+    '<div class="card">'+
+      '<div class="prog-header mb8" style="margin-bottom:8px">'+
+        '<span class="sec-lbl" style="margin:0">The Engine — Today\'s Votes ('+voteCnt+'/8)</span>'+
+        '<span style="font-size:13px;font-weight:800;color:'+pctCol+'">'+pct+'%</span>'+
+      '</div>'+
+      '<div class="prog-bar" style="margin-bottom:14px"><div class="prog-fill '+fillCls+'" style="width:'+pct+'%"></div></div>'+
+      '<div class="tasks">'+engineHtml+'</div>'+
+    '</div>'+
+    '<div class="card" style="border-top:3px solid var(--gold);background:var(--gll)">'+
+      '<div style="font-size:13px;color:var(--txt2);line-height:1.8;font-style:italic">'+
+        '"I don\'t become him then act differently. The reps cast the votes. Every Friday, every rep, every kept word is a vote for the man I\'m building toward."'+
+      '</div>'+
+    '</div>';
 }
 
 // ─── OVERVIEW ─────────────────────────────────────────────────────────────────
 
 function renderOverview(){
   const today=new Date();const cur=getCurWk();const curW=WKS.find(w=>w.id===cur);
-  const prog=new Date(2026,7,30);
-  const totalDays=Math.ceil((prog-WKS[0].start)/86400000);
+  const end=new Date(2026,7,30);
+  const totalDays=Math.ceil((end-WKS[0].start)/86400000);
   const doneDays=Math.min(totalDays,Math.max(0,Math.ceil((today-WKS[0].start)/86400000)));
-  document.getElementById('ov-desc').textContent='9 June – 30 August 2026 · '+Math.max(0,Math.ceil((prog-today)/86400000))+' days remaining';
+  document.getElementById('ov-desc').textContent='One system: mentorship, Vekora, school, builds. 12 honest Fridays, one protected maths grade, one niche, one demo at 10/10, prices held — everything else is noise.';
   if(curW){
     const dl=daysLeft(curW.end);
-    document.getElementById('ov-banner').innerHTML=`<div class="cur-banner">
-      <div><div class="cb-lbl">You are here</div><div class="cb-title">Week ${esc(String(curW.n))}: ${esc(curW.label)}</div><div class="cb-dates">${esc(curW.range)}</div></div>
-      <div><div class="cb-days">${dl}</div><div class="cb-days-lbl">${dl===1?'day':'days'} left this week</div></div>
-    </div>`;
+    document.getElementById('ov-banner').innerHTML='<div class="cur-banner"><div><div class="cb-lbl">You are here</div><div class="cb-title">Week '+esc(String(curW.n))+': '+esc(curW.label)+'</div><div class="cb-dates">'+esc(curW.range)+'</div></div><div><div class="cb-days">'+dl+'</div><div class="cb-days-lbl">'+(dl===1?'day':'days')+' left this week</div></div></div>';
   }
-  const banked=totalBanked();const strk=streak();const td=tasksDone();const tt=totalTasks();
-  document.getElementById('ov-stats').innerHTML=`
-    <div class="stat"><div class="stat-lbl">Friday streak</div><div class="stat-val g">${strk}<span style="font-size:14px;font-weight:500">/12</span></div><div class="stat-sub">Fridays submitted</div></div>
-    <div class="stat"><div class="stat-lbl">Money banked</div><div class="stat-val ok">£${banked.toLocaleString('en-GB',{maximumFractionDigits:0})}</div><div class="stat-sub">Target: £${curW?curW.mhi.toLocaleString('en-GB'):4000} cum.</div></div>
-    <div class="stat"><div class="stat-lbl">Tasks done</div><div class="stat-val bl">${td}</div><div class="stat-sub">of ${tt} across 12 weeks</div></div>
-    <div class="stat"><div class="stat-lbl">Programme</div><div class="stat-val">${Math.round(doneDays/totalDays*100)}<span style="font-size:14px">%</span></div><div class="stat-sub">${doneDays} of ${totalDays} days</div></div>`;
-  const wkd=wksDone();
+  const banked=totalBanked();const strk=streak();
+  const wkIdx=curW?WKS.indexOf(curW)+1:1;
+  const curSends=curW?(parseFloat((S.sends[curW.id]||{}).sends)||0):0;
+  const quota=curW?(curW.sends||0):0;
+  document.getElementById('ov-stats').innerHTML=
+    '<div class="stat"><div class="stat-lbl">Friday streak</div><div class="stat-val g">'+strk+'<span style="font-size:14px;font-weight:500">/12</span></div><div class="stat-sub">Fridays submitted</div></div>'+
+    '<div class="stat"><div class="stat-lbl">Money banked</div><div class="stat-val ok">£'+banked.toLocaleString('en-GB',{maximumFractionDigits:0})+'</div><div class="stat-sub">Base target: £'+(curW?curW.mhi.toLocaleString('en-GB'):'4,000')+'</div></div>'+
+    '<div class="stat"><div class="stat-lbl">Sends this week</div><div class="stat-val bl">'+curSends+'<span style="font-size:14px;font-weight:500">'+(quota?'/'+quota:'')+'</span></div><div class="stat-sub">vs quota</div></div>'+
+    '<div class="stat"><div class="stat-lbl">Current week</div><div class="stat-val">'+wkIdx+'<span style="font-size:14px;font-weight:500">/12</span></div><div class="stat-sub">'+(curW?esc(curW.range):'')+'</div></div>';
+  const wkd=wksDone();const td=tasksDone();const tt=totalTasks();
   document.getElementById('ov-wk-lbl').textContent=wkd+' of 12 weeks';
   document.getElementById('ov-wk-bar').style.width=(wkd/12*100)+'%';
   document.getElementById('ov-task-lbl').textContent=td+' / '+tt;
   document.getElementById('ov-task-bar').style.width=(tt?td/tt*100:0)+'%';
-  const groups=[{l:'W1–2',t:'£900',ids:['w1','w2']},{l:'W3–6',t:'£2,000',ids:['w34','w5','w6']},{l:'W7–8',t:'£2,800',ids:['w7','w8']},{l:'W9',t:'£3,000',ids:['w9']},{l:'W10–11',t:'£3,600',ids:['w10','w11']},{l:'W12',t:'£4,000',ids:['w12']}];
-  document.getElementById('ov-money').innerHTML=groups.map(g=>{
-    const isCur=g.ids.includes(cur);
-    const amt=g.ids.reduce((a,id)=>a+(parseFloat(S.money[id])||0),0);
-    return `<div class="mc${isCur?' cur':''}"><div class="mc-lbl">${g.l}</div><div class="mc-t">${g.t}</div>${amt>0?`<div class="mc-a">+£${amt.toFixed(0)}</div>`:''}</div>`;
-  }).join('');
+  const pB=Math.min(100,Math.round(banked/4000*100));
+  const pT=Math.min(100,Math.round(banked/6000*100));
+  const pS=Math.min(100,Math.round(banked/10000*100));
+  document.getElementById('ov-money').innerHTML=
+    '<div class="sc-row sc-base">'+
+      '<div class="flex-bc"><span class="sc-label">Base</span><span class="sc-amounts">£2.5–4k by 30 Aug · £3k/mo by 1 Dec</span></div>'+
+      '<div class="sc-cond">Plan executed as written, quotas hit, no upside events.</div>'+
+      '<div class="sc-bar"><div class="prog-fill fill-blue" style="width:'+pB+'%"></div></div>'+
+      '<div style="font-size:10px;color:var(--mu);margin-top:3px">£'+banked.toLocaleString('en-GB',{maximumFractionDigits:0})+' of £4,000 · '+pB+'%</div>'+
+    '</div>'+
+    '<div class="sc-row sc-target">'+
+      '<div class="flex-bc"><span class="sc-label">Target</span><span class="sc-amounts">£4–6k by 30 Aug · £5k/mo by 1 Dec</span></div>'+
+      '<div class="sc-cond">Lead closed + 2 further Foundations + 3 retainers live + first Stage 2 signed within 30 days of demo hitting 10/10.</div>'+
+      '<div class="sc-bar"><div class="prog-fill fill-gold" style="width:'+pT+'%"></div></div>'+
+      '<div style="font-size:10px;color:var(--mu);margin-top:3px">£'+banked.toLocaleString('en-GB',{maximumFractionDigits:0})+' of £6,000 · '+pT+'%</div>'+
+    '</div>'+
+    '<div class="sc-row sc-stretch">'+
+      '<div class="flex-bc"><span class="sc-label">Stretch</span><span class="sc-amounts">£10k+ in 2026 · £8k+/mo entering 2027</span></div>'+
+      '<div class="sc-cond">£10–25k licence-first tool via AIC, OR first mid-market client (£1.5–3.5k/mo) via a Dee introduction. Live possibilities — neither plan-of-record until signed.</div>'+
+      '<div class="sc-bar"><div class="prog-fill fill-ok" style="width:'+pS+'%"></div></div>'+
+      '<div style="font-size:10px;color:var(--mu);margin-top:3px">£'+banked.toLocaleString('en-GB',{maximumFractionDigits:0})+' of £10,000 · '+pS+'%</div>'+
+    '</div>'+
+    '<div style="background:var(--gll);border:1px solid rgba(201,168,76,.2);border-left:3px solid var(--gold);border-radius:0 7px 7px 0;padding:10px 14px;font-size:12px;color:var(--txt2);margin-top:4px;line-height:1.65">'+
+      'Plans built on upside cases collapse. Budget base, chase target, bank stretch. <strong style="color:var(--txt)">A week that hits quota but lands base-case money is a GOOD week.</strong>'+
+    '</div>';
 }
 
 // ─── WEEK PANEL ───────────────────────────────────────────────────────────────
+
+function getCarried(w){
+  var carried=[];var today=new Date();var wIdx=WKS.indexOf(w);
+  for(var i=0;i<wIdx;i++){
+    var pw=WKS[i];
+    if(today<=new Date(pw.end.getTime()+86400000))continue;
+    pw.tasks.forEach(function(t,j){
+      if(t.pre||t.dl)return;
+      var k=pw.id+'-'+j;
+      if(!S.tasks[k])carried.push({t:t,wId:pw.id,wN:pw.n,k:k});
+    });
+  }
+  return carried;
+}
 
 function renderWk(w){
   const el=document.getElementById('panel-'+w.id);
@@ -867,15 +1467,39 @@ function renderWk(w){
   const modeTag={term:'tg',mock:'tw',summer:'to'}[w.mode];
   const modeTxt={term:'Term',mock:'Mocks',summer:'Summer'}[w.mode];
 
+  // Split tasks: mandatory (deadline) vs regular
+  const mandTasks=w.tasks.map((t,i)=>({t,i})).filter(x=>x.t.dl);
+  const regTasks=w.tasks.map((t,i)=>({t,i})).filter(x=>!x.t.dl);
+
+  const carried=getCarried(w);
+
+  const isComplete=isPast&&prog===100;
   const bannerHtml=isCur?`<div class="cur-banner" style="margin-bottom:14px">
     <div><div class="cb-lbl">Current week</div><div class="cb-title">Week ${esc(String(w.n))}: ${esc(w.label)}</div><div class="cb-dates">Deadline: Friday ${esc(w.range.split('–')[1]||w.range)}</div></div>
     <div><div class="cb-days">${daysLeft(w.end)}</div><div class="cb-days-lbl">days left</div></div>
+  </div>`:isComplete?`<div class="wk-done-banner">
+    <span style="font-size:22px;color:var(--ok)">✓</span>
+    <div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--ok)">Week Complete</div><div style="font-size:13px;font-weight:700;color:var(--txt)">W${esc(String(w.n))}: ${esc(w.label)}</div><div style="font-size:12px;color:var(--txt2)">${esc(w.range)}</div></div>
   </div>`:'';
 
-  const tasksHtml=w.tasks.map((t,i)=>{
-    const k=w.id+'-'+i;const done=t.pre||!!S.tasks[k];
-    return `<div class="tc${done?' done':''}" onclick="toggleTask('${k}',this,${t.pre?'true':'false'})">
-      <input class="cb-check" type="checkbox" ${done?'checked':''} onclick="event.stopPropagation()" onchange="toggleTask('${k}',this.parentElement,${t.pre?'true':'false'})">
+  const md=S.mockDates&&S.mockDates[w.id]||{};
+  const mockDatesCard=w.mode==='mock'?`
+    <div class="card mock-dates-card">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+        <span class="sec-lbl" style="margin:0">Mock Dates</span>
+        <span style="font-size:10px;font-weight:700;color:var(--warn)">Edit to align week tasks to your real calendar</span>
+      </div>
+      <div class="g3">
+        <div class="field mb0"><span class="fl">First mock</span><input class="inp" placeholder="e.g. 23 Jun" value="${esc(md.first||'')}" onchange="saveMockDate('${w.id}','first',this.value)"></div>
+        <div class="field mb0"><span class="fl">Last mock</span><input class="inp" placeholder="e.g. 3 Jul" value="${esc(md.last||'')}" onchange="saveMockDate('${w.id}','last',this.value)"></div>
+        <div class="field mb0"><span class="fl">Term ends</span><input class="inp" placeholder="e.g. 5 Jul" value="${esc(md.term||'')}" onchange="saveMockDate('${w.id}','term',this.value)"></div>
+      </div>
+    </div>`:'' ;
+
+  function taskRow(t,i,wid,isPre){
+    const k=wid+'-'+i;const done=isPre||!!S.tasks[k];
+    return `<div class="tc${done?' done':''}" onclick="toggleTask('${k}',this,${isPre?'true':'false'})">
+      <input class="cb-check" type="checkbox" ${done?'checked':''} onclick="event.stopPropagation()" onchange="toggleTask('${k}',this.parentElement,${isPre?'true':'false'})">
       <div class="tc-body">
         <div class="tc-title">${esc(t.t)}</div>
         ${t.why?`<div class="tc-why">${esc(t.why)}</div>`:''}
@@ -886,7 +1510,60 @@ function renderWk(w){
         ${t.dl?'<span class="deadline-tag">Deadline</span>':''}
       </div>
     </div>`;
+  }
+
+  const mandHtml=mandTasks.map(x=>taskRow(x.t,x.i,w.id,false)).join('');
+  const regHtml=regTasks.map(x=>taskRow(x.t,x.i,w.id,!!x.t.pre)).join('');
+
+  // Skill unlock card + cross-links
+  const skMeta=SKILLS.find(function(s){return s.w===w.n;})||{};
+  const skLinks=(WK_LINKS[w.id]||[]).map(function(lk){
+    return `<button class="btn btn-ghost btn-sm" onclick="goTo('${lk.p}')" style="font-size:11px;padding:3px 10px">${esc(lk.l)} →</button>`;
   }).join('');
+  const skillCard=skMeta.skill?`
+    <div class="card" style="border-left:3px solid var(--purple);background:var(--purplel);margin-bottom:12px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+        <span class="sec-lbl" style="margin:0">Skill unlock</span>
+        <span style="font-size:10px;font-weight:800;background:var(--purple);color:#fff;padding:2px 8px;border-radius:10px">if tasks complete</span>
+      </div>
+      <div style="font-size:13px;font-weight:700;color:var(--txt);margin-bottom:4px">${esc(skMeta.skill)}</div>
+      <div style="font-size:12px;color:var(--txt2);margin-bottom:10px"><span style="font-weight:700;color:var(--mu)">Proof: </span>${esc(skMeta.proof)}</div>
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--mu);margin-bottom:6px">What to build</div>
+      <div style="font-size:13px;color:var(--txt2);line-height:1.7;white-space:pre-line">${esc(skMeta.build)}</div>
+      ${skLinks?`<div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:12px;border-top:1px solid var(--bd);padding-top:10px"><span style="font-size:11px;color:var(--mu);align-self:center">See also:</span>${skLinks}</div>`:''}
+    </div>`:'' ;
+
+  const mandCard=mandTasks.length?`
+    <div class="card" style="border:1px solid var(--gold);border-left:3px solid var(--gold);background:var(--gll);margin-bottom:12px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+        <span class="sec-lbl" style="margin:0">Non-Negotiable</span>
+        <span style="font-size:10px;font-weight:800;background:var(--gold);color:#000;padding:2px 8px;border-radius:10px;letter-spacing:.06em">AIC · MANDATORY</span>
+      </div>
+      <div class="tasks">${mandHtml}</div>
+    </div>`:'' ;
+
+  const carriedCard=carried.length?`
+    <div class="card" style="border:1px solid var(--warn);border-left:3px solid var(--warn);background:var(--warnl);margin-bottom:12px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span class="sec-lbl" style="margin:0;color:var(--warn)">Carried in</span>
+          <span style="font-size:10px;font-weight:800;background:var(--warn);color:#000;padding:2px 8px;border-radius:10px">${carried.length} task${carried.length===1?'':'s'}</span>
+        </div>
+        <span style="font-size:11px;color:var(--warn)">Tick to complete in its original week</span>
+      </div>
+      <div class="tasks">${carried.map(c=>{
+        const done=!!S.tasks[c.k];
+        return `<div class="tc${done?' done':''}" onclick="toggleTask('${c.k}',this,false)">
+          <input class="cb-check" type="checkbox" ${done?'checked':''} onclick="event.stopPropagation()" onchange="toggleTask('${c.k}',this.parentElement,false)">
+          <div class="tc-body">
+            <span style="font-size:10px;font-weight:700;background:var(--card2);border:1px solid var(--bd);border-radius:4px;padding:1px 6px;margin-right:6px;color:var(--warn)">from W${c.wN}</span>
+            <span class="tc-title" style="display:inline">${esc(c.t.t)}</span>
+            ${c.t.why?`<div class="tc-why">${esc(c.t.why)}</div>`:''}
+          </div>
+          <div class="tc-meta"><span class="time-tag">${esc(c.t.time||'')}</span></div>
+        </div>`;
+      }).join('')}</div>
+    </div>`:'' ;
 
   const delHtml=w.del.map(d=>`<span class="del">${esc(d)}</span>`).join('');
 
@@ -925,6 +1602,9 @@ function renderWk(w){
     <div class="wk-top"><div class="wk-h">Week ${esc(String(w.n))}: ${esc(w.label)}</div><span class="tag ${modeTag}">${esc(modeTxt)}</span></div>
     <div class="wk-dates">${esc(w.range)}</div>
     <div class="goal-box"><strong>Good by Sunday:</strong> ${esc(w.goal)}</div>
+    ${mockDatesCard}
+    ${carriedCard}
+    ${mandCard}
 
     <div class="card">
       <div class="prog-header mb8" style="margin-bottom:8px">
@@ -932,7 +1612,7 @@ function renderWk(w){
         <span style="font-size:13px;font-weight:800;color:${prog===100?'var(--ok)':'var(--gold)'}">${prog}%</span>
       </div>
       <div class="prog-bar" style="margin-bottom:14px"><div class="prog-fill ${prog===100?'fill-ok':'fill-gold'}" style="width:${prog}%"></div></div>
-      <div class="tasks">${tasksHtml}</div>
+      <div class="tasks">${regHtml}</div>
       <div class="div"></div>
       <span class="sec-lbl">Deliverables</span>
       <div class="del-wrap">${delHtml}</div>
@@ -947,6 +1627,7 @@ function renderWk(w){
       <div id="lp-nums-${w.id}" class="log-pane">${renderNums(w)}</div>
     </div>
 
+    ${skillCard}
     ${demoCard}${stressCard}
   `;
 }
@@ -1008,28 +1689,45 @@ function renderNums(w){
 // ─── PROJECTS ─────────────────────────────────────────────────────────────────
 
 function renderProjects(){
-  const statusTag={built:'<span class="tag to">Built ✓</span>',planned:'<span class="tag tm">Planned</span>'};
-  document.getElementById('projects-list').innerHTML=PROJS.map((p,idx)=>`
-    <div class="proj">
-      <div class="proj-head">
-        <div>
-          <div class="proj-name">${esc(p.name)}</div>
-          <div class="proj-when">${esc(p.when)} · ${esc(p.hours)}</div>
-        </div>
-        ${statusTag[p.status]||''}
-      </div>
-      <div class="proj-body">
-        <div class="proj-desc">${esc(p.desc)}</div>
-        <div class="proj-why">${esc(p.why)}</div>
-        <div class="proj-stack">${p.stack.map(s=>`<span class="tag tb">${esc(s)}</span>`).join('')}</div>
-      </div>
-      <button class="bp-toggle" onclick="toggleBP(${idx})">
-        Build Plan (${p.steps.length} steps) <span id="bp-arr-${idx}">↓</span>
-      </button>
-      <div class="bp-body" id="bp-${idx}">
-        <ol class="bp-steps">${p.steps.map((s,si)=>`<li><div class="step-n">${si+1}</div><span>${esc(s)}</span></li>`).join('')}</ol>
-      </div>
-    </div>`).join('');
+  var GATED=[
+    {name:'Instant Response System',note:'CORE — promoted from side project · Stage 1 of Vekora',gate:'W2 · June weekend build',status:'core',stack:'Twilio · Cloud Run · Node.js'},
+    {name:'TMUA Tracker',note:'Log every paper. Surface weak topics automatically.',gate:'W7 — after TMUA booked Mon 20 Jul',status:'planned',stack:'Next.js · Firestore · Vercel · Google Auth'},
+    {name:'AI Revision Tutor',note:'SM-2 spaced repetition + Claude grading + classmate users',gate:'Aug (W10–11) — TMUA booked + demo 10/10',status:'planned',stack:'Claude API · Next.js · Firestore'},
+    {name:'Agent-Based Market Simulation',note:'Imperial PS signature piece — emergent price dynamics + Claude tool use',gate:'Aug (W8+) — agentic month',status:'planned',stack:'Python · Claude API · Plotly'},
+    {name:'Review-Request System',note:'Automated post-job review ask to Google/Trustpilot',gate:'Sept — needs 2 retainers live first',status:'locked',stack:'Twilio · Cloud Run · Firestore'},
+    {name:'Voice Receptionist Demo',note:'Answers calls, qualifies, books — Stage 2 companion product',gate:'When Stage 2 client #1 signed',status:'locked',stack:'Claude API · Twilio · Cloud Run'},
+  ];
+  var sColor={core:'var(--ok)',planned:'var(--gold)',locked:'var(--err)'};
+  var sLabel={core:'CORE',planned:'PLANNED',locked:'LOCKED'};
+  var html=
+    '<div class="rules-strip" style="margin-bottom:14px">One active at a time &middot; summer only &middot; Fridays in first &middot; not on this list = not built this year.</div>'+
+    '<div class="card mb12" style="padding:0;overflow:hidden">'+
+    '<table class="tbl"><thead><tr><th>Project</th><th>Gate / When</th><th>Status</th></tr></thead><tbody>';
+  GATED.forEach(function(p){
+    html+='<tr>'+
+      '<td><strong style="color:var(--txt)">'+esc(p.name)+'</strong><br><span style="font-size:11px;color:var(--mu)">'+esc(p.note)+'</span><br><span class="tag tm" style="font-size:9px;margin-top:3px;display:inline-block">'+esc(p.stack)+'</span></td>'+
+      '<td style="font-size:12px;color:var(--txt2)">'+esc(p.gate)+'</td>'+
+      '<td><span style="font-size:9px;font-weight:800;color:'+sColor[p.status]+';background:rgba(0,0,0,.2);border-radius:3px;padding:2px 7px">'+sLabel[p.status]+'</span></td>'+
+    '</tr>';
+  });
+  html+='</tbody></table></div>'+
+    '<div class="sec-lbl" style="margin-bottom:10px">Full build plans</div>';
+  PROJS.forEach(function(p,idx){
+    var st=p.status==='built'?'<span class="tag to">Built ✓</span>':'<span class="tag tm">Planned</span>';
+    html+='<div class="proj">'+
+      '<div class="proj-head"><div><div class="proj-name">'+esc(p.name)+'</div><div class="proj-when">'+esc(p.when)+' &middot; '+esc(p.hours)+'</div></div>'+st+'</div>'+
+      '<div class="proj-body">'+
+        '<div class="proj-desc">'+esc(p.desc)+'</div>'+
+        '<div class="proj-why">'+esc(p.why)+'</div>'+
+        '<div class="proj-stack">'+p.stack.map(function(s){return '<span class="tag tb">'+esc(s)+'</span>';}).join('')+'</div>'+
+      '</div>'+
+      '<button class="bp-toggle" onclick="toggleBP('+idx+')">Build Plan ('+p.steps.length+' steps) <span id="bp-arr-'+idx+'">↓</span></button>'+
+      '<div class="bp-body" id="bp-'+idx+'">'+
+        '<ol class="bp-steps">'+p.steps.map(function(s,si){return '<li><div class="step-n">'+(si+1)+'</div><span>'+esc(s)+'</span></li>';}).join('')+'</ol>'+
+      '</div>'+
+    '</div>';
+  });
+  document.getElementById('projects-list').innerHTML=html;
 }
 function toggleBP(idx){
   const b=document.getElementById('bp-'+idx);
@@ -1049,6 +1747,45 @@ function renderGoals(){
       <td style="color:var(--ok);font-weight:700">${esc(g.m)}</td>
       <td style="color:var(--blue);font-weight:600">${esc(g.s)}</td>
     </tr>`).join('')+'</tbody>';
+  var gc=document.getElementById('goals-cols');
+  if(gc)gc.innerHTML=
+    '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px">'+
+      '<div class="card" style="border-top:3px solid var(--ok)">'+
+        '<div class="sec-lbl" style="color:var(--ok)">Money milestones</div>'+
+        '<div class="income-item">W2 <strong>£450–900</strong></div>'+
+        '<div class="income-item">W6 <strong>£1,400–2,000</strong></div>'+
+        '<div class="income-item">W8 <strong>£2,000–2,800</strong></div>'+
+        '<div class="income-item">W12 <strong>£2,500–4,000</strong></div>'+
+        '<div class="income-rt">1 Dec target: £3,000/mo run rate</div>'+
+      '</div>'+
+      '<div class="card" style="border-top:3px solid var(--blue)">'+
+        '<div class="sec-lbl" style="color:var(--blue)">Imperial</div>'+
+        '<div class="income-item">UAT-UK ✓</div>'+
+        '<div class="income-item">TMUA booked — Mon 20 Jul</div>'+
+        '<div class="income-item">TMUA daily hour from W7</div>'+
+        '<div class="income-item">PS draft — August</div>'+
+        '<div class="income-item">UCAS — October</div>'+
+        '<div class="income-item" style="color:var(--err);font-weight:700">⚠ A★ must be MATHS specifically — Econ A★ does NOT substitute</div>'+
+        '<div class="income-rt">Revision beats client work until papers hit A/A★</div>'+
+      '</div>'+
+      '<div class="card" style="border-top:3px solid var(--gold)">'+
+        '<div class="sec-lbl" style="color:var(--gold)">Person</div>'+
+        '<div class="income-item">Bible — daily</div>'+
+        '<div class="income-item">Atomic Habits first, then Art of War</div>'+
+        '<div class="income-item">Greene books: read critically, not as playbooks</div>'+
+        '<div class="income-item">Gym Mon/Wed/Sat &middot; protein every meal</div>'+
+        '<div class="income-item">21:30 cutoff &middot; Sunday rest</div>'+
+        '<div class="income-rt">"Every Friday submitted is a vote for the person you\'re becoming."</div>'+
+      '</div>'+
+    '</div>'+
+    '<div class="card" style="border-top:3px solid var(--gold);margin-top:14px;background:linear-gradient(135deg,var(--card2),var(--bg))">'+
+      '<div style="font-size:13.5px;font-weight:700;color:var(--gold);margin-bottom:6px">Identity</div>'+
+      '<p style="font-size:13px;color:var(--txt);line-height:1.7;margin:0;font-style:italic">"Every Friday submitted is a vote for the person I\'m becoming. Power compounds through competence and being trusted — honest check-ins accrue it, inflated claims leak it."</p>'+
+    '</div>'+
+    '<div class="card mb12" style="border-top:3px solid var(--blue);margin-top:10px">'+
+      '<div class="sec-lbl" style="color:var(--blue)">Content Rule</div>'+
+      '<p style="font-size:12.5px;color:var(--txt2);line-height:1.65;margin-top:6px">Capture weekly, bank it. Publish <strong>1/wk max</strong> after 4 green weeks. <strong style="color:var(--ok)">LinkedIn</strong> for money &mdash; <strong style="color:var(--blue)">TikTok</strong> for brand. Never client data.</p>'+
+    '</div>';
 }
 
 // ─── SOPS ─────────────────────────────────────────────────────────────────────
@@ -1078,6 +1815,44 @@ function renderSOPs(){
       <div class="sop-done">✓ Done when: ${esc(s.done)}</div>
       <ul class="sop-steps">${s.steps.map(st=>`<li>${esc(st)}</li>`).join('')}</ul>
     </div>`).join('');
+  var sp=document.getElementById('panel-sops');
+  if(sp&&!sp.querySelector('.kill-cond')){
+    var extra=document.createElement('div');
+    extra.innerHTML=
+      '<div class="sec-lbl" style="margin:20px 0 10px">AIC Toolkit Rules (Dee\'s call — confirmed Week 1)</div>'+
+      '<div class="card mb12" style="border-top:3px solid var(--gold)">'+
+        '<table class="tbl"><thead><tr><th>Tool</th><th>Status</th><th>Note</th></tr></thead><tbody>'+
+        '<tr><td><strong>Claude Code (terminal)</strong></td><td><span style="color:var(--ok);font-weight:800">USE</span></td><td>Most powerful; multi-tab as confidence grows. AIC account = allowed for programme + minor client work (watch the spend). Live client systems → personal/own API key.</td></tr>'+
+        '<tr><td><strong>OpenClaw</strong></td><td><span style="color:var(--err);font-weight:800">BANNED</span></td><td>Open background variables, security concerns. Use <strong>Hermes</strong> if experimenting with agent environments.</td></tr>'+
+        '<tr><td><strong>Cursor</strong></td><td><span style="color:var(--warn);font-weight:800">PHASING OUT</span></td><td>~70% of Composer 2.5 runs on Chinese open-source models — data-feedback risk. If using open models, use <strong>Nvidia Nemotron</strong> (hardware business model, no data harvesting).</td></tr>'+
+        '<tr><td><strong>Spend limit hit</strong></td><td><span style="color:var(--blue);font-weight:800">EMAIL DEE</span></td><td>Dee resets manually. Do not pause work — email and continue with alternative.</td></tr>'+
+        '</tbody></table>'+
+      '</div>'+
+      '<div class="card mb12" style="border-top:3px solid var(--warn)">'+
+        '<div class="sec-lbl" style="color:var(--warn)">Hackathon rule — this reverses earlier advice</div>'+
+        '<p style="font-size:12.5px;color:var(--txt2);line-height:1.65;margin-top:6px"><strong style="color:var(--txt)">Never put your best work forward at hackathons.</strong> Sponsors and attendees lift ideas. Build in public selectively — keep crown jewels back until further along. Ship solid but not your strongest IP.</p>'+
+      '</div>'+
+      '<div class="sec-lbl" style="margin:20px 0 10px">Life Guardrails</div>'+
+      '<div class="guard-grid">'+
+      GUARDS.map(function(g){return '<div class="guard"><span class="guard-icon">'+g.i+'</span><div class="guard-txt">'+g.t+'</div></div>';}).join('')+
+      '</div>'+
+      '<div class="sec-lbl kill-cond" style="margin:20px 0 10px">Kill Conditions</div>'+
+      '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">'+
+        '<div class="card" style="border-top:3px solid var(--err)">'+
+          '<div class="sec-lbl" style="color:var(--err)">150-Send Rule</div>'+
+          '<p style="font-size:12.5px;color:var(--txt2);line-height:1.65">Reply rate &lt;5% at 150 logged sends → mandatory niche review with Dee. No new sends until review complete.</p>'+
+        '</div>'+
+        '<div class="card" style="border-top:3px solid var(--err)">'+
+          '<div class="sec-lbl" style="color:var(--err)">1 Dec Rule</div>'+
+          '<p style="font-size:12.5px;color:var(--txt2);line-height:1.65">MRR &lt;£1,500 by 1 Dec 2026, OR 3 broken Fridays at any point → emergency strategy call with Dee. Both conditions apply independently.</p>'+
+        '</div>'+
+        '<div class="card" style="border-top:3px solid var(--err)">'+
+          '<div class="sec-lbl" style="color:var(--err)">October Maths-B Rule</div>'+
+          '<p style="font-size:12.5px;color:var(--txt2);line-height:1.65">If maths trajectory is not on track for A by October → pause all business activity, daily tutor engaged. No exceptions. Imperial CS requires it.</p>'+
+        '</div>'+
+      '</div>';
+    sp.appendChild(extra);
+  }
 }
 
 // ─── GUARDRAILS ───────────────────────────────────────────────────────────────
@@ -1133,7 +1908,7 @@ function saveLog(wid){
 }
 function saveMoney(wid){
   const e=document.getElementById('mn-'+wid);
-  S.money[wid]=parseFloat(e?.value)||0;saveS();updateSbStats();
+  S.money[wid]=parseFloat(e?.value)||0;saveS();updateSbStats();renderOverview();
 }
 function saveSends(wid){
   const g=id=>{const e=document.getElementById(id);return e?e.value:'';};
@@ -1142,6 +1917,560 @@ function saveSends(wid){
 }
 function logRadio(wid,val){const l=S.logs[wid]||{};l.submitted=val;S.logs[wid]=l;saveS();updateDots();updateSbStats();}
 function styleObjSel(el){el.className='obj-sel'+(el.value?' '+el.value:'');}
+
+// ─── CV TRACKER ───────────────────────────────────────────────────────────────
+
+const CV_ITEMS=[
+ {id:'cv-portfolio',cat:'Portfolio / GitHub',t:'Portfolio site live (daniel-ikusawe.github.io)',w:1},
+ {id:'cv-away',    cat:'Portfolio / GitHub',t:'Away With It — live Vercel URL + commits',w:2},
+ {id:'cv-gcp',     cat:'Portfolio / GitHub',t:'GCP + Claude API — Python project + Cloud Run',w:5},
+ {id:'cv-audit',   cat:'Portfolio / GitHub',t:'Audit Generator — live URL + README + Loom',w:6},
+ {id:'cv-mcp',     cat:'Portfolio / GitHub',t:'MCP experiment — repo + Loom',w:7},
+ {id:'cv-agent',   cat:'Portfolio / GitHub',t:'Agentic build — repo + Loom',w:8},
+ {id:'cv-demo1',   cat:'Portfolio / GitHub',t:'Demo 1 rebuild — 20-test log + repo',w:9},
+ {id:'cv-hack',    cat:'Portfolio / GitHub',t:'Hackathon entry + GitHub page',w:10},
+ {id:'cv-mvp',     cat:'Portfolio / GitHub',t:'MVP — live URL + Loom (30/30/90/30)',w:12},
+ {id:'cv-cca1',    cat:'AIC Programme',t:'CCA Module 1 completed',w:7},
+ {id:'cv-cca2',    cat:'AIC Programme',t:'CCA Module 2 completed',w:8},
+ {id:'cv-cca3',    cat:'AIC Programme',t:'CCA Module 3 completed',w:9},
+ {id:'cv-cca4',    cat:'AIC Programme',t:'CCA Module 4 completed',w:11},
+ {id:'cv-ccaexam', cat:'AIC Programme',t:'CCA exam scheduled (cohort-gated)',w:12},
+ {id:'cv-ltd',     cat:'Business',t:'Vekora Ltd registered + ICO done',w:2},
+ {id:'cv-client1', cat:'Business',t:'First client — case study with hard ROI numbers',w:2},
+ {id:'cv-retainer',cat:'Business',t:'First retainer live (quote MRR figure)',w:5},
+ {id:'cv-tmua',    cat:'Academic',t:'TMUA booked — booking confirmation',w:7},
+ {id:'cv-ps1',     cat:'Academic',t:'PS draft 1 written (Imperial CS)',w:9},
+ {id:'cv-readiness',cat:'Academic',t:'Subcontractor readiness scored with Dee',w:12},
+];
+
+function renderCVTracker(){
+  var el=document.getElementById('panel-cv');if(!el)return;
+  if(!S.tasks)S.tasks={};
+  var done=CV_ITEMS.filter(function(it){return S.tasks[it.id];}).length;
+  var pct=Math.round(done/CV_ITEMS.length*100);
+  var cats={};
+  CV_ITEMS.forEach(function(it){if(!cats[it.cat])cats[it.cat]=[];cats[it.cat].push(it);});
+  var html=
+    '<div class="pg-eye">Build-in-Order</div>'+
+    '<div class="pg-h">CV Tracker</div>'+
+    '<div class="pg-desc">Every item here is scheduled into a week. Tick it when you hold the proof. CV work is never a someday job — it\'s in the weekly task list.</div>'+
+    '<div class="card" style="margin-bottom:12px">'+
+      '<div class="flex-bc mb8"><span class="sec-lbl" style="margin:0">CV items confirmed</span><span style="font-size:13px;font-weight:800;color:'+(done===CV_ITEMS.length?'var(--ok)':'var(--gold)')+'">'+done+'/'+CV_ITEMS.length+'</span></div>'+
+      '<div class="prog-bar"><div class="prog-fill fill-gold" style="width:'+pct+'%"></div></div>'+
+    '</div>'+
+    '<div class="rules-strip" style="margin-bottom:16px">No item can be added without the proof artifact. "I did X" without a URL, Loom, repo, or document is not CV-ready. Same ticks appear in the relevant week panel.</div>';
+  Object.keys(cats).forEach(function(cat){
+    html+='<div class="cv-grp">'+esc(cat)+'</div><div class="tasks" style="margin-bottom:4px">';
+    cats[cat].forEach(function(it){
+      var chk=S.tasks[it.id];
+      html+='<div class="tc'+(chk?' done':'')+'">'+
+        '<input class="cb-check" type="checkbox"'+(chk?' checked':'')+' onclick="event.stopPropagation()" onchange="toggleCVItem(\''+it.id+'\',this)">'+
+        '<div class="tc-body">'+
+          '<div class="tc-title"'+(chk?' style="text-decoration:line-through;color:var(--mu)"':'')+'>'+esc(it.t)+'</div>'+
+          '<div class="tc-why" style="font-size:11px;color:var(--mu)">→ Week '+it.w+'</div>'+
+        '</div></div>';
+    });
+    html+='</div>';
+  });
+  el.innerHTML=html;
+}
+function toggleCVItem(id,el){
+  if(!S.tasks)S.tasks={};
+  S.tasks[id]=!!el.checked;
+  var tc=el.closest('.tc');if(!tc)return;
+  tc.classList.toggle('done',!!S.tasks[id]);
+  var title=tc.querySelector('.tc-title');
+  if(title){title.style.textDecoration=S.tasks[id]?'line-through':'';title.style.color=S.tasks[id]?'var(--mu)':'';}
+  saveS();
+  // update progress bar
+  var done=CV_ITEMS.filter(function(it){return S.tasks[it.id];}).length;
+  var pct=Math.round(done/CV_ITEMS.length*100);
+  var bar=document.querySelector('#panel-cv .prog-fill');
+  var cnt=document.querySelector('#panel-cv .flex-bc span:last-child');
+  if(bar)bar.style.width=pct+'%';
+  if(cnt)cnt.textContent=done+'/'+CV_ITEMS.length;
+  if(S.tasks[id])showToast('CV item confirmed ✓');
+}
+function saveMockDate(wid,field,val){
+  if(!S.mockDates)S.mockDates={};
+  if(!S.mockDates[wid])S.mockDates[wid]={};
+  S.mockDates[wid][field]=val;
+  saveS();
+}
+
+// ─── OFFER LADDER ────────────────────────────────────────────────────────────
+
+function renderOffer(){
+  const el=document.getElementById('panel-offer');
+  el.innerHTML=
+    '<div class="pg-eye">Vekora Revenue Architecture</div>'+
+    '<div class="pg-h">Offer Ladder</div>'+
+    '<div class="pg-desc">Six stages. Move up on evidence, never optimism. The gate column is the only number that matters — it overrides enthusiasm every time.</div>'+
+    '<div class="card" style="padding:0;overflow:hidden;margin-bottom:12px">'+
+    '<table class="ladder-tbl"><thead><tr>'+
+      '<th>Stage</th><th>When</th><th>Product</th><th>Price</th><th class="gate-cell">Unlock gate</th>'+
+    '</tr></thead><tbody>'+
+    '<tr>'+
+      '<td class="stage-cell">0 — Diagnose &amp; Respond</td>'+
+      '<td><span class="tag to">Now</span></td>'+
+      '<td>£200 Lead-Leak Audit (48h video + 1-page plan) · £900 "Never Miss A Job" Foundation (GBP setup + instant SMS enquiry alerts + landing page if needed) · £250–350/mo Response &amp; Visibility retainer</td>'+
+      '<td style="color:var(--gold);font-weight:700">Floors locked</td>'+
+      '<td class="gate-cell"><strong style="color:var(--ok)">None</strong></td>'+
+    '</tr>'+
+    '<tr>'+
+      '<td class="stage-cell">1 — Instant Response System</td>'+
+      '<td><span class="tag tw">Now (W2)</span></td>'+
+      '<td>Missed-call text-back + enquiry auto-acknowledge + qualify (Twilio → Cloud Run → SMS). <em>Away With It is the live build.</em></td>'+
+      '<td style="font-weight:600">£500 setup<br><span style="font-size:11px;color:var(--mu)">+£150 instant quoting · +£100 priority tags · £250/mo managed</span></td>'+
+      '<td class="gate-cell">Working live demo — missed call → SMS under 30s, 5 consecutive passes</td>'+
+    '</tr>'+
+    '<tr>'+
+      '<td class="stage-cell">2 — AI Lead Qualification</td>'+
+      '<td><span class="tag tg">~Aug</span></td>'+
+      '<td>Qualify → score → reply → book, under 30s</td>'+
+      '<td style="font-weight:600">£950/mo + £500 setup</td>'+
+      '<td class="gate-cell"><strong>Demo runs 10/10</strong> consecutive, from memory, under 4 min, SMS every time</td>'+
+    '</tr>'+
+    '<tr style="background:rgba(201,168,76,.025)">'+
+      '<td class="stage-cell">2.5 — Full-Funnel Growth<br><span style="font-size:10px;font-weight:500;color:var(--mu)">Destination tier · 2027</span></td>'+
+      '<td><span class="tag tm">2027, mid-market</span></td>'+
+      '<td>Paid acquisition (Google/Meta) feeding the Stage 2 qualify/book system — ads + response + qualification as ONE revenue pipeline. Ads are part of the core growth stack, not a bolt-on.</td>'+
+      '<td style="font-weight:600">£1.5–3.5k/mo retainer<br><span style="font-size:11px;color:var(--mu)">+ revenue share on revenue the ads generate (NOT % of spend — credible only because my system is the attribution layer)</span></td>'+
+      '<td class="gate-cell">2–3 documented case studies with hard ROI · Stage 2 live at 10/10 · first AIC subcontract delivered</td>'+
+    '</tr>'+
+    '<tr>'+
+      '<td class="stage-cell">3 — Full-System GOS Phase 1<br><span style="font-size:10px;font-weight:500;color:var(--mu)">Portal · monitoring · ads layer</span></td>'+
+      '<td><span class="tag tm">2027+</span></td>'+
+      '<td>I run the full growth front: acquisition (ads) + qualification (Stage 2) + client portal + performance-monitoring agents. Me + AI agents + first VA on delivery. Plus B2B licence builds: £10–25k scoped tools, licence-first (value secured upfront — AIC principle).</td>'+
+      '<td style="font-weight:600">£2.5–4k/mo retainer<br><span style="font-size:11px;color:var(--mu)">+ revenue share above threshold · B2B tools: per scope · cash floor always · equity 5–15% on top, never instead</span></td>'+
+      '<td class="gate-cell">Stage 2.5 running · first VA hired · monitoring agents built · validated problem + Dee sign-off for custom tools</td>'+
+    '</tr>'+
+    '<tr>'+
+      '<td class="stage-cell">4 — Delegated Full GOS<br><span style="font-size:10px;font-weight:500;color:var(--err)">The £3.5–10k+/client tier</span></td>'+
+      '<td><span class="tag tm">Year 2+</span></td>'+
+      '<td>Entire front-of-house growth engine, fully delegated — VAs, media buyers, and agents I\'ve built doing routine work; me on sales, architecture, and QA only. <strong style="color:var(--gold)">£10k/client exists only at Stage 4 — it requires delegation to deliver. Price scales with how much of their growth engine I run.</strong><br><br><em style="color:var(--mu)">Vekora\'s destination = a full GROWTH-OPERATING SYSTEM: I run a business\'s entire front-of-house growth engine as one delegated system. That — not "I build tools" — is what supports £3.5–10k+ retainers.</em></td>'+
+      '<td style="font-weight:600">£3.5–10k+/client/mo<br><span style="font-size:11px;color:var(--mu)">retainer + revenue share on attributable revenue (base fee always; share on top, never instead)</span></td>'+
+      '<td class="gate-cell">3+ delegated delivery chain working · productised system · outcome-data moat (12+ months)</td>'+
+    '</tr>'+
+    '</tbody></table></div>'+
+    '<div class="card" style="border-left:3px solid var(--blue);background:rgba(10,132,255,.05);margin-bottom:12px">'+
+      '<span class="sec-lbl" style="color:var(--blue)">Two-entity model (Year 2 spin-out)</span>'+
+      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px">'+
+        '<div style="background:var(--card2);border:1px solid var(--bd);border-radius:8px;padding:14px">'+
+          '<div style="font-size:10px;font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">Entity 2 — Vekora (CASH)</div>'+
+          '<div style="font-size:13px;color:var(--txt);font-weight:600;margin-bottom:6px">Delegated Growth-Operating System</div>'+
+          '<div style="font-size:12px;color:var(--txt2);line-height:1.6">£3.5–10k+ retainers + ad revenue share. Services business running client growth engines. Cash compounds the product.</div>'+
+        '</div>'+
+        '<div style="background:var(--card2);border:1px solid var(--bd);border-radius:8px;padding:14px">'+
+          '<div style="font-size:10px;font-weight:800;color:var(--blue);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">Entity 1 — Product Co (EQUITY)</div>'+
+          '<div style="font-size:13px;color:var(--txt);font-weight:600;margin-bottom:6px">Productised System — Built to Sell</div>'+
+          '<div style="font-size:12px;color:var(--txt2);line-height:1.6">Productised Vekora + tools/apps/enterprise projects. Clean IP · recurring revenue · no founder-dependency. Spins out of Vekora\'s system + data at ~Year 2.</div>'+
+        '</div>'+
+      '</div>'+
+    '</div>'+
+    '<div class="card card-gold" style="margin-bottom:12px">'+
+      '<span class="sec-lbl">Performance pricing — Stage 2.5 and above only</span>'+
+      '<p style="font-size:13px;color:var(--txt2);line-height:1.65;margin-top:6px">Base management fee <strong style="color:var(--txt)">ALWAYS</strong>, then REVENUE SHARE on revenue the ads generate above an agreed threshold — <strong style="color:var(--err)">NOT a % of ad spend.</strong> Spend-% is the commodity game. Revenue-share on proven results is the moat — credible only because my Stage 2 system is the attribution layer; I can prove the revenue because it ran through my qualification/tracking. Hard gate: client live on my infrastructure for ≥60 days before the performance component activates.</p>'+
+      '<div style="font-size:12px;color:var(--txt2);margin-top:8px;padding-top:8px;border-top:1px solid var(--bd);line-height:1.65"><strong style="color:var(--txt)">Demo pings:</strong> during the demo, the notification arrives on my phone via <strong>Telegram (free)</strong> so the client sees it work live in the room. At go-live, it texts their number directly via <strong>Twilio (SMS)</strong> + email. Nothing for the client to install.</div>'+
+    '</div>'+
+    '<div class="rules-strip">Never sell a stage you cannot demo &nbsp;·&nbsp; No discounts — trim scope &nbsp;·&nbsp; Ownership terms in writing before deposit &nbsp;·&nbsp; Sell outcomes, never "AI" or "automation" &nbsp;·&nbsp; Website + Google Profile work always priced separately</div>';
+}
+
+// ─── TIER TRACKER ─────────────────────────────────────────────────────────────
+
+function renderTierTracker(){
+  var el=document.getElementById('panel-tier');if(!el)return;
+  var TIERS=[
+    {n:10,lbl:'Adrift',d:'No system, no proof, no direction.'},
+    {n:9,lbl:'Aspiration-as-identity',d:'Says the right things, delivers nothing.'},
+    {n:8,lbl:'Passive engagers',d:'Watches content, joins calls, no output.'},
+    {n:7,lbl:'School-plus',d:'Strong grades, nothing beyond the curriculum.'},
+    {n:6,lbl:'First artifact',d:'One thing shipped. Once.'},
+    {n:5,lbl:'Sustained practice',d:'The streak. Showing up consistently.'},
+    {n:4,lbl:'Externally validated',d:'Someone else vouches for the work.'},
+    {n:3,lbl:'Real-world traction',d:'Access + reps. Not yet consistent output.'},
+    {n:2,lbl:'Compounding access',d:'Awarded to who DID it. Discount removed only by 12/12 Fridays.'},
+    {n:1,lbl:'National outliers',d:'Track record that travels. Recognised without introduction.'},
+  ];
+  var CUR=3,TGT=2;
+  var rows='';
+  TIERS.forEach(function(t){
+    var isCur=t.n===CUR,isTgt=t.n===TGT;
+    var bg=isCur?'background:rgba(201,168,76,.09)':isTgt?'background:rgba(34,197,94,.07)':'';
+    var nc=isCur?'var(--gold)':isTgt?'var(--ok)':'var(--mu)';
+    rows+='<tr style="'+bg+'"><td style="font-weight:900;color:'+nc+'">'+t.n+(isCur?' ◀ NOW':isTgt?' ★ TARGET':'')+'</td>'+
+      '<td style="font-weight:700;color:var(--txt)">'+t.lbl+'</td>'+
+      '<td style="font-size:12px;color:var(--txt2)">'+t.d+'</td></tr>';
+  });
+  var adv=['AIC seat — direct mentorship from a practitioner building real systems',
+    'Timing — Claude-native 2026; Dee\'s 18-month window before the market normalises',
+    'Scar tissue — Vas, early lessons; already paid for',
+    'Maths/Econ/CS stack — can do the numbers AND build the system',
+    'Infinite runway — no rent, no dependents, every £ compounds',
+    'Self-awareness — knows the gap between current and target'];
+  el.innerHTML=
+    '<div class="pg-eye">W1 — Orientation</div>'+
+    '<div class="pg-h">Tier Tracker</div>'+
+    '<div class="pg-desc">10→1. Lower is better. The ladder describes where you are by what you\'ve done, not what you intend.</div>'+
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">'+
+      '<div class="card" style="border-top:3px solid var(--gold);text-align:center">'+
+        '<div style="font-size:40px;font-weight:900;color:var(--gold);line-height:1.1">3</div>'+
+        '<div class="sec-lbl" style="margin:4px 0 2px">Current position</div>'+
+        '<div style="font-size:12px;color:var(--txt2)">Bottom of Tier 3<br>Access + reps, not yet output</div>'+
+      '</div>'+
+      '<div class="card" style="border-top:3px solid var(--ok);text-align:center">'+
+        '<div style="font-size:40px;font-weight:900;color:var(--ok);line-height:1.1">2</div>'+
+        '<div class="sec-lbl" style="margin:4px 0 2px">Target by 30 Aug</div>'+
+        '<div style="font-size:12px;color:var(--txt2)">Tier 2 entry<br>Awarded to who DID it</div>'+
+      '</div>'+
+    '</div>'+
+    '<div class="card mb12">'+
+      '<div class="sec-lbl">Movement levers</div>'+
+      '<p style="font-size:12.5px;color:var(--txt2);line-height:1.7;margin-top:4px"><strong style="color:var(--ok)">UP:</strong> 12/12 Fridays &middot; £2.5k+ banked &middot; maths trajectory moving &middot; CCA progressing</p>'+
+      '<div class="rules-strip" style="margin-top:8px"><strong>DOWN to 5:</strong> break the streak. The streak is the only thing between you and Tier 5 regression.</div>'+
+    '</div>'+
+    '<div class="card mb12" style="padding:0;overflow:hidden"><table class="tbl"><thead><tr><th>Tier</th><th>Label</th><th>Description</th></tr></thead><tbody>'+rows+'</tbody></table></div>'+
+    '<div class="card"><div class="sec-lbl">6 advantages over ~650,000</div>'+
+      '<div class="g3" style="margin-top:8px">'+
+        adv.map(function(a){return '<div class="card" style="padding:10px;background:var(--card2)"><div style="font-size:11.5px;color:var(--txt2);line-height:1.55">'+a+'</div></div>';}).join('')+
+      '</div>'+
+    '</div>';
+}
+
+// ─── CLIENT OFFER MENU ────────────────────────────────────────────────────────
+
+function renderOfferMenu(){
+  var el=document.getElementById('panel-offermenu');if(!el)return;
+  el.innerHTML=
+    '<div class="pg-eye">W1 — Know what you\'re selling</div>'+
+    '<div class="pg-h">Client Offer Menu</div>'+
+    '<div class="pg-desc">My client offers — not "AIC offers". AIC Claude Code may be used as the build tool (minor use, watch the spend); live systems run on client\'s or own API key; Vekora-branded work → personal accounts only.</div>'+
+    '<div class="rules-strip" style="margin-bottom:14px">Lead with the outcome, never "AI". First Claude setup is FREE for a local business (Dee Point 9). Fast tier = portfolio + references · Medium = depth · Craft = the real money.</div>'+
+    '<div class="sec-lbl" style="margin-bottom:8px">Fast / Low-Build — Configure Claude as their brain</div>'+
+    '<table class="tbl" style="margin-bottom:14px"><thead><tr><th>Offer</th><th>What it does</th></tr></thead><tbody>'+
+    '<tr><td><strong>Claude business setup</strong></td><td>Services, tone, FAQs, processes — drafts quotes/emails/replies on brand. <em>First one free for a local business.</em></td></tr>'+
+    '<tr><td><strong>Inbox &amp; quote-drafting assistant</strong></td><td>Enquiry in → on-brand quote out</td></tr>'+
+    '<tr><td><strong>Review-response system</strong></td><td>Drafts replies to every Google/Trustpilot review — lifts local ranking</td></tr>'+
+    '<tr><td><strong>Content / GBP post engine</strong></td><td>Weekly Google Business posts + social captions</td></tr>'+
+    '</tbody></table>'+
+    '<div class="sec-lbl" style="margin-bottom:8px">Medium-Build — Small automations</div>'+
+    '<table class="tbl" style="margin-bottom:14px"><thead><tr><th>Offer</th><th>What it does</th></tr></thead><tbody>'+
+    '<tr><td><strong>Lead qual &amp; instant response</strong><br><span style="font-size:11px;color:var(--ok)">Away With It flagship</span></td><td>Qualify → score → reply → book in &lt;30s</td></tr>'+
+    '<tr><td><strong>Missed-call text-back</strong><br><span style="font-size:11px;color:var(--mu)">Twilio at go-live</span></td><td>Missed call → instant SMS to caller + alert to owner</td></tr>'+
+    '<tr><td><strong>Site FAQ / first-line chat</strong></td><td>Handles common questions, filters noise before it reaches owner</td></tr>'+
+    '<tr><td><strong>Quote follow-up automation</strong></td><td>Chases unconverted quotes on a timed sequence</td></tr>'+
+    '</tbody></table>'+
+    '<div class="sec-lbl" style="margin-bottom:8px">Ads — Honestly gated</div>'+
+    '<table class="tbl" style="margin-bottom:14px"><thead><tr><th>Offer</th><th>Status</th></tr></thead><tbody>'+
+    '<tr><td><strong>Ad copy &amp; creative engine</strong><br><span style="font-size:11px;color:var(--mu)">Claude generates + A/B-tests Google/Meta variations</span></td><td><span style="color:var(--ok);font-weight:700">Fine soon</span> — content offer (sell the copy system, not ad spend management)</td></tr>'+
+    '<tr><td><strong>Full ad management</strong><br><span style="font-size:11px;color:var(--mu)">Run their budget for fee/%</span></td><td><span style="color:var(--err);font-weight:700">2027 only</span> — learn on own £100–200 first (Sept). Crowded, low-margin per Dee. NOT a now-offer.</td></tr>'+
+    '</tbody></table>'+
+    '<div class="sec-lbl" style="margin-bottom:8px">Higher-Value — Craft tier</div>'+
+    '<table class="tbl"><thead><tr><th>Offer</th><th>Gate &amp; terms</th></tr></thead><tbody>'+
+    '<tr><td><strong>Custom internal tools</strong><br><span style="font-size:11px;color:var(--mu)">Automate a named expensive manual process</span></td><td>Month 3+ · £10–25k licence-first · harvest-question sourced · AIC introductions at Stage 3</td></tr>'+
+    '</tbody></table>';
+}
+
+// ─── DESTINATION SNAPSHOT ─────────────────────────────────────────────────────
+
+function toggleDest(id,el){
+  if(!S.dest)S.dest={};
+  S.dest[id]=!!el.checked;saveS();
+  var tc=el.closest('.tc');if(tc)tc.classList.toggle('done',!!S.dest[id]);
+  var done=Object.values(S.dest).filter(Boolean).length;
+  var bar=document.getElementById('dest-prog');if(bar)bar.style.width=Math.round(done/28*100)+'%';
+  var cnt=document.getElementById('dest-cnt');if(cnt)cnt.textContent=done+'/28';
+}
+function renderDestination(){
+  var el=document.getElementById('panel-dest');if(!el)return;
+  if(!S.dest)S.dest={};
+  var GROUPS=[
+    {title:'Numbers',color:'var(--ok)',items:[
+      {id:'d0',t:'£2.5–4k banked · 20–25% taxed away same day'},
+      {id:'d1',t:'12/12 Fridays submitted — the headline metric'},
+      {id:'d2',t:'150+ sends logged · reply rate known and recorded'},
+      {id:'d3',t:'2+ builds shipped with README and Loom'},
+      {id:'d4',t:'1–2 retainers live'},
+    ]},
+    {title:'Assets',color:'var(--gold)',items:[
+      {id:'d5',t:'Demo runs 10/10 from memory, under 4 min, SMS every time'},
+      {id:'d6',t:'MVP vs validated problem · Loom recorded (30/30/90/30)'},
+      {id:'d7',t:'Audit Generator + agentic build + READMEs publicly live'},
+      {id:'d8',t:'One case study with hard ROI numbers (£ saved or £ won)'},
+      {id:'d9',t:'Ltd · ICO · bank · written terms — all done'},
+      {id:'d10',t:'Hackathon project page live on GitHub'},
+      {id:'d11',t:'Open-source PRs merged (not just opened)'},
+      {id:'d12',t:'GitHub hireable — green tiles, READMEs, About filled'},
+    ]},
+    {title:'Skills',color:'var(--blue)',items:[
+      {id:'d13',t:'Terminal / Git / GCP — second nature, no docs needed'},
+      {id:'d14',t:'Claude Code as default build tool, not a novelty'},
+      {id:'d15',t:'Vercel + Cloud Run deploys done without looking anything up'},
+      {id:'d16',t:'Claude API from Python in terminal — first-principles usage'},
+      {id:'d17',t:'MCP build completed and explained'},
+      {id:'d18',t:'Find → Validate → Spec → Build → Ship run at least 2×'},
+      {id:'d19',t:'CCA modules done · exam scheduled (cohort-gated) · 6-month window — move fast'},
+    ]},
+    {title:'Position',color:'var(--purple)',items:[
+      {id:'d20',t:'Subcontractor readiness scored with Dee'},
+      {id:'d21',t:'Dee\'s £1k/day criteria written in own words'},
+      {id:'d22',t:'£500/day track open — first subcontract conversation had'},
+      {id:'d23',t:'TMUA booked · 6-week structured practice started'},
+      {id:'d24',t:'PS drafted — Vekora + NEA + simulation as evidence'},
+      {id:'d25',t:'Maths trajectory off the B, moving to A'},
+      {id:'d26',t:'Parents briefed on business activity (standing practice)'},
+      {id:'d27',t:'3 mid-market problems logged verbatim from real owners'},
+    ]},
+  ];
+  var done=Object.values(S.dest).filter(Boolean).length;
+  var html=
+    '<div class="pg-eye">W1 — Know the destination</div>'+
+    '<div class="pg-h">30 August Snapshot</div>'+
+    '<div class="pg-desc">What "done" looks like at the end of this programme. Track honestly — inflated check-ins erode the compound interest of trust.</div>'+
+    '<div class="card mb12">'+
+      '<div class="flex-bc mb8"><span class="sec-lbl" style="margin:0">Confirmed</span><span id="dest-cnt" style="font-size:13px;font-weight:800;color:'+(done===28?'var(--ok)':'var(--gold)')+'">'+done+'/28</span></div>'+
+      '<div class="prog-bar"><div class="prog-fill fill-gold" id="dest-prog" style="width:'+Math.round(done/28*100)+'%"></div></div>'+
+    '</div>';
+  GROUPS.forEach(function(g){
+    html+='<div class="sec-lbl" style="color:'+g.color+';margin:16px 0 8px">'+g.title+'</div>'+
+      '<div class="tasks" style="margin-bottom:0">';
+    g.items.forEach(function(item){
+      var chk=S.dest&&S.dest[item.id];
+      html+='<div class="tc'+(chk?' done':'')+'">'+
+        '<input class="cb-check" type="checkbox"'+(chk?' checked':'')+' onclick="event.stopPropagation()" onchange="toggleDest(\''+item.id+'\',this)">'+
+        '<div class="tc-body"><span class="tc-title"'+(chk?' style="text-decoration:line-through;color:var(--mu)"':'')+'>'+esc(item.t)+'</span></div></div>';
+    });
+    html+='</div>';
+  });
+  el.innerHTML=html;
+}
+
+// ─── MARKETS ──────────────────────────────────────────────────────────────────
+
+function renderMarkets(){
+  const el=document.getElementById('panel-markets');
+  if(!el)return;
+  el.innerHTML=
+    '<div class="pg-eye">W1 — Niche-hop used: 1 of 3</div>'+
+    '<div class="pg-h">Markets &amp; Outreach</div>'+
+    '<div class="pg-desc">One niche at a time. Hop counter increments only after 150 logged sends of data. Next hop requires data, not instinct.</div>'+
+    '<div class="card-gold card" style="margin-bottom:14px">'+
+      '<div class="sec-lbl">Dee Points 8 &amp; 11 — Read before every outreach session</div>'+
+      '<p style="font-size:13px;color:var(--txt);line-height:1.7;margin-top:6px"><strong>Sole-trader work is TRAINING.</strong> The real revenue is SME/enterprise. Same effort earns <strong style="color:var(--err)">£500</strong> from a sole trader, <strong style="color:var(--gold)">£5,000</strong> from a 10-person firm, and multiples of that from a 100-person company. Service the proving-ground clients well — they fund the data moat. But aim the trajectory at the destination market.</p>'+
+    '</div>'+
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">'+
+      '<div class="card" style="border-top:3px solid var(--ok)">'+
+        '<div class="sec-lbl" style="color:var(--ok)">Proving Ground — Selling NOW</div>'+
+        '<strong style="font-size:14px;color:var(--txt)">Driving Instructors + Waste</strong>'+
+        '<p style="font-size:12px;color:var(--txt2);margin-top:8px;line-height:1.6">Can\'t answer mid-lesson &middot; £1,400+ LTV per student &middot; WhatsApp-native &middot; zero saturation on AI outreach &middot; live waste deal — service it</p>'+
+        '<div style="font-size:11.5px;color:var(--mu);margin-top:8px;line-height:1.5">Job: cash &middot; case studies with hard ROI &middot; outcome data. Graduation niche for Stage 2: commercial security.</div>'+
+      '</div>'+
+      '<div class="card" style="border-top:3px solid var(--blue)">'+
+        '<div class="sec-lbl" style="color:var(--blue)">Destination Market — Researching NOW</div>'+
+        '<strong style="font-size:14px;color:var(--txt)">Mid-Market B2B</strong>'+
+        '<p style="font-size:12px;color:var(--txt2);margin-top:8px;line-height:1.6">£20–100k/mo revenue &middot; recruitment &middot; property (commercial/lettings groups) &middot; professional services &middot; logistics &middot; sales orgs</p>'+
+        '<div class="rules-strip" style="margin-top:10px;font-size:11px">Entry gates: 2–3 case studies with hard numbers &middot; Stage 2 live at 10/10 &middot; AIC co-credibility (autumn 2026). Until then: research + harvest question ONLY.</div>'+
+      '</div>'+
+    '</div>'+
+    '<div class="card mb12">'+
+      '<div class="sec-lbl">UK Call Script — Proof-First Opener</div>'+
+      '<div class="script-box">"I\'m Daniel, I\'m local — I built the system for Vas Heating in [town].\n\nWhen I searched \'driving lessons [town]\' you\'re not in the map results,\nand I\'m guessing you can\'t answer mid-lesson.\n\nSo where do those calls go?"</div>'+
+    '</div>'+
+    '<div class="card mb12">'+
+      '<div class="sec-lbl">WhatsApp Audit Message</div>'+
+      '<div class="script-box">"Hi [Name] — Daniel here.\n\nI help driving instructors stop losing enquiries when they\'re mid-lesson.\nI do a free 10-minute audit — shows exactly where calls and messages are dropping.\nWould that be useful to you?"</div>'+
+    '</div>'+
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">'+
+      '<div class="card">'+
+        '<div class="sec-lbl">Harvest Question</div>'+
+        '<p style="font-size:13px;color:var(--txt);font-style:italic;line-height:1.65">"What\'s the biggest time-eater on the office side?"</p>'+
+        '<p style="font-size:11.5px;color:var(--mu);margin-top:8px">Ask after the opener lands. Listen for pain, not product fit. Record verbatim in outreach log.</p>'+
+      '</div>'+
+      '<div class="card">'+
+        '<div class="sec-lbl">Follow-Up Cadence</div>'+
+        '<div class="cadence-row"><span class="cad-day">Day 0</span><span class="cad-txt">Initial WhatsApp / call</span></div>'+
+        '<div class="cadence-row"><span class="cad-day">Day 3</span><span class="cad-txt">Value-add follow-up (tip or stat)</span></div>'+
+        '<div class="cadence-row"><span class="cad-day">Day 7</span><span class="cad-txt">Final check-in, close or park</span></div>'+
+        '<div class="cadence-row"><span class="cad-day">Monthly</span><span class="cad-txt">Re-activate parked leads</span></div>'+
+      '</div>'+
+    '</div>'+
+    '<div class="card mb12">'+
+      '<div class="sec-lbl">Outreach Quotas</div>'+
+      '<table class="tbl"><thead><tr><th>Phase</th><th>Target</th><th>Days</th></tr></thead><tbody>'+
+      '<tr><td>Term weeks</td><td>30 sends/wk</td><td>Tue–Thu (10/day)</td></tr>'+
+      '<tr><td>Mock weeks</td><td>0 — revision only</td><td>–</td></tr>'+
+      '<tr><td>Summer</td><td>50 sends/wk</td><td>10/weekday</td></tr>'+
+      '</tbody></table>'+
+      '<div style="font-size:12px;color:var(--mu);margin-top:10px">Reply rate: calculated at 50 sends &middot; &lt;5% at 150 sends → niche review with Dee</div>'+
+    '</div>'+
+    '<div class="card-gold card" style="display:flex;align-items:center;gap:16px">'+
+      '<div style="font-size:36px;font-weight:900;color:var(--gold);line-height:1">1</div>'+
+      '<div>'+
+        '<div class="sec-lbl">Niche-Hop Counter</div>'+
+        '<div style="font-size:13px;color:var(--txt);font-weight:600">Trades → Instructors</div>'+
+        '<div style="font-size:11.5px;color:var(--mu);margin-top:4px">Next hop requires 150 logged sends of data. 1 of 3 lifetime hops used.</div>'+
+      '</div>'+
+    '</div>';
+}
+
+// ─── BUILD PIPELINE ───────────────────────────────────────────────────────────
+
+function renderPipeline(){
+  const el=document.getElementById('panel-pipeline');
+  if(!el)return;
+  const STEPS=[
+    {n:1,name:'FIND',det:'10-workflow shortlist: pain · who · hrs/wk · incumbent · why LLM-native · viability. Ask the harvest question in every client conversation.'},
+    {n:2,name:'VALIDATE',det:'One real conversation — never skipped. Real pain in their words. Don\'t spec until this runs.'},
+    {n:3,name:'SPEC',det:'1-page MVP only: one role · 3 jobs-to-be-done · max 3 must-haves · explicit won\'t-do list.'},
+    {n:4,name:'BUILD',det:'Happy path end-to-end first. Claude Code as junior dev. Commit every 2h.'},
+    {n:5,name:'HARDEN',det:'Top 3 failure modes documented. 5 test inputs run and logged. No shipping without this.'},
+    {n:6,name:'SHIP',det:'Deploy · README · About page / Loom walkthrough.'},
+    {n:7,name:'SELL',det:'Loom (30/30/90/30) · 20 prospects · 4-message sequence · Dee reviews before send.'},
+  ];
+  let steps='';
+  STEPS.forEach(function(s){
+    steps+='<div class="pipe-step">'+
+      '<div class="pipe-num">'+s.n+'</div>'+
+      '<div class="pipe-name">'+s.name+'</div>'+
+      '<div class="pipe-det">'+s.det+'</div>'+
+    '</div>';
+  });
+  el.innerHTML=
+    '<div class="pg-eye">Ship · Learn · Reprice</div>'+
+    '<div class="pg-h">Build Pipeline</div>'+
+    '<div class="pg-desc">Every tool that ships makes the next sell cheaper and the next build faster. The pipeline is the product until the product is the pipeline.</div>'+
+    '<div class="pipe-flow">'+steps+'</div>'+
+    '<div class="card" style="margin-top:14px">'+
+      '<div class="sec-lbl">Market Research Method (Dee Point 10) — Week 8 activity</div>'+
+      '<div class="rules-strip" style="margin-bottom:10px">Problem-discovery research is a Week 8 activity. Not now. A live deal beats a researched idea every time.</div>'+
+      '<p style="font-size:12.5px;color:var(--txt2);line-height:1.65;margin-bottom:0">1. Write a sharp sector/problem prompt yourself &middot; 2. Run it on Claude Opus 4.8 research tool &middot; 3. Email the prompt to Dee &middot; 4. He runs it through Manus &middot; 5. Returns a deeper research link back to you. <strong style="color:var(--txt)">Own research first, Manus fills the gaps.</strong></p>'+
+    '</div>'+
+    '<div class="card" style="margin-top:10px">'+
+      '<div class="sec-lbl">Growth Skills Track — Ads</div>'+
+      '<div class="rules-strip" style="margin-bottom:12px">Learn ads at owner level — well enough to price, hire, and audit media buyers. Not to become one. Ads are learned by spending. Cap holds until retainer MRR ≥ £1,500/mo.</div>'+
+      '<table class="tbl"><thead><tr><th>Phase</th><th>Action</th><th>Cap</th></tr></thead><tbody>'+
+      '<tr><td>Now–Aug 2026</td><td>None. Proving-ground phase. Dee\'s position stands: ads-first = crowded/low-margin.</td><td>£0</td></tr>'+
+      '<tr><td>Sept 2026</td><td>Google Ads — promote the Vekora £200 audit. Track CPC/CTR/cost-per-lead/cost-per-sale. Google Skillshop alongside (free).</td><td>£100–200</td></tr>'+
+      '<tr><td>Q4 2026</td><td>Meta lead forms micro-campaign. Written up after analysis.</td><td>£100–200</td></tr>'+
+      '<tr><td>2027</td><td>First client ad budget — inside Stage 2.5 retainer only, gates open.</td><td>Client budget</td></tr>'+
+      '<tr><td>2027+</td><td>Delegation phase — hire first freelance media buyer against own checklist. Spec the ad-reporting agent as a build.</td><td>–</td></tr>'+
+      '</tbody></table>'+
+    '</div>';
+}
+
+// ─── INCOME STREAMS ───────────────────────────────────────────────────────────
+
+function renderIncome(){
+  const el=document.getElementById('panel-income');
+  if(!el)return;
+  el.innerHTML=
+    '<div class="pg-eye">Proof reprices you. Delegation frees you.</div>'+
+    '<div class="pg-h">Income Streams — Scaling Map</div>'+
+    '<div class="pg-desc">Streams aren\'t collected, they\'re compounded: proof reprices you, delegation frees you, each stream funds the next one\'s build.</div>'+
+    '<div class="income-grid">'+
+      '<div class="income-col" style="border-top:3px solid var(--ok)">'+
+        '<div class="income-era">Now</div>'+
+        '<div class="income-title">17 · 2026</div>'+
+        '<div class="income-item">Audits £200<br><span style="font-size:11px;color:var(--mu)">Credited against first build</span></div>'+
+        '<div class="income-item">Foundation builds £900<br><span style="font-size:11px;color:var(--mu)">£450 upfront · floor locked</span></div>'+
+        '<div class="income-item">Retainers £250–350/mo</div>'+
+        '<div class="income-item">Stage 1 IRS £500 setup<br><span style="font-size:11px;color:var(--mu)">Working live demo required</span></div>'+
+        '<div class="income-item">Stage 2 AI Lead Qual £950+£500<br><span style="font-size:11px;color:var(--mu)">Locked until demo 10/10</span></div>'+
+        '<div class="income-rt">Target: £500–1,500/mo by Sept<br><span style="font-size:11px;color:var(--mu);font-weight:500">Job of this stage: proof · case studies · data. Not the money.</span></div>'+
+      '</div>'+
+      '<div class="income-col" style="border-top:3px solid var(--gold)">'+
+        '<div class="income-era">At 18</div>'+
+        '<div class="income-title">Through 2027</div>'+
+        '<div class="income-item">Mid-market retainers <strong style="color:var(--gold)">£1.5–3.5k/mo</strong><br><span style="font-size:11px;color:var(--mu)">Gates: 2–3 case studies + Stage 2 10/10 + AIC co-credibility</span></div>'+
+        '<div class="income-item">AIC subcontract <strong>£750–1,000/day</strong><br><span style="font-size:11px;color:var(--mu)">Up from £500</span></div>'+
+        '<div class="income-item">Licence-first tool builds <strong>£10–25k</strong></div>'+
+        '<div class="income-item">ISA opens on 18th birthday<br><span style="font-size:11px;color:var(--mu)">Compound from day one</span></div>'+
+        '<div class="income-rt">£2.5–5k/mo pre-A-levels<br>£5–10k/mo pre-Imperial summer<br><span style="font-size:11px;color:var(--mu);font-weight:500">Maintenance mode during exams by design.</span></div>'+
+      '</div>'+
+      '<div class="income-col" style="border-top:3px solid var(--blue)">'+
+        '<div class="income-era">At 21</div>'+
+        '<div class="income-title">2030</div>'+
+        '<div class="income-item">Delegated agency MRR <strong>£3–8k/mo</strong><br><span style="font-size:11px;color:var(--mu)">VA/junior on delivery · you on sales + QA</span></div>'+
+        '<div class="income-item">Day rates <strong>£1,000–2,500</strong></div>'+
+        '<div class="income-item">Tool builds <strong>2–4/yr</strong></div>'+
+        '<div class="income-item"><strong style="color:var(--gold)">Vekora OS SaaS MRR</strong><br><span style="font-size:11px;color:var(--mu)">7-figure paper valuation at £15–25k MRR · 100% owned · concentrated equity bet</span></div>'+
+        '<div class="income-item">Elite internship summers <strong>£3–8k/mo</strong><br><span style="font-size:11px;color:var(--mu)">Bought by the maths grade + Imperial network</span></div>'+
+        '<div class="income-rt">ISA compounding</div>'+
+      '</div>'+
+    '</div>'+
+    '<div class="card mb12">'+
+      '<div class="sec-lbl">Pricing Floors by Date</div>'+
+      '<table class="tbl"><thead><tr><th>Product</th><th>NOW (2026)</th><th>Mid-Market Gate (Q1–Q2 2027)</th></tr></thead><tbody>'+
+      '<tr><td>Audit</td><td>£200 (credited vs first build)</td><td>£200 — unchanged</td></tr>'+
+      '<tr><td>Foundation Build</td><td>£900 · £450 upfront</td><td>£900 legacy · new-client minimum £1,500+</td></tr>'+
+      '<tr><td>Retainer</td><td>£250–350/mo</td><td>£1,500/mo new · legacy grandfathered £350–500 at renewal</td></tr>'+
+      '<tr><td>Stage 1 IRS</td><td>£500 setup</td><td>£500 — unchanged</td></tr>'+
+      '<tr><td>Stage 2</td><td>£950/mo + £500 setup</td><td>Repriced at renewal · new-client minimum follows gate</td></tr>'+
+      '<tr><td>Stage 2.5</td><td>Locked — gate not open</td><td>£1,500–3,500/mo · or 10–15% of £5–20k/mo ad spend</td></tr>'+
+      '</tbody></table>'+
+      '<div class="rules-strip" style="margin-top:10px">The floor rises on the front door, not on the clients funding the data moat. Legacy clients grandfathered. No exceptions on new deals.</div>'+
+    '</div>'+
+    '<div class="rules-strip" style="margin-bottom:12px"><strong>Equity rules:</strong> Cash floor ALWAYS — the licence fee alone covers cost + profit &middot; equity kicker 5–15% ON TOP, never instead &middot; revenue-generating companies only &middot; most kickers expire worthless and that\'s fine, they were free &middot; the concentrated equity position is my own cap table.</div>'+
+    '<div class="card-gold card" style="font-size:12.5px;font-weight:600;color:var(--txt2)">Betting is an expense category, not an income stream — excluded permanently.</div>';
+}
+
+// ─── LEGAL ────────────────────────────────────────────────────────────────────
+
+function toggleLegal(id,el){
+  if(!S.legal)S.legal={};
+  S.legal[id]=!!el.checked;
+  saveS();
+  var tc=el.closest('.tc');
+  if(tc)tc.classList.toggle('done',!!S.legal[id]);
+  updateLegalProgress();
+}
+function updateLegalProgress(){
+  var done=LEGAL_ITEMS.filter(function(item){return S.legal&&S.legal[item.id];}).length;
+  var bar=document.getElementById('legal-prog');
+  var cnt=document.getElementById('legal-cnt');
+  if(bar)bar.style.width=Math.round(done/LEGAL_ITEMS.length*100)+'%';
+  if(cnt)cnt.textContent=done+'/'+LEGAL_ITEMS.length;
+}
+function renderLegal(){
+  var el=document.getElementById('panel-legal');
+  if(!el)return;
+  var done=LEGAL_ITEMS.filter(function(item){return S.legal&&S.legal[item.id];}).length;
+  var pct=Math.round(done/LEGAL_ITEMS.length*100);
+  var sevC={red:'var(--err)',amb:'var(--warn)',grn:'var(--ok)'};
+  var sevBg={red:'rgba(239,68,68,.1)',amb:'rgba(245,158,11,.1)',grn:'rgba(34,197,94,.1)'};
+  var html=
+    '<div class="pg-eye">Armour, not advice</div>'+
+    '<div class="pg-h">Legal &amp; Compliance</div>'+
+    '<div class="pg-desc">Anything involving contracts, NDAs, or payment terms escalates to Dee first (AIC rule). £52 in registrations and a folder of templates now prevents every expensive conversation later.</div>'+
+    '<div class="card" style="margin-bottom:12px">'+
+      '<div class="flex-bc mb8">'+
+        '<span class="sec-lbl" style="margin:0">Checklist progress</span>'+
+        '<span id="legal-cnt" style="font-size:13px;font-weight:800;color:'+(done===LEGAL_ITEMS.length?'var(--ok)':'var(--gold)')+'">'+done+'/'+LEGAL_ITEMS.length+'</span>'+
+      '</div>'+
+      '<div class="prog-bar"><div class="prog-fill fill-gold" id="legal-prog" style="width:'+pct+'%"></div></div>'+
+    '</div>'+
+    '<div class="rules-strip" style="margin-bottom:16px">When in doubt: Dee first, then a solicitor, never a guess.</div>';
+  var groups={};
+  LEGAL_ITEMS.forEach(function(item){if(!groups[item.g])groups[item.g]=[];groups[item.g].push(item);});
+  Object.keys(groups).forEach(function(grp){
+    html+='<div class="legal-grp">'+grp+'</div><div class="tasks" style="margin-bottom:0">';
+    groups[grp].forEach(function(item){
+      var chk=S.legal&&S.legal[item.id];
+      html+='<div class="tc'+(chk?' done':'')+'">'+
+        '<input class="cb-check" type="checkbox"'+(chk?' checked':'')+' onclick="event.stopPropagation()" onchange="toggleLegal(\''+item.id+'\',this)">'+
+        '<div class="tc-body">'+
+          '<div style="display:flex;align-items:center;gap:6px;margin-bottom:'+(item.d?'4':'0')+'px">'+
+            '<span style="font-size:9px;font-weight:800;color:'+sevC[item.s]+';background:'+sevBg[item.s]+';border-radius:3px;padding:1px 6px">'+item.s.toUpperCase()+'</span>'+
+            '<span class="tc-title"'+(chk?' style="text-decoration:line-through;color:var(--mu)"':'')+'>'+esc(item.t)+'</span>'+
+          '</div>'+
+          (item.d?'<div class="tc-why">'+esc(item.d)+'</div>':'')+
+        '</div>'+
+      '</div>';
+    });
+    html+='</div>';
+  });
+  el.innerHTML=html;
+}
 
 // ─── UTILS ────────────────────────────────────────────────────────────────────
 
@@ -1159,11 +2488,28 @@ saveS();
 WKS.forEach(w=>renderWk(w));
 renderProjects();
 renderGoals();
+renderFutureSelf();
+renderSkillsProofs();
+renderTrajectory();
 renderSOPs();
 renderGuards();
+renderOffer();
+renderTierTracker();
+renderOfferMenu();
+renderDestination();
+renderMarkets();
+renderPipeline();
+renderIncome();
+renderLegal();
 renderOverview();
+renderCVTracker();
 updateDots();
 updateSbStats();
+// Default landing: Future Self
+(function(){
+  var btn=document.getElementById('nb-future');
+  if(btn){nav('future',btn);}else{document.getElementById('panel-future').classList.add('on');}
+})();
 </script>
 </body>
 </html>
