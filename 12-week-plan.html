@@ -485,6 +485,7 @@ body.light .card{box-shadow:0 1px 3px rgba(0,0,0,.07)}
     <button class="sb-btn" onclick="nav('projects',this)"><i class="sb-ic">⊕</i><span style="flex:1">Projects</span><span class="sb-wk-badge">W7</span></button>
     <button class="sb-btn" onclick="nav('goals',this)"><i class="sb-ic">◎</i><span style="flex:1">Goals</span><span class="sb-wk-badge">W1</span></button>
     <button class="sb-btn" onclick="nav('sops',this)"><i class="sb-ic">◉</i><span style="flex:1">Vekora SOPs</span><span class="sb-wk-badge">W1</span></button>
+    <button class="sb-btn" onclick="nav('action',this)"><i class="sb-ic">⚡</i><span style="flex:1">Action Plan</span><span class="sb-wk-badge">Now</span></button>
     <button class="sb-btn" onclick="nav('guardrails',this)"><i class="sb-ic">⊖</i><span style="flex:1">Guardrails</span><span class="sb-wk-badge">W1</span></button>
     <button class="sb-btn" onclick="nav('trajectory',this)"><i class="sb-ic">→</i><span style="flex:1">Trajectory</span></button>
     </div>
@@ -639,6 +640,9 @@ body.light .card{box-shadow:0 1px 3px rgba(0,0,0,.07)}
   <div class="sop-grid" id="sop-list"></div>
 </div>
 
+<!-- ACTION PLAN -->
+<div id="panel-action" class="panel"></div>
+
 <!-- GUARDRAILS -->
 <div id="panel-guardrails" class="panel">
   <div class="pg-eye">Non-Negotiable</div>
@@ -675,6 +679,8 @@ const WKS = [
    {t:'Flag mock weeks (W3–4) to Dee in the check-in',why:'One sentence: "Mocks are 22 Jun–5 Jul, switching to minimal protocol." Dee needs to plan. Do it in the same Friday message.',time:'~1 min'},
    {t:'Vas repair message sent ✓ → when he replies, present the 3 options clearly',why:'Options: (1) full handover at an agreed fee, (2) editor access added, (3) free 24h edits for 90 days. The Vas lesson is now Guardrail #2.',time:'~15 min when he replies',note:'Message sent ✓ — waiting on reply'},
    {t:'Rubbish removal lead: book 15-min discovery call',why:'Don\'t pitch. Book the call. One question: "What happens when a job enquiry comes in at 9pm?" Then listen. That\'s the whole discovery.',time:'~10 min'},
+   {t:'Research 10 trade businesses in Romford, Ilford, Dagenham, Barking, Brentwood — log name, phone, WhatsApp',why:'Pipeline starts before you pick up the phone. 10 names + contact details is the bare minimum to start calling in W2. Google Maps: "[niche] [area]" → grab decision-maker name + number.',time:'~1 hr'},
+   {t:'Send 3 outreach WhatsApp messages to local trades this week — log every send',why:'The audit (£200) is your door-opener. Start the volume this week even at low pace. Every send logged = data.',time:'~30 min'},
    {t:'Create UAT-UK account',why:'UAT-UK gets you into the university application tracking system. Do this before any university-related deadlines hit.',time:'~30 min'},
    {t:'CV v14 truth rewrite',why:'Accuracy only — truth not padding. Every claim must survive a probing question. Do not inflate.',time:'~45 min'},
    {t:'Gym: Mon 9, Wed 11, Sat 14 — sessions done',why:'Gym Mon/Wed/Sat is a standing commitment across all 12 weeks. Protein every meal. Sleep by 21:30.',time:'Done',pre:true},
@@ -691,7 +697,12 @@ const WKS = [
   mlo:450,mhi:900,sends:30,
   tasks:[
    {t:'Away With It demo — real Claude Code project, terminal commits, live Vercel URL. PERSONAL accounts only (not AIC). Target done by Tue/Wed per Dee.',why:'This is the W2 deliverable Dee specified. Use Claude Code in the terminal, commit every 2h, push to your own GitHub, deploy to Vercel. Document what Claude Code did well and what it got wrong in the Build Log.',time:'Mon–Wed (priority)'},
+   {t:'Test demo end-to-end: open Vercel URL on phone → fill form with messy fake text → confirm AI reply shows correct name/area/price/2 slots → confirm Telegram ping within 5s → fix anything broken before recording',why:'A broken demo Loom is worse than no Loom. Test it first. Every time. Non-negotiable before recording.',time:'~30 min'},
+   {t:'Record the 2-min Loom: screen record, fill form live on camera, show AI reply appearing, show phone buzzing with owner alert — narrate only, no editing needed',why:'This is your sales asset for Away With It. Record it while the demo is working and fresh. Under 2 min.',time:'~30 min'},
+   {t:'Send Loom to Away With It on WhatsApp: "Recorded a quick 2-min walkthrough so your partner can see exactly how it works — happy to answer any questions" + link. Do NOT follow up for 3 days.',why:'One send. No pressure. The Loom closes on its own. Silence after send is intentional — it signals confidence.',time:'~5 min'},
    {t:'CCA: start IMMEDIATELY when the Away With It build clears (Tue/Wed) — not Week 5. Access anthropic.skilljar.com and begin Module 1.',why:'Dee confirmed: CCA is a NOW activity, not a summer one. 6-month market window — every week of delay costs. Module 1 is concepts, do it in one sitting.',time:'When build clears'},
+   {t:'5 cold outreach calls/day to trades in Romford, Ilford, Dagenham, Barking, Brentwood — log every call (name, business, outcome, follow-up date)',why:'Don\'t be hostage to Away With It. Pipeline runs in parallel. Script: "I help trade businesses stop losing jobs from missed calls. I have a system that responds to every enquiry in under 30 seconds. Can I show you a 2-minute demo?"',time:'~1 hr/day'},
+   {t:'Ask maths teacher: is Senior Maths Challenge offered this autumn? If yes, register immediately.',why:'Cheapest high-value Imperial signal. One 5-minute conversation. Don\'t miss the registration window.',time:'~5 min'},
    {t:'Lead call → close at any listed offer price — take deposit, ownership terms in writing before any work begins',why:'The pricing floor is law. If they push back, trim scope — never drop the price. Ownership clause must be in writing before deposit. This is the Vas lesson.',time:'~45 min call'},
    {t:'Outreach: 10 audit pitches this week — log every send in your metric sheet',why:'The audit (£200) is credited against any build. It\'s your foot-in-the-door. Volume builds pipeline. Log every message.',time:'~3–5 hrs across week'},
    {t:'Legal: register ICO (~£40) and put a simple 1-page written agreement in place BEFORE first real client data goes live',why:'ICO registration is required before processing any client data. The written agreement protects you — ownership, IP, payment, exit. One evening. Vekora Ltd + business bank can wait until real revenue is landing (W6–W8).',time:'~1 hr'},
@@ -715,7 +726,9 @@ const WKS = [
    {t:'Gym: Mon 22, Wed 24, Sat 27 — gentle sessions only (no PBs this week)',why:'Movement clears your head. Gentle gym beats no gym — but don\'t exhaust yourself the night before a paper.',time:'~45 min x3'},
    {t:'Bible: daily — 10 min morning',why:'Non-negotiable. Grounds you before the paper.',time:'Daily'},
    {t:'Art of War: 10–15 min each evening (breaks from revision, not instead of it)',why:'You\'ve finished Atomic Habits. Art of War is short chapters — evening reading that isn\'t a screen.',time:'10–15 min/eve'},
-   {t:'Outreach: zero new sends. Reply to live deals within 24h only.',why:'Mock protocol. Every hour on outreach is an hour off maths. Live deals only — one sentence reply, no pitching.',time:'<5 min if needed'},
+   {t:'5 cold outreach calls/day to trades — log every call (mocks protocol: calls allowed, WhatsApp pitching minimised)',why:'Mock protocol allows calls. Don\'t let the pipeline go completely cold — 5 calls/day keeps momentum without draining revision time.',time:'~45 min/day max'},
+   {t:'Document Away With It week 1 results (if live): leads captured, any jobs booked, client feedback — start the ROI log',why:'Results data is your sales tool for the next 6 months. Start collecting it from day 1 of go-live.',time:'~15 min'},
+   {t:'Reply to any live deal messages within 24h — one sentence, no new pitching',why:'Mock protocol. Every hour on outreach is an hour off maths. Live deals only.',time:'<5 min if needed'},
    {t:'21:30 hard cutoff — strictly. Sleep is revision.',why:'Sleep is when the brain consolidates. A tired exam-day brain loses marks that revision can\'t recover.',time:'Non-negotiable'},
    {t:'Fri 26 Jun: minimum Loom (2 min verbal) + one Build Log entry sent to Dee by EOD',why:'The streak survives mock week. A 2-min honest Loom beats nothing. This is non-negotiable even in mocks.',time:'~15 min',dl:true},
   ],
@@ -731,7 +744,9 @@ const WKS = [
    {t:'Gym: Mon 29, Wed 1 Jul, Sat 4 Jul — gentle, energy-preserving sessions',why:'Same rule as W3. Movement clears your head. Don\'t exhaust yourself the night before a paper.',time:'~45 min x3'},
    {t:'Bible: daily — 10 min morning',why:'Non-negotiable.',time:'Daily'},
    {t:'Art of War: finish the book this week',why:'Short chapters. Finish it. Gives you a clean slate for Greene books in the summer.',time:'10–15 min/eve'},
-   {t:'Outreach: still zero new sends. Reply to live deals within 24h only.',why:'Same mock protocol. Summer outreach (50/wk) starts W5 — not a day earlier.',time:'<5 min if needed'},
+   {t:'5 cold outreach calls/day to trades — log every call, same protocol as W3',why:'Same mock-week protocol. 5 calls/day = 25 this week. By the end of mocks you\'ll have 50+ logged calls and live pipeline ready for summer.',time:'~45 min/day max'},
+   {t:'Get the ROI sentence from Away With It (if system has data): "went from missing X% of after-hours enquiries to zero — estimated £X recovered in month one"',why:'This one sentence is your sales tool for the next 6 months. Get it in writing. Don\'t invent the number — use the system log.',time:'~10 min message'},
+   {t:'Reply to live deals within 24h — one sentence only',why:'Same protocol. No new pitching until summer.',time:'<5 min if needed'},
    {t:'21:30 hard cutoff — strictly throughout.',why:'Last week of school term. Don\'t collapse at the finish line.',time:'Non-negotiable'},
    {t:'Fri 3 Jul: minimum Loom (2 min verbal) + Build Log entry sent to Dee by EOD',why:'Two minimum Fridays across mocks — that\'s the streak target. Second one is this Friday.',time:'~15 min',dl:true},
    {t:'Last mock done → write honest maths self-assessment (one page: what held, what didn\'t, what to fix in W5+)',why:'The self-assessment is data. It tells you whether to book TMUA with confidence or book extra Maths sessions. Be honest.',time:'~30 min after last paper'},
@@ -753,8 +768,11 @@ const WKS = [
    {t:'"What I understand about auth" — half-page note in your own words',why:'Every production system needs auth. Writing it in your own words is how you find the gaps before they bite you in a client build.',time:'~30 min'},
    {t:'Month 1 retro call with Dee: scorecard, CCA progress update (started W2), stack decision, ask the £1k/day question',why:'Ask Dee: "What would I need to show you to be worth £1,000/day?" Write the answer down. That\'s your roadmap for Month 2.',time:'~1 hr call'},
    {t:'(Optional) Buy domain + pro email (~£10–15/yr) — once first client is close to going live',why:'A pro email and domain signal you\'re serious when clients Google you. Do it when revenue is real — not as a substitute for doing the work.',time:'~30 min'},
-   {t:'Outreach resumes: 10 audit pitches per evening',why:'The pipeline died in mocks. Restart it at full intensity. Volume builds pipeline.',time:'~1 hr/evening'},
-   {t:'Metric-logging sheet created',why:'The sheet makes your numbers real — without it you\'re guessing. Sends, replies, calls booked, audits delivered, reply rate.',time:'~30 min (once)'},
+   {t:'Outreach resumes: 10 audit pitches per evening — full 50/week pace from now',why:'The pipeline died in mocks. Restart at full summer intensity. The audit (£200) is credited against a Foundation Build.',time:'~1 hr/evening'},
+   {t:'Metric-logging sheet created: sends / replies / calls booked / audits delivered / reply rate — log every action from here',why:'The sheet makes your numbers real. Without it you\'re guessing. Build it once, use it every week.',time:'~30 min (once)'},
+   {t:'Unaided coding habit starts: 30 min × 3 this week, no AI — binary search, stack/queue, or sort algorithm from memory. Log what you could and couldn\'t do.',why:'Imperial examines you without AI. Prove what you can do unaided. This habit runs every week through August.',time:'30 min × 3'},
+   {t:'Join Anthropic Discord + one Claude dev community — lurk 3 days then post one thing you\'ve built with a link',why:'Peer group is a structural weakness. No one in your immediate environment is operating at this level. One post opens doors.',time:'~30 min setup + post'},
+   {t:'Senior Maths Challenge registration (if offered) — confirm with school this week',why:'If it wasn\'t confirmed in W2, chase it now. Registration windows close fast.',time:'~5 min'},
    {t:'Gym: Mon 6, Wed 8, Sat 11 Jul',why:'Back to full schedule. Protein every meal. Gym Mon/Wed/Sat is non-negotiable throughout summer.',time:'~45 min x3'},
    {t:'Bible: daily — 10 min morning',why:'Non-negotiable.',time:'Daily'},
    {t:'Start Robert Greene (first book) — read critically, not as a playbook',why:'Art of War is done. Greene books are next on the reading list. Read as case studies in human behaviour.',time:'~20 min/eve'},
@@ -774,8 +792,10 @@ const WKS = [
    {t:'Write 1-page Month 1 retrospective: what I learned, what surprised me, what I struggled with, 3 Month 2 priorities',why:'Retros are how you learn faster. Writing it cements the lesson. It also shows Dee you\'re operating like a professional.',time:'~45 min'},
    {t:'Register Vekora Ltd (£12, Companies House SIC 62020)',why:'Real revenue is landing — Ltd status at this point, not day one. Companies House online, SIC 62020, home address as registered office.',time:'~45 min'},
    {t:'Open Tide or Starling business bank account',why:'Separate business account makes tax tracking clean and looks professional. Do immediately after Ltd is registered.',time:'~30 min (same evening)'},
-   {t:'Outreach continues: 10 pitches/evening',why:'Keep volume up — audit (£200) credited against a Foundation Build. No-brainer for the client.',time:'~1 hr/evening'},
+   {t:'Outreach continues: 10 pitches/evening — 50/week',why:'Keep volume up. Audit (£200) credited against Foundation Build. No-brainer for the client.',time:'~1 hr/evening'},
    {t:'Deliver any sold audits within 48h of yes',why:'Speed signals professionalism. The audit is the start of the trust relationship. Don\'t let it drag.',time:'Within 48h of close'},
+   {t:'Write 3-bullet SOP after every client action: what / how / how long — these become VA handover docs',why:'Don\'t delegate before the SOP exists. Every client interaction now = future delegation material. 3 bullets = 5 min.',time:'~5 min after each action'},
+   {t:'Unaided coding: 30 min × 3 this week, no AI — recursive function or simple parser from memory. Log gaps.',why:'Unaided coding habit week 2. Build progressively harder things. Gaps you find now are weeks of prep.',time:'30 min × 3'},
    {t:'Gym: Mon 13, Wed 15, Sat 18 Jul',why:'Standing commitment. Protein every meal.',time:'~45 min x3'},
    {t:'Bible: daily',why:'Non-negotiable.',time:'Daily'},
    {t:'Greene: continue reading',why:'Consistent 20 min/eve — read critically.',time:'~20 min/eve'},
@@ -797,6 +817,9 @@ const WKS = [
    {t:'Push for Foundation Build #2 — new client close',why:'One client in the pipeline is not a pipeline. Keep outreach running in parallel to any active delivery.',time:'Ongoing'},
    {t:'GBP retainer pitch (£250/mo) to every delivered client at their 30-day mark',why:'The retainer is where monthly recurring income starts. Ask at day 30. Most say yes if the build was clean — don\'t skip this conversation.',time:'~15 min per client'},
    {t:'Open source: first contribution — a documentation fix on a tool you actually use. Learn the PR workflow.',why:'This goes on your GitHub, your CV, and your Imperial PS. It also proves you can navigate a real codebase you didn\'t write.',time:'~2–3 hrs'},
+   {t:'Unaided coding: 30 min × 3 this week, no AI — linked list or hash map from memory',why:'Week 3 of the unaided habit. Data structures from memory = foundational CS evidence for Imperial interviews.',time:'30 min × 3'},
+   {t:'Post one build update in Anthropic Discord or dev community this week',why:'Visibility compounds. One post/week max — build in public selectively. Keep crown jewels back.',time:'~15 min'},
+   {t:'Outreach: 50 sends this week — log every send',why:'Summer quota. 50/week, 10/day Tue–Sat. Pipeline dies if you stop feeding it.',time:'~1 hr/day'},
    {t:'Gym: Mon 20, Wed 22, Sat 25 Jul',why:'Standing commitment. Protein every meal.',time:'~45 min x3'},
    {t:'Bible: daily',why:'Non-negotiable.',time:'Daily'},
    {t:'Greene: continue reading — 20 min/eve',why:'Read critically. Note what rings true vs what is manipulative framing.',time:'~20 min/eve'},
@@ -818,6 +841,8 @@ const WKS = [
    {t:'Outreach steady at 50 sends/week',why:'Pipeline only exists if you keep filling it. Outreach must not die when a build is underway.',time:'~10 sends/day'},
    {t:'Hackathon: find one, check age eligibility, register',why:'Hackathons give you compressed shipping experience, networking, and portfolio evidence. MLH events list has UK-eligible ones. Register now.',time:'~30 min research + registration'},
    {t:'Open source: take one "good first issue" on a real project',why:'One step harder than documentation. Writing code in someone else\'s codebase is a distinct skill — and it\'s on your GitHub forever.',time:'~3–5 hrs'},
+   {t:'Unaided coding: 30 min × 3 this week — sorting algorithm + binary search from memory, timed',why:'Week 4. Time yourself. No looking things up. The gap between what you think you know and what you can write is what you\'re closing.',time:'30 min × 3'},
+   {t:'Outreach: 50 sends this week + at least 3 discovery conversations had',why:'Problem shortlist in W8 needs real conversations, not assumptions. Ask the harvest question in every discovery: "What\'s the most expensive manual process on the admin side?"',time:'~1 hr/day sends + conversations'},
    {t:'Gym: Mon 27, Wed 29, Sat 1 Aug',why:'Standing commitment. Protein every meal.',time:'~45 min x3'},
    {t:'Bible: daily',why:'Non-negotiable.',time:'Daily'},
    {t:'Greene: continue reading — 20 min/eve',why:'Read critically.',time:'~20 min/eve'},
@@ -837,6 +862,9 @@ const WKS = [
    {t:'CCA module 3 on anthropic.skilljar.com',why:'Third certificate. Keep the CCA pace — one module per active week.',time:'4–6 hrs'},
    {t:'TMUA daily hour — past papers every weekday',why:'TMUA is daily from W7 through test day. Non-negotiable.',time:'1 hr/weekday'},
    {t:'Deliver any outstanding client work',why:'Nothing slips during summer. If a client paid, they get delivery. Log it in the check-in.',time:'As scheduled'},
+   {t:'Outreach: 50 sends this week',why:'Outreach does not stop because demo is being rebuilt. 50/week is the summer floor.',time:'~1 hr/day'},
+   {t:'Unaided coding: start Agent-Based Market Simulation core loop — buyer + seller agents, no AI',why:'The PS artifact. Unaided means you can explain every line in an interview. Start this week so you have time to iterate.',time:'~3–4 hrs total this week'},
+   {t:'Book maths teacher appointment to review PS draft 1 — get feedback scheduled',why:'Teacher read + feedback = draft 2 can be near-final. Book the appointment this week so it doesn\'t slip.',time:'~5 min'},
    {t:'Gym: Mon 3, Wed 5, Sat 8 Aug',why:'Standing commitment. Protein every meal.',time:'~45 min x3'},
    {t:'Bible: daily',why:'Non-negotiable.',time:'Daily'},
    {t:'Greene: continue reading — 20 min/eve',why:'Read critically.',time:'~20 min/eve'},
@@ -857,6 +885,9 @@ const WKS = [
    {t:'CCA module 4 on anthropic.skilljar.com',why:'Final CCA module before the exam. Complete before W11.',time:'4–6 hrs'},
    {t:'TMUA daily hour — it\'s 3 weeks from test day',why:'TMUA is 3 weeks away. Every day of prep at this stage compounds directly into the score.',time:'1 hr/weekday'},
    {t:'PS draft 2 revised (if feedback from teacher received)',why:'PS draft 2 incorporates teacher feedback. Get it to 80/100 now — final polish in October.',time:'~2 hrs'},
+   {t:'Unaided coding: complete Agent-Based Market Simulation — emergent price dynamics visible in output',why:'This is the Imperial CS PS artifact. Must be whiteboard-explainable without notes. Finish the core simulation this week.',time:'~4–6 hrs total'},
+   {t:'Get written testimonial from any delivered client who has 30 days of results',why:'Testimonial = social proof for the next cold outreach. "My enquiry response dropped from 4 hours to 30 seconds." Ask — most clients say yes.',time:'~10 min message'},
+   {t:'Outreach: 50 sends this week',why:'Outreach does not pause for the hackathon. 50/week, every summer week.',time:'~1 hr/day'},
    {t:'Gym: Mon 10, Wed 12, Sat 15 Aug',why:'Standing commitment. Protein every meal.',time:'~45 min x3'},
    {t:'Bible: daily',why:'Non-negotiable.',time:'Daily'},
    {t:'Greene: continue reading — 20 min/eve',why:'Read critically.',time:'~20 min/eve'},
@@ -878,6 +909,9 @@ const WKS = [
    {t:'CCA module 4 on anthropic.skilljar.com (if not done in W10)',why:'Last module before the exam. Certificate issued on completion. Exam scheduling follows.',time:'4–6 hrs'},
    {t:'TMUA daily hour — final sprint before test day',why:'TMUA is this week or next. Every session at this stage is directly recoverable marks.',time:'1 hr/weekday'},
    {t:'Professional indemnity insurance: get a quote if any retainer is live (~£10–15/mo)',why:'One unhappy retainer client who threatens legal action with no insurance is catastrophic. This is cheap. Do it.',time:'~30 min'},
+   {t:'Unaided coding: write Agent-Based Market Simulation 500-word write-up — what emerged and why, computationally framed',why:'The write-up is what makes it PS-worthy. Explain emergent behaviour in CS terms. This is the Imperial signal.',time:'~1 hr'},
+   {t:'PS: book session with teacher to review draft 2 — deadline before 30 Aug',why:'Teacher read of draft 2 = near-final PS. If this isn\'t booked, it won\'t happen.',time:'~5 min to book'},
+   {t:'Outreach: 50 sends this week — include first Stage 2 pitch attempts',why:'MVP outreach starts W12. Pipeline must be fully stocked before then. Stage 2 conversations active from any Foundation client at 30 days.',time:'~1 hr/day'},
    {t:'Gym: Mon 17, Wed 19, Sat 22 Aug',why:'Standing commitment. Protein every meal.',time:'~45 min x3'},
    {t:'Bible: daily',why:'Non-negotiable.',time:'Daily'},
    {t:'Greene: finish book, start next if time',why:'Read critically.',time:'~20 min/eve'},
@@ -897,6 +931,9 @@ const WKS = [
    {t:'CCA exam: scheduled (Month 4, cohort-gated) — confirm date with Dee in September preview',why:'CCA exam date is set by cohort, not by you. Confirm in the September preview call — do not sit it without the cohort-gated sign-off.',time:'~10 min (confirm only)'},
    {t:'Subcontractor readiness checklist scored with Dee: availability, equipment, pro email, LinkedIn, GitHub, 24h response, confidentiality, agreements via Michelle/Dee',why:'This is the conversation that determines whether you\'re deployable as a subcontractor in Year 13. Be honest in the scoring.',time:'~45 min call'},
    {t:'Programme retrospective: 12-Friday streak is the headline metric — write what you learned, what surprised you, what you\'d do differently',why:'The retro is for you. It\'s also evidence of professional self-reflection for any future conversation about your capability.',time:'~1 hr'},
+   {t:'Agent-Based Market Simulation on GitHub — public repo + README + write-up published',why:'Public evidence that survives beyond the PS. Admissions tutors and future employers can see it. Ship it.',time:'~1 hr'},
+   {t:'PS final check: read aloud, cut anything that doesn\'t add signal — target 85–90/100 effort',why:'Beyond 90/100 effort, time is better spent on TMUA. Read aloud test: does every sentence earn its place?',time:'~1 hr'},
+   {t:'September calendar set: CCA exam date (Dee), TMUA results day, UCAS deadline, Y13 Friday cadence',why:'Don\'t let the programme end with no next chapter. September is decided in August.',time:'~20 min'},
    {t:'September preview agreed with Dee: CCA exam date · Year 13 cadence · subcontract availability',why:'Don\'t let this programme end with no plan for what comes next. September is decided in August.',time:'~30 min'},
    {t:'Gym: Mon 24, Wed 26, Sat 29 Aug',why:'Standing commitment. Protein every meal. Last week of the programme.',time:'~45 min x3'},
    {t:'Bible: daily',why:'Non-negotiable.',time:'Daily'},
