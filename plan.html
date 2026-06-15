@@ -2466,82 +2466,118 @@ function saveMockDate(wid,field,val){
   saveS();
 }
 
-// ─── OFFER LADDER ────────────────────────────────────────────────────────────
+// ─── OFFER (rebuilt niche-card UI) ───────────────────────────────────────────
+
+var _offerExpanded=null;
+
+function toggleNiche(n){
+  _offerExpanded=_offerExpanded===n?null:n;
+  renderOffer();
+}
 
 function renderOffer(){
-  const el=document.getElementById('panel-offer');
+  const el=document.getElementById('panel-offer');if(!el)return;
+
+  const whatItDoes=[
+    'Every enquiry caught — phone, form, after-hours — nothing falls through',
+    'Instant intelligent qualifying reply in seconds — not minutes, not next morning',
+    'Missed-call text-back — caller gets a message before they ring a competitor',
+    'Real-time owner alert — who called, what they want, how hot they are',
+    'Monthly performance report — leads captured, response time, estimated revenue recovered',
+  ];
+
+  const NICHES=[
+    {id:'home',label:'High-Ticket Home Improvement',icon:'🔨',
+     industries:'Kitchens · Bathrooms · Conservatories · Driveways · Solar · Windows &amp; Doors',
+     setup:'£1,000–1,500 (one-off)',monthly:'£600–950/mo managed',
+     roi:'Your average job is worth £10–20k. If this recovers one extra job a year it\'s paid for itself many times over — and it\'s catching every enquiry, every night.',
+     channels:'Cold call · Walk-in / showroom visits · Facebook ads angle (avoid: email, LinkedIn — low open rates)',
+     areas:'Loughton · Buckhurst Hill · Chigwell · Brentwood · Epping · Hornchurch · Upminster · Billericay · Chelmsford · Ongar',
+    },
+    {id:'prop',label:'Property &amp; Lettings Agencies',icon:'🏠',
+     industries:'Estate agents · Lettings agencies · Property management',
+     setup:'£1,000–1,500 (one-off)',monthly:'£600–950/mo managed',
+     roi:'First agent to respond usually wins the instruction. This responds in seconds, day or night — stop losing instructions to whoever replied faster.',
+     channels:'Email · LinkedIn · Phone · Branch walk-in',
+     areas:'Same Essex corridor — especially Loughton, Chigwell, Brentwood, Epping, Hornchurch',
+    },
+  ];
+
+  const LADDER=[
+    {stage:'NOW',label:'Instant Response & Qualification',note:'Selling now',color:'var(--ok)'},
+    {stage:'FUTURE',label:'Lead-Leak Audit',note:'Lead-gen door opener',color:'var(--mu)'},
+    {stage:'FUTURE',label:'Claude Setup',note:'Configure AI as their business brain',color:'var(--mu)'},
+    {stage:'FUTURE',label:'Website + GBP',note:'Visibility foundation',color:'var(--mu)'},
+    {stage:'FUTURE',label:'Booking / Calendar automation',note:'Stage 2',color:'var(--mu)'},
+    {stage:'FUTURE',label:'Task automation + Ads',note:'Stage 3+',color:'var(--mu)'},
+  ];
+
+  const nicheCards=NICHES.map(function(n){
+    const isOpen=_offerExpanded===n.id;
+    const expandedHtml=isOpen?
+      '<div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--bd)">'+
+        '<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--mu);margin-bottom:4px">Industries</div>'+
+        '<div style="font-size:13px;color:var(--txt2);margin-bottom:10px">'+n.industries+'</div>'+
+        '<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--mu);margin-bottom:4px">Best Channels</div>'+
+        '<div style="font-size:13px;color:var(--txt2);margin-bottom:10px">'+esc(n.channels)+'</div>'+
+        '<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--mu);margin-bottom:4px">Target Areas</div>'+
+        '<div style="font-size:13px;color:var(--txt2);margin-bottom:10px">'+esc(n.areas)+'</div>'+
+        '<div style="background:var(--gll);border:1px solid rgba(201,168,76,.2);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:10px 14px;font-size:12.5px;color:var(--txt2);line-height:1.65;font-style:italic">'+esc(n.roi)+'</div>'+
+      '</div>':'';
+    return '<div class="card" style="border-left:3px solid var(--gold);cursor:pointer;margin-bottom:10px" onclick="toggleNiche(\''+n.id+'\')">'+
+      '<div style="display:flex;justify-content:space-between;align-items:center">'+
+        '<div>'+
+          '<div style="font-size:15px;font-weight:800;color:var(--txt)">'+n.icon+' '+n.label+'</div>'+
+          '<div style="font-size:12px;color:var(--mu);margin-top:3px">Setup: '+esc(n.setup)+' &nbsp;·&nbsp; Monthly: '+esc(n.monthly)+'</div>'+
+        '</div>'+
+        '<span style="font-size:18px;color:var(--mu);transition:transform .15s;transform:'+(isOpen?'rotate(90deg)':'rotate(0deg)')+'">›</span>'+
+      '</div>'+
+      expandedHtml+
+    '</div>';
+  }).join('');
+
+  const ladderHtml=LADDER.map(function(l){
+    var isNow=l.stage==='NOW';
+    return '<div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--card'+(isNow?'':'2')+'  );border:1px solid '+(isNow?'var(--gold)':'var(--bd)')+';border-radius:8px;margin-bottom:6px">'+
+      '<span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:3px;background:'+(isNow?'var(--gold)':'var(--card2)')+';color:'+(isNow?'#000':'var(--mu)')+'">'+esc(l.stage)+'</span>'+
+      '<div><div style="font-size:13px;font-weight:700;color:var(--txt)">'+esc(l.label)+'</div><div style="font-size:11px;color:var(--mu)">'+esc(l.note)+'</div></div>'+
+    '</div>';
+  }).join('');
+
   el.innerHTML=
-    '<div class="pg-eye">Vekora Revenue Architecture</div>'+
-    '<div class="pg-h">Offer Ladder</div>'+
-    '<div class="pg-desc">Six stages. Move up on evidence, never optimism. The gate column is the only number that matters — it overrides enthusiasm every time.</div>'+
-    '<div class="card" style="padding:0;overflow:hidden;margin-bottom:12px">'+
-    '<table class="ladder-tbl"><thead><tr>'+
-      '<th>Stage</th><th>When</th><th>Product</th><th>Price</th><th class="gate-cell">Unlock gate</th>'+
-    '</tr></thead><tbody>'+
-    '<tr>'+
-      '<td class="stage-cell">0 — Diagnose &amp; Respond</td>'+
-      '<td><span class="tag to">Now</span></td>'+
-      '<td>£200 Lead-Leak Audit (48h video + 1-page plan) · £900 "Never Miss A Job" Foundation (GBP setup + instant SMS enquiry alerts + landing page if needed) · £250–350/mo Response &amp; Visibility retainer</td>'+
-      '<td style="color:var(--gold);font-weight:700">Floors locked</td>'+
-      '<td class="gate-cell"><strong style="color:var(--ok)">None</strong></td>'+
-    '</tr>'+
-    '<tr>'+
-      '<td class="stage-cell">1 — Instant Response System</td>'+
-      '<td><span class="tag tw">Now (W2)</span></td>'+
-      '<td>Missed-call text-back + enquiry auto-acknowledge + qualify (Twilio → Cloud Run → SMS). <em>Away With It is the live build.</em></td>'+
-      '<td style="font-weight:600">£500 setup<br><span style="font-size:11px;color:var(--mu)">+£150 instant quoting · +£100 priority tags · £250/mo managed</span></td>'+
-      '<td class="gate-cell">Working live demo — missed call → SMS under 30s, 5 consecutive passes</td>'+
-    '</tr>'+
-    '<tr>'+
-      '<td class="stage-cell">2 — AI Lead Qualification</td>'+
-      '<td><span class="tag tg">~Aug</span></td>'+
-      '<td>Qualify → score → reply → book, under 30s</td>'+
-      '<td style="font-weight:600">£950/mo + £500 setup</td>'+
-      '<td class="gate-cell"><strong>Demo runs 10/10</strong> consecutive, from memory, under 4 min, SMS every time</td>'+
-    '</tr>'+
-    '<tr style="background:rgba(201,168,76,.025)">'+
-      '<td class="stage-cell">2.5 — Full-Funnel Growth<br><span style="font-size:10px;font-weight:500;color:var(--mu)">Destination tier · 2027</span></td>'+
-      '<td><span class="tag tm">2027, mid-market</span></td>'+
-      '<td>Paid acquisition (Google/Meta) feeding the Stage 2 qualify/book system — ads + response + qualification as ONE revenue pipeline. Ads are part of the core growth stack, not a bolt-on.</td>'+
-      '<td style="font-weight:600">£1.5–3.5k/mo retainer<br><span style="font-size:11px;color:var(--mu)">+ revenue share on revenue the ads generate (NOT % of spend — credible only because my system is the attribution layer)</span></td>'+
-      '<td class="gate-cell">2–3 documented case studies with hard ROI · Stage 2 live at 10/10 · first AIC subcontract delivered</td>'+
-    '</tr>'+
-    '<tr>'+
-      '<td class="stage-cell">3 — Full-System GOS Phase 1<br><span style="font-size:10px;font-weight:500;color:var(--mu)">Portal · monitoring · ads layer</span></td>'+
-      '<td><span class="tag tm">2027+</span></td>'+
-      '<td>I run the full growth front: acquisition (ads) + qualification (Stage 2) + client portal + performance-monitoring agents. Me + AI agents + first VA on delivery. Plus B2B licence builds: £10–25k scoped tools, licence-first (value secured upfront — AIC principle).</td>'+
-      '<td style="font-weight:600">£2.5–4k/mo retainer<br><span style="font-size:11px;color:var(--mu)">+ revenue share above threshold · B2B tools: per scope · cash floor always · equity 5–15% on top, never instead</span></td>'+
-      '<td class="gate-cell">Stage 2.5 running · first VA hired · monitoring agents built · validated problem + Dee sign-off for custom tools</td>'+
-    '</tr>'+
-    '<tr>'+
-      '<td class="stage-cell">4 — Delegated Full GOS<br><span style="font-size:10px;font-weight:500;color:var(--err)">The £3.5–10k+/client tier</span></td>'+
-      '<td><span class="tag tm">Year 2+</span></td>'+
-      '<td>Entire front-of-house growth engine, fully delegated — VAs, media buyers, and agents I\'ve built doing routine work; me on sales, architecture, and QA only. <strong style="color:var(--gold)">£10k/client exists only at Stage 4 — it requires delegation to deliver. Price scales with how much of their growth engine I run.</strong><br><br><em style="color:var(--mu)">Vekora\'s destination = a full GROWTH-OPERATING SYSTEM: I run a business\'s entire front-of-house growth engine as one delegated system. That — not "I build tools" — is what supports £3.5–10k+ retainers.</em></td>'+
-      '<td style="font-weight:600">£3.5–10k+/client/mo<br><span style="font-size:11px;color:var(--mu)">retainer + revenue share on attributable revenue (base fee always; share on top, never instead)</span></td>'+
-      '<td class="gate-cell">3+ delegated delivery chain working · productised system · outcome-data moat (12+ months)</td>'+
-    '</tr>'+
-    '</tbody></table></div>'+
-    '<div class="card" style="border-left:3px solid var(--blue);background:rgba(10,132,255,.05);margin-bottom:12px">'+
-      '<span class="sec-lbl" style="color:var(--blue)">Two-entity model (Year 2 spin-out)</span>'+
-      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px">'+
-        '<div style="background:var(--card2);border:1px solid var(--bd);border-radius:8px;padding:14px">'+
-          '<div style="font-size:10px;font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">Entity 2 — Vekora (CASH)</div>'+
-          '<div style="font-size:13px;color:var(--txt);font-weight:600;margin-bottom:6px">Delegated Growth-Operating System</div>'+
-          '<div style="font-size:12px;color:var(--txt2);line-height:1.6">£3.5–10k+ retainers + ad revenue share. Services business running client growth engines. Cash compounds the product.</div>'+
-        '</div>'+
-        '<div style="background:var(--card2);border:1px solid var(--bd);border-radius:8px;padding:14px">'+
-          '<div style="font-size:10px;font-weight:800;color:var(--blue);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">Entity 1 — Product Co (EQUITY)</div>'+
-          '<div style="font-size:13px;color:var(--txt);font-weight:600;margin-bottom:6px">Productised System — Built to Sell</div>'+
-          '<div style="font-size:12px;color:var(--txt2);line-height:1.6">Productised Vekora + tools/apps/enterprise projects. Clean IP · recurring revenue · no founder-dependency. Spins out of Vekora\'s system + data at ~Year 2.</div>'+
-        '</div>'+
+    '<div class="pg-eye">The Product</div>'+
+    '<div class="pg-h">"Never Miss a Lead"</div>'+
+    '<div style="font-size:13.5px;font-weight:700;color:var(--txt2);margin-bottom:16px">Instant Response &amp; Qualification System</div>'+
+
+    '<div class="card card-gold" style="margin-bottom:14px">'+
+      '<span class="sec-lbl">What it does</span>'+
+      '<ul style="margin-top:8px;padding-left:16px;display:grid;gap:6px">'+
+        whatItDoes.map(function(d){return '<li style="font-size:13px;color:var(--txt2);line-height:1.6">'+esc(d)+'</li>';}).join('')+
+      '</ul>'+
+    '</div>'+
+
+    '<span class="sec-lbl" style="margin-bottom:8px;display:block">Choose your niche (tap to expand)</span>'+
+    nicheCards+
+
+    '<div class="card" style="margin-bottom:12px">'+
+      '<span class="sec-lbl">Pricing</span>'+
+      '<div style="font-size:16px;font-weight:800;color:var(--txt);margin:8px 0 4px">Standard: £1,200 setup + £750/mo</div>'+
+      '<div style="font-size:13px;color:var(--gold);font-weight:700;margin-bottom:10px">First client (case study): £600 setup + £450/mo</div>'+
+      '<div style="font-size:12px;color:var(--txt2);line-height:1.65;background:var(--card2);border-radius:8px;padding:10px 14px;margin-bottom:8px">'+
+        'Explicitly in exchange for written testimonial + permission to use results. Frame: <em>"Standard is £1,200, I\'m doing first client at £600 for a case study."</em> Never just quote the low number.'+
+      '</div>'+
+      '<div style="font-size:11.5px;color:var(--txt2);line-height:1.65;border-left:3px solid var(--gold);padding-left:10px">'+
+        '<strong style="color:var(--txt)">Pricing principle:</strong> Price on THEIR job value, not your effort or API cost. Same system, 3× the price in a high-value niche — because a £15k kitchen job makes £750/mo look cheap.'+
       '</div>'+
     '</div>'+
-    '<div class="card card-gold" style="margin-bottom:12px">'+
-      '<span class="sec-lbl">Performance pricing — Stage 2.5 and above only</span>'+
-      '<p style="font-size:13px;color:var(--txt2);line-height:1.65;margin-top:6px">Base management fee <strong style="color:var(--txt)">ALWAYS</strong>, then REVENUE SHARE on revenue the ads generate above an agreed threshold — <strong style="color:var(--err)">NOT a % of ad spend.</strong> Spend-% is the commodity game. Revenue-share on proven results is the moat — credible only because my Stage 2 system is the attribution layer; I can prove the revenue because it ran through my qualification/tracking. Hard gate: client live on my infrastructure for ≥60 days before the performance component activates.</p>'+
-      '<div style="font-size:12px;color:var(--txt2);margin-top:8px;padding-top:8px;border-top:1px solid var(--bd);line-height:1.65"><strong style="color:var(--txt)">Demo pings:</strong> during the demo, the notification arrives on my phone via <strong>Telegram (free)</strong> so the client sees it work live in the room. At go-live, it texts their number directly via <strong>Twilio (SMS)</strong> + email. Nothing for the client to install.</div>'+
+
+    '<div class="card" style="margin-bottom:12px">'+
+      '<span class="sec-lbl">Offer Ladder — future stages only</span>'+
+      '<div style="font-size:11.5px;color:var(--err);font-weight:700;margin-bottom:10px">Build only when a client pays for the next stage. Do not present these as sellable now.</div>'+
+      ladderHtml+
     '</div>'+
-    '<div class="rules-strip">Never sell a stage you cannot demo &nbsp;·&nbsp; No discounts — trim scope &nbsp;·&nbsp; Ownership terms in writing before deposit &nbsp;·&nbsp; Sell outcomes, never "AI" or "automation" &nbsp;·&nbsp; Website + Google Profile work always priced separately</div>';
+
+    '<div class="rules-strip">Lead with the outcome, never "AI" &nbsp;·&nbsp; First client = case study pricing, frame it right &nbsp;·&nbsp; ONE channel done daily beats five done occasionally &nbsp;·&nbsp; Price on their job value</div>';
 }
 
 // ─── TIER TRACKER ─────────────────────────────────────────────────────────────
