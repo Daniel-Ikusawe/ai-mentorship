@@ -456,44 +456,32 @@ body.light .card{box-shadow:0 1px 3px rgba(0,0,0,.07)}
     </div>
   </div>
   <nav class="sb-nav">
-    <span class="sb-grp">Daily / Weekly</span>
-    <button class="sb-btn" onclick="nav('future',this)" id="nb-future"><i class="sb-ic">★</i><span style="flex:1">Future Self</span></button>
-    <button class="sb-btn" onclick="nav('overview',this)"><i class="sb-ic">⊞</i><span style="flex:1">Dashboard</span></button>
-    <button class="sb-btn" onclick="navCurWk(this)" id="nb-curwk"><i class="sb-ic">→</i><span style="flex:1">Current Week</span></button>
-    <button class="sb-btn" onclick="nav('skills',this)"><i class="sb-ic">✓</i><span style="flex:1">Skills &amp; Proofs</span></button>
-    <button class="sb-btn" onclick="nav('cv',this)"><i class="sb-ic">◻</i><span style="flex:1">CV Tracker</span></button>
-    <span class="sb-grp">Programme — Term</span>
-    <button class="sb-btn" onclick="nav('w1',this)" id="nb-w1"><i class="sb-ic">1</i><span style="flex:1">Setup &amp; CLI</span><span class="sb-dot"></span></button>
-    <button class="sb-btn" onclick="nav('w2',this)" id="nb-w2"><i class="sb-ic">2</i><span style="flex:1">Away With It</span><span class="sb-dot"></span></button>
-    <span class="sb-grp">Programme — Mocks</span>
-    <button class="sb-btn" onclick="nav('w3',this)" id="nb-w3"><i class="sb-ic">3</i><span style="flex:1">Mocks Week 1</span><span class="sb-dot"></span></button>
-    <button class="sb-btn" onclick="nav('w4',this)" id="nb-w4"><i class="sb-ic">4</i><span style="flex:1">Mocks Week 2</span><span class="sb-dot"></span></button>
-    <span class="sb-grp">Programme — Summer</span>
-    <button class="sb-btn" onclick="nav('w5',this)" id="nb-w5"><i class="sb-ic">5</i><span style="flex:1">GCP + Claude API</span><span class="sb-dot"></span></button>
-    <button class="sb-btn" onclick="nav('w6',this)" id="nb-w6"><i class="sb-ic">6</i><span style="flex:1">Mini Product</span><span class="sb-dot"></span></button>
-    <button class="sb-btn" onclick="nav('w7',this)" id="nb-w7"><i class="sb-ic">7</i><span style="flex:1">TMUA + Agentic</span><span class="sb-dot"></span></button>
-    <button class="sb-btn" onclick="nav('w8',this)" id="nb-w8"><i class="sb-ic">8</i><span style="flex:1">Agentic Build</span><span class="sb-dot"></span></button>
-    <button class="sb-btn" onclick="nav('w9',this)" id="nb-w9"><i class="sb-ic">9</i><span style="flex:1">Demo Rebuild</span><span class="sb-dot"></span></button>
-    <button class="sb-btn" onclick="nav('w10',this)" id="nb-w10"><i class="sb-ic">10</i><span style="flex:1">Demo 10/10</span><span class="sb-dot"></span></button>
-    <button class="sb-btn" onclick="nav('w11',this)" id="nb-w11"><i class="sb-ic">11</i><span style="flex:1">MVP Build</span><span class="sb-dot"></span></button>
-    <button class="sb-btn" onclick="nav('w12',this)" id="nb-w12"><i class="sb-ic">12</i><span style="flex:1">Ship &amp; Demo</span><span class="sb-dot"></span></button>
-    <button class="sb-ref-hdr" id="sb-ref-hdr" onclick="toggleRef()">Reference<span class="sb-ref-arr" id="sb-ref-arr">▾</span></button>
-    <div class="sb-ref-body" id="sb-ref-body">
-    <button class="sb-btn" onclick="nav('offer',this)"><i class="sb-ic">◈</i><span style="flex:1">Offer Ladder</span><span class="sb-wk-badge">W1</span></button>
-    <button class="sb-btn" onclick="nav('markets',this)"><i class="sb-ic">◎</i><span style="flex:1">Markets</span><span class="sb-wk-badge">W1</span></button>
-    <button class="sb-btn" onclick="nav('pipeline',this)"><i class="sb-ic">◉</i><span style="flex:1">Pipeline</span><span class="sb-wk-badge">W2</span></button>
-    <button class="sb-btn" onclick="nav('income',this)"><i class="sb-ic">$</i><span style="flex:1">Income</span><span class="sb-wk-badge">Ref</span></button>
-    <button class="sb-btn" onclick="nav('legal',this)"><i class="sb-ic">⚖</i><span style="flex:1">Legal</span><span class="sb-wk-badge">W1</span></button>
-    <button class="sb-btn" onclick="nav('tier',this)"><i class="sb-ic">▲</i><span style="flex:1">Tier Tracker</span><span class="sb-wk-badge">W1</span></button>
-    <button class="sb-btn" onclick="nav('dest',this)"><i class="sb-ic">◎</i><span style="flex:1">30 Aug Target</span><span class="sb-wk-badge">W1</span></button>
-    <button class="sb-btn" onclick="nav('offermenu',this)"><i class="sb-ic">≡</i><span style="flex:1">Client Offers</span><span class="sb-wk-badge">W1</span></button>
-    <button class="sb-btn" onclick="nav('projects',this)"><i class="sb-ic">⊕</i><span style="flex:1">Projects</span><span class="sb-wk-badge">W7</span></button>
-    <button class="sb-btn" onclick="nav('goals',this)"><i class="sb-ic">◎</i><span style="flex:1">Goals</span><span class="sb-wk-badge">W1</span></button>
-    <button class="sb-btn" onclick="nav('sops',this)"><i class="sb-ic">◉</i><span style="flex:1">Vekora SOPs</span><span class="sb-wk-badge">W1</span></button>
-    <button class="sb-btn" onclick="nav('action',this)"><i class="sb-ic">⚡</i><span style="flex:1">Action Plan</span><span class="sb-wk-badge">Now</span></button>
-    <button class="sb-btn" onclick="nav('guardrails',this)"><i class="sb-ic">⊖</i><span style="flex:1">Guardrails</span><span class="sb-wk-badge">W1</span></button>
-    <button class="sb-btn" onclick="nav('trajectory',this)"><i class="sb-ic">→</i><span style="flex:1">Trajectory</span></button>
-    </div>
+    <span class="sb-grp">Views</span>
+    <button class="sb-btn" onclick="setView('thisweek')" id="nb-curwk"><i class="sb-ic">📅</i><span style="flex:1">This Week</span></button>
+    <button class="sb-btn" onclick="setView('actionplan')"><i class="sb-ic">⚡</i><span style="flex:1">Action Plan</span></button>
+    <button class="sb-btn" onclick="setView('offer')"><i class="sb-ic">💰</i><span style="flex:1">Offer</span></button>
+    <button class="sb-btn" onclick="setView('pipeline')"><i class="sb-ic">🔄</i><span style="flex:1">Pipeline</span></button>
+    <button class="sb-btn" onclick="setView('imperial')" id="nb-imperial"><i class="sb-ic">📐</i><span style="flex:1">Imperial</span></button>
+    <button class="sb-btn" onclick="setView('future')" id="nb-future"><i class="sb-ic">★</i><span style="flex:1">Future Self</span></button>
+    <button class="sb-btn" onclick="setView('trajectory')"><i class="sb-ic">▲</i><span style="flex:1">Trajectory</span></button>
+    <button class="sb-btn" onclick="setView('income')"><i class="sb-ic">£</i><span style="flex:1">Income</span></button>
+    <button class="sb-btn" onclick="setView('weeks')"><i class="sb-ic">📋</i><span style="flex:1">Weeks</span></button>
+    <button class="sb-btn" onclick="setView('learning')"><i class="sb-ic">📖</i><span style="flex:1">Learning</span></button>
+    <button class="sb-btn" onclick="setView('reference')"><i class="sb-ic">⊖</i><span style="flex:1">Reference</span></button>
+    <button class="sb-btn" onclick="setView('goals')"><i class="sb-ic">◎</i><span style="flex:1">Goals</span></button>
+    <span class="sb-grp">Weeks</span>
+    <button class="sb-btn" onclick="setViewWk('w1')" id="nb-w1"><i class="sb-ic">1</i><span style="flex:1">Setup &amp; CLI</span><span class="sb-dot"></span></button>
+    <button class="sb-btn" onclick="setViewWk('w2')" id="nb-w2"><i class="sb-ic">2</i><span style="flex:1">Away With It</span><span class="sb-dot"></span></button>
+    <button class="sb-btn" onclick="setViewWk('w3')" id="nb-w3"><i class="sb-ic">3</i><span style="flex:1">Mocks Week 1</span><span class="sb-dot"></span></button>
+    <button class="sb-btn" onclick="setViewWk('w4')" id="nb-w4"><i class="sb-ic">4</i><span style="flex:1">Mocks Week 2</span><span class="sb-dot"></span></button>
+    <button class="sb-btn" onclick="setViewWk('w5')" id="nb-w5"><i class="sb-ic">5</i><span style="flex:1">GCP + Claude API</span><span class="sb-dot"></span></button>
+    <button class="sb-btn" onclick="setViewWk('w6')" id="nb-w6"><i class="sb-ic">6</i><span style="flex:1">Mini Product</span><span class="sb-dot"></span></button>
+    <button class="sb-btn" onclick="setViewWk('w7')" id="nb-w7"><i class="sb-ic">7</i><span style="flex:1">TMUA + Agentic</span><span class="sb-dot"></span></button>
+    <button class="sb-btn" onclick="setViewWk('w8')" id="nb-w8"><i class="sb-ic">8</i><span style="flex:1">Agentic Build</span><span class="sb-dot"></span></button>
+    <button class="sb-btn" onclick="setViewWk('w9')" id="nb-w9"><i class="sb-ic">9</i><span style="flex:1">Demo Rebuild</span><span class="sb-dot"></span></button>
+    <button class="sb-btn" onclick="setViewWk('w10')" id="nb-w10"><i class="sb-ic">10</i><span style="flex:1">Demo 10/10</span><span class="sb-dot"></span></button>
+    <button class="sb-btn" onclick="setViewWk('w11')" id="nb-w11"><i class="sb-ic">11</i><span style="flex:1">MVP Build</span><span class="sb-dot"></span></button>
+    <button class="sb-btn" onclick="setViewWk('w12')" id="nb-w12"><i class="sb-ic">12</i><span style="flex:1">Ship &amp; Demo</span><span class="sb-dot"></span></button>
   </nav>
   <div class="sb-footer">
     <div class="sb-stat"><span class="sb-sl">Friday streak</span><span class="sb-sv sv-gold" id="sb-streak">0/12</span></div>
@@ -514,10 +502,17 @@ body.light .card{box-shadow:0 1px 3px rgba(0,0,0,.07)}
 <!-- VIEW SWITCHER — top (desktop) -->
 <div class="view-tabs-top" id="view-tabs-top">
   <button class="vt-btn" id="vt-thisweek" onclick="setView('thisweek')"><span class="vt-icon">📅</span>This Week</button>
-  <button class="vt-btn" id="vt-business" onclick="setView('business')"><span class="vt-icon">💼</span>The Business</button>
-  <button class="vt-btn" id="vt-imperial" onclick="setView('imperial')"><span class="vt-icon">📐</span>Imperial &amp; Self</button>
-  <button class="vt-btn" id="vt-plan" onclick="setView('plan')"><span class="vt-icon">📊</span>The Plan</button>
-  <button class="vt-btn" id="vt-ref" onclick="setView('ref')"><span class="vt-icon">📋</span>Reference</button>
+  <button class="vt-btn" id="vt-actionplan" onclick="setView('actionplan')"><span class="vt-icon">⚡</span>Action Plan</button>
+  <button class="vt-btn" id="vt-offer" onclick="setView('offer')"><span class="vt-icon">💰</span>Offer</button>
+  <button class="vt-btn" id="vt-pipeline" onclick="setView('pipeline')"><span class="vt-icon">🔄</span>Pipeline</button>
+  <button class="vt-btn" id="vt-imperial" onclick="setView('imperial')"><span class="vt-icon">📐</span>Imperial</button>
+  <button class="vt-btn" id="vt-future" onclick="setView('future')"><span class="vt-icon">★</span>Future Self</button>
+  <button class="vt-btn" id="vt-trajectory" onclick="setView('trajectory')"><span class="vt-icon">▲</span>Trajectory</button>
+  <button class="vt-btn" id="vt-income" onclick="setView('income')"><span class="vt-icon">£</span>Income</button>
+  <button class="vt-btn" id="vt-weeks" onclick="setView('weeks')"><span class="vt-icon">📋</span>Weeks</button>
+  <button class="vt-btn" id="vt-learning" onclick="setView('learning')"><span class="vt-icon">📖</span>Learning</button>
+  <button class="vt-btn" id="vt-reference" onclick="setView('reference')"><span class="vt-icon">⊖</span>Reference</button>
+  <button class="vt-btn" id="vt-goals" onclick="setView('goals')"><span class="vt-icon">◎</span>Goals</button>
 </div>
 
 <!-- FUTURE SELF -->
@@ -656,16 +651,33 @@ body.light .card{box-shadow:0 1px 3px rgba(0,0,0,.07)}
   <div class="guard-grid" id="guard-list"></div>
 </div>
 
+<!-- WEEKS — merged panel with internal week-switcher -->
+<div id="panel-weeks" class="panel">
+  <div class="pg-eye">12-Week Programme</div>
+  <div class="pg-h">Weeks</div>
+  <div class="wk-picker" id="wk-picker" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px"></div>
+  <div id="wk-content"></div>
+</div>
+
+<!-- IMPERIAL & ACADEMICS -->
+<div id="panel-imperial" class="panel"></div>
+
+<!-- LEARNING -->
+<div id="panel-learning" class="panel"></div>
+
+<!-- REFERENCE — merged: SOPs + Legal + Guardrails + Projects + CV -->
+<div id="panel-reference" class="panel"></div>
+
 </main>
 </div>
 
-<!-- VIEW SWITCHER — bottom (mobile) -->
+<!-- VIEW SWITCHER — bottom (mobile) 5 key views -->
 <div class="view-tabs-bottom" id="view-tabs-bottom">
   <button class="vt-btn" id="vtb-thisweek" onclick="setView('thisweek')"><span class="vt-icon">📅</span>This Week</button>
-  <button class="vt-btn" id="vtb-business" onclick="setView('business')"><span class="vt-icon">💼</span>Business</button>
+  <button class="vt-btn" id="vtb-actionplan" onclick="setView('actionplan')"><span class="vt-icon">⚡</span>Action</button>
+  <button class="vt-btn" id="vtb-offer" onclick="setView('offer')"><span class="vt-icon">💰</span>Offer</button>
   <button class="vt-btn" id="vtb-imperial" onclick="setView('imperial')"><span class="vt-icon">📐</span>Imperial</button>
-  <button class="vt-btn" id="vtb-plan" onclick="setView('plan')"><span class="vt-icon">📊</span>Plan</button>
-  <button class="vt-btn" id="vtb-ref" onclick="setView('ref')"><span class="vt-icon">📋</span>Reference</button>
+  <button class="vt-btn" id="vtb-weeks" onclick="setView('weeks')"><span class="vt-icon">📋</span>Weeks</button>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -1236,57 +1248,103 @@ function toggleRef(){
   if(arr)arr.style.transform=isOpen?'rotate(180deg)':'rotate(0deg)';
 }
 function navCurWk(el){
-  var cur=getCurWk();
-  var btn=document.getElementById('nb-'+cur);
-  if(btn){nav(cur,btn);}else{nav(cur,el);}
+  setView('thisweek');
 }
 
 // ─── VIEW SWITCHER ────────────────────────────────────────────────────────────
-// Maps each view to its default panel and a sidebar button to highlight
-var VIEW_MAP={
-  thisweek:{panel:null,sb:'nb-curwk'},  // panel set dynamically
-  business:{panel:'sops',    sb:null},
-  imperial:{panel:'future',  sb:'nb-future'},
-  plan:    {panel:'overview',sb:null},
-  ref:     {panel:'guardrails',sb:null},
+// 12 views — each maps to one or more panels shown simultaneously
+var ALL_VIEWS=['thisweek','actionplan','offer','pipeline','imperial','future','trajectory','income','weeks','learning','reference','goals'];
+// Panels shown per view (trajectory shows multiple, weeks uses internal switcher)
+var VIEW_PANELS={
+  thisweek:   [],  // dynamic — current week panel
+  actionplan: ['action'],
+  offer:      ['offer'],
+  pipeline:   ['pipeline'],
+  imperial:   ['imperial'],
+  future:     ['future'],
+  trajectory: ['trajectory','tier','dest','skills'],
+  income:     ['income'],
+  weeks:      ['weeks'],
+  learning:   ['learning'],
+  reference:  ['reference'],
+  goals:      ['goals'],
 };
 var curView='thisweek';
+var curWkTab='';  // active week tab within weeks view
 
 function setView(v){
   curView=v;
-  // Highlight top + bottom tab buttons
-  ['thisweek','business','imperial','plan','ref'].forEach(function(k){
+  // Highlight top nav buttons
+  ALL_VIEWS.forEach(function(k){
     var t=document.getElementById('vt-'+k);
     var b=document.getElementById('vtb-'+k);
     if(t)t.classList.toggle('on',k===v);
     if(b)b.classList.toggle('on',k===v);
   });
-  // Navigate to the view's default panel
-  var vm=VIEW_MAP[v];
-  if(!vm)return;
-  var panelId=vm.panel;
+  // Highlight sidebar buttons
+  document.querySelectorAll('.sb-btn').forEach(function(b){b.classList.remove('on');});
+  // Hide all panels
+  document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on');});
   if(v==='thisweek'){
-    // Go to current week
     var cur=getCurWk();
-    panelId=cur;
-    var sbBtn=document.getElementById('nb-'+cur);
-    if(sbBtn){nav(cur,sbBtn);}else{
-      document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on');});
-      document.querySelectorAll('.sb-btn').forEach(function(b){b.classList.remove('on');});
-      var el=document.getElementById('panel-'+cur);
-      if(el)el.classList.add('on');
-    }
+    var el=document.getElementById('panel-'+cur);
+    if(el)el.classList.add('on');
+    var sbBtn=document.getElementById('nb-curwk');
+    if(sbBtn)sbBtn.classList.add('on');
+    document.querySelector('.main').scrollTop=0;
     return;
   }
-  // Find matching sidebar button for this panel
-  var sbBtn2=null;
-  document.querySelectorAll('.sb-btn').forEach(function(b){
-    if(b.getAttribute('onclick')&&b.getAttribute('onclick').indexOf("'"+panelId+"'")!==-1)sbBtn2=b;
+  var panels=VIEW_PANELS[v]||[];
+  panels.forEach(function(pid){
+    var el=document.getElementById('panel-'+pid);
+    if(el)el.classList.add('on');
   });
-  if(sbBtn2){nav(panelId,sbBtn2);}else{
-    document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on');});
-    var el2=document.getElementById('panel-'+panelId);
-    if(el2)el2.classList.add('on');
+  if(v==='weeks'){
+    // Render week picker and default to current week
+    renderWkPicker();
+    if(!curWkTab)curWkTab=getCurWk();
+    showWkTab(curWkTab);
+  }
+  if(v==='reference') renderReference();
+  document.querySelector('.main').scrollTop=0;
+  closeSidebar();
+}
+
+// Navigate to weeks view and show a specific week
+function setViewWk(wid){
+  curWkTab=wid;
+  setView('weeks');
+  // Also highlight that week's sb-btn
+  var sbBtn=document.getElementById('nb-'+wid);
+  if(sbBtn)sbBtn.classList.add('on');
+}
+
+function renderWkPicker(){
+  var picker=document.getElementById('wk-picker');
+  if(!picker)return;
+  picker.innerHTML=WKS.map(function(w){
+    var active=curWkTab===w.id?'border-color:var(--gold);background:var(--gll);color:var(--gold)':'';
+    return '<button onclick="showWkTab(\''+w.id+'\')" data-wid="'+w.id+'" style="padding:5px 12px;border:1px solid var(--bd);border-radius:16px;background:var(--card);color:var(--txt2);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;'+active+'">W'+w.n+'</button>';
+  }).join('');
+}
+
+function showWkTab(wid){
+  curWkTab=wid;
+  var content=document.getElementById('wk-content');
+  if(!content)return;
+  // Clone the rendered week panel into wk-content
+  var src=document.getElementById('panel-'+wid);
+  if(!src){content.innerHTML='<div style="color:var(--mu);padding:20px">Week not found.</div>';return;}
+  content.innerHTML=src.innerHTML;
+  // Update picker highlight
+  var picker=document.getElementById('wk-picker');
+  if(picker){
+    picker.querySelectorAll('button').forEach(function(b){
+      var active=b.getAttribute('data-wid')===wid;
+      b.style.borderColor=active?'var(--gold)':'var(--bd)';
+      b.style.background=active?'var(--gll)':'var(--card)';
+      b.style.color=active?'var(--gold)':'var(--txt2)';
+    });
   }
 }
 
@@ -1294,23 +1352,44 @@ function initView(){
   setView('thisweek');
 }
 
-// ─── NAV ─────────────────────────────────────────────────────────────────────
+// Legacy nav() helper — still used in cross-links
+function goTo(id){
+  // Map old panel ids to new views where applicable
+  var viewMap={action:'actionplan',offer:'offer',pipeline:'pipeline',future:'future',
+    trajectory:'trajectory',income:'income',sops:'reference',legal:'reference',
+    guardrails:'reference',projects:'reference',cv:'reference',skills:'reference',
+    imperial:'imperial',learning:'learning',goals:'goals',tier:'trajectory',
+    dest:'trajectory',overview:'goals',markets:'pipeline',offermenu:'offer'};
+  var v=viewMap[id];
+  if(v){setView(v);}else{
+    // Try direct panel show
+    document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on');});
+    var el=document.getElementById('panel-'+id);
+    if(el)el.classList.add('on');
+  }
+}
+
+// ─── NAV (legacy, kept for cross-link buttons) ────────────────────────────────
 
 let curPanel='future';
 function nav(id,el){
+  // Route through setView where possible
+  var viewMap={action:'actionplan',offer:'offer',pipeline:'pipeline',future:'future',
+    trajectory:'trajectory',income:'income',sops:'reference',legal:'reference',
+    guardrails:'reference',projects:'reference',cv:'reference',skills:'reference',
+    imperial:'imperial',learning:'learning',goals:'goals',tier:'trajectory',
+    dest:'trajectory',overview:'goals',markets:'pipeline',offermenu:'offer'};
+  var v=viewMap[id];
+  if(v){setView(v);return;}
+  // Week panels
+  if(id.match(/^w\d+$/)){setViewWk(id);return;}
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
   document.querySelectorAll('.sb-btn').forEach(b=>b.classList.remove('on'));
-  document.getElementById('panel-'+id).classList.add('on');
-  el.classList.add('on');
+  var el2=document.getElementById('panel-'+id);
+  if(el2)el2.classList.add('on');
   curPanel=id;
   closeSidebar();
   document.querySelector('.main').scrollTop=0;
-}
-function goTo(id){
-  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
-  document.querySelectorAll('.sb-btn').forEach(b=>b.classList.remove('on'));
-  document.getElementById('panel-'+id).classList.add('on');
-  curPanel=id;
 }
 
 // ─── DATE HELPERS ─────────────────────────────────────────────────────────────
