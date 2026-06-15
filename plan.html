@@ -757,7 +757,8 @@ const WKS = [
   goal:'Maths defended in the exam room. Streak alive. Nothing else matters this week.',
   mlo:450,mhi:900,sends:0,
   tasks:[
-   {t:'Revision: past paper AM · mark scheme + per-question review PM — every weekday',why:'This is the only job. Maths A* → Imperial → everything else. One week of full focus now is worth months of recovery later.',time:'Full days',dl:true},
+   {t:'Revision: past paper AM — every weekday',why:'This is the only job. Maths A* → Imperial → everything else. One week of full focus now is worth months of recovery later.',time:'Morning'},
+   {t:'Mark scheme + per-question review PM — every weekday',why:'The review is where learning happens — not the sitting. Read every answer even the ones you got right. Find the reasoning gap.',time:'Afternoon',dl:true},
    {t:'Revision: Sat/Sun — lighter session, past paper or topic drill only (no burnout)',why:'Don\'t grind yourself into the ground before the second mock week. Lighter Saturday/Sunday keeps you sharp for W4.',time:'~2 hrs/day'},
    {t:'Gym: Mon 22, Wed 24, Sat 27 — gentle sessions only (no PBs this week)',why:'Movement clears your head. Gentle gym beats no gym — but don\'t exhaust yourself the night before a paper.',time:'~45 min x3'},
    {t:'Bible: daily — 10 min morning',why:'Non-negotiable. Grounds you before the paper.',time:'Daily'},
@@ -797,8 +798,10 @@ const WKS = [
   goal:'First Claude API call from Python in the terminal. Cloud Run attempted. Retro done. CCA: yes.',
   mlo:900,mhi:1400,sends:30,
   tasks:[
-   {t:'GCP: create project "daniel-ai-mentorship" · explore IAM, Cloud Run, Firebase · screenshot dashboard',why:'GCP is the production stack for everything you build in this programme. Get comfortable in the console now — before you need it under pressure.',time:'~2 hrs'},
-   {t:'Anthropic API key (stored in password manager, never in code) · build claude_test.py using the Python SDK · run from terminal',why:'This is the first time Claude responds to your code. Not the playground — your code. That\'s the shift.',time:'~1–2 hrs'},
+   {t:'GCP: create project "daniel-ai-mentorship" and explore IAM, Cloud Run, and Firebase console',why:'GCP is the production stack for everything you build in this programme. Get comfortable in the console now — before you need it under pressure.',time:'~1 hr'},
+   {t:'GCP: screenshot dashboard showing project, IAM, and one service enabled — save to Build Log',why:'Evidence you\'ve touched the console. The screenshot forces you to verify each service is actually configured, not just clicked.',time:'~30 min'},
+   {t:'Anthropic API key: generate, store in password manager, add to .env — never in code',why:'Key hygiene from day one. A key committed to a repo is a key that gets rotated under pressure. .env + Secret Manager is the production pattern.',time:'~15 min'},
+   {t:'Build claude_test.py using the Python SDK and run it from the terminal — Claude must respond',why:'This is the first time Claude responds to your code. Not the playground — your code. That\'s the shift. Screenshot the terminal output.',time:'~1–2 hrs'},
    {t:'Cloud Run deploy attempted (success OR documented failure both count)',why:'Attempting and documenting a failure is a legitimate deliverable. The goal is to touch the stack, not to get it perfect first time.',time:'~1–2 hrs'},
    {t:'Firestore: add one doc from Python, read it back from code',why:'Firestore is the data layer for every Vekora system. One CRUD cycle from Python = you know the pattern.',time:'~1 hr'},
    {t:'"What I understand about auth" — half-page note in your own words',why:'Every production system needs auth. Writing it in your own words is how you find the gaps before they bite you in a client build.',time:'~30 min'},
@@ -893,7 +896,8 @@ const WKS = [
   mlo:2200,mhi:3000,sends:50,
   tasks:[
    {t:'Rebuild Demo 1 Claude-native: GHL form → n8n qualifier endpoint → Firestore → SMS. SOP 01 step-gating and 20-test matrix survive — only the plumbing changes.',why:'The demo is the business. Everything else in Vekora runs on "can you demo this in under 4 minutes and have an SMS arrive?" Build it to that spec.',time:'~12–15 hrs'},
-   {t:'Run the full 20-lead stress test · fix every failure · log every fix in the Build Log',why:'SOP 01 says: 10 consecutive clean runs before your first sales call. The 20-lead matrix is how you get there. Do not skip test cases.',time:'~3–4 hrs testing'},
+   {t:'Run the full 20-lead stress test — every case in order, no skipping',why:'SOP 01 says: 10 consecutive clean runs before your first sales call. The 20-lead matrix is how you get there. Do not skip test cases.',time:'~2 hrs testing'},
+   {t:'Fix every failure from the stress test and log each fix in the Build Log',why:'A fix that isn\'t logged isn\'t a fix — it\'s a guess. The Build Log entry forces you to understand what broke and why.',time:'~2 hrs debugging'},
    {t:'Personal statement draft 1: spine = NEA story + eval-harness idea + market simulation intent + Vekora as applied evidence',why:'Imperial CS asks for evidence of thinking, not just projects. The Vekora story is the strongest concrete evidence you have. Get it into words now.',time:'~2–3 hrs'},
    {t:'CCA module 3 on anthropic.skilljar.com',why:'Third certificate. Keep the CCA pace — one module per active week.',time:'4–6 hrs'},
    {t:'TMUA daily hour — past papers every weekday',why:'TMUA is daily from W7 through test day. Non-negotiable.',time:'1 hr/weekday'},
