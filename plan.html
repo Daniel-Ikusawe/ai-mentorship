@@ -1806,14 +1806,49 @@ function renderWk(w){
       </div>
     </div>`:'' ;
 
+  // ─── Identity tag detection ───────────────────────────────────────────────
+  function getIdTags(txt){
+    const s=txt.toLowerCase();
+    const tags=[];
+    if(/build|ship|deploy|client|system|sop|automat|tool\b|agent|api\b/.test(s))
+      tags.push('<span class="id-tag" style="background:#1a3a5c;color:#5ba4f5">BUILDER</span>');
+    if(/maths|tmua|past paper|paper|study|learn|module|cca|coding|leetcode|unaided|read\b/.test(s))
+      tags.push('<span class="id-tag" style="background:#2a1a5c;color:#a78bfa">SCHOLAR</span>');
+    if(/gym|run\b|exercise|walk\b|fitness|sleep|health|body/.test(s))
+      tags.push('<span class="id-tag" style="background:#1a3d2b;color:#34d399">STRONG-BODY</span>');
+    if(/faith|prayer|qur|dua|salah|intention|gratitude|mosque/.test(s))
+      tags.push('<span class="id-tag" style="background:#3d2a1a;color:#f59e0b">STRONG-FAITH</span>');
+    if(/journal|reflect|review\b|reset\b|rest\b|peace|clarity|think/.test(s))
+      tags.push('<span class="id-tag" style="background:#1a3a3d;color:#22d3ee">AT-PEACE</span>');
+    return tags.join('');
+  }
+
+  // ─── Cross-link detection ─────────────────────────────────────────────────
+  function getCrossLink(txt){
+    const s=txt.toLowerCase();
+    if(/maths|tmua|past paper|unaided/.test(s))
+      return '<button class="tc-link" onclick="event.stopPropagation();setView(\'imperial\')">Imperial →</button>';
+    if(/\bcca\b|module|agent sdk|sdk\b/.test(s))
+      return '<button class="tc-link" onclick="event.stopPropagation();setView(\'learning\')">Learning →</button>';
+    if(/offer|pipeline|prospect|outreach/.test(s))
+      return '<button class="tc-link" onclick="event.stopPropagation();setView(\'offer\')">Offer →</button>';
+    if(/\bsop\b/.test(s))
+      return '<button class="tc-link" onclick="event.stopPropagation();goTo(\'sops\')">SOPs →</button>';
+    return '';
+  }
+
   function taskRow(t,i,wid,isPre){
     const k=wid+'-'+i;const done=isPre||!!S.tasks[k];
+    const haystack=(t.t||'')+' '+(t.why||'');
+    const idTags=getIdTags(haystack);
+    const crossLink=getCrossLink(haystack);
     return `<div class="tc${done?' done':''}" onclick="toggleTask('${k}',this,${isPre?'true':'false'})">
       <input class="cb-check" type="checkbox" ${done?'checked':''} onclick="event.stopPropagation()" onchange="toggleTask('${k}',this.parentElement,${isPre?'true':'false'})">
       <div class="tc-body">
-        <div class="tc-title">${esc(t.t)}</div>
+        <div class="tc-title">${idTags}${esc(t.t)}</div>
         ${t.why?`<div class="tc-why">${esc(t.why)}</div>`:''}
         ${t.note?`<div class="tc-note">↳ ${esc(t.note)}</div>`:''}
+        ${crossLink}
       </div>
       <div class="tc-meta">
         <span class="time-tag">${esc(t.time||'')}</span>
