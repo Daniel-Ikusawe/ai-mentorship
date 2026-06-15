@@ -2330,6 +2330,133 @@ function toggleSopStep(sopN,i,row){
   showToast(S.tasks[k]?'Step done ✓':'Step unmarked');
 }
 
+// ─── IMPERIAL & ACADEMICS ─────────────────────────────────────────────────────
+
+function renderImperial(){
+  var el=document.getElementById('panel-imperial');if(!el)return;
+  if(!S.tasks)S.tasks={};
+
+  // Current week key for per-week state
+  function weekKey(wid){return wid||getCurWk();}
+
+  // Maths daily reps — Mon-Fri of current week
+  var curWid=getCurWk();
+  var days=['Mon','Tue','Wed','Thu','Fri'];
+  var mathsHtml=days.map(function(d,i){
+    var k='maths-'+curWid+'-'+i;var done=!!(S.tasks&&S.tasks[k]);
+    return '<div class="tc'+(done?' done':'')+'" style="padding:10px 14px;margin-bottom:4px" onclick="toggleImperialTask(\''+k+'\',this)">'+
+      '<input class="cb-check" type="checkbox"'+(done?' checked':'')+' onclick="event.stopPropagation()" onchange="toggleImperialTask(\''+k+'\',this.parentElement)">'+
+      '<div class="tc-body"><div class="tc-title">'+esc(d)+' — Past paper done, marked same day, dropped-mark topics logged</div></div>'+
+    '</div>';
+  }).join('');
+  // Streak count
+  var mathsStreak=0;
+  for(var wi=WKS.length-1;wi>=0;wi--){
+    var allDone=true;
+    for(var di=0;di<5;di++){if(!S.tasks['maths-'+WKS[wi].id+'-'+di]){allDone=false;break;}}
+    if(allDone)mathsStreak++;else break;
+  }
+
+  // TMUA timeline
+  var TMUA_ITEMS=[
+    {t:'Registration opens Mon 20 July 2026 — book within 24h (set phone alarm NOW)',id:'tmua-0'},
+    {t:'TMUA booked — screenshot taken and sent to Dee',id:'tmua-1'},
+    {t:'1 past paper per week from W5 (pause W3-4 mocks, resume W5)',id:'tmua-2'},
+    {t:'Daily 1-hour prep starts from W7 (booking day)',id:'tmua-3'},
+    {t:'Registration deadline: 28 September 2026',id:'tmua-4'},
+    {t:'Test day: 15–16 October 2026',id:'tmua-5'},
+  ];
+  var tmuaHtml=TMUA_ITEMS.map(function(item){
+    var done=!!(S.tasks&&S.tasks[item.id]);
+    return '<div class="tc'+(done?' done':'')+'" style="padding:10px 14px;margin-bottom:4px" onclick="toggleImperialTask(\''+item.id+'\',this)">'+
+      '<input class="cb-check" type="checkbox"'+(done?' checked':'')+' onclick="event.stopPropagation()" onchange="toggleImperialTask(\''+item.id+'\',this.parentElement)">'+
+      '<div class="tc-body"><div class="tc-title">'+esc(item.t)+'</div></div>'+
+    '</div>';
+  }).join('');
+
+  // Senior Maths Challenge
+  var smcDone=!!(S.tasks&&S.tasks['smc-0']);
+  var smcHtml='<div class="tc'+(smcDone?' done':'')+'" style="padding:10px 14px" onclick="toggleImperialTask(\'smc-0\',this)">'+
+    '<input class="cb-check" type="checkbox"'+(smcDone?' checked':'')+' onclick="event.stopPropagation()" onchange="toggleImperialTask(\'smc-0\',this.parentElement)">'+
+    '<div class="tc-body"><div class="tc-title">Ask maths teacher if Senior Maths Challenge is offered this autumn. If yes, register immediately.</div>'+
+    '<div class="tc-why">Cheapest high-value Imperial signal. One 5-minute conversation. Cheapest route to a signal admissions tutors notice.</div></div>'+
+  '</div>';
+
+  // Unaided coding — 3x per week from W5
+  var UNAIDED_PROG=['Binary search','Stack / Queue','Sort algorithm','Recursive parser','Expression evaluator','Agent-Based Market Simulation'];
+  var unaidedHtml=WKS.filter(function(w){return w.n>=5;}).slice(0,6).map(function(w,wi){
+    var items=['Mon','Wed','Fri'].map(function(d,i){
+      var k='unaided-'+w.id+'-'+i;var done=!!(S.tasks&&S.tasks[k]);
+      return '<div class="tc'+(done?' done':'')+'" style="padding:8px 12px;margin-bottom:3px" onclick="toggleImperialTask(\''+k+'\',this)">'+
+        '<input class="cb-check" type="checkbox"'+(done?' checked':'')+' onclick="event.stopPropagation()" onchange="toggleImperialTask(\''+k+'\',this.parentElement)">'+
+        '<div class="tc-body"><div class="tc-title" style="font-size:12px">'+d+' — 30 min, no AI — '+esc(UNAIDED_PROG[wi]||'Practice')+'</div></div>'+
+      '</div>';
+    }).join('');
+    return '<div style="font-size:11px;font-weight:700;color:var(--mu);margin:8px 0 4px">W'+w.n+': '+esc(UNAIDED_PROG[wi]||'')+'</div>'+items;
+  }).join('');
+
+  // Personal Statement milestones
+  var PS_ITEMS=[
+    {t:'August: first draft written — CS curiosity as the spine (not business)',id:'ps-0'},
+    {t:'Vekora gets ONE technically-framed paragraph only — not the centrepiece',id:'ps-1'},
+    {t:'Teacher review booked (before 15 Sept)',id:'ps-2'},
+    {t:'Draft 2 revised post-teacher feedback',id:'ps-3'},
+    {t:'Final polish (early October — 85-90% effort, then TMUA takes priority)',id:'ps-4'},
+  ];
+  var psHtml=PS_ITEMS.map(function(item){
+    var done=!!(S.tasks&&S.tasks[item.id]);
+    return '<div class="tc'+(done?' done':'')+'" style="padding:10px 14px;margin-bottom:4px" onclick="toggleImperialTask(\''+item.id+'\',this)">'+
+      '<input class="cb-check" type="checkbox"'+(done?' checked':'')+' onclick="event.stopPropagation()" onchange="toggleImperialTask(\''+item.id+'\',this.parentElement)">'+
+      '<div class="tc-body"><div class="tc-title">'+esc(item.t)+'</div></div>'+
+    '</div>';
+  }).join('');
+
+  el.innerHTML=
+    '<div class="pg-eye">The Grade is the Load-Bearing Wall</div>'+
+    '<div class="pg-h">Imperial &amp; Academics</div>'+
+    '<div class="pg-desc">Maths A* → Imperial → everything. Client work yields to this on every collision. No exceptions.</div>'+
+
+    '<div class="card" style="border-left:3px solid var(--purple);margin-bottom:12px">'+
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">'+
+        '<span class="sec-lbl" style="margin:0">Maths Daily Rep — Current Week (W'+getCurWk().replace('w','')+') &nbsp;<span class="tag tp">Scholar</span></span>'+
+        '<span style="font-size:12px;font-weight:700;color:var(--purple)">'+mathsStreak+' week streak</span>'+
+      '</div>'+
+      '<div style="font-size:11.5px;color:var(--txt2);margin-bottom:8px">Past paper done · marked same day · dropped-mark topics logged</div>'+
+      mathsHtml+
+    '</div>'+
+
+    '<div class="card" style="margin-bottom:12px">'+
+      '<span class="sec-lbl">TMUA Timeline &nbsp;<span class="tag tw">Deadline</span></span>'+
+      '<div style="font-size:11.5px;color:var(--txt2);margin-bottom:10px">Test: 15–16 October 2026. Imperial CS requires it. Miss the booking window and you cannot sit this year.</div>'+
+      tmuaHtml+
+    '</div>'+
+
+    '<div class="card" style="border-left:3px solid var(--ok);margin-bottom:12px">'+
+      '<span class="sec-lbl">Senior Maths Challenge &nbsp;<span class="tag to">High signal · low effort</span></span>'+
+      smcHtml+
+    '</div>'+
+
+    '<div class="card" style="margin-bottom:12px">'+
+      '<span class="sec-lbl">Unaided Coding Habit — 3× per week from W5 &nbsp;<span class="tag tp">Scholar</span></span>'+
+      '<div style="font-size:11.5px;color:var(--txt2);margin-bottom:10px">30 min, no AI, build from scratch. Imperial examines you without AI — prove what you can do unaided.</div>'+
+      unaidedHtml+
+    '</div>'+
+
+    '<div class="card">'+
+      '<span class="sec-lbl">Personal Statement Milestones</span>'+
+      '<div style="font-size:11.5px;color:var(--txt2);margin-bottom:10px">Target 85–90/100 effort. Beyond that, TMUA prep takes priority.</div>'+
+      psHtml+
+    '</div>';
+}
+
+function toggleImperialTask(k,row){
+  if(!S.tasks)S.tasks={};
+  S.tasks[k]=!S.tasks[k];saveS();
+  var parent=row.closest?row.closest('.tc'):row;
+  if(parent){parent.classList.toggle('done',!!S.tasks[k]);var cb=parent.querySelector('.cb-check');if(cb)cb.checked=!!S.tasks[k];}
+  showToast(S.tasks[k]?'Done ✓':'Unmarked');
+}
+
 // ─── INTERACTIONS ─────────────────────────────────────────────────────────────
 
 function toggleTask(key,row,isPre){
@@ -3123,6 +3250,7 @@ renderLegal();
 renderOverview();
 renderCVTracker();
 renderActionPlan();
+renderImperial();
 updateDots();
 updateSbStats();
 // Default landing: This Week view
