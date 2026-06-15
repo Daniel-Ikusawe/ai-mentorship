@@ -342,92 +342,116 @@ body.light .card{box-shadow:0 1px 3px rgba(0,0,0,.07)}
 /* ── Mock date fields ── */
 .mock-dates-card{border-left:3px solid var(--warn)!important;margin-bottom:12px}
 
-/* ══ RESPONSIVE — tablet 768px ══════════════════════════════════════════════ */
-@media(max-width:768px){
-  .main{padding:24px 28px 40px}
-  .stats-grid{grid-template-columns:1fr 1fr;gap:9px}
-  .income-grid{grid-template-columns:1fr 1fr}
-  .sop-grid{grid-template-columns:1fr 1fr}
-  .money-row{grid-template-columns:1fr 1fr 1fr}
-  .tbl th,.tbl td{padding:8px;font-size:12px}
-  .ladder-tbl th,.ladder-tbl td{padding:8px 7px;font-size:11.5px}
-  .pipe-step{min-width:130px}
-}
+/* ── Accordion (Reference panel) ── */
+.acc-item{border:1px solid var(--bd);border-radius:10px;margin-bottom:8px;overflow:hidden}
+.acc-hdr{width:100%;display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:var(--card);border:none;color:var(--txt);font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;text-align:left}
+.acc-hdr:hover{background:var(--card2)}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .3s ease;padding:0 18px}
+.acc-body.open{max-height:4000px;padding:12px 18px 18px}
+.acc-arr{transition:transform .2s;font-size:12px}
+.acc-hdr.open .acc-arr{transform:rotate(180deg)}
 
-/* ══ RESPONSIVE — ~380px phone ══════════════════════════════════════════════ */
+/* ── Identity tags ── */
+.id-tag{display:inline-flex;align-items:center;gap:3px;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;border-radius:3px;padding:1px 5px;margin-right:6px;vertical-align:middle;white-space:nowrap;flex-shrink:0}
+
+/* ── Task cross-link button ── */
+.tc-link{font-size:10px;font-weight:700;padding:3px 8px;border:1px solid var(--bd);border-radius:4px;background:none;color:var(--mu);cursor:pointer;font-family:inherit;white-space:nowrap;flex-shrink:0;align-self:flex-start;margin-top:2px;transition:border-color .12s,color .12s}
+.tc-link:hover{border-color:var(--gold);color:var(--gold)}
+
+/* ── Wk picker ── */
+.wk-picker{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+
+/* ══ RESPONSIVE — THREE BREAKPOINTS ══════════════════════════════════════════ */
+
+/* ── @media(max-width:680px) — PHONE ~380px ── */
 @media(max-width:680px){
-  /* ── Layout ── */
-  .mob-bar{display:flex;margin:-12px -14px 0;width:calc(100% + 28px)}
+  /* Layout */
+  .mob-bar{display:flex}
   .sb{position:fixed;top:0;left:0;height:100dvh;width:260px;min-width:260px;z-index:50;transform:translateX(-100%);transition:transform .25s cubic-bezier(.4,0,.2,1)}
   .sb.mob-open{transform:translateX(0);box-shadow:8px 0 40px rgba(0,0,0,.55)}
-  .main{padding:12px 14px 72px}
-  .panel{max-width:100%}
+  .main{padding:12px 14px;padding-bottom:68px}
+  .panel{max-width:100%;overflow:hidden}
 
-  /* ── Typography ── */
-  .pg-h{font-size:21px;margin-bottom:4px}
-  .pg-desc{font-size:12.5px;margin-bottom:14px}
+  /* Typography */
+  .pg-h{font-size:22px;margin-bottom:4px}
   .wk-h{font-size:20px}
-  .goal-box{font-size:13px}
+  .stat-val{font-size:20px}
+  .pg-desc{font-size:12.5px;margin-bottom:14px}
   .wk-dates{font-size:12px}
+  .goal-box{font-size:13px}
 
-  /* ── Grids ── */
-  .stats-grid{grid-template-columns:1fr 1fr;gap:7px}
-  .stat{padding:10px 11px}
-  .stat-val{font-size:19px}
+  /* All grids -> single column */
   .g2{grid-template-columns:1fr!important}
   .g3{grid-template-columns:1fr!important}
-  .g4{grid-template-columns:1fr 1fr!important}
+  .g4{grid-template-columns:1fr!important}
+  .stats-grid{grid-template-columns:1fr 1fr;gap:7px}
   .income-grid{grid-template-columns:1fr!important}
   .sop-grid{grid-template-columns:1fr!important}
-  .money-row{grid-template-columns:1fr 1fr}
+  .money-row{grid-template-columns:1fr!important}
 
-  /* ── Cards ── */
-  .card{padding:12px 14px;border-radius:10px}
-  .cur-banner{flex-direction:column;align-items:flex-start;gap:6px}
+  /* Cards */
+  .card{padding:14px 16px;border-radius:10px}
+  .stat{padding:10px 11px}
+  .cur-banner{flex-direction:column;gap:6px}
   .cb-days{font-size:24px}
   .wk-top{flex-wrap:wrap;gap:6px}
+  .arch-node{min-width:70px}
 
-  /* ── Tasks ── */
+  /* Tasks / checkboxes */
   .tc{padding:11px 12px}
   .tc-meta{display:none}
   .cb-check{width:22px;height:22px;min-width:22px;border-radius:6px}
 
-  /* ── Tap targets — min 44px height ── */
+  /* Tap targets */
   .btn{min-height:44px;padding:10px 18px}
-  .btn-sm{min-height:36px;padding:6px 12px}
-  .lt{min-height:44px;padding:10px 14px}
-  .sb-friday-btn{min-height:44px}
+  .btn-sm{min-height:36px}
+  .lt{min-height:44px;padding:10px 14px;flex-shrink:0}
+  .sb-friday-btn{min-height:48px}
 
-  /* ── Tables — allow horizontal scroll ── */
+  /* Tables - horizontal scroll */
   .tbl{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
   .tbl th,.tbl td{padding:7px 8px;font-size:11px;white-space:nowrap}
   .ladder-tbl{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
   .ladder-tbl th,.ladder-tbl td{padding:6px 5px;font-size:10px;white-space:nowrap}
 
-  /* ── Scrollable tab rows ── */
+  /* Scrollable log tabs */
   .log-tabs{overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap;flex-wrap:nowrap}
-  .lt{flex-shrink:0}
 
-  /* ── Pipeline ── */
+  /* Pipeline */
   .pipe-flow{gap:4px}
   .pipe-step{min-width:140px;flex-shrink:0}
 
-  /* ── Sidebar footer ── */
+  /* Sidebar footer */
   .sb-footer{padding:12px 16px}
 
-  /* ── Overview success cols ── */
-  .main .card [style*="grid-template-columns:1fr 1fr"]{display:grid!important;grid-template-columns:1fr!important}
-
-  /* ── Bottom tab bar ── */
+  /* Bottom tab bar */
   .view-tabs-top{display:none}
-  .view-tabs-bottom{display:flex;position:fixed;bottom:0;left:0;right:0;background:var(--sb);border-top:1px solid var(--sbd);z-index:44;height:56px}
+  .view-tabs-bottom{display:flex;position:fixed;bottom:0;left:0;right:0;height:60px;z-index:44;background:var(--sb);border-top:1px solid var(--sbd)}
   .vt-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border:none;background:none;color:var(--smu);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;cursor:pointer;font-family:inherit;padding:4px 2px;transition:color .12s}
   .vt-btn.on{color:var(--gold)}
   .vt-icon{font-size:16px;line-height:1}
 }
 
-/* ── View tabs — desktop ── */
-@media(min-width:681px){
+/* ── @media(min-width:681px) and (max-width:1024px) — TABLET ── */
+@media(min-width:681px) and (max-width:1024px){
+  .sb{position:relative;transform:none!important;width:220px;min-width:220px}
+  .mob-bar{display:none}
+  .main{padding:24px 32px}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .income-grid{grid-template-columns:1fr 1fr}
+  .sop-grid{grid-template-columns:1fr 1fr}
+  .money-row{grid-template-columns:repeat(3,1fr)}
+  .view-tabs-bottom{display:none}
+  .view-tabs-top{display:flex;gap:4px;margin-bottom:24px;flex-wrap:wrap}
+  .vt-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border:1px solid var(--bd);border-radius:20px;background:var(--card);color:var(--txt2);font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .12s}
+  .vt-btn:hover{border-color:rgba(201,168,76,.4);color:var(--gold)}
+  .vt-btn.on{border-color:var(--gold);background:var(--gll);color:var(--gold)}
+  .vt-icon{font-size:12px}
+}
+
+/* ── @media(min-width:1025px) — DESKTOP ── */
+@media(min-width:1025px){
+  .mob-bar{display:none}
   .view-tabs-bottom{display:none}
   .view-tabs-top{display:flex;gap:4px;margin-bottom:24px;flex-wrap:wrap}
   .vt-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border:1px solid var(--bd);border-radius:20px;background:var(--card);color:var(--txt2);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .12s}
@@ -451,44 +475,32 @@ body.light .card{box-shadow:0 1px 3px rgba(0,0,0,.07)}
     </div>
   </div>
   <nav class="sb-nav">
-    <span class="sb-grp">Daily / Weekly</span>
-    <button class="sb-btn" onclick="nav('future',this)" id="nb-future"><i class="sb-ic">★</i><span style="flex:1">Future Self</span></button>
-    <button class="sb-btn" onclick="nav('overview',this)"><i class="sb-ic">⊞</i><span style="flex:1">Dashboard</span></button>
-    <button class="sb-btn" onclick="navCurWk(this)" id="nb-curwk"><i class="sb-ic">→</i><span style="flex:1">Current Week</span></button>
-    <button class="sb-btn" onclick="nav('skills',this)"><i class="sb-ic">✓</i><span style="flex:1">Skills &amp; Proofs</span></button>
-    <button class="sb-btn" onclick="nav('cv',this)"><i class="sb-ic">◻</i><span style="flex:1">CV Tracker</span></button>
-    <span class="sb-grp">Programme — Term</span>
-    <button class="sb-btn" onclick="nav('w1',this)" id="nb-w1"><i class="sb-ic">1</i><span style="flex:1">Setup &amp; CLI</span><span class="sb-dot"></span></button>
-    <button class="sb-btn" onclick="nav('w2',this)" id="nb-w2"><i class="sb-ic">2</i><span style="flex:1">Away With It</span><span class="sb-dot"></span></button>
-    <span class="sb-grp">Programme — Mocks</span>
-    <button class="sb-btn" onclick="nav('w3',this)" id="nb-w3"><i class="sb-ic">3</i><span style="flex:1">Mocks Week 1</span><span class="sb-dot"></span></button>
-    <button class="sb-btn" onclick="nav('w4',this)" id="nb-w4"><i class="sb-ic">4</i><span style="flex:1">Mocks Week 2</span><span class="sb-dot"></span></button>
-    <span class="sb-grp">Programme — Summer</span>
-    <button class="sb-btn" onclick="nav('w5',this)" id="nb-w5"><i class="sb-ic">5</i><span style="flex:1">GCP + Claude API</span><span class="sb-dot"></span></button>
-    <button class="sb-btn" onclick="nav('w6',this)" id="nb-w6"><i class="sb-ic">6</i><span style="flex:1">Mini Product</span><span class="sb-dot"></span></button>
-    <button class="sb-btn" onclick="nav('w7',this)" id="nb-w7"><i class="sb-ic">7</i><span style="flex:1">TMUA + Agentic</span><span class="sb-dot"></span></button>
-    <button class="sb-btn" onclick="nav('w8',this)" id="nb-w8"><i class="sb-ic">8</i><span style="flex:1">Agentic Build</span><span class="sb-dot"></span></button>
-    <button class="sb-btn" onclick="nav('w9',this)" id="nb-w9"><i class="sb-ic">9</i><span style="flex:1">Demo Rebuild</span><span class="sb-dot"></span></button>
-    <button class="sb-btn" onclick="nav('w10',this)" id="nb-w10"><i class="sb-ic">10</i><span style="flex:1">Demo 10/10</span><span class="sb-dot"></span></button>
-    <button class="sb-btn" onclick="nav('w11',this)" id="nb-w11"><i class="sb-ic">11</i><span style="flex:1">MVP Build</span><span class="sb-dot"></span></button>
-    <button class="sb-btn" onclick="nav('w12',this)" id="nb-w12"><i class="sb-ic">12</i><span style="flex:1">Ship &amp; Demo</span><span class="sb-dot"></span></button>
-    <button class="sb-ref-hdr" id="sb-ref-hdr" onclick="toggleRef()">Reference<span class="sb-ref-arr" id="sb-ref-arr">▾</span></button>
-    <div class="sb-ref-body" id="sb-ref-body">
-    <button class="sb-btn" onclick="nav('offer',this)"><i class="sb-ic">◈</i><span style="flex:1">Offer Ladder</span><span class="sb-wk-badge">W1</span></button>
-    <button class="sb-btn" onclick="nav('markets',this)"><i class="sb-ic">◎</i><span style="flex:1">Markets</span><span class="sb-wk-badge">W1</span></button>
-    <button class="sb-btn" onclick="nav('pipeline',this)"><i class="sb-ic">◉</i><span style="flex:1">Pipeline</span><span class="sb-wk-badge">W2</span></button>
-    <button class="sb-btn" onclick="nav('income',this)"><i class="sb-ic">$</i><span style="flex:1">Income</span><span class="sb-wk-badge">Ref</span></button>
-    <button class="sb-btn" onclick="nav('legal',this)"><i class="sb-ic">⚖</i><span style="flex:1">Legal</span><span class="sb-wk-badge">W1</span></button>
-    <button class="sb-btn" onclick="nav('tier',this)"><i class="sb-ic">▲</i><span style="flex:1">Tier Tracker</span><span class="sb-wk-badge">W1</span></button>
-    <button class="sb-btn" onclick="nav('dest',this)"><i class="sb-ic">◎</i><span style="flex:1">30 Aug Target</span><span class="sb-wk-badge">W1</span></button>
-    <button class="sb-btn" onclick="nav('offermenu',this)"><i class="sb-ic">≡</i><span style="flex:1">Client Offers</span><span class="sb-wk-badge">W1</span></button>
-    <button class="sb-btn" onclick="nav('projects',this)"><i class="sb-ic">⊕</i><span style="flex:1">Projects</span><span class="sb-wk-badge">W7</span></button>
-    <button class="sb-btn" onclick="nav('goals',this)"><i class="sb-ic">◎</i><span style="flex:1">Goals</span><span class="sb-wk-badge">W1</span></button>
-    <button class="sb-btn" onclick="nav('sops',this)"><i class="sb-ic">◉</i><span style="flex:1">Vekora SOPs</span><span class="sb-wk-badge">W1</span></button>
-    <button class="sb-btn" onclick="nav('action',this)"><i class="sb-ic">⚡</i><span style="flex:1">Action Plan</span><span class="sb-wk-badge">Now</span></button>
-    <button class="sb-btn" onclick="nav('guardrails',this)"><i class="sb-ic">⊖</i><span style="flex:1">Guardrails</span><span class="sb-wk-badge">W1</span></button>
-    <button class="sb-btn" onclick="nav('trajectory',this)"><i class="sb-ic">→</i><span style="flex:1">Trajectory</span></button>
-    </div>
+    <span class="sb-grp">Views</span>
+    <button class="sb-btn" onclick="setView('thisweek')" id="nb-curwk"><i class="sb-ic">📅</i><span style="flex:1">This Week</span></button>
+    <button class="sb-btn" onclick="setView('actionplan')"><i class="sb-ic">⚡</i><span style="flex:1">Action Plan</span></button>
+    <button class="sb-btn" onclick="setView('offer')"><i class="sb-ic">💰</i><span style="flex:1">Offer</span></button>
+    <button class="sb-btn" onclick="setView('pipeline')"><i class="sb-ic">🔄</i><span style="flex:1">Pipeline</span></button>
+    <button class="sb-btn" onclick="setView('imperial')" id="nb-imperial"><i class="sb-ic">📐</i><span style="flex:1">Imperial</span></button>
+    <button class="sb-btn" onclick="setView('future')" id="nb-future"><i class="sb-ic">★</i><span style="flex:1">Future Self</span></button>
+    <button class="sb-btn" onclick="setView('trajectory')"><i class="sb-ic">▲</i><span style="flex:1">Trajectory</span></button>
+    <button class="sb-btn" onclick="setView('income')"><i class="sb-ic">£</i><span style="flex:1">Income</span></button>
+    <button class="sb-btn" onclick="setView('weeks')"><i class="sb-ic">📋</i><span style="flex:1">Weeks</span></button>
+    <button class="sb-btn" onclick="setView('learning')"><i class="sb-ic">📖</i><span style="flex:1">Learning</span></button>
+    <button class="sb-btn" onclick="setView('reference')"><i class="sb-ic">⊖</i><span style="flex:1">Reference</span></button>
+    <button class="sb-btn" onclick="setView('goals')"><i class="sb-ic">◎</i><span style="flex:1">Goals</span></button>
+    <span class="sb-grp">Weeks</span>
+    <button class="sb-btn" onclick="setViewWk('w1')" id="nb-w1"><i class="sb-ic">1</i><span style="flex:1">Setup &amp; CLI</span><span class="sb-dot"></span></button>
+    <button class="sb-btn" onclick="setViewWk('w2')" id="nb-w2"><i class="sb-ic">2</i><span style="flex:1">Away With It</span><span class="sb-dot"></span></button>
+    <button class="sb-btn" onclick="setViewWk('w3')" id="nb-w3"><i class="sb-ic">3</i><span style="flex:1">Mocks Week 1</span><span class="sb-dot"></span></button>
+    <button class="sb-btn" onclick="setViewWk('w4')" id="nb-w4"><i class="sb-ic">4</i><span style="flex:1">Mocks Week 2</span><span class="sb-dot"></span></button>
+    <button class="sb-btn" onclick="setViewWk('w5')" id="nb-w5"><i class="sb-ic">5</i><span style="flex:1">GCP + Claude API</span><span class="sb-dot"></span></button>
+    <button class="sb-btn" onclick="setViewWk('w6')" id="nb-w6"><i class="sb-ic">6</i><span style="flex:1">Mini Product</span><span class="sb-dot"></span></button>
+    <button class="sb-btn" onclick="setViewWk('w7')" id="nb-w7"><i class="sb-ic">7</i><span style="flex:1">TMUA + Agentic</span><span class="sb-dot"></span></button>
+    <button class="sb-btn" onclick="setViewWk('w8')" id="nb-w8"><i class="sb-ic">8</i><span style="flex:1">Agentic Build</span><span class="sb-dot"></span></button>
+    <button class="sb-btn" onclick="setViewWk('w9')" id="nb-w9"><i class="sb-ic">9</i><span style="flex:1">Demo Rebuild</span><span class="sb-dot"></span></button>
+    <button class="sb-btn" onclick="setViewWk('w10')" id="nb-w10"><i class="sb-ic">10</i><span style="flex:1">Demo 10/10</span><span class="sb-dot"></span></button>
+    <button class="sb-btn" onclick="setViewWk('w11')" id="nb-w11"><i class="sb-ic">11</i><span style="flex:1">MVP Build</span><span class="sb-dot"></span></button>
+    <button class="sb-btn" onclick="setViewWk('w12')" id="nb-w12"><i class="sb-ic">12</i><span style="flex:1">Ship &amp; Demo</span><span class="sb-dot"></span></button>
   </nav>
   <div class="sb-footer">
     <div class="sb-stat"><span class="sb-sl">Friday streak</span><span class="sb-sv sv-gold" id="sb-streak">0/12</span></div>
@@ -509,10 +521,17 @@ body.light .card{box-shadow:0 1px 3px rgba(0,0,0,.07)}
 <!-- VIEW SWITCHER — top (desktop) -->
 <div class="view-tabs-top" id="view-tabs-top">
   <button class="vt-btn" id="vt-thisweek" onclick="setView('thisweek')"><span class="vt-icon">📅</span>This Week</button>
-  <button class="vt-btn" id="vt-business" onclick="setView('business')"><span class="vt-icon">💼</span>The Business</button>
-  <button class="vt-btn" id="vt-imperial" onclick="setView('imperial')"><span class="vt-icon">📐</span>Imperial &amp; Self</button>
-  <button class="vt-btn" id="vt-plan" onclick="setView('plan')"><span class="vt-icon">📊</span>The Plan</button>
-  <button class="vt-btn" id="vt-ref" onclick="setView('ref')"><span class="vt-icon">📋</span>Reference</button>
+  <button class="vt-btn" id="vt-actionplan" onclick="setView('actionplan')"><span class="vt-icon">⚡</span>Action Plan</button>
+  <button class="vt-btn" id="vt-offer" onclick="setView('offer')"><span class="vt-icon">💰</span>Offer</button>
+  <button class="vt-btn" id="vt-pipeline" onclick="setView('pipeline')"><span class="vt-icon">🔄</span>Pipeline</button>
+  <button class="vt-btn" id="vt-imperial" onclick="setView('imperial')"><span class="vt-icon">📐</span>Imperial</button>
+  <button class="vt-btn" id="vt-future" onclick="setView('future')"><span class="vt-icon">★</span>Future Self</button>
+  <button class="vt-btn" id="vt-trajectory" onclick="setView('trajectory')"><span class="vt-icon">▲</span>Trajectory</button>
+  <button class="vt-btn" id="vt-income" onclick="setView('income')"><span class="vt-icon">£</span>Income</button>
+  <button class="vt-btn" id="vt-weeks" onclick="setView('weeks')"><span class="vt-icon">📋</span>Weeks</button>
+  <button class="vt-btn" id="vt-learning" onclick="setView('learning')"><span class="vt-icon">📖</span>Learning</button>
+  <button class="vt-btn" id="vt-reference" onclick="setView('reference')"><span class="vt-icon">⊖</span>Reference</button>
+  <button class="vt-btn" id="vt-goals" onclick="setView('goals')"><span class="vt-icon">◎</span>Goals</button>
 </div>
 
 <!-- FUTURE SELF -->
@@ -651,16 +670,33 @@ body.light .card{box-shadow:0 1px 3px rgba(0,0,0,.07)}
   <div class="guard-grid" id="guard-list"></div>
 </div>
 
+<!-- WEEKS — merged panel with internal week-switcher -->
+<div id="panel-weeks" class="panel">
+  <div class="pg-eye">12-Week Programme</div>
+  <div class="pg-h">Weeks</div>
+  <div class="wk-picker" id="wk-picker" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px"></div>
+  <div id="wk-content"></div>
+</div>
+
+<!-- IMPERIAL & ACADEMICS -->
+<div id="panel-imperial" class="panel"></div>
+
+<!-- LEARNING -->
+<div id="panel-learning" class="panel"></div>
+
+<!-- REFERENCE — merged: SOPs + Legal + Guardrails + Projects + CV -->
+<div id="panel-reference" class="panel"></div>
+
 </main>
 </div>
 
-<!-- VIEW SWITCHER — bottom (mobile) -->
+<!-- VIEW SWITCHER — bottom (mobile) 5 key views -->
 <div class="view-tabs-bottom" id="view-tabs-bottom">
   <button class="vt-btn" id="vtb-thisweek" onclick="setView('thisweek')"><span class="vt-icon">📅</span>This Week</button>
-  <button class="vt-btn" id="vtb-business" onclick="setView('business')"><span class="vt-icon">💼</span>Business</button>
+  <button class="vt-btn" id="vtb-actionplan" onclick="setView('actionplan')"><span class="vt-icon">⚡</span>Action</button>
+  <button class="vt-btn" id="vtb-offer" onclick="setView('offer')"><span class="vt-icon">💰</span>Offer</button>
   <button class="vt-btn" id="vtb-imperial" onclick="setView('imperial')"><span class="vt-icon">📐</span>Imperial</button>
-  <button class="vt-btn" id="vtb-plan" onclick="setView('plan')"><span class="vt-icon">📊</span>Plan</button>
-  <button class="vt-btn" id="vtb-ref" onclick="setView('ref')"><span class="vt-icon">📋</span>Reference</button>
+  <button class="vt-btn" id="vtb-weeks" onclick="setView('weeks')"><span class="vt-icon">📋</span>Weeks</button>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -721,7 +757,8 @@ const WKS = [
   goal:'Maths defended in the exam room. Streak alive. Nothing else matters this week.',
   mlo:450,mhi:900,sends:0,
   tasks:[
-   {t:'Revision: past paper AM · mark scheme + per-question review PM — every weekday',why:'This is the only job. Maths A* → Imperial → everything else. One week of full focus now is worth months of recovery later.',time:'Full days',dl:true},
+   {t:'Revision: past paper AM — every weekday',why:'This is the only job. Maths A* → Imperial → everything else. One week of full focus now is worth months of recovery later.',time:'Morning'},
+   {t:'Mark scheme + per-question review PM — every weekday',why:'The review is where learning happens — not the sitting. Read every answer even the ones you got right. Find the reasoning gap.',time:'Afternoon',dl:true},
    {t:'Revision: Sat/Sun — lighter session, past paper or topic drill only (no burnout)',why:'Don\'t grind yourself into the ground before the second mock week. Lighter Saturday/Sunday keeps you sharp for W4.',time:'~2 hrs/day'},
    {t:'Gym: Mon 22, Wed 24, Sat 27 — gentle sessions only (no PBs this week)',why:'Movement clears your head. Gentle gym beats no gym — but don\'t exhaust yourself the night before a paper.',time:'~45 min x3'},
    {t:'Bible: daily — 10 min morning',why:'Non-negotiable. Grounds you before the paper.',time:'Daily'},
@@ -761,8 +798,10 @@ const WKS = [
   goal:'First Claude API call from Python in the terminal. Cloud Run attempted. Retro done. CCA: yes.',
   mlo:900,mhi:1400,sends:30,
   tasks:[
-   {t:'GCP: create project "daniel-ai-mentorship" · explore IAM, Cloud Run, Firebase · screenshot dashboard',why:'GCP is the production stack for everything you build in this programme. Get comfortable in the console now — before you need it under pressure.',time:'~2 hrs'},
-   {t:'Anthropic API key (stored in password manager, never in code) · build claude_test.py using the Python SDK · run from terminal',why:'This is the first time Claude responds to your code. Not the playground — your code. That\'s the shift.',time:'~1–2 hrs'},
+   {t:'GCP: create project "daniel-ai-mentorship" and explore IAM, Cloud Run, and Firebase console',why:'GCP is the production stack for everything you build in this programme. Get comfortable in the console now — before you need it under pressure.',time:'~1 hr'},
+   {t:'GCP: screenshot dashboard showing project, IAM, and one service enabled — save to Build Log',why:'Evidence you\'ve touched the console. The screenshot forces you to verify each service is actually configured, not just clicked.',time:'~30 min'},
+   {t:'Anthropic API key: generate, store in password manager, add to .env — never in code',why:'Key hygiene from day one. A key committed to a repo is a key that gets rotated under pressure. .env + Secret Manager is the production pattern.',time:'~15 min'},
+   {t:'Build claude_test.py using the Python SDK and run it from the terminal — Claude must respond',why:'This is the first time Claude responds to your code. Not the playground — your code. That\'s the shift. Screenshot the terminal output.',time:'~1–2 hrs'},
    {t:'Cloud Run deploy attempted (success OR documented failure both count)',why:'Attempting and documenting a failure is a legitimate deliverable. The goal is to touch the stack, not to get it perfect first time.',time:'~1–2 hrs'},
    {t:'Firestore: add one doc from Python, read it back from code',why:'Firestore is the data layer for every Vekora system. One CRUD cycle from Python = you know the pattern.',time:'~1 hr'},
    {t:'"What I understand about auth" — half-page note in your own words',why:'Every production system needs auth. Writing it in your own words is how you find the gaps before they bite you in a client build.',time:'~30 min'},
@@ -857,7 +896,8 @@ const WKS = [
   mlo:2200,mhi:3000,sends:50,
   tasks:[
    {t:'Rebuild Demo 1 Claude-native: GHL form → n8n qualifier endpoint → Firestore → SMS. SOP 01 step-gating and 20-test matrix survive — only the plumbing changes.',why:'The demo is the business. Everything else in Vekora runs on "can you demo this in under 4 minutes and have an SMS arrive?" Build it to that spec.',time:'~12–15 hrs'},
-   {t:'Run the full 20-lead stress test · fix every failure · log every fix in the Build Log',why:'SOP 01 says: 10 consecutive clean runs before your first sales call. The 20-lead matrix is how you get there. Do not skip test cases.',time:'~3–4 hrs testing'},
+   {t:'Run the full 20-lead stress test — every case in order, no skipping',why:'SOP 01 says: 10 consecutive clean runs before your first sales call. The 20-lead matrix is how you get there. Do not skip test cases.',time:'~2 hrs testing'},
+   {t:'Fix every failure from the stress test and log each fix in the Build Log',why:'A fix that isn\'t logged isn\'t a fix — it\'s a guess. The Build Log entry forces you to understand what broke and why.',time:'~2 hrs debugging'},
    {t:'Personal statement draft 1: spine = NEA story + eval-harness idea + market simulation intent + Vekora as applied evidence',why:'Imperial CS asks for evidence of thinking, not just projects. The Vekora story is the strongest concrete evidence you have. Get it into words now.',time:'~2–3 hrs'},
    {t:'CCA module 3 on anthropic.skilljar.com',why:'Third certificate. Keep the CCA pace — one module per active week.',time:'4–6 hrs'},
    {t:'TMUA daily hour — past papers every weekday',why:'TMUA is daily from W7 through test day. Non-negotiable.',time:'1 hr/weekday'},
@@ -1231,57 +1271,103 @@ function toggleRef(){
   if(arr)arr.style.transform=isOpen?'rotate(180deg)':'rotate(0deg)';
 }
 function navCurWk(el){
-  var cur=getCurWk();
-  var btn=document.getElementById('nb-'+cur);
-  if(btn){nav(cur,btn);}else{nav(cur,el);}
+  setView('thisweek');
 }
 
 // ─── VIEW SWITCHER ────────────────────────────────────────────────────────────
-// Maps each view to its default panel and a sidebar button to highlight
-var VIEW_MAP={
-  thisweek:{panel:null,sb:'nb-curwk'},  // panel set dynamically
-  business:{panel:'sops',    sb:null},
-  imperial:{panel:'future',  sb:'nb-future'},
-  plan:    {panel:'overview',sb:null},
-  ref:     {panel:'guardrails',sb:null},
+// 12 views — each maps to one or more panels shown simultaneously
+var ALL_VIEWS=['thisweek','actionplan','offer','pipeline','imperial','future','trajectory','income','weeks','learning','reference','goals'];
+// Panels shown per view (trajectory shows multiple, weeks uses internal switcher)
+var VIEW_PANELS={
+  thisweek:   [],  // dynamic — current week panel
+  actionplan: ['action'],
+  offer:      ['offer'],
+  pipeline:   ['pipeline'],
+  imperial:   ['imperial'],
+  future:     ['future'],
+  trajectory: ['trajectory','tier','dest','skills'],
+  income:     ['income'],
+  weeks:      ['weeks'],
+  learning:   ['learning'],
+  reference:  ['reference'],
+  goals:      ['goals'],
 };
 var curView='thisweek';
+var curWkTab='';  // active week tab within weeks view
 
 function setView(v){
   curView=v;
-  // Highlight top + bottom tab buttons
-  ['thisweek','business','imperial','plan','ref'].forEach(function(k){
+  // Highlight top nav buttons
+  ALL_VIEWS.forEach(function(k){
     var t=document.getElementById('vt-'+k);
     var b=document.getElementById('vtb-'+k);
     if(t)t.classList.toggle('on',k===v);
     if(b)b.classList.toggle('on',k===v);
   });
-  // Navigate to the view's default panel
-  var vm=VIEW_MAP[v];
-  if(!vm)return;
-  var panelId=vm.panel;
+  // Highlight sidebar buttons
+  document.querySelectorAll('.sb-btn').forEach(function(b){b.classList.remove('on');});
+  // Hide all panels
+  document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on');});
   if(v==='thisweek'){
-    // Go to current week
     var cur=getCurWk();
-    panelId=cur;
-    var sbBtn=document.getElementById('nb-'+cur);
-    if(sbBtn){nav(cur,sbBtn);}else{
-      document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on');});
-      document.querySelectorAll('.sb-btn').forEach(function(b){b.classList.remove('on');});
-      var el=document.getElementById('panel-'+cur);
-      if(el)el.classList.add('on');
-    }
+    var el=document.getElementById('panel-'+cur);
+    if(el)el.classList.add('on');
+    var sbBtn=document.getElementById('nb-curwk');
+    if(sbBtn)sbBtn.classList.add('on');
+    document.querySelector('.main').scrollTop=0;
     return;
   }
-  // Find matching sidebar button for this panel
-  var sbBtn2=null;
-  document.querySelectorAll('.sb-btn').forEach(function(b){
-    if(b.getAttribute('onclick')&&b.getAttribute('onclick').indexOf("'"+panelId+"'")!==-1)sbBtn2=b;
+  var panels=VIEW_PANELS[v]||[];
+  panels.forEach(function(pid){
+    var el=document.getElementById('panel-'+pid);
+    if(el)el.classList.add('on');
   });
-  if(sbBtn2){nav(panelId,sbBtn2);}else{
-    document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on');});
-    var el2=document.getElementById('panel-'+panelId);
-    if(el2)el2.classList.add('on');
+  if(v==='weeks'){
+    // Render week picker and default to current week
+    renderWkPicker();
+    if(!curWkTab)curWkTab=getCurWk();
+    showWkTab(curWkTab);
+  }
+  if(v==='reference') renderReference();
+  document.querySelector('.main').scrollTop=0;
+  closeSidebar();
+}
+
+// Navigate to weeks view and show a specific week
+function setViewWk(wid){
+  curWkTab=wid;
+  setView('weeks');
+  // Also highlight that week's sb-btn
+  var sbBtn=document.getElementById('nb-'+wid);
+  if(sbBtn)sbBtn.classList.add('on');
+}
+
+function renderWkPicker(){
+  var picker=document.getElementById('wk-picker');
+  if(!picker)return;
+  picker.innerHTML=WKS.map(function(w){
+    var active=curWkTab===w.id?'border-color:var(--gold);background:var(--gll);color:var(--gold)':'';
+    return '<button onclick="showWkTab(\''+w.id+'\')" data-wid="'+w.id+'" style="padding:5px 12px;border:1px solid var(--bd);border-radius:16px;background:var(--card);color:var(--txt2);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;'+active+'">W'+w.n+'</button>';
+  }).join('');
+}
+
+function showWkTab(wid){
+  curWkTab=wid;
+  var content=document.getElementById('wk-content');
+  if(!content)return;
+  // Clone the rendered week panel into wk-content
+  var src=document.getElementById('panel-'+wid);
+  if(!src){content.innerHTML='<div style="color:var(--mu);padding:20px">Week not found.</div>';return;}
+  content.innerHTML=src.innerHTML;
+  // Update picker highlight
+  var picker=document.getElementById('wk-picker');
+  if(picker){
+    picker.querySelectorAll('button').forEach(function(b){
+      var active=b.getAttribute('data-wid')===wid;
+      b.style.borderColor=active?'var(--gold)':'var(--bd)';
+      b.style.background=active?'var(--gll)':'var(--card)';
+      b.style.color=active?'var(--gold)':'var(--txt2)';
+    });
   }
 }
 
@@ -1289,23 +1375,44 @@ function initView(){
   setView('thisweek');
 }
 
-// ─── NAV ─────────────────────────────────────────────────────────────────────
+// Legacy nav() helper — still used in cross-links
+function goTo(id){
+  // Map old panel ids to new views where applicable
+  var viewMap={action:'actionplan',offer:'offer',pipeline:'pipeline',future:'future',
+    trajectory:'trajectory',income:'income',sops:'reference',legal:'reference',
+    guardrails:'reference',projects:'reference',cv:'reference',skills:'reference',
+    imperial:'imperial',learning:'learning',goals:'goals',tier:'trajectory',
+    dest:'trajectory',overview:'goals',markets:'pipeline',offermenu:'offer'};
+  var v=viewMap[id];
+  if(v){setView(v);}else{
+    // Try direct panel show
+    document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on');});
+    var el=document.getElementById('panel-'+id);
+    if(el)el.classList.add('on');
+  }
+}
+
+// ─── NAV (legacy, kept for cross-link buttons) ────────────────────────────────
 
 let curPanel='future';
 function nav(id,el){
+  // Route through setView where possible
+  var viewMap={action:'actionplan',offer:'offer',pipeline:'pipeline',future:'future',
+    trajectory:'trajectory',income:'income',sops:'reference',legal:'reference',
+    guardrails:'reference',projects:'reference',cv:'reference',skills:'reference',
+    imperial:'imperial',learning:'learning',goals:'goals',tier:'trajectory',
+    dest:'trajectory',overview:'goals',markets:'pipeline',offermenu:'offer'};
+  var v=viewMap[id];
+  if(v){setView(v);return;}
+  // Week panels
+  if(id.match(/^w\d+$/)){setViewWk(id);return;}
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
   document.querySelectorAll('.sb-btn').forEach(b=>b.classList.remove('on'));
-  document.getElementById('panel-'+id).classList.add('on');
-  el.classList.add('on');
+  var el2=document.getElementById('panel-'+id);
+  if(el2)el2.classList.add('on');
   curPanel=id;
   closeSidebar();
   document.querySelector('.main').scrollTop=0;
-}
-function goTo(id){
-  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
-  document.querySelectorAll('.sb-btn').forEach(b=>b.classList.remove('on'));
-  document.getElementById('panel-'+id).classList.add('on');
-  curPanel=id;
 }
 
 // ─── DATE HELPERS ─────────────────────────────────────────────────────────────
@@ -1703,14 +1810,49 @@ function renderWk(w){
       </div>
     </div>`:'' ;
 
+  // ─── Identity tag detection ───────────────────────────────────────────────
+  function getIdTags(txt){
+    const s=txt.toLowerCase();
+    const tags=[];
+    if(/build|ship|deploy|client|system|sop|automat|tool\b|agent|api\b/.test(s))
+      tags.push('<span class="id-tag" style="background:#1a3a5c;color:#5ba4f5">BUILDER</span>');
+    if(/maths|tmua|past paper|paper|study|learn|module|cca|coding|leetcode|unaided|read\b/.test(s))
+      tags.push('<span class="id-tag" style="background:#2a1a5c;color:#a78bfa">SCHOLAR</span>');
+    if(/gym|run\b|exercise|walk\b|fitness|sleep|health|body/.test(s))
+      tags.push('<span class="id-tag" style="background:#1a3d2b;color:#34d399">STRONG-BODY</span>');
+    if(/faith|prayer|qur|dua|salah|intention|gratitude|mosque/.test(s))
+      tags.push('<span class="id-tag" style="background:#3d2a1a;color:#f59e0b">STRONG-FAITH</span>');
+    if(/journal|reflect|review\b|reset\b|rest\b|peace|clarity|think/.test(s))
+      tags.push('<span class="id-tag" style="background:#1a3a3d;color:#22d3ee">AT-PEACE</span>');
+    return tags.join('');
+  }
+
+  // ─── Cross-link detection ─────────────────────────────────────────────────
+  function getCrossLink(txt){
+    const s=txt.toLowerCase();
+    if(/maths|tmua|past paper|unaided/.test(s))
+      return '<button class="tc-link" onclick="event.stopPropagation();setView(\'imperial\')">Imperial →</button>';
+    if(/\bcca\b|module|agent sdk|sdk\b/.test(s))
+      return '<button class="tc-link" onclick="event.stopPropagation();setView(\'learning\')">Learning →</button>';
+    if(/offer|pipeline|prospect|outreach/.test(s))
+      return '<button class="tc-link" onclick="event.stopPropagation();setView(\'offer\')">Offer →</button>';
+    if(/\bsop\b/.test(s))
+      return '<button class="tc-link" onclick="event.stopPropagation();goTo(\'sops\')">SOPs →</button>';
+    return '';
+  }
+
   function taskRow(t,i,wid,isPre){
     const k=wid+'-'+i;const done=isPre||!!S.tasks[k];
+    const haystack=(t.t||'')+' '+(t.why||'');
+    const idTags=getIdTags(haystack);
+    const crossLink=getCrossLink(haystack);
     return `<div class="tc${done?' done':''}" onclick="toggleTask('${k}',this,${isPre?'true':'false'})">
       <input class="cb-check" type="checkbox" ${done?'checked':''} onclick="event.stopPropagation()" onchange="toggleTask('${k}',this.parentElement,${isPre?'true':'false'})">
       <div class="tc-body">
-        <div class="tc-title">${esc(t.t)}</div>
+        <div class="tc-title">${idTags}${esc(t.t)}</div>
         ${t.why?`<div class="tc-why">${esc(t.why)}</div>`:''}
         ${t.note?`<div class="tc-note">↳ ${esc(t.note)}</div>`:''}
+        ${crossLink}
       </div>
       <div class="tc-meta">
         <span class="time-tag">${esc(t.time||'')}</span>
@@ -2045,14 +2187,23 @@ function renderSOPs(){
       <div style="font-size:12px;color:var(--txt2);margin-bottom:3px;line-height:1.5">${esc(t.r)}</div>
       <div style="font-size:11px;color:var(--mu)">${esc(t.c)}</div>
     </div>`).join('');
-  document.getElementById('sop-list').innerHTML=SOPS.map(s=>`
-    <div class="sop-card" style="border-left-color:${s.c}">
-      <div class="sop-n" style="color:${s.c}">SOP ${esc(s.n)}</div>
+  document.getElementById('sop-list').innerHTML=SOPS.map(s=>{
+    const sopDone=s.steps.every((_,i)=>S.tasks&&S.tasks['sop-'+s.n+'-'+i]);
+    const stepsHtml=s.steps.map((st,i)=>{
+      const k='sop-'+s.n+'-'+i;const done=!!(S.tasks&&S.tasks[k]);
+      return `<div class="tc${done?' done':''}" style="margin-bottom:3px;padding:8px 10px" onclick="toggleSopStep('${s.n}',${i},this)">
+        <input class="cb-check" type="checkbox"${done?' checked':''} style="width:16px;height:16px;min-width:16px" onclick="event.stopPropagation()" onchange="toggleSopStep('${s.n}',${i},this.parentElement)">
+        <div class="tc-body"><span class="tc-title" style="font-size:12px">${esc(st)}</span></div>
+      </div>`;
+    }).join('');
+    return `<div class="sop-card" style="border-left-color:${s.c}">
+      <div class="sop-n" style="color:${s.c}">SOP ${esc(s.n)}${sopDone?' ✓':''}</div>
       <div class="sop-title">${esc(s.t)}</div>
       <div class="sop-sub">${esc(s.s)}</div>
       <div class="sop-done">✓ Done when: ${esc(s.done)}</div>
-      <ul class="sop-steps">${s.steps.map(st=>`<li>${esc(st)}</li>`).join('')}</ul>
-    </div>`).join('');
+      <div class="tasks" style="gap:3px">${stepsHtml}</div>
+    </div>`;
+  }).join('');
   var sp=document.getElementById('panel-sops');
   if(sp&&!sp.querySelector('.kill-cond')){
     var extra=document.createElement('div');
@@ -2098,6 +2249,251 @@ function renderSOPs(){
 function renderGuards(){
   document.getElementById('guard-list').innerHTML=GUARDS.map(g=>`
     <div class="guard"><span class="guard-icon">${g.i}</span><div class="guard-txt">${g.t}</div></div>`).join('');
+}
+
+// ─── ACCORDION ────────────────────────────────────────────────────────────────
+
+function toggleAcc(hdr){
+  hdr.classList.toggle('open');
+  var b=hdr.nextElementSibling;
+  b.classList.toggle('open');
+}
+
+// ─── REFERENCE PANEL ──────────────────────────────────────────────────────────
+
+function renderReference(){
+  var el=document.getElementById('panel-reference');if(!el)return;
+  if(el.dataset.rendered)return;  // already rendered
+  el.dataset.rendered='1';
+
+  // Helper: build accordion section
+  function acc(title,icon,content){
+    return '<div class="acc-item"><button class="acc-hdr" onclick="toggleAcc(this)"><span>'+icon+' '+esc(title)+'</span><span class="acc-arr">▾</span></button><div class="acc-body">'+content+'</div></div>';
+  }
+
+  // SOPs section — checkable steps
+  var sopHtml=SOPS.map(function(s){
+    var stepsHtml=s.steps.map(function(st,i){
+      var k='sop-'+s.n+'-'+i;
+      var done=!!(S.tasks&&S.tasks[k]);
+      return '<div class="tc'+(done?' done':'')+'" style="margin-bottom:4px;padding:10px 12px" onclick="toggleSopStep(\''+s.n+'\','+i+',this)">'+
+        '<input class="cb-check" type="checkbox"'+(done?' checked':'')+' style="width:16px;height:16px;min-width:16px" onclick="event.stopPropagation()" onchange="toggleSopStep(\''+s.n+'\','+i+',this.parentElement)">'+
+        '<div class="tc-body"><span class="tc-title" style="font-size:12px">'+esc(st)+'</span></div></div>';
+    }).join('');
+    var sopDone=s.steps.every(function(_,i){return S.tasks&&S.tasks['sop-'+s.n+'-'+i];});
+    return '<div class="sop-card" style="border-left-color:'+s.c+';margin-bottom:10px">'+
+      '<div class="sop-n" style="color:'+s.c+'">SOP '+esc(s.n)+(sopDone?' ✓':'')+'</div>'+
+      '<div class="sop-title">'+esc(s.t)+'</div>'+
+      '<div class="sop-sub">'+esc(s.s)+'</div>'+
+      '<div class="sop-done">Done when: '+esc(s.done)+'</div>'+
+      '<div class="tasks" style="gap:4px">'+stepsHtml+'</div>'+
+    '</div>';
+  }).join('');
+
+  // Legal section — grouped by .g, colored by .s
+  var legalGroups={};
+  LEGAL_ITEMS.forEach(function(item){if(!legalGroups[item.g])legalGroups[item.g]=[];legalGroups[item.g].push(item);});
+  var sevC={red:'var(--err)',amb:'var(--warn)',grn:'var(--ok)'};
+  var sevBg={red:'rgba(239,68,68,.1)',amb:'rgba(245,158,11,.1)',grn:'rgba(34,197,94,.1)'};
+  var legalHtml=Object.keys(legalGroups).map(function(grp){
+    var items=legalGroups[grp].map(function(item){
+      var chk=S.legal&&S.legal[item.id];
+      return '<div class="tc'+(chk?' done':'')+'">'+
+        '<input class="cb-check" type="checkbox"'+(chk?' checked':'')+' onclick="event.stopPropagation()" onchange="toggleLegal(\''+item.id+'\',this)">'+
+        '<div class="tc-body">'+
+          '<div style="display:flex;align-items:center;gap:6px;margin-bottom:'+(item.d?'4':'0')+'px">'+
+            '<span style="font-size:9px;font-weight:800;color:'+sevC[item.s]+';background:'+sevBg[item.s]+';border-radius:3px;padding:1px 6px">'+item.s.toUpperCase()+'</span>'+
+            '<span class="tc-title">'+esc(item.t)+'</span>'+
+          '</div>'+
+          (item.d?'<div class="tc-why">'+esc(item.d)+'</div>':'')+
+        '</div></div>';
+    }).join('');
+    return '<div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--mu);margin:12px 0 6px;padding-bottom:4px;border-bottom:1px solid var(--bd)">'+esc(grp)+'</div><div class="tasks">'+items+'</div>';
+  }).join('');
+
+  // Guardrails section
+  var guardsHtml='<div class="guard-grid">'+GUARDS.map(function(g){
+    return '<div class="guard"><span class="guard-icon">'+g.i+'</span><div class="guard-txt">'+g.t+'</div></div>';
+  }).join('')+'</div>';
+
+  // Projects section — gated list
+  var GATED=[
+    {name:'Instant Response System',note:'CORE — Stage 1 of Vekora',gate:'W2',status:'core',stack:'Twilio · Cloud Run · Node.js'},
+    {name:'TMUA Tracker',note:'Log every paper. Surface weak topics.',gate:'W7 — after TMUA booked',status:'planned',stack:'Next.js · Firestore'},
+    {name:'AI Revision Tutor',note:'SM-2 + Claude grading',gate:'Aug (W10-11)',status:'planned',stack:'Claude API · Next.js'},
+    {name:'Agent-Based Market Simulation',note:'Imperial PS piece',gate:'Aug (W8+)',status:'planned',stack:'Python · Claude API'},
+    {name:'Review-Request System',note:'Post-job review ask',gate:'Sept — 2 retainers first',status:'locked',stack:'Twilio · Cloud Run'},
+    {name:'Voice Receptionist Demo',note:'Stage 2 companion',gate:'Stage 2 client #1 signed',status:'locked',stack:'Claude API · Twilio'},
+  ];
+  var sColor={core:'var(--ok)',planned:'var(--gold)',locked:'var(--err)'};
+  var sLabel={core:'CORE',planned:'PLANNED',locked:'LOCKED'};
+  var projHtml='<div class="rules-strip" style="margin-bottom:12px">One active at a time · summer only · Fridays first · not on this list = not built this year.</div>'+
+    '<table class="tbl"><thead><tr><th>Project</th><th>Gate</th><th>Status</th></tr></thead><tbody>'+
+    GATED.map(function(p){
+      return '<tr><td><strong>'+esc(p.name)+'</strong><br><span style="font-size:11px;color:var(--mu)">'+esc(p.note)+'</span><br><span class="tag tm" style="font-size:9px">'+esc(p.stack)+'</span></td>'+
+        '<td style="font-size:12px">'+esc(p.gate)+'</td>'+
+        '<td><span style="font-size:9px;font-weight:800;color:'+sColor[p.status]+';border-radius:3px;padding:2px 7px;background:rgba(0,0,0,.2)">'+sLabel[p.status]+'</span></td></tr>';
+    }).join('')+
+    '</tbody></table>';
+
+  // CV section (simplified list)
+  var cvHtml='<div class="tasks">'+CV_ITEMS.map(function(it){
+    var chk=S.tasks&&S.tasks[it.id];
+    return '<div class="tc'+(chk?' done':'')+'">'+
+      '<input class="cb-check" type="checkbox"'+(chk?' checked':'')+' onclick="event.stopPropagation()" onchange="toggleCVItem(\''+it.id+'\',this)">'+
+      '<div class="tc-body"><div class="tc-title">'+esc(it.t)+'</div><div class="tc-why">Week '+it.w+'</div></div></div>';
+  }).join('')+'</div>';
+
+  el.innerHTML=
+    '<div class="pg-eye">All Reference Material</div>'+
+    '<div class="pg-h">Reference</div>'+
+    '<div class="pg-desc">SOPs · Legal · Guardrails · Projects · CV — all collapsible. SOPs are checkable step-by-step.</div>'+
+    acc('Vekora SOPs','◉',sopHtml)+
+    acc('Legal & Compliance','⚖',legalHtml)+
+    acc('Guardrails','⊖',guardsHtml)+
+    acc('Projects & Gated Builds','⊕',projHtml)+
+    acc('CV Tracker','◻',cvHtml);
+}
+
+function toggleSopStep(sopN,i,row){
+  var k='sop-'+sopN+'-'+i;
+  if(!S.tasks)S.tasks={};
+  S.tasks[k]=!S.tasks[k];
+  saveS();
+  var parent=row.closest?row.closest('.tc'):row;
+  if(parent){
+    parent.classList.toggle('done',!!S.tasks[k]);
+    var cb=parent.querySelector('.cb-check');
+    if(cb)cb.checked=!!S.tasks[k];
+  }
+  showToast(S.tasks[k]?'Step done ✓':'Step unmarked');
+}
+
+// ─── IMPERIAL & ACADEMICS ─────────────────────────────────────────────────────
+
+function renderImperial(){
+  var el=document.getElementById('panel-imperial');if(!el)return;
+  if(!S.tasks)S.tasks={};
+
+  // Current week key for per-week state
+  function weekKey(wid){return wid||getCurWk();}
+
+  // Maths daily reps — Mon-Fri of current week
+  var curWid=getCurWk();
+  var days=['Mon','Tue','Wed','Thu','Fri'];
+  var mathsHtml=days.map(function(d,i){
+    var k='maths-'+curWid+'-'+i;var done=!!(S.tasks&&S.tasks[k]);
+    return '<div class="tc'+(done?' done':'')+'" style="padding:10px 14px;margin-bottom:4px" onclick="toggleImperialTask(\''+k+'\',this)">'+
+      '<input class="cb-check" type="checkbox"'+(done?' checked':'')+' onclick="event.stopPropagation()" onchange="toggleImperialTask(\''+k+'\',this.parentElement)">'+
+      '<div class="tc-body"><div class="tc-title">'+esc(d)+' — Past paper done, marked same day, dropped-mark topics logged</div></div>'+
+    '</div>';
+  }).join('');
+  // Streak count
+  var mathsStreak=0;
+  for(var wi=WKS.length-1;wi>=0;wi--){
+    var allDone=true;
+    for(var di=0;di<5;di++){if(!S.tasks['maths-'+WKS[wi].id+'-'+di]){allDone=false;break;}}
+    if(allDone)mathsStreak++;else break;
+  }
+
+  // TMUA timeline
+  var TMUA_ITEMS=[
+    {t:'Registration opens Mon 20 July 2026 — book within 24h (set phone alarm NOW)',id:'tmua-0'},
+    {t:'TMUA booked — screenshot taken and sent to Dee',id:'tmua-1'},
+    {t:'1 past paper per week from W5 (pause W3-4 mocks, resume W5)',id:'tmua-2'},
+    {t:'Daily 1-hour prep starts from W7 (booking day)',id:'tmua-3'},
+    {t:'Registration deadline: 28 September 2026',id:'tmua-4'},
+    {t:'Test day: 15–16 October 2026',id:'tmua-5'},
+  ];
+  var tmuaHtml=TMUA_ITEMS.map(function(item){
+    var done=!!(S.tasks&&S.tasks[item.id]);
+    return '<div class="tc'+(done?' done':'')+'" style="padding:10px 14px;margin-bottom:4px" onclick="toggleImperialTask(\''+item.id+'\',this)">'+
+      '<input class="cb-check" type="checkbox"'+(done?' checked':'')+' onclick="event.stopPropagation()" onchange="toggleImperialTask(\''+item.id+'\',this.parentElement)">'+
+      '<div class="tc-body"><div class="tc-title">'+esc(item.t)+'</div></div>'+
+    '</div>';
+  }).join('');
+
+  // Senior Maths Challenge
+  var smcDone=!!(S.tasks&&S.tasks['smc-0']);
+  var smcHtml='<div class="tc'+(smcDone?' done':'')+'" style="padding:10px 14px" onclick="toggleImperialTask(\'smc-0\',this)">'+
+    '<input class="cb-check" type="checkbox"'+(smcDone?' checked':'')+' onclick="event.stopPropagation()" onchange="toggleImperialTask(\'smc-0\',this.parentElement)">'+
+    '<div class="tc-body"><div class="tc-title">Ask maths teacher if Senior Maths Challenge is offered this autumn. If yes, register immediately.</div>'+
+    '<div class="tc-why">Cheapest high-value Imperial signal. One 5-minute conversation. Cheapest route to a signal admissions tutors notice.</div></div>'+
+  '</div>';
+
+  // Unaided coding — 3x per week from W5
+  var UNAIDED_PROG=['Binary search','Stack / Queue','Sort algorithm','Recursive parser','Expression evaluator','Agent-Based Market Simulation'];
+  var unaidedHtml=WKS.filter(function(w){return w.n>=5;}).slice(0,6).map(function(w,wi){
+    var items=['Mon','Wed','Fri'].map(function(d,i){
+      var k='unaided-'+w.id+'-'+i;var done=!!(S.tasks&&S.tasks[k]);
+      return '<div class="tc'+(done?' done':'')+'" style="padding:8px 12px;margin-bottom:3px" onclick="toggleImperialTask(\''+k+'\',this)">'+
+        '<input class="cb-check" type="checkbox"'+(done?' checked':'')+' onclick="event.stopPropagation()" onchange="toggleImperialTask(\''+k+'\',this.parentElement)">'+
+        '<div class="tc-body"><div class="tc-title" style="font-size:12px">'+d+' — 30 min, no AI — '+esc(UNAIDED_PROG[wi]||'Practice')+'</div></div>'+
+      '</div>';
+    }).join('');
+    return '<div style="font-size:11px;font-weight:700;color:var(--mu);margin:8px 0 4px">W'+w.n+': '+esc(UNAIDED_PROG[wi]||'')+'</div>'+items;
+  }).join('');
+
+  // Personal Statement milestones
+  var PS_ITEMS=[
+    {t:'August: first draft written — CS curiosity as the spine (not business)',id:'ps-0'},
+    {t:'Vekora gets ONE technically-framed paragraph only — not the centrepiece',id:'ps-1'},
+    {t:'Teacher review booked (before 15 Sept)',id:'ps-2'},
+    {t:'Draft 2 revised post-teacher feedback',id:'ps-3'},
+    {t:'Final polish (early October — 85-90% effort, then TMUA takes priority)',id:'ps-4'},
+  ];
+  var psHtml=PS_ITEMS.map(function(item){
+    var done=!!(S.tasks&&S.tasks[item.id]);
+    return '<div class="tc'+(done?' done':'')+'" style="padding:10px 14px;margin-bottom:4px" onclick="toggleImperialTask(\''+item.id+'\',this)">'+
+      '<input class="cb-check" type="checkbox"'+(done?' checked':'')+' onclick="event.stopPropagation()" onchange="toggleImperialTask(\''+item.id+'\',this.parentElement)">'+
+      '<div class="tc-body"><div class="tc-title">'+esc(item.t)+'</div></div>'+
+    '</div>';
+  }).join('');
+
+  el.innerHTML=
+    '<div class="pg-eye">The Grade is the Load-Bearing Wall</div>'+
+    '<div class="pg-h">Imperial &amp; Academics</div>'+
+    '<div class="pg-desc">Maths A* → Imperial → everything. Client work yields to this on every collision. No exceptions.</div>'+
+
+    '<div class="card" style="border-left:3px solid var(--purple);margin-bottom:12px">'+
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">'+
+        '<span class="sec-lbl" style="margin:0">Maths Daily Rep — Current Week (W'+getCurWk().replace('w','')+') &nbsp;<span class="tag tp">Scholar</span></span>'+
+        '<span style="font-size:12px;font-weight:700;color:var(--purple)">'+mathsStreak+' week streak</span>'+
+      '</div>'+
+      '<div style="font-size:11.5px;color:var(--txt2);margin-bottom:8px">Past paper done · marked same day · dropped-mark topics logged</div>'+
+      mathsHtml+
+    '</div>'+
+
+    '<div class="card" style="margin-bottom:12px">'+
+      '<span class="sec-lbl">TMUA Timeline &nbsp;<span class="tag tw">Deadline</span></span>'+
+      '<div style="font-size:11.5px;color:var(--txt2);margin-bottom:10px">Test: 15–16 October 2026. Imperial CS requires it. Miss the booking window and you cannot sit this year.</div>'+
+      tmuaHtml+
+    '</div>'+
+
+    '<div class="card" style="border-left:3px solid var(--ok);margin-bottom:12px">'+
+      '<span class="sec-lbl">Senior Maths Challenge &nbsp;<span class="tag to">High signal · low effort</span></span>'+
+      smcHtml+
+    '</div>'+
+
+    '<div class="card" style="margin-bottom:12px">'+
+      '<span class="sec-lbl">Unaided Coding Habit — 3× per week from W5 &nbsp;<span class="tag tp">Scholar</span></span>'+
+      '<div style="font-size:11.5px;color:var(--txt2);margin-bottom:10px">30 min, no AI, build from scratch. Imperial examines you without AI — prove what you can do unaided.</div>'+
+      unaidedHtml+
+    '</div>'+
+
+    '<div class="card">'+
+      '<span class="sec-lbl">Personal Statement Milestones</span>'+
+      '<div style="font-size:11.5px;color:var(--txt2);margin-bottom:10px">Target 85–90/100 effort. Beyond that, TMUA prep takes priority.</div>'+
+      psHtml+
+    '</div>';
+}
+
+function toggleImperialTask(k,row){
+  if(!S.tasks)S.tasks={};
+  S.tasks[k]=!S.tasks[k];saveS();
+  var parent=row.closest?row.closest('.tc'):row;
+  if(parent){parent.classList.toggle('done',!!S.tasks[k]);var cb=parent.querySelector('.cb-check');if(cb)cb.checked=!!S.tasks[k];}
+  showToast(S.tasks[k]?'Done ✓':'Unmarked');
 }
 
 // ─── INTERACTIONS ─────────────────────────────────────────────────────────────
@@ -2236,82 +2632,118 @@ function saveMockDate(wid,field,val){
   saveS();
 }
 
-// ─── OFFER LADDER ────────────────────────────────────────────────────────────
+// ─── OFFER (rebuilt niche-card UI) ───────────────────────────────────────────
+
+var _offerExpanded=null;
+
+function toggleNiche(n){
+  _offerExpanded=_offerExpanded===n?null:n;
+  renderOffer();
+}
 
 function renderOffer(){
-  const el=document.getElementById('panel-offer');
+  const el=document.getElementById('panel-offer');if(!el)return;
+
+  const whatItDoes=[
+    'Every enquiry caught — phone, form, after-hours — nothing falls through',
+    'Instant intelligent qualifying reply in seconds — not minutes, not next morning',
+    'Missed-call text-back — caller gets a message before they ring a competitor',
+    'Real-time owner alert — who called, what they want, how hot they are',
+    'Monthly performance report — leads captured, response time, estimated revenue recovered',
+  ];
+
+  const NICHES=[
+    {id:'home',label:'High-Ticket Home Improvement',icon:'🔨',
+     industries:'Kitchens · Bathrooms · Conservatories · Driveways · Solar · Windows &amp; Doors',
+     setup:'£1,000–1,500 (one-off)',monthly:'£600–950/mo managed',
+     roi:'Your average job is worth £10–20k. If this recovers one extra job a year it\'s paid for itself many times over — and it\'s catching every enquiry, every night.',
+     channels:'Cold call · Walk-in / showroom visits · Facebook ads angle (avoid: email, LinkedIn — low open rates)',
+     areas:'Loughton · Buckhurst Hill · Chigwell · Brentwood · Epping · Hornchurch · Upminster · Billericay · Chelmsford · Ongar',
+    },
+    {id:'prop',label:'Property &amp; Lettings Agencies',icon:'🏠',
+     industries:'Estate agents · Lettings agencies · Property management',
+     setup:'£1,000–1,500 (one-off)',monthly:'£600–950/mo managed',
+     roi:'First agent to respond usually wins the instruction. This responds in seconds, day or night — stop losing instructions to whoever replied faster.',
+     channels:'Email · LinkedIn · Phone · Branch walk-in',
+     areas:'Same Essex corridor — especially Loughton, Chigwell, Brentwood, Epping, Hornchurch',
+    },
+  ];
+
+  const LADDER=[
+    {stage:'NOW',label:'Instant Response & Qualification',note:'Selling now',color:'var(--ok)'},
+    {stage:'FUTURE',label:'Lead-Leak Audit',note:'Lead-gen door opener',color:'var(--mu)'},
+    {stage:'FUTURE',label:'Claude Setup',note:'Configure AI as their business brain',color:'var(--mu)'},
+    {stage:'FUTURE',label:'Website + GBP',note:'Visibility foundation',color:'var(--mu)'},
+    {stage:'FUTURE',label:'Booking / Calendar automation',note:'Stage 2',color:'var(--mu)'},
+    {stage:'FUTURE',label:'Task automation + Ads',note:'Stage 3+',color:'var(--mu)'},
+  ];
+
+  const nicheCards=NICHES.map(function(n){
+    const isOpen=_offerExpanded===n.id;
+    const expandedHtml=isOpen?
+      '<div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--bd)">'+
+        '<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--mu);margin-bottom:4px">Industries</div>'+
+        '<div style="font-size:13px;color:var(--txt2);margin-bottom:10px">'+n.industries+'</div>'+
+        '<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--mu);margin-bottom:4px">Best Channels</div>'+
+        '<div style="font-size:13px;color:var(--txt2);margin-bottom:10px">'+esc(n.channels)+'</div>'+
+        '<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--mu);margin-bottom:4px">Target Areas</div>'+
+        '<div style="font-size:13px;color:var(--txt2);margin-bottom:10px">'+esc(n.areas)+'</div>'+
+        '<div style="background:var(--gll);border:1px solid rgba(201,168,76,.2);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:10px 14px;font-size:12.5px;color:var(--txt2);line-height:1.65;font-style:italic">'+esc(n.roi)+'</div>'+
+      '</div>':'';
+    return '<div class="card" style="border-left:3px solid var(--gold);cursor:pointer;margin-bottom:10px" onclick="toggleNiche(\''+n.id+'\')">'+
+      '<div style="display:flex;justify-content:space-between;align-items:center">'+
+        '<div>'+
+          '<div style="font-size:15px;font-weight:800;color:var(--txt)">'+n.icon+' '+n.label+'</div>'+
+          '<div style="font-size:12px;color:var(--mu);margin-top:3px">Setup: '+esc(n.setup)+' &nbsp;·&nbsp; Monthly: '+esc(n.monthly)+'</div>'+
+        '</div>'+
+        '<span style="font-size:18px;color:var(--mu);transition:transform .15s;transform:'+(isOpen?'rotate(90deg)':'rotate(0deg)')+'">›</span>'+
+      '</div>'+
+      expandedHtml+
+    '</div>';
+  }).join('');
+
+  const ladderHtml=LADDER.map(function(l){
+    var isNow=l.stage==='NOW';
+    return '<div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--card'+(isNow?'':'2')+'  );border:1px solid '+(isNow?'var(--gold)':'var(--bd)')+';border-radius:8px;margin-bottom:6px">'+
+      '<span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:3px;background:'+(isNow?'var(--gold)':'var(--card2)')+';color:'+(isNow?'#000':'var(--mu)')+'">'+esc(l.stage)+'</span>'+
+      '<div><div style="font-size:13px;font-weight:700;color:var(--txt)">'+esc(l.label)+'</div><div style="font-size:11px;color:var(--mu)">'+esc(l.note)+'</div></div>'+
+    '</div>';
+  }).join('');
+
   el.innerHTML=
-    '<div class="pg-eye">Vekora Revenue Architecture</div>'+
-    '<div class="pg-h">Offer Ladder</div>'+
-    '<div class="pg-desc">Six stages. Move up on evidence, never optimism. The gate column is the only number that matters — it overrides enthusiasm every time.</div>'+
-    '<div class="card" style="padding:0;overflow:hidden;margin-bottom:12px">'+
-    '<table class="ladder-tbl"><thead><tr>'+
-      '<th>Stage</th><th>When</th><th>Product</th><th>Price</th><th class="gate-cell">Unlock gate</th>'+
-    '</tr></thead><tbody>'+
-    '<tr>'+
-      '<td class="stage-cell">0 — Diagnose &amp; Respond</td>'+
-      '<td><span class="tag to">Now</span></td>'+
-      '<td>£200 Lead-Leak Audit (48h video + 1-page plan) · £900 "Never Miss A Job" Foundation (GBP setup + instant SMS enquiry alerts + landing page if needed) · £250–350/mo Response &amp; Visibility retainer</td>'+
-      '<td style="color:var(--gold);font-weight:700">Floors locked</td>'+
-      '<td class="gate-cell"><strong style="color:var(--ok)">None</strong></td>'+
-    '</tr>'+
-    '<tr>'+
-      '<td class="stage-cell">1 — Instant Response System</td>'+
-      '<td><span class="tag tw">Now (W2)</span></td>'+
-      '<td>Missed-call text-back + enquiry auto-acknowledge + qualify (Twilio → Cloud Run → SMS). <em>Away With It is the live build.</em></td>'+
-      '<td style="font-weight:600">£500 setup<br><span style="font-size:11px;color:var(--mu)">+£150 instant quoting · +£100 priority tags · £250/mo managed</span></td>'+
-      '<td class="gate-cell">Working live demo — missed call → SMS under 30s, 5 consecutive passes</td>'+
-    '</tr>'+
-    '<tr>'+
-      '<td class="stage-cell">2 — AI Lead Qualification</td>'+
-      '<td><span class="tag tg">~Aug</span></td>'+
-      '<td>Qualify → score → reply → book, under 30s</td>'+
-      '<td style="font-weight:600">£950/mo + £500 setup</td>'+
-      '<td class="gate-cell"><strong>Demo runs 10/10</strong> consecutive, from memory, under 4 min, SMS every time</td>'+
-    '</tr>'+
-    '<tr style="background:rgba(201,168,76,.025)">'+
-      '<td class="stage-cell">2.5 — Full-Funnel Growth<br><span style="font-size:10px;font-weight:500;color:var(--mu)">Destination tier · 2027</span></td>'+
-      '<td><span class="tag tm">2027, mid-market</span></td>'+
-      '<td>Paid acquisition (Google/Meta) feeding the Stage 2 qualify/book system — ads + response + qualification as ONE revenue pipeline. Ads are part of the core growth stack, not a bolt-on.</td>'+
-      '<td style="font-weight:600">£1.5–3.5k/mo retainer<br><span style="font-size:11px;color:var(--mu)">+ revenue share on revenue the ads generate (NOT % of spend — credible only because my system is the attribution layer)</span></td>'+
-      '<td class="gate-cell">2–3 documented case studies with hard ROI · Stage 2 live at 10/10 · first AIC subcontract delivered</td>'+
-    '</tr>'+
-    '<tr>'+
-      '<td class="stage-cell">3 — Full-System GOS Phase 1<br><span style="font-size:10px;font-weight:500;color:var(--mu)">Portal · monitoring · ads layer</span></td>'+
-      '<td><span class="tag tm">2027+</span></td>'+
-      '<td>I run the full growth front: acquisition (ads) + qualification (Stage 2) + client portal + performance-monitoring agents. Me + AI agents + first VA on delivery. Plus B2B licence builds: £10–25k scoped tools, licence-first (value secured upfront — AIC principle).</td>'+
-      '<td style="font-weight:600">£2.5–4k/mo retainer<br><span style="font-size:11px;color:var(--mu)">+ revenue share above threshold · B2B tools: per scope · cash floor always · equity 5–15% on top, never instead</span></td>'+
-      '<td class="gate-cell">Stage 2.5 running · first VA hired · monitoring agents built · validated problem + Dee sign-off for custom tools</td>'+
-    '</tr>'+
-    '<tr>'+
-      '<td class="stage-cell">4 — Delegated Full GOS<br><span style="font-size:10px;font-weight:500;color:var(--err)">The £3.5–10k+/client tier</span></td>'+
-      '<td><span class="tag tm">Year 2+</span></td>'+
-      '<td>Entire front-of-house growth engine, fully delegated — VAs, media buyers, and agents I\'ve built doing routine work; me on sales, architecture, and QA only. <strong style="color:var(--gold)">£10k/client exists only at Stage 4 — it requires delegation to deliver. Price scales with how much of their growth engine I run.</strong><br><br><em style="color:var(--mu)">Vekora\'s destination = a full GROWTH-OPERATING SYSTEM: I run a business\'s entire front-of-house growth engine as one delegated system. That — not "I build tools" — is what supports £3.5–10k+ retainers.</em></td>'+
-      '<td style="font-weight:600">£3.5–10k+/client/mo<br><span style="font-size:11px;color:var(--mu)">retainer + revenue share on attributable revenue (base fee always; share on top, never instead)</span></td>'+
-      '<td class="gate-cell">3+ delegated delivery chain working · productised system · outcome-data moat (12+ months)</td>'+
-    '</tr>'+
-    '</tbody></table></div>'+
-    '<div class="card" style="border-left:3px solid var(--blue);background:rgba(10,132,255,.05);margin-bottom:12px">'+
-      '<span class="sec-lbl" style="color:var(--blue)">Two-entity model (Year 2 spin-out)</span>'+
-      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px">'+
-        '<div style="background:var(--card2);border:1px solid var(--bd);border-radius:8px;padding:14px">'+
-          '<div style="font-size:10px;font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">Entity 2 — Vekora (CASH)</div>'+
-          '<div style="font-size:13px;color:var(--txt);font-weight:600;margin-bottom:6px">Delegated Growth-Operating System</div>'+
-          '<div style="font-size:12px;color:var(--txt2);line-height:1.6">£3.5–10k+ retainers + ad revenue share. Services business running client growth engines. Cash compounds the product.</div>'+
-        '</div>'+
-        '<div style="background:var(--card2);border:1px solid var(--bd);border-radius:8px;padding:14px">'+
-          '<div style="font-size:10px;font-weight:800;color:var(--blue);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">Entity 1 — Product Co (EQUITY)</div>'+
-          '<div style="font-size:13px;color:var(--txt);font-weight:600;margin-bottom:6px">Productised System — Built to Sell</div>'+
-          '<div style="font-size:12px;color:var(--txt2);line-height:1.6">Productised Vekora + tools/apps/enterprise projects. Clean IP · recurring revenue · no founder-dependency. Spins out of Vekora\'s system + data at ~Year 2.</div>'+
-        '</div>'+
+    '<div class="pg-eye">The Product</div>'+
+    '<div class="pg-h">"Never Miss a Lead"</div>'+
+    '<div style="font-size:13.5px;font-weight:700;color:var(--txt2);margin-bottom:16px">Instant Response &amp; Qualification System</div>'+
+
+    '<div class="card card-gold" style="margin-bottom:14px">'+
+      '<span class="sec-lbl">What it does</span>'+
+      '<ul style="margin-top:8px;padding-left:16px;display:grid;gap:6px">'+
+        whatItDoes.map(function(d){return '<li style="font-size:13px;color:var(--txt2);line-height:1.6">'+esc(d)+'</li>';}).join('')+
+      '</ul>'+
+    '</div>'+
+
+    '<span class="sec-lbl" style="margin-bottom:8px;display:block">Choose your niche (tap to expand)</span>'+
+    nicheCards+
+
+    '<div class="card" style="margin-bottom:12px">'+
+      '<span class="sec-lbl">Pricing</span>'+
+      '<div style="font-size:16px;font-weight:800;color:var(--txt);margin:8px 0 4px">Standard: £1,200 setup + £750/mo</div>'+
+      '<div style="font-size:13px;color:var(--gold);font-weight:700;margin-bottom:10px">First client (case study): £600 setup + £450/mo</div>'+
+      '<div style="font-size:12px;color:var(--txt2);line-height:1.65;background:var(--card2);border-radius:8px;padding:10px 14px;margin-bottom:8px">'+
+        'Explicitly in exchange for written testimonial + permission to use results. Frame: <em>"Standard is £1,200, I\'m doing first client at £600 for a case study."</em> Never just quote the low number.'+
+      '</div>'+
+      '<div style="font-size:11.5px;color:var(--txt2);line-height:1.65;border-left:3px solid var(--gold);padding-left:10px">'+
+        '<strong style="color:var(--txt)">Pricing principle:</strong> Price on THEIR job value, not your effort or API cost. Same system, 3× the price in a high-value niche — because a £15k kitchen job makes £750/mo look cheap.'+
       '</div>'+
     '</div>'+
-    '<div class="card card-gold" style="margin-bottom:12px">'+
-      '<span class="sec-lbl">Performance pricing — Stage 2.5 and above only</span>'+
-      '<p style="font-size:13px;color:var(--txt2);line-height:1.65;margin-top:6px">Base management fee <strong style="color:var(--txt)">ALWAYS</strong>, then REVENUE SHARE on revenue the ads generate above an agreed threshold — <strong style="color:var(--err)">NOT a % of ad spend.</strong> Spend-% is the commodity game. Revenue-share on proven results is the moat — credible only because my Stage 2 system is the attribution layer; I can prove the revenue because it ran through my qualification/tracking. Hard gate: client live on my infrastructure for ≥60 days before the performance component activates.</p>'+
-      '<div style="font-size:12px;color:var(--txt2);margin-top:8px;padding-top:8px;border-top:1px solid var(--bd);line-height:1.65"><strong style="color:var(--txt)">Demo pings:</strong> during the demo, the notification arrives on my phone via <strong>Telegram (free)</strong> so the client sees it work live in the room. At go-live, it texts their number directly via <strong>Twilio (SMS)</strong> + email. Nothing for the client to install.</div>'+
+
+    '<div class="card" style="margin-bottom:12px">'+
+      '<span class="sec-lbl">Offer Ladder — future stages only</span>'+
+      '<div style="font-size:11.5px;color:var(--err);font-weight:700;margin-bottom:10px">Build only when a client pays for the next stage. Do not present these as sellable now.</div>'+
+      ladderHtml+
     '</div>'+
-    '<div class="rules-strip">Never sell a stage you cannot demo &nbsp;·&nbsp; No discounts — trim scope &nbsp;·&nbsp; Ownership terms in writing before deposit &nbsp;·&nbsp; Sell outcomes, never "AI" or "automation" &nbsp;·&nbsp; Website + Google Profile work always priced separately</div>';
+
+    '<div class="rules-strip">Lead with the outcome, never "AI" &nbsp;·&nbsp; First client = case study pricing, frame it right &nbsp;·&nbsp; ONE channel done daily beats five done occasionally &nbsp;·&nbsp; Price on their job value</div>';
 }
 
 // ─── TIER TRACKER ─────────────────────────────────────────────────────────────
@@ -2831,6 +3263,94 @@ function toggleAP(id,el){
   if(parent){parent.classList.toggle('done',!!S.legal[id]);var cb=parent.querySelector('.cb-check');if(cb)cb.checked=!!S.legal[id];}
 }
 
+// ─── LEARNING VIEW ────────────────────────────────────────────────────────────
+
+function renderLearning(){
+  var el=document.getElementById('panel-learning');if(!el)return;
+  if(!S.tasks)S.tasks={};
+
+  function ckItem(k,label){
+    var done=!!(S.tasks&&S.tasks[k]);
+    return '<div class="tc'+(done?' done':'')+'" style="padding:8px 12px;margin-bottom:4px" onclick="toggleImperialTask(\''+k+'\',this)">'+
+      '<input class="cb-check" type="checkbox"'+(done?' checked':'')+' onclick="event.stopPropagation()" onchange="toggleImperialTask(\''+k+'\',this.parentElement)">'+
+      '<div class="tc-body"><div class="tc-title" style="font-size:12.5px">'+esc(label)+'</div></div>'+
+    '</div>';
+  }
+
+  // Ads Track
+  var adsHtml=
+    '<div style="font-size:13px;color:var(--txt2);line-height:1.65;margin-bottom:10px">'+
+      'Learn ads at owner level — to price, hire, and audit media buyers, and eventually delegate to ad-management agents. Not to become a media buyer.'+
+    '</div>'+
+    '<div style="font-size:11.5px;color:var(--txt2);margin-bottom:8px"><strong style="color:var(--txt)">Timeline:</strong> Now–Aug: none. Sept: own £100–200 on Google Ads for the audit offer. Q4: Meta micro-campaign. 2027: client budgets inside Stage 2.5 only.</div>'+
+    '<div style="font-size:11.5px;color:var(--gold);background:var(--gll);border-radius:6px;padding:8px 10px;margin-bottom:10px;font-weight:600">Ad management = base fee + REVENUE SHARE on revenue the ads generate (NOT % of ad spend). Spend-% is the commodity game; revenue-share on proven results is the moat.</div>'+
+    '<div style="font-size:11.5px;color:var(--warn);margin-bottom:10px">Note: Google Ads account is 18+ — parent-held or wait until birthday.</div>'+
+    ckItem('ads-skillshop','Google Skillshop Fundamentals completed')+
+    ckItem('ads-campaign','First own campaign set up (£100–200)')+
+    ckItem('ads-review','First campaign reviewed + written up');
+
+  // AI / Agents Track
+  var cca=['Module 1 completed','Module 2 completed','Module 3 completed','Module 4 completed','CCA exam scheduled (cohort-gated)'];
+  var ccaHtml=cca.map(function(c,i){return ckItem('cca-'+i,c);}).join('');
+  var agentHtml=
+    ckItem('agent-sdk','Read Anthropic Agent SDK docs')+
+    ckItem('agent-mcp','Built first MCP tool')+
+    ckItem('agent-multi','Built first multi-step agent')+
+    ckItem('agent-ship','Agentic build shipped with README');
+  var aiHtml=
+    '<div style="font-size:11.5px;color:var(--txt2);margin-bottom:10px">Client systems run on own API key — AIC account for programme learning only (mind the spend).</div>'+
+    '<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--mu);margin:8px 0 4px">CCA Modules</div>'+ccaHtml+
+    '<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--mu);margin:8px 0 4px">Agent SDK</div>'+agentHtml;
+
+  // Coding Track
+  var codingHtml=
+    '<div style="font-size:13px;color:var(--txt2);line-height:1.65;margin-bottom:10px">'+
+      'LeetCode = LATER (after mocks, for uni internships). TMUA is the current algorithmic exam prep.'+
+    '</div>'+
+    ckItem('leet-account','LeetCode account created (start AFTER mocks)')+
+    '<div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--bd);font-size:12px;color:var(--mu)">Unaided coding reps are tracked in <button class="tc-link" onclick="setView(\'imperial\')">Imperial &amp; Academics →</button></div>';
+
+  // Maths Track
+  var mathsHtml2=
+    '<div style="font-size:13px;color:var(--txt2);line-height:1.65;margin-bottom:10px">'+
+      'Daily past papers, TMUA timeline, and streak are tracked in Imperial & Academics.'+
+    '</div>'+
+    '<button class="btn btn-ghost btn-sm" onclick="setView(\'imperial\')" style="font-size:11px">Go to Imperial &amp; Academics →</button>';
+
+  el.innerHTML=
+    '<div class="pg-eye">Skill-Building Tracks</div>'+
+    '<div class="pg-h">Learning</div>'+
+    '<div class="pg-desc">Four tracks. Each has a gate. Only build the skill you can deploy or test right now.</div>'+
+
+    '<div class="card" style="border-left:3px solid var(--warn);margin-bottom:12px">'+
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">'+
+        '<span class="sec-lbl" style="margin:0">Ads Track</span>'+
+        '<span class="tag tw">NOT YET — Sept 2026</span>'+
+      '</div>'+adsHtml+
+    '</div>'+
+
+    '<div class="card" style="border-left:3px solid var(--ok);margin-bottom:12px">'+
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">'+
+        '<span class="sec-lbl" style="margin:0">AI / Agents Track</span>'+
+        '<span class="tag to">ACTIVE</span>'+
+      '</div>'+aiHtml+
+    '</div>'+
+
+    '<div class="card" style="border-left:3px solid var(--blue);margin-bottom:12px">'+
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">'+
+        '<span class="sec-lbl" style="margin:0">Coding Track</span>'+
+        '<span class="tag tb">ACTIVE from W5</span>'+
+      '</div>'+codingHtml+
+    '</div>'+
+
+    '<div class="card" style="border-left:3px solid var(--purple);margin-bottom:12px">'+
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">'+
+        '<span class="sec-lbl" style="margin:0">Maths Track</span>'+
+        '<span class="tag tp">ACTIVE</span>'+
+      '</div>'+mathsHtml2+
+    '</div>';
+}
+
 // ─── INIT ─────────────────────────────────────────────────────────────────────
 
 loadS();
@@ -2857,6 +3377,8 @@ renderLegal();
 renderOverview();
 renderCVTracker();
 renderActionPlan();
+renderImperial();
+renderLearning();
 updateDots();
 updateSbStats();
 // Default landing: This Week view
