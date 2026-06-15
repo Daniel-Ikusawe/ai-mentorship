@@ -1814,10 +1814,30 @@ function renderWk(w){
     <span style="font-size:18px;opacity:.4">🔒</span>
   </div>`;
 
+  // "This Week — Do These First" block for the current week only
+  let twBlock='';
+  if(isCur){
+    const twSec=ACTION_PLAN.find(s=>s.id==='ap-thisweek');
+    if(twSec){
+      twBlock=`<div style="background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.3);border-left:4px solid var(--gold);border-radius:8px;padding:12px 16px;margin-bottom:14px">
+        <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px">⚡ This Week — Do These First</div>
+        <div class="tasks" style="gap:6px">${twSec.items.map(function(item){
+          const done=!!(S.legal&&S.legal[item.id]);
+          return '<div class="tc'+(done?' done':'')+'" onclick="toggleAP(\''+item.id+'\',this)">'+
+            '<input class="cb-check" type="checkbox"'+(done?' checked':'')+' onclick="event.stopPropagation()" onchange="toggleAP(\''+item.id+'\',this.parentElement)">'+
+            '<div class="tc-body"><div class="tc-title">'+esc(item.t)+'</div></div>'+
+          '</div>';
+        }).join('')}</div>
+        <div style="font-size:11px;color:var(--mu);margin-top:8px;text-align:right"><button class="btn btn-ghost btn-sm" onclick="goTo(\'action\')">Full Action Plan →</button></div>
+      </div>`;
+    }
+  }
+
   el.innerHTML=`
     ${bannerHtml}
     <div class="wk-top"><div class="wk-h">Week ${esc(String(w.n))}: ${esc(w.label)}</div><span class="tag ${modeTag}">${esc(modeTxt)}</span></div>
     <div class="wk-dates">${esc(w.range)}</div>
+    ${twBlock}
     ${aicBanner}
     <div class="goal-box"><strong>Good by Sunday:</strong> ${esc(w.goal)}</div>
     ${mockDatesCard}
@@ -2696,6 +2716,121 @@ function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').repl
 let toastT;
 function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),2200);}
 
+// ─── ACTION PLAN ──────────────────────────────────────────────────────────────
+
+const ACTION_PLAN=[
+ {id:'ap-thisweek',title:'THIS WEEK — Do These First',note:'Nothing else matters until these are done.',col:'var(--gold)',items:[
+  {id:'ap-tw1',t:'Test demo end-to-end: Vercel URL on phone → fill form → confirm AI reply (name/area/price/2 slots) → Telegram ping within 5s → fix anything broken before recording'},
+  {id:'ap-tw2',t:'Record the 2-min Loom: screen record, fill form live on camera, show AI reply appearing, show phone buzzing. Narrate. Under 2 min.'},
+  {id:'ap-tw3',t:'Send Loom to Away With It on WhatsApp: "Recorded a quick 2-min walkthrough so your partner can see exactly how it works — happy to answer any questions" + link. Do NOT follow up for 3 days.'},
+  {id:'ap-tw4',t:'Start CCA on SkillJar — log in with daniel@theaiconsultancy.ai and complete at least one module this week.'},
+ ]},
+ {id:'ap-vekora',title:'BUSINESS — VEKORA',col:'var(--blue)',items:[
+  {id:'ap-v1',t:'5 cold outreach calls/day to trades in Romford, Ilford, Dagenham, Barking, Brentwood. Log every call: name, business, outcome, follow-up. Script: "I help trade businesses stop losing jobs from missed calls. Can I show you a 2-min demo?"'},
+  {id:'ap-v2',t:'Do NOT be hostage to Away With It — keep pipeline flowing in parallel. One client signed is not a pipeline.'},
+  {id:'ap-v3',t:'After Away With It signs: document week 1 results (leads captured, jobs booked, est. revenue recovered). Get the ROI sentence: "went from missing X% of after-hours enquiries to zero — recovered an estimated £X in month one."'},
+  {id:'ap-v4',t:'Ask for a written testimonial once results are visible (30 days after go-live).'},
+  {id:'ap-v5',t:'Before first payment: ICO registration (~£40, before client data goes live) + one-page written agreement (scope, price, payment, ownership) + 50% deposit upfront, terms signed first.'},
+  {id:'ap-v6',t:'Parent in loop for deals over ~£500. Set aside 20–25% of every payment for tax — same day, non-negotiable.'},
+  {id:'ap-v7',t:'After every client action: write 3 bullets (what / how / how long). These become VA handover docs. Don\'t delegate before the SOP exists.'},
+ ]},
+ {id:'ap-aic',title:'AIC MENTORSHIP',col:'var(--ok)',items:[
+  {id:'ap-a1',t:'Friday Loom + Notion check-in NEVER slips. Thursday phone alarm: "Loom tomorrow." Streak 1/12 — every Friday is a vote.'},
+  {id:'ap-a2',t:'Broken streak protocol: 2-min minimum Loom + one Build Log entry, still submitted. No such thing as a missed Friday.'},
+  {id:'ap-a3',t:'CCA: complete ALL modules on SkillJar including the longer NCP module (each issues a certificate). Target: complete before Week 12.'},
+  {id:'ap-a4',t:'Week 2 deliverable: Away With It demo = live Vercel URL + terminal commits + Loom. Submit by Tue/Wed.'},
+ ]},
+ {id:'ap-academic',title:'ACADEMICS',col:'var(--purple)',items:[
+  {id:'ap-ac1',t:'Now–mocks (W3–4): maths past paper every weekday. Mark same day with mark scheme. Log dropped-mark topics. Repeat weak topics — not known ones.'},
+  {id:'ap-ac2',t:'Maths revision beats all client work on any collision. Non-negotiable.'},
+  {id:'ap-ac3',t:'This week: ask maths teacher if Senior Maths Challenge is offered this autumn. If yes, register immediately.'},
+  {id:'ap-ac4',t:'After mocks (W5+): TMUA booking opens 20 July 2026 — put in calendar now. Book within 24h of opening.'},
+  {id:'ap-ac5',t:'TMUA prep: one past paper/week minimum from W5, building to daily in September. Official UAT-UK free materials cover ~80%.'},
+ ]},
+ {id:'ap-ps',title:'AUGUST — PERSONAL STATEMENT',col:'var(--warn)',items:[
+  {id:'ap-ps1',t:'First draft in August. Core: why CS as a discipline interests you — complexity, languages, algorithms, theory. Not business.'},
+  {id:'ap-ps2',t:'Vekora gets ONE technically-framed paragraph ("building X made me want to understand Y") — not the centrepiece.'},
+  {id:'ap-ps3',t:'Target 85–90/100 effort. Beyond that, hours are better spent on TMUA.'},
+ ]},
+ {id:'ap-coding',title:'UNAIDED CODING',note:'Imperial examines you without AI — prove what you can do.',col:'var(--blue)',items:[
+  {id:'ap-uc1',t:'Habit: 3× per week, 30 min, no AI, starting Week 5. Build one small thing from scratch — binary search, stack/queue, sort algorithm, recursive parser, expression evaluator. Log what you could and couldn\'t do.'},
+  {id:'ap-uc2',t:'PS artifact: build ONE thing unaided over summer — Agent-Based Market Simulation (computational thinking + finance + agentic AI). Must be whiteboard-explainable without notes. Imperial interviews test this.'},
+ ]},
+ {id:'ap-peer',title:'PEER GROUP',note:'Structural weakness — nobody in immediate environment pulls you up.',col:'var(--mu)',items:[
+  {id:'ap-pg1',t:'This week: join Anthropic Discord / a Claude dev community. Lurk 3 days then post one thing you\'ve built with a link.'},
+  {id:'ap-pg2',t:'Find 2–3 people operating slightly above you. Follow, engage, build.'},
+  {id:'ap-pg3',t:'Ask Dee about connecting with other programme mentees — the cohort is how subcontract opportunities circulate.'},
+ ]},
+ {id:'ap-physical',title:'PHYSICAL & OPERATIONAL CONSISTENCY',col:'var(--ok)',items:[
+  {id:'ap-ph1',t:'Gym Mon/Wed/Sat every week — no exceptions during term or summer.'},
+  {id:'ap-ph2',t:'Protein every meal.'},
+  {id:'ap-ph3',t:'21:30 cutoff enforced — no client work, no planning, no late screens.'},
+  {id:'ap-ph4',t:'Bible daily (Proverbs minimum).'},
+  {id:'ap-ph5',t:'Sunday genuine rest — no client work, no planning.'},
+  {id:'ap-ph6',t:'Honest audit: did gym happen Mon/Wed/Sat last week? Was 21:30 real or aspirational? Bible daily or approximate? Fix one at a time.'},
+ ]},
+];
+
+const AP_SEQ=[
+ {w:'Now (W2)',t:'Demo tested → Loom → sent to Away With It. CCA started. 5 calls/day. Ask about Senior Maths Challenge.'},
+ {w:'W3–4 (mocks)',t:'Maths revision ONLY. AIC Friday minimum. 5 calls/day max. No new strategy.'},
+ {w:'W5+ (summer)',t:'Outreach full intensity (50/wk). CCA one module/week. TMUA booking 20 July. Unaided coding 3×/week. One community post/week.'},
+ {w:'August',t:'TMUA daily prep. PS first draft. Market Simulation built unaided. SOPs written up.'},
+ {w:'September',t:'TMUA final prep (sits 15/16 Oct). PS polished early Oct. CCA complete. 12/12 streak confirmed.'},
+];
+
+function renderActionPlan(){
+  var el=document.getElementById('panel-action');if(!el)return;
+  if(!S.legal)S.legal={};  // reuse legal key-value store for AP checkboxes
+
+  var html='<div class="pg-eye">Execution</div><div class="pg-h">Action Plan</div>'+
+    '<div class="pg-desc">The plan is done. Execution is the only thing left that changes anything. Check off as done — each item persists across sessions.</div>';
+
+  // This Week section is prominent
+  ACTION_PLAN.forEach(function(sec){
+    var isThisWeek=sec.id==='ap-thisweek';
+    html+='<div class="card" style="border-left:4px solid '+sec.col+';margin-bottom:14px'+(isThisWeek?';background:var(--gll);border-color:'+sec.col:'')+'">'+
+      '<div style="display:flex;align-items:center;gap:10px;margin-bottom:'+(sec.note?'4px':'12px')+'">'+
+        '<span style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:'+sec.col+'">'+esc(sec.title)+'</span>'+
+      '</div>'+
+      (sec.note?'<div style="font-size:11px;color:var(--mu);margin-bottom:10px">'+esc(sec.note)+'</div>':'')+
+      '<div class="tasks">'+
+      sec.items.map(function(item){
+        var done=!!(S.legal&&S.legal[item.id]);
+        return '<div class="tc'+(done?' done':'')+'" onclick="toggleAP(\''+item.id+'\',this)">'+
+          '<input class="cb-check" type="checkbox"'+(done?' checked':'')+' onclick="event.stopPropagation()" onchange="toggleAP(\''+item.id+'\',this.parentElement)">'+
+          '<div class="tc-body"><div class="tc-title">'+esc(item.t)+'</div></div>'+
+        '</div>';
+      }).join('')+
+      '</div></div>';
+  });
+
+  // Sequence
+  html+='<div class="card" style="border-top:3px solid var(--gold)">'+
+    '<span class="sec-lbl">Sequence — do not run in parallel beyond what\'s listed</span>'+
+    '<div style="margin-top:10px;display:grid;gap:8px">'+
+    AP_SEQ.map(function(s){
+      return '<div style="display:flex;gap:12px;align-items:flex-start;padding:9px 12px;background:var(--card2);border-radius:7px;border:1px solid var(--bd)">'+
+        '<span style="font-size:10px;font-weight:800;color:var(--gold);min-width:90px;padding-top:2px">'+esc(s.w)+'</span>'+
+        '<span style="font-size:12.5px;color:var(--txt2);line-height:1.55">'+esc(s.t)+'</span>'+
+      '</div>';
+    }).join('')+
+    '</div></div>'+
+    '<div style="font-size:13px;font-weight:700;color:var(--txt2);text-align:center;padding:16px 0;border-top:1px solid var(--bd);margin-top:8px;font-style:italic">'+
+      '"The plan is done. Execution is the only thing left that changes anything. The demo first. Everything else follows."'+
+    '</div>';
+
+  el.innerHTML=html;
+}
+
+function toggleAP(id,el){
+  if(!S.legal)S.legal={};
+  S.legal[id]=!S.legal[id];
+  saveS();
+  var parent=el.closest?el.closest('.tc'):el;
+  if(parent){parent.classList.toggle('done',!!S.legal[id]);var cb=parent.querySelector('.cb-check');if(cb)cb.checked=!!S.legal[id];}
+}
+
 // ─── INIT ─────────────────────────────────────────────────────────────────────
 
 loadS();
@@ -2721,6 +2856,7 @@ renderIncome();
 renderLegal();
 renderOverview();
 renderCVTracker();
+renderActionPlan();
 updateDots();
 updateSbStats();
 // Default landing: This Week view
