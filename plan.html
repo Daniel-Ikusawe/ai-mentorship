@@ -417,6 +417,23 @@ body.light .card{box-shadow:0 1px 3px rgba(0,0,0,.07)}
 
   /* ── Overview success cols ── */
   .main .card [style*="grid-template-columns:1fr 1fr"]{display:grid!important;grid-template-columns:1fr!important}
+
+  /* ── Bottom tab bar ── */
+  .view-tabs-top{display:none}
+  .view-tabs-bottom{display:flex;position:fixed;bottom:0;left:0;right:0;background:var(--sb);border-top:1px solid var(--sbd);z-index:44;height:56px}
+  .vt-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border:none;background:none;color:var(--smu);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;cursor:pointer;font-family:inherit;padding:4px 2px;transition:color .12s}
+  .vt-btn.on{color:var(--gold)}
+  .vt-icon{font-size:16px;line-height:1}
+}
+
+/* ── View tabs — desktop ── */
+@media(min-width:681px){
+  .view-tabs-bottom{display:none}
+  .view-tabs-top{display:flex;gap:4px;margin-bottom:24px;flex-wrap:wrap}
+  .vt-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border:1px solid var(--bd);border-radius:20px;background:var(--card);color:var(--txt2);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .12s}
+  .vt-btn:hover{border-color:rgba(201,168,76,.4);color:var(--gold)}
+  .vt-btn.on{border-color:var(--gold);background:var(--gll);color:var(--gold)}
+  .vt-icon{font-size:13px}
 }
 </style>
 </head>
@@ -487,6 +504,15 @@ body.light .card{box-shadow:0 1px 3px rgba(0,0,0,.07)}
 <!-- Main -->
 <main class="main">
 <div class="mob-bar"><span class="mob-bar-t">Daniel — 12 Week Plan</span><button class="hbg" onclick="toggleSidebar()">&#9776;</button></div>
+
+<!-- VIEW SWITCHER — top (desktop) -->
+<div class="view-tabs-top" id="view-tabs-top">
+  <button class="vt-btn" id="vt-thisweek" onclick="setView('thisweek')"><span class="vt-icon">📅</span>This Week</button>
+  <button class="vt-btn" id="vt-business" onclick="setView('business')"><span class="vt-icon">💼</span>The Business</button>
+  <button class="vt-btn" id="vt-imperial" onclick="setView('imperial')"><span class="vt-icon">📐</span>Imperial &amp; Self</button>
+  <button class="vt-btn" id="vt-plan" onclick="setView('plan')"><span class="vt-icon">📊</span>The Plan</button>
+  <button class="vt-btn" id="vt-ref" onclick="setView('ref')"><span class="vt-icon">📋</span>Reference</button>
+</div>
 
 <!-- FUTURE SELF -->
 <div id="panel-future" class="panel"></div>
@@ -623,6 +649,16 @@ body.light .card{box-shadow:0 1px 3px rgba(0,0,0,.07)}
 
 </main>
 </div>
+
+<!-- VIEW SWITCHER — bottom (mobile) -->
+<div class="view-tabs-bottom" id="view-tabs-bottom">
+  <button class="vt-btn" id="vtb-thisweek" onclick="setView('thisweek')"><span class="vt-icon">📅</span>This Week</button>
+  <button class="vt-btn" id="vtb-business" onclick="setView('business')"><span class="vt-icon">💼</span>Business</button>
+  <button class="vt-btn" id="vtb-imperial" onclick="setView('imperial')"><span class="vt-icon">📐</span>Imperial</button>
+  <button class="vt-btn" id="vtb-plan" onclick="setView('plan')"><span class="vt-icon">📊</span>Plan</button>
+  <button class="vt-btn" id="vtb-ref" onclick="setView('ref')"><span class="vt-icon">📋</span>Reference</button>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -1145,6 +1181,59 @@ function navCurWk(el){
   var cur=getCurWk();
   var btn=document.getElementById('nb-'+cur);
   if(btn){nav(cur,btn);}else{nav(cur,el);}
+}
+
+// ─── VIEW SWITCHER ────────────────────────────────────────────────────────────
+// Maps each view to its default panel and a sidebar button to highlight
+var VIEW_MAP={
+  thisweek:{panel:null,sb:'nb-curwk'},  // panel set dynamically
+  business:{panel:'sops',    sb:null},
+  imperial:{panel:'future',  sb:'nb-future'},
+  plan:    {panel:'overview',sb:null},
+  ref:     {panel:'guardrails',sb:null},
+};
+var curView='thisweek';
+
+function setView(v){
+  curView=v;
+  // Highlight top + bottom tab buttons
+  ['thisweek','business','imperial','plan','ref'].forEach(function(k){
+    var t=document.getElementById('vt-'+k);
+    var b=document.getElementById('vtb-'+k);
+    if(t)t.classList.toggle('on',k===v);
+    if(b)b.classList.toggle('on',k===v);
+  });
+  // Navigate to the view's default panel
+  var vm=VIEW_MAP[v];
+  if(!vm)return;
+  var panelId=vm.panel;
+  if(v==='thisweek'){
+    // Go to current week
+    var cur=getCurWk();
+    panelId=cur;
+    var sbBtn=document.getElementById('nb-'+cur);
+    if(sbBtn){nav(cur,sbBtn);}else{
+      document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on');});
+      document.querySelectorAll('.sb-btn').forEach(function(b){b.classList.remove('on');});
+      var el=document.getElementById('panel-'+cur);
+      if(el)el.classList.add('on');
+    }
+    return;
+  }
+  // Find matching sidebar button for this panel
+  var sbBtn2=null;
+  document.querySelectorAll('.sb-btn').forEach(function(b){
+    if(b.getAttribute('onclick')&&b.getAttribute('onclick').indexOf("'"+panelId+"'")!==-1)sbBtn2=b;
+  });
+  if(sbBtn2){nav(panelId,sbBtn2);}else{
+    document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on');});
+    var el2=document.getElementById('panel-'+panelId);
+    if(el2)el2.classList.add('on');
+  }
+}
+
+function initView(){
+  setView('thisweek');
 }
 
 // ─── NAV ─────────────────────────────────────────────────────────────────────
@@ -2581,11 +2670,8 @@ renderOverview();
 renderCVTracker();
 updateDots();
 updateSbStats();
-// Default landing: Future Self
-(function(){
-  var btn=document.getElementById('nb-future');
-  if(btn){nav('future',btn);}else{document.getElementById('panel-future').classList.add('on');}
-})();
+// Default landing: This Week view
+initView();
 </script>
 </body>
 </html>
