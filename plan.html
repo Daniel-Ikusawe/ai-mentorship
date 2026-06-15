@@ -342,6 +342,25 @@ body.light .card{box-shadow:0 1px 3px rgba(0,0,0,.07)}
 /* ── Mock date fields ── */
 .mock-dates-card{border-left:3px solid var(--warn)!important;margin-bottom:12px}
 
+/* ── Accordion (Reference panel) ── */
+.acc-item{border:1px solid var(--bd);border-radius:10px;margin-bottom:8px;overflow:hidden}
+.acc-hdr{width:100%;display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:var(--card);border:none;color:var(--txt);font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;text-align:left}
+.acc-hdr:hover{background:var(--card2)}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .3s ease;padding:0 18px}
+.acc-body.open{max-height:4000px;padding:12px 18px 18px}
+.acc-arr{transition:transform .2s;font-size:12px}
+.acc-hdr.open .acc-arr{transform:rotate(180deg)}
+
+/* ── Identity tags ── */
+.id-tag{display:inline-flex;align-items:center;gap:3px;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;border-radius:3px;padding:1px 5px;margin-right:6px;vertical-align:middle;white-space:nowrap;flex-shrink:0}
+
+/* ── Task cross-link button ── */
+.tc-link{font-size:10px;font-weight:700;padding:3px 8px;border:1px solid var(--bd);border-radius:4px;background:none;color:var(--mu);cursor:pointer;font-family:inherit;white-space:nowrap;flex-shrink:0;align-self:flex-start;margin-top:2px;transition:border-color .12s,color .12s}
+.tc-link:hover{border-color:var(--gold);color:var(--gold)}
+
+/* ── Wk picker ── */
+.wk-picker{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+
 /* ══ RESPONSIVE — THREE BREAKPOINTS ══════════════════════════════════════════ */
 
 /* ── @media(max-width:680px) — PHONE ~380px ── */
@@ -2129,14 +2148,23 @@ function renderSOPs(){
       <div style="font-size:12px;color:var(--txt2);margin-bottom:3px;line-height:1.5">${esc(t.r)}</div>
       <div style="font-size:11px;color:var(--mu)">${esc(t.c)}</div>
     </div>`).join('');
-  document.getElementById('sop-list').innerHTML=SOPS.map(s=>`
-    <div class="sop-card" style="border-left-color:${s.c}">
-      <div class="sop-n" style="color:${s.c}">SOP ${esc(s.n)}</div>
+  document.getElementById('sop-list').innerHTML=SOPS.map(s=>{
+    const sopDone=s.steps.every((_,i)=>S.tasks&&S.tasks['sop-'+s.n+'-'+i]);
+    const stepsHtml=s.steps.map((st,i)=>{
+      const k='sop-'+s.n+'-'+i;const done=!!(S.tasks&&S.tasks[k]);
+      return `<div class="tc${done?' done':''}" style="margin-bottom:3px;padding:8px 10px" onclick="toggleSopStep('${s.n}',${i},this)">
+        <input class="cb-check" type="checkbox"${done?' checked':''} style="width:16px;height:16px;min-width:16px" onclick="event.stopPropagation()" onchange="toggleSopStep('${s.n}',${i},this.parentElement)">
+        <div class="tc-body"><span class="tc-title" style="font-size:12px">${esc(st)}</span></div>
+      </div>`;
+    }).join('');
+    return `<div class="sop-card" style="border-left-color:${s.c}">
+      <div class="sop-n" style="color:${s.c}">SOP ${esc(s.n)}${sopDone?' ✓':''}</div>
       <div class="sop-title">${esc(s.t)}</div>
       <div class="sop-sub">${esc(s.s)}</div>
       <div class="sop-done">✓ Done when: ${esc(s.done)}</div>
-      <ul class="sop-steps">${s.steps.map(st=>`<li>${esc(st)}</li>`).join('')}</ul>
-    </div>`).join('');
+      <div class="tasks" style="gap:3px">${stepsHtml}</div>
+    </div>`;
+  }).join('');
   var sp=document.getElementById('panel-sops');
   if(sp&&!sp.querySelector('.kill-cond')){
     var extra=document.createElement('div');
@@ -2182,6 +2210,124 @@ function renderSOPs(){
 function renderGuards(){
   document.getElementById('guard-list').innerHTML=GUARDS.map(g=>`
     <div class="guard"><span class="guard-icon">${g.i}</span><div class="guard-txt">${g.t}</div></div>`).join('');
+}
+
+// ─── ACCORDION ────────────────────────────────────────────────────────────────
+
+function toggleAcc(hdr){
+  hdr.classList.toggle('open');
+  var b=hdr.nextElementSibling;
+  b.classList.toggle('open');
+}
+
+// ─── REFERENCE PANEL ──────────────────────────────────────────────────────────
+
+function renderReference(){
+  var el=document.getElementById('panel-reference');if(!el)return;
+  if(el.dataset.rendered)return;  // already rendered
+  el.dataset.rendered='1';
+
+  // Helper: build accordion section
+  function acc(title,icon,content){
+    return '<div class="acc-item"><button class="acc-hdr" onclick="toggleAcc(this)"><span>'+icon+' '+esc(title)+'</span><span class="acc-arr">▾</span></button><div class="acc-body">'+content+'</div></div>';
+  }
+
+  // SOPs section — checkable steps
+  var sopHtml=SOPS.map(function(s){
+    var stepsHtml=s.steps.map(function(st,i){
+      var k='sop-'+s.n+'-'+i;
+      var done=!!(S.tasks&&S.tasks[k]);
+      return '<div class="tc'+(done?' done':'')+'" style="margin-bottom:4px;padding:10px 12px" onclick="toggleSopStep(\''+s.n+'\','+i+',this)">'+
+        '<input class="cb-check" type="checkbox"'+(done?' checked':'')+' style="width:16px;height:16px;min-width:16px" onclick="event.stopPropagation()" onchange="toggleSopStep(\''+s.n+'\','+i+',this.parentElement)">'+
+        '<div class="tc-body"><span class="tc-title" style="font-size:12px">'+esc(st)+'</span></div></div>';
+    }).join('');
+    var sopDone=s.steps.every(function(_,i){return S.tasks&&S.tasks['sop-'+s.n+'-'+i];});
+    return '<div class="sop-card" style="border-left-color:'+s.c+';margin-bottom:10px">'+
+      '<div class="sop-n" style="color:'+s.c+'">SOP '+esc(s.n)+(sopDone?' ✓':'')+'</div>'+
+      '<div class="sop-title">'+esc(s.t)+'</div>'+
+      '<div class="sop-sub">'+esc(s.s)+'</div>'+
+      '<div class="sop-done">Done when: '+esc(s.done)+'</div>'+
+      '<div class="tasks" style="gap:4px">'+stepsHtml+'</div>'+
+    '</div>';
+  }).join('');
+
+  // Legal section — grouped by .g, colored by .s
+  var legalGroups={};
+  LEGAL_ITEMS.forEach(function(item){if(!legalGroups[item.g])legalGroups[item.g]=[];legalGroups[item.g].push(item);});
+  var sevC={red:'var(--err)',amb:'var(--warn)',grn:'var(--ok)'};
+  var sevBg={red:'rgba(239,68,68,.1)',amb:'rgba(245,158,11,.1)',grn:'rgba(34,197,94,.1)'};
+  var legalHtml=Object.keys(legalGroups).map(function(grp){
+    var items=legalGroups[grp].map(function(item){
+      var chk=S.legal&&S.legal[item.id];
+      return '<div class="tc'+(chk?' done':'')+'">'+
+        '<input class="cb-check" type="checkbox"'+(chk?' checked':'')+' onclick="event.stopPropagation()" onchange="toggleLegal(\''+item.id+'\',this)">'+
+        '<div class="tc-body">'+
+          '<div style="display:flex;align-items:center;gap:6px;margin-bottom:'+(item.d?'4':'0')+'px">'+
+            '<span style="font-size:9px;font-weight:800;color:'+sevC[item.s]+';background:'+sevBg[item.s]+';border-radius:3px;padding:1px 6px">'+item.s.toUpperCase()+'</span>'+
+            '<span class="tc-title">'+esc(item.t)+'</span>'+
+          '</div>'+
+          (item.d?'<div class="tc-why">'+esc(item.d)+'</div>':'')+
+        '</div></div>';
+    }).join('');
+    return '<div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--mu);margin:12px 0 6px;padding-bottom:4px;border-bottom:1px solid var(--bd)">'+esc(grp)+'</div><div class="tasks">'+items+'</div>';
+  }).join('');
+
+  // Guardrails section
+  var guardsHtml='<div class="guard-grid">'+GUARDS.map(function(g){
+    return '<div class="guard"><span class="guard-icon">'+g.i+'</span><div class="guard-txt">'+g.t+'</div></div>';
+  }).join('')+'</div>';
+
+  // Projects section — gated list
+  var GATED=[
+    {name:'Instant Response System',note:'CORE — Stage 1 of Vekora',gate:'W2',status:'core',stack:'Twilio · Cloud Run · Node.js'},
+    {name:'TMUA Tracker',note:'Log every paper. Surface weak topics.',gate:'W7 — after TMUA booked',status:'planned',stack:'Next.js · Firestore'},
+    {name:'AI Revision Tutor',note:'SM-2 + Claude grading',gate:'Aug (W10-11)',status:'planned',stack:'Claude API · Next.js'},
+    {name:'Agent-Based Market Simulation',note:'Imperial PS piece',gate:'Aug (W8+)',status:'planned',stack:'Python · Claude API'},
+    {name:'Review-Request System',note:'Post-job review ask',gate:'Sept — 2 retainers first',status:'locked',stack:'Twilio · Cloud Run'},
+    {name:'Voice Receptionist Demo',note:'Stage 2 companion',gate:'Stage 2 client #1 signed',status:'locked',stack:'Claude API · Twilio'},
+  ];
+  var sColor={core:'var(--ok)',planned:'var(--gold)',locked:'var(--err)'};
+  var sLabel={core:'CORE',planned:'PLANNED',locked:'LOCKED'};
+  var projHtml='<div class="rules-strip" style="margin-bottom:12px">One active at a time · summer only · Fridays first · not on this list = not built this year.</div>'+
+    '<table class="tbl"><thead><tr><th>Project</th><th>Gate</th><th>Status</th></tr></thead><tbody>'+
+    GATED.map(function(p){
+      return '<tr><td><strong>'+esc(p.name)+'</strong><br><span style="font-size:11px;color:var(--mu)">'+esc(p.note)+'</span><br><span class="tag tm" style="font-size:9px">'+esc(p.stack)+'</span></td>'+
+        '<td style="font-size:12px">'+esc(p.gate)+'</td>'+
+        '<td><span style="font-size:9px;font-weight:800;color:'+sColor[p.status]+';border-radius:3px;padding:2px 7px;background:rgba(0,0,0,.2)">'+sLabel[p.status]+'</span></td></tr>';
+    }).join('')+
+    '</tbody></table>';
+
+  // CV section (simplified list)
+  var cvHtml='<div class="tasks">'+CV_ITEMS.map(function(it){
+    var chk=S.tasks&&S.tasks[it.id];
+    return '<div class="tc'+(chk?' done':'')+'">'+
+      '<input class="cb-check" type="checkbox"'+(chk?' checked':'')+' onclick="event.stopPropagation()" onchange="toggleCVItem(\''+it.id+'\',this)">'+
+      '<div class="tc-body"><div class="tc-title">'+esc(it.t)+'</div><div class="tc-why">Week '+it.w+'</div></div></div>';
+  }).join('')+'</div>';
+
+  el.innerHTML=
+    '<div class="pg-eye">All Reference Material</div>'+
+    '<div class="pg-h">Reference</div>'+
+    '<div class="pg-desc">SOPs · Legal · Guardrails · Projects · CV — all collapsible. SOPs are checkable step-by-step.</div>'+
+    acc('Vekora SOPs','◉',sopHtml)+
+    acc('Legal & Compliance','⚖',legalHtml)+
+    acc('Guardrails','⊖',guardsHtml)+
+    acc('Projects & Gated Builds','⊕',projHtml)+
+    acc('CV Tracker','◻',cvHtml);
+}
+
+function toggleSopStep(sopN,i,row){
+  var k='sop-'+sopN+'-'+i;
+  if(!S.tasks)S.tasks={};
+  S.tasks[k]=!S.tasks[k];
+  saveS();
+  var parent=row.closest?row.closest('.tc'):row;
+  if(parent){
+    parent.classList.toggle('done',!!S.tasks[k]);
+    var cb=parent.querySelector('.cb-check');
+    if(cb)cb.checked=!!S.tasks[k];
+  }
+  showToast(S.tasks[k]?'Step done ✓':'Step unmarked');
 }
 
 // ─── INTERACTIONS ─────────────────────────────────────────────────────────────
