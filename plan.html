@@ -342,36 +342,81 @@ body.light .card{box-shadow:0 1px 3px rgba(0,0,0,.07)}
 /* ── Mock date fields ── */
 .mock-dates-card{border-left:3px solid var(--warn)!important;margin-bottom:12px}
 
+/* ══ RESPONSIVE — tablet 768px ══════════════════════════════════════════════ */
+@media(max-width:768px){
+  .main{padding:24px 28px 40px}
+  .stats-grid{grid-template-columns:1fr 1fr;gap:9px}
+  .income-grid{grid-template-columns:1fr 1fr}
+  .sop-grid{grid-template-columns:1fr 1fr}
+  .money-row{grid-template-columns:1fr 1fr 1fr}
+  .tbl th,.tbl td{padding:8px;font-size:12px}
+  .ladder-tbl th,.ladder-tbl td{padding:8px 7px;font-size:11.5px}
+  .pipe-step{min-width:130px}
+}
+
 /* ══ RESPONSIVE — ~380px phone ══════════════════════════════════════════════ */
 @media(max-width:680px){
+  /* ── Layout ── */
   .mob-bar{display:flex;margin:-12px -14px 0;width:calc(100% + 28px)}
   .sb{position:fixed;top:0;left:0;height:100dvh;width:260px;min-width:260px;z-index:50;transform:translateX(-100%);transition:transform .25s cubic-bezier(.4,0,.2,1)}
   .sb.mob-open{transform:translateX(0);box-shadow:8px 0 40px rgba(0,0,0,.55)}
-  .main{padding:12px 14px 80px}
+  .main{padding:12px 14px 72px}
+  .panel{max-width:100%}
+
+  /* ── Typography ── */
   .pg-h{font-size:21px;margin-bottom:4px}
-  .pg-desc{font-size:12.5px;margin-bottom:16px}
-  .stats-grid{grid-template-columns:1fr 1fr;gap:8px}
-  .stat{padding:11px 12px}
-  .stat-val{font-size:20px}
+  .pg-desc{font-size:12.5px;margin-bottom:14px}
+  .wk-h{font-size:20px}
+  .goal-box{font-size:13px}
+  .wk-dates{font-size:12px}
+
+  /* ── Grids ── */
+  .stats-grid{grid-template-columns:1fr 1fr;gap:7px}
+  .stat{padding:10px 11px}
+  .stat-val{font-size:19px}
   .g2{grid-template-columns:1fr!important}
   .g3{grid-template-columns:1fr!important}
   .g4{grid-template-columns:1fr 1fr!important}
   .income-grid{grid-template-columns:1fr!important}
   .sop-grid{grid-template-columns:1fr!important}
   .money-row{grid-template-columns:1fr 1fr}
-  .tc{padding:11px 12px}
-  .tc-meta{display:none}
+
+  /* ── Cards ── */
+  .card{padding:12px 14px;border-radius:10px}
   .cur-banner{flex-direction:column;align-items:flex-start;gap:6px}
   .cb-days{font-size:24px}
-  .wk-h{font-size:20px}
-  .card{padding:14px 16px;border-radius:10px}
-  .pipe-step{min-width:150px}
-  .tbl th,.tbl td{padding:8px;font-size:11.5px}
-  .ladder-tbl th,.ladder-tbl td{padding:7px 5px;font-size:10.5px}
-  .cb-check{width:22px;height:22px;min-width:22px;border-radius:6px}
-  .sb-footer{padding:12px 16px}
   .wk-top{flex-wrap:wrap;gap:6px}
-  .goal-box{font-size:13px}
+
+  /* ── Tasks ── */
+  .tc{padding:11px 12px}
+  .tc-meta{display:none}
+  .cb-check{width:22px;height:22px;min-width:22px;border-radius:6px}
+
+  /* ── Tap targets — min 44px height ── */
+  .btn{min-height:44px;padding:10px 18px}
+  .btn-sm{min-height:36px;padding:6px 12px}
+  .lt{min-height:44px;padding:10px 14px}
+  .sb-friday-btn{min-height:44px}
+
+  /* ── Tables — allow horizontal scroll ── */
+  .tbl{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .tbl th,.tbl td{padding:7px 8px;font-size:11px;white-space:nowrap}
+  .ladder-tbl{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .ladder-tbl th,.ladder-tbl td{padding:6px 5px;font-size:10px;white-space:nowrap}
+
+  /* ── Scrollable tab rows ── */
+  .log-tabs{overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap;flex-wrap:nowrap}
+  .lt{flex-shrink:0}
+
+  /* ── Pipeline ── */
+  .pipe-flow{gap:4px}
+  .pipe-step{min-width:140px;flex-shrink:0}
+
+  /* ── Sidebar footer ── */
+  .sb-footer{padding:12px 16px}
+
+  /* ── Overview success cols ── */
+  .main .card [style*="grid-template-columns:1fr 1fr"]{display:grid!important;grid-template-columns:1fr!important}
 }
 </style>
 </head>
