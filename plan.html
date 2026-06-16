@@ -546,11 +546,34 @@ body.light .card{box-shadow:0 1px 3px rgba(0,0,0,.07)}
 <div id="panel-w4" class="panel"></div>
 <!-- TRAJECTORY -->
 <div id="panel-trajectory" class="panel">
-  <div class="traj-sub" id="panel-tier"></div>
-  <div class="div"></div>
-  <div class="traj-sub" id="panel-dest"></div>
-  <div class="div"></div>
-  <div class="traj-sub" id="panel-skills"></div>
+  <div class="pg-eye">Long Game</div>
+  <div class="pg-h">Trajectory</div>
+  <div class="pg-desc">Milestone timeline from the programme to Year 2. Budget base, chase target, collect stretch. Every milestone is downstream of the Friday streak.</div>
+  <div id="traj-milestones"></div>
+
+  <!-- Stage Tracker accordion -->
+  <div class="acc-item" style="margin-top:8px">
+    <button class="acc-hdr" onclick="toggleAcc(this)">
+      <span>Stage Tracker</span><span class="acc-arr">▾</span>
+    </button>
+    <div class="acc-body" id="panel-tier"></div>
+  </div>
+
+  <!-- Destination Snapshot accordion -->
+  <div class="acc-item" style="margin-top:8px">
+    <button class="acc-hdr" onclick="toggleAcc(this)">
+      <span>Destination Snapshot</span><span class="acc-arr">▾</span>
+    </button>
+    <div class="acc-body" id="panel-dest"></div>
+  </div>
+
+  <!-- Skills & Proofs accordion -->
+  <div class="acc-item" style="margin-top:8px">
+    <button class="acc-hdr" onclick="toggleAcc(this)">
+      <span>Skills &amp; Proofs Ledger</span><span class="acc-arr">▾</span>
+    </button>
+    <div class="acc-body" id="panel-skills"></div>
+  </div>
 </div>
 
 <!-- WEEK PANELS -->
@@ -1560,7 +1583,7 @@ const MILESTONES=[
 ];
 
 function renderTrajectory(){
-  var el=document.getElementById('panel-trajectory');if(!el)return;
+  var el=document.getElementById('traj-milestones');if(!el)return;
   var cards=MILESTONES.map(function(m,i){
     return '<div class="card" style="border-left:3px solid '+m.col+';margin-bottom:12px">'+
       '<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">'+
@@ -1579,9 +1602,6 @@ function renderTrajectory(){
   }).join('');
 
   el.innerHTML=
-    '<div class="pg-eye">Long Game</div>'+
-    '<div class="pg-h">Trajectory</div>'+
-    '<div class="pg-desc">Milestone timeline from the programme to Year 2. Budget base, chase target, collect stretch. Every milestone is downstream of the Friday streak.</div>'+
     cards+
     '<div class="card" style="border-top:3px solid var(--gold);background:var(--gll)">'+
       '<div style="font-size:12px;font-weight:700;color:var(--txt);margin-bottom:6px">Sequence rule</div>'+
