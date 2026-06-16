@@ -466,7 +466,11 @@ body.light .card{box-shadow:0 1px 3px rgba(0,0,0,.07)}
 .tn-btn{display:inline-flex;align-items:center;gap:4px;padding:6px 12px;border:1px solid var(--bd);border-radius:16px;background:var(--card);color:var(--txt2);font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap;flex-shrink:0;transition:all .12s}
 .tn-btn:hover,.tn-btn.on{border-color:var(--gold);background:var(--gll);color:var(--gold)}
 .wk-src{display:none!important}
-@media(max-width:680px){#top-nav{padding:8px 12px 4px}}
+@media(max-width:680px){
+  #top-nav{padding:6px 10px 4px;top:40px!important}
+  .tn-btn{padding:8px 11px;min-height:40px;font-size:10.5px}
+  #mini-stats{padding:4px 12px}
+}
 </style>
 </head>
 <body>
@@ -525,6 +529,25 @@ body.light .card{box-shadow:0 1px 3px rgba(0,0,0,.07)}
 <!-- Main -->
 <main class="main">
 <div class="mob-bar"><span class="mob-bar-t">Daniel — 12 Week Plan</span><button class="hbg" onclick="toggleSidebar()">&#9776;</button></div>
+<!-- Persistent mini-stats strip — always visible above nav -->
+<div id="mini-stats" style="display:flex;align-items:center;gap:0;background:var(--sb);border-bottom:1px solid var(--sbd);padding:5px 20px;font-size:11px;font-weight:700;overflow-x:auto;white-space:nowrap">
+  <div style="display:flex;align-items:center;gap:6px;margin-right:16px">
+    <span style="color:var(--mu);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.05em">Streak</span>
+    <span id="ms-streak" style="color:var(--gold);font-size:15px;font-weight:800">0</span>
+    <span style="color:var(--mu);font-size:10px">/12</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:6px;margin-right:16px">
+    <span style="color:var(--mu);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.05em">Banked</span>
+    <span id="ms-banked" style="color:var(--ok);font-size:15px;font-weight:800">£0</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:6px;margin-right:16px">
+    <span style="color:var(--mu);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.05em">Week</span>
+    <span id="ms-week" style="color:var(--txt);font-size:15px;font-weight:800">1</span>
+    <span style="color:var(--mu);font-size:10px">/12</span>
+  </div>
+  <div style="flex:1"></div>
+  <button onclick="showPanel('panel-goals')" style="font-size:10px;padding:3px 9px;border:1px solid var(--bd);border-radius:10px;background:var(--card);color:var(--txt2);cursor:pointer;font-family:inherit;font-weight:600;white-space:nowrap">Dashboard ›</button>
+</div>
 
 <!-- VIEW SWITCHER — top (always visible) -->
 <div id="top-nav" style="display:flex;flex-wrap:wrap;gap:6px;padding:10px 20px 6px;background:var(--sb);border-bottom:1px solid var(--sbd);position:sticky;top:0;z-index:30">
@@ -1377,6 +1400,11 @@ var curWkTab='';  // active week tab within weeks view
 function setView(v){
   curView=v;
   S.view=v; saveS();
+  // Sync showPanel persistence key
+  var pMap={actionplan:'action',offer:'offer',pipeline:'pipeline',future:'future',
+    trajectory:'trajectory',income:'income',weeks:'weeks',learning:'learning',
+    reference:'reference',goals:'goals',imperial:'imperial',thisweek:'weeks'};
+  try{if(pMap[v])localStorage.setItem('sp_lastPanel','panel-'+pMap[v]);}catch(e){}
   // Highlight top nav buttons
   ALL_VIEWS.forEach(function(k){
     var t=document.getElementById('vt-'+k);
@@ -1389,12 +1417,10 @@ function setView(v){
   // Hide all panels
   document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on');});
   if(v==='thisweek'){
-    var cur=getCurWk();
-    var el=document.getElementById('panel-'+cur);
-    if(el)el.classList.add('on');
+    // Delegate to showThisWeek — week panels are now .wk-src (not .panel)
+    showThisWeek();
     var sbBtn=document.getElementById('nb-curwk');
     if(sbBtn)sbBtn.classList.add('on');
-    document.querySelector('.main').scrollTop=0;
     return;
   }
   var panels=VIEW_PANELS[v]||[];
@@ -1549,6 +1575,15 @@ function updateDots(){
     btn.classList.toggle('cur-wk',w.id===cur);
   });
 }
+function updateMiniStats(){
+  var s=streak();var b=totalBanked();
+  var msS=document.getElementById('ms-streak');
+  var msB=document.getElementById('ms-banked');
+  var msW=document.getElementById('ms-week');
+  if(msS)msS.textContent=s;
+  if(msB)msB.textContent='£'+b.toLocaleString('en-GB',{maximumFractionDigits:0});
+  if(msW){var cur=getCurWk();var wn=WKS.find(function(w){return w.id===cur;});msW.textContent=wn?String(wn.n):'1';}
+}
 function updateSbStats(){
   document.getElementById('sb-streak').textContent=streak()+'/12';
   document.getElementById('sb-money').textContent='£'+totalBanked().toLocaleString('en-GB',{maximumFractionDigits:0});
@@ -1557,6 +1592,7 @@ function updateSbStats(){
   var btn=document.getElementById('sb-fri-btn');
   if(btn){btn.textContent=submitted?'Friday submitted ✓':'Mark Friday submitted';btn.classList.toggle('done',!!submitted);}
   renderToday3();
+  updateMiniStats();
 }
 function submitFriday(){
   var cur=getCurWk();
