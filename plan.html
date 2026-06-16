@@ -27,7 +27,7 @@ body.light{
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:14px}
 body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--txt);height:100vh;overflow:hidden;line-height:1.5;transition:background .2s,color .2s;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-.app{display:flex;height:100vh}
+.app{display:flex;height:100vh;overflow:hidden}
 
 /* Sidebar */
 .sb{width:234px;min-width:234px;height:100vh;background:var(--sb);border-right:1px solid var(--sbd);display:flex;flex-direction:column;overflow:hidden}
@@ -62,7 +62,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',system-ui,s
 .sv-gold{color:var(--gold)}
 
 /* Main */
-.main{flex:1;height:100vh;overflow-y:auto;padding:40px 48px;background:var(--bg)}
+.content-col{flex:1;display:flex;flex-direction:column;height:100vh;min-width:0;overflow:hidden}
+.main{flex:1;overflow-y:auto;overflow-x:hidden;padding:28px 48px 48px;background:var(--bg);min-height:0}
 .main::-webkit-scrollbar{width:4px}
 .main::-webkit-scrollbar-thumb{background:var(--bd);border-radius:2px}
 .panel{display:none;max-width:860px}
@@ -332,7 +333,7 @@ body.light .card{box-shadow:0 1px 3px rgba(0,0,0,.07)}
 .sb-overlay.show{display:block}
 
 /* ── Mobile top bar ── */
-.mob-bar{display:none;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--bg);border-bottom:1px solid var(--bd);position:sticky;top:0;z-index:40}
+.mob-bar{display:none;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--bg);border-bottom:1px solid var(--bd);flex-shrink:0;z-index:40}
 .mob-bar-t{font-size:13px;font-weight:800;color:var(--txt);letter-spacing:-.015em}
 .hbg{display:flex;align-items:center;justify-content:center;background:var(--card2);border:1px solid var(--bd);border-radius:7px;width:34px;height:34px;cursor:pointer;font-size:16px;color:var(--txt);line-height:1}
 .hbg:active{opacity:.65}
@@ -370,7 +371,7 @@ body.light .card{box-shadow:0 1px 3px rgba(0,0,0,.07)}
   .mob-bar{display:flex}
   .sb{position:fixed;top:0;left:0;height:100dvh;width:260px;min-width:260px;z-index:50;transform:translateX(-100%);transition:transform .25s cubic-bezier(.4,0,.2,1)}
   .sb.mob-open{transform:translateX(0);box-shadow:8px 0 40px rgba(0,0,0,.55)}
-  .main{padding:12px 14px;padding-bottom:68px}
+  .main{padding:12px 14px 68px}
   .panel{max-width:100%;overflow:hidden}
 
   /* Typography */
@@ -467,7 +468,7 @@ body.light .card{box-shadow:0 1px 3px rgba(0,0,0,.07)}
 .tn-btn:hover,.tn-btn.on{border-color:var(--gold);background:var(--gll);color:var(--gold)}
 .wk-src{display:none!important}
 @media(max-width:680px){
-  #top-nav{padding:6px 10px 4px;top:40px!important}
+  #top-nav{padding:6px 10px 4px}
   .tn-btn{padding:8px 11px;min-height:40px;font-size:10.5px}
   #mini-stats{padding:4px 12px}
 }
@@ -526,8 +527,8 @@ body.light .card{box-shadow:0 1px 3px rgba(0,0,0,.07)}
   </div>
 </aside>
 
-<!-- Main -->
-<main class="main">
+<!-- Main column: nav fixed at top, panels scroll below -->
+<div class="content-col">
 <div class="mob-bar"><span class="mob-bar-t">Daniel — 12 Week Plan</span><button class="hbg" onclick="toggleSidebar()">&#9776;</button></div>
 <!-- Persistent mini-stats strip — always visible above nav -->
 <div id="mini-stats" style="display:flex;align-items:center;gap:0;background:var(--sb);border-bottom:1px solid var(--sbd);padding:5px 20px;font-size:11px;font-weight:700;overflow-x:auto;white-space:nowrap">
@@ -550,7 +551,7 @@ body.light .card{box-shadow:0 1px 3px rgba(0,0,0,.07)}
 </div>
 
 <!-- VIEW SWITCHER — top (always visible) -->
-<div id="top-nav" style="display:flex;flex-wrap:wrap;gap:6px;padding:10px 20px 6px;background:var(--sb);border-bottom:1px solid var(--sbd);position:sticky;top:0;z-index:30">
+<div id="top-nav" style="display:flex;flex-wrap:wrap;gap:6px;padding:10px 20px 6px;background:var(--sb);border-bottom:1px solid var(--sbd);flex-shrink:0;z-index:30">
   <button class="tn-btn" id="tn-thisweek" onclick="showThisWeek()">📅 This Week</button>
   <button class="tn-btn" id="tn-weeks" onclick="showPanel('panel-weeks')">📋 Weeks</button>
   <button class="tn-btn" id="tn-offer" onclick="showPanel('panel-offer')">💰 Offer</button>
@@ -565,6 +566,8 @@ body.light .card{box-shadow:0 1px 3px rgba(0,0,0,.07)}
   <button class="tn-btn" id="tn-goals" onclick="showPanel('panel-goals')">◎ Goals</button>
 </div>
 
+<!-- Scrollable panel area -->
+<main class="main">
 <!-- FUTURE SELF -->
 <div id="panel-future" class="panel"></div>
 
@@ -708,7 +711,8 @@ body.light .card{box-shadow:0 1px 3px rgba(0,0,0,.07)}
 <div id="panel-reference" class="panel"></div>
 
 </main>
-</div>
+</div><!-- end .content-col -->
+</div><!-- end .app -->
 
 <!-- VIEW SWITCHER — bottom (mobile) 5 key views -->
 <div class="view-tabs-bottom" id="view-tabs-bottom">
