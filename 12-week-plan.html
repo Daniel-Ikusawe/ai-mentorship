@@ -67,6 +67,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',system-ui,s
 .main::-webkit-scrollbar-thumb{background:var(--bd);border-radius:2px}
 .panel{display:none;max-width:860px}
 .panel.on{display:block}
+.traj-sub{display:block}
 
 /* Page header */
 .pg-eye{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--gold);margin-bottom:8px;opacity:.7}
@@ -537,7 +538,80 @@ body.light .card{box-shadow:0 1px 3px rgba(0,0,0,.07)}
 <!-- FUTURE SELF -->
 <div id="panel-future" class="panel"></div>
 
-<!-- OVERVIEW -->
+<!-- OFFER LADDER -->
+<div id="panel-offer" class="panel"></div>
+<!-- BUILD PIPELINE --><div id="panel-pipeline" class="panel"></div>
+<!-- INCOME STREAMS --><div id="panel-income" class="panel"></div>
+<div id="panel-w3" class="panel"></div>
+<div id="panel-w4" class="panel"></div>
+<!-- TRAJECTORY -->
+<div id="panel-trajectory" class="panel">
+  <div class="pg-eye">Long Game</div>
+  <div class="pg-h">Trajectory</div>
+  <div class="pg-desc">Milestone timeline from the programme to Year 2. Budget base, chase target, collect stretch. Every milestone is downstream of the Friday streak.</div>
+  <div id="traj-milestones"></div>
+
+  <!-- Stage Tracker accordion -->
+  <div class="acc-item" style="margin-top:8px">
+    <button class="acc-hdr" onclick="toggleAcc(this)">
+      <span>Stage Tracker</span><span class="acc-arr">▾</span>
+    </button>
+    <div class="acc-body" id="panel-tier"></div>
+  </div>
+
+  <!-- Destination Snapshot accordion -->
+  <div class="acc-item" style="margin-top:8px">
+    <button class="acc-hdr" onclick="toggleAcc(this)">
+      <span>Destination Snapshot</span><span class="acc-arr">▾</span>
+    </button>
+    <div class="acc-body" id="panel-dest"></div>
+  </div>
+
+  <!-- Skills & Proofs accordion -->
+  <div class="acc-item" style="margin-top:8px">
+    <button class="acc-hdr" onclick="toggleAcc(this)">
+      <span>Skills &amp; Proofs Ledger</span><span class="acc-arr">▾</span>
+    </button>
+    <div class="acc-body" id="panel-skills"></div>
+  </div>
+</div>
+
+<!-- WEEK PANELS -->
+<div id="panel-w1" class="panel"></div>
+<div id="panel-w2" class="panel"></div>
+<div id="panel-w5" class="panel"></div>
+<div id="panel-w6" class="panel"></div>
+<div id="panel-w7" class="panel"></div>
+<div id="panel-w8" class="panel"></div>
+<div id="panel-w9" class="panel"></div>
+<div id="panel-w10" class="panel"></div>
+<div id="panel-w11" class="panel"></div>
+<div id="panel-w12" class="panel"></div>
+
+<!-- GOALS MATRIX -->
+<div id="panel-goals" class="panel">
+  <div class="pg-eye">12-Week Overview</div>
+  <div class="pg-h">Goals Matrix</div>
+  <div class="pg-desc">3 objectives per week max. The matrix doesn't change unless reality forces it — and only with Dee's agreement.</div>
+  <div class="card" style="padding:0;overflow:hidden"><table class="tbl" id="goals-tbl"></table></div>
+  <div class="card mt12">
+    <span class="sec-lbl">Workstream dashboard</span>
+    <table class="tbl" style="margin-top:8px">
+      <thead><tr><th>WS</th><th>Workstream</th><th>Active</th><th>Term hrs/wk</th><th>Summer hrs/wk</th></tr></thead>
+      <tbody>
+        <tr><td><strong>WS1</strong></td><td>Mentorship core (Dee's weekly tasks)</td><td>Weeks 1–12</td><td>8–12</td><td>15–20</td></tr>
+        <tr><td><strong>WS2</strong></td><td>Vekora sales &amp; outreach</td><td>W1–2, W5+</td><td>3–5</td><td>7–10</td></tr>
+        <tr><td><strong>WS3</strong></td><td>Vekora delivery + legal + ops</td><td>As sold</td><td>0–5</td><td>5–10</td></tr>
+        <tr><td><strong>WS4</strong></td><td>School / TMUA / Imperial</td><td>Always</td><td>Whatever needed</td><td>5–7</td></tr>
+        <tr><td><strong>WS5</strong></td><td>Portfolio builds</td><td>W7+</td><td>0</td><td>4–6</td></tr>
+        <tr><td><strong>WS6</strong></td><td>CCA Foundations</td><td>W5+</td><td>0</td><td>4–6</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div id="goals-cols"></div>
+</div>
+
+<!-- OVERVIEW — shown in goals view -->
 <div id="panel-overview" class="panel">
   <div class="pg-eye">Command Centre</div>
   <div class="pg-h">Dashboard</div>
@@ -583,92 +657,8 @@ body.light .card{box-shadow:0 1px 3px rgba(0,0,0,.07)}
   </div>
 </div>
 
-<!-- OFFER LADDER -->
-<div id="panel-offer" class="panel"></div>
-<!-- MARKETS --><div id="panel-markets" class="panel"></div>
-<!-- BUILD PIPELINE --><div id="panel-pipeline" class="panel"></div>
-<!-- INCOME STREAMS --><div id="panel-income" class="panel"></div>
-<!-- LEGAL --><div id="panel-legal" class="panel"></div>
-<div id="panel-w3" class="panel"></div>
-<div id="panel-w4" class="panel"></div>
-<!-- TIER TRACKER --><div id="panel-tier" class="panel"></div>
-<!-- CLIENT OFFERS --><div id="panel-offermenu" class="panel"></div>
-<!-- DESTINATION --><div id="panel-dest" class="panel"></div>
-<!-- SKILLS & PROOFS --><div id="panel-skills" class="panel"></div>
-<!-- CV TRACKER --><div id="panel-cv" class="panel"></div>
-<!-- TRAJECTORY --><div id="panel-trajectory" class="panel"></div>
-
-<!-- WEEK PANELS -->
-<div id="panel-w1" class="panel"></div>
-<div id="panel-w2" class="panel"></div>
-<div id="panel-w5" class="panel"></div>
-<div id="panel-w6" class="panel"></div>
-<div id="panel-w7" class="panel"></div>
-<div id="panel-w8" class="panel"></div>
-<div id="panel-w9" class="panel"></div>
-<div id="panel-w10" class="panel"></div>
-<div id="panel-w11" class="panel"></div>
-<div id="panel-w12" class="panel"></div>
-
-<!-- PROJECTS -->
-<div id="panel-projects" class="panel">
-  <div class="pg-eye">Builds &amp; Portfolio</div>
-  <div class="pg-h">Projects</div>
-  <div class="pg-desc">One active side project at a time in summer (W7+). Friday deliverables always come first. "Built" = deployed, has a README, has a Loom.</div>
-  <div id="projects-list"></div>
-</div>
-
-<!-- GOALS MATRIX -->
-<div id="panel-goals" class="panel">
-  <div class="pg-eye">12-Week Overview</div>
-  <div class="pg-h">Goals Matrix</div>
-  <div class="pg-desc">3 objectives per week max. The matrix doesn't change unless reality forces it — and only with Dee's agreement.</div>
-  <div class="card" style="padding:0;overflow:hidden"><table class="tbl" id="goals-tbl"></table></div>
-  <div class="card mt12">
-    <span class="sec-lbl">Workstream dashboard</span>
-    <table class="tbl" style="margin-top:8px">
-      <thead><tr><th>WS</th><th>Workstream</th><th>Active</th><th>Term hrs/wk</th><th>Summer hrs/wk</th></tr></thead>
-      <tbody>
-        <tr><td><strong>WS1</strong></td><td>Mentorship core (Dee's weekly tasks)</td><td>Weeks 1–12</td><td>8–12</td><td>15–20</td></tr>
-        <tr><td><strong>WS2</strong></td><td>Vekora sales &amp; outreach</td><td>W1–2, W5+</td><td>3–5</td><td>7–10</td></tr>
-        <tr><td><strong>WS3</strong></td><td>Vekora delivery + legal + ops</td><td>As sold</td><td>0–5</td><td>5–10</td></tr>
-        <tr><td><strong>WS4</strong></td><td>School / TMUA / Imperial</td><td>Always</td><td>Whatever needed</td><td>5–7</td></tr>
-        <tr><td><strong>WS5</strong></td><td>Portfolio builds</td><td>W7+</td><td>0</td><td>4–6</td></tr>
-        <tr><td><strong>WS6</strong></td><td>CCA Foundations</td><td>W5+</td><td>0</td><td>4–6</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <div id="goals-cols"></div>
-</div>
-
-<!-- SOPS -->
-<div id="panel-sops" class="panel">
-  <div class="pg-eye">Standard Operating Procedures</div>
-  <div class="pg-h">Vekora SOPs v1.0</div>
-  <div class="pg-desc">10 procedures. Claude-native stack: Claude · Claude Code · GCP Cloud Run · Firestore · Vercel · Twilio. A trained VA or AI agent can execute any of these without asking questions.</div>
-  <div class="card card-gold">
-    <span class="sec-lbl">Demo 1 system architecture — SOP 01</span>
-    <div class="arch" id="demo-arch"></div>
-    <div class="g3" style="margin-top:4px">
-      <div style="background:var(--card2);border:1px solid var(--bd);border-radius:7px;padding:12px;text-align:center"><div style="font-size:24px;font-weight:900;color:var(--gold)">30s</div><div style="font-size:11px;color:var(--mu)">Form → SMS max</div></div>
-      <div style="background:var(--card2);border:1px solid var(--bd);border-radius:7px;padding:12px;text-align:center"><div style="font-size:24px;font-weight:900;color:var(--gold)">4 min</div><div style="font-size:11px;color:var(--mu)">Demo from memory</div></div>
-      <div style="background:var(--card2);border:1px solid var(--bd);border-radius:7px;padding:12px;text-align:center"><div style="font-size:24px;font-weight:900;color:var(--gold)">10×</div><div style="font-size:11px;color:var(--mu)">Consecutive passes before first call</div></div>
-    </div>
-  </div>
-  <div class="card"><span class="sec-lbl">Tool requirements</span><div class="g2" id="sop-tools"></div></div>
-  <div class="sop-grid" id="sop-list"></div>
-</div>
-
 <!-- ACTION PLAN -->
 <div id="panel-action" class="panel"></div>
-
-<!-- GUARDRAILS -->
-<div id="panel-guardrails" class="panel">
-  <div class="pg-eye">Non-Negotiable</div>
-  <div class="pg-h">Guardrails</div>
-  <div class="pg-desc">These don't flex. If you're reasoning around one of them, that's the problem — not the guardrail.</div>
-  <div class="guard-grid" id="guard-list"></div>
-</div>
 
 <!-- WEEKS — merged panel with internal week-switcher -->
 <div id="panel-weeks" class="panel">
@@ -1303,18 +1293,19 @@ var VIEW_PANELS={
   pipeline:   ['pipeline'],
   imperial:   ['imperial'],
   future:     ['future'],
-  trajectory: ['trajectory','tier','dest','skills'],
+  trajectory: ['trajectory'],
   income:     ['income'],
   weeks:      ['weeks'],
   learning:   ['learning'],
   reference:  ['reference'],
-  goals:      ['goals'],
+  goals:      ['goals','overview'],
 };
 var curView='thisweek';
 var curWkTab='';  // active week tab within weeks view
 
 function setView(v){
   curView=v;
+  S.view=v; saveS();
   // Highlight top nav buttons
   ALL_VIEWS.forEach(function(k){
     var t=document.getElementById('vt-'+k);
@@ -1390,7 +1381,8 @@ function showWkTab(wid){
 }
 
 function initView(){
-  setView('thisweek');
+  var saved=S.view&&ALL_VIEWS.indexOf(S.view)>=0?S.view:'thisweek';
+  setView(saved);
 }
 
 // Legacy nav() helper — still used in cross-links
@@ -1634,7 +1626,7 @@ const MILESTONES=[
 ];
 
 function renderTrajectory(){
-  var el=document.getElementById('panel-trajectory');if(!el)return;
+  var el=document.getElementById('traj-milestones');if(!el)return;
   var cards=MILESTONES.map(function(m,i){
     return '<div class="card" style="border-left:3px solid '+m.col+';margin-bottom:12px">'+
       '<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">'+
@@ -1653,9 +1645,6 @@ function renderTrajectory(){
   }).join('');
 
   el.innerHTML=
-    '<div class="pg-eye">Long Game</div>'+
-    '<div class="pg-h">Trajectory</div>'+
-    '<div class="pg-desc">Milestone timeline from the programme to Year 2. Budget base, chase target, collect stretch. Every milestone is downstream of the Friday streak.</div>'+
     cards+
     '<div class="card" style="border-top:3px solid var(--gold);background:var(--gll)">'+
       '<div style="font-size:12px;font-weight:700;color:var(--txt);margin-bottom:6px">Sequence rule</div>'+

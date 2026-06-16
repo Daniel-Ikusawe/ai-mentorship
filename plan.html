@@ -612,7 +612,50 @@ body.light .card{box-shadow:0 1px 3px rgba(0,0,0,.07)}
 </div>
 
 <!-- OVERVIEW — shown in goals view -->
-<div id="panel-overview" class="panel"></div>
+<div id="panel-overview" class="panel">
+  <div class="pg-eye">Command Centre</div>
+  <div class="pg-h">Dashboard</div>
+  <div class="pg-desc" id="ov-desc"></div>
+  <div id="ov-banner"></div>
+  <div class="stats-grid" id="ov-stats"></div>
+  <div class="card">
+    <div class="flex-bc mb8"><span class="sec-lbl" style="margin:0">Programme progress</span><span id="ov-wk-lbl" style="font-size:12px;font-weight:700"></span></div>
+    <div class="prog-bar mb4"><div class="prog-fill fill-gold" id="ov-wk-bar" style="width:0%"></div></div>
+    <div class="flex-bc mb8" style="margin-top:10px"><span class="sec-lbl" style="margin:0">Tasks completed</span><span id="ov-task-lbl" style="font-size:12px;font-weight:700"></span></div>
+    <div class="prog-bar"><div class="prog-fill fill-ok" id="ov-task-bar" style="width:0%"></div></div>
+  </div>
+  <div class="card">
+    <span class="sec-lbl">Money — 3 scenarios (budget base, chase target, bank stretch)</span>
+    <div id="ov-money" style="margin-top:8px"></div>
+  </div>
+  <div class="card">
+    <span class="sec-lbl">What success looks like by 30 August</span>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:10px">
+      <div>
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px">Mentorship</div>
+        <ul style="font-size:13px;color:var(--txt2);line-height:1.85;padding-left:16px">
+          <li>Terminal, Git, GCP, Claude Code fluency</li>
+          <li>2+ apps deployed to live URLs</li>
+          <li>One agentic build (MCP-connected)</li>
+          <li>MVP built, deployed, Loom demoed</li>
+          <li>12/12 Fridays submitted</li>
+          <li>CCA Foundations done, exam attempted</li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--ok);margin-bottom:8px">Vekora</div>
+        <ul style="font-size:13px;color:var(--txt2);line-height:1.85;padding-left:16px">
+          <li>£2,500–4,000 total banked</li>
+          <li>2+ Foundation builds delivered</li>
+          <li>1–2 GBP retainers live (£250/mo each)</li>
+          <li>Ltd, ICO, business bank all done</li>
+          <li>Demo 1 rebuilt — 10/10 consecutive</li>
+          <li>Stage 2 conversation started</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ACTION PLAN -->
 <div id="panel-action" class="panel"></div>
