@@ -1360,6 +1360,11 @@ function showPanel(id){
 
 function showThisWeek(){
   showPanel('panel-weeks');
+  // Also highlight "This Week" top-nav btn (showPanel highlights 'Weeks' by default)
+  var tw=document.getElementById('tn-thisweek');
+  if(tw)tw.classList.add('on');
+  var tbw=document.getElementById('vtb-thisweek');
+  if(tbw)tbw.classList.add('on');
   try{
     var cur=getCurWk();
     showWkTab(cur);
@@ -1451,9 +1456,28 @@ function setViewWk(wid){
 function renderWkPicker(){
   var picker=document.getElementById('wk-picker');
   if(!picker)return;
+  var today=new Date();var cur=getCurWk();
   picker.innerHTML=WKS.map(function(w){
-    var active=curWkTab===w.id?'border-color:var(--gold);background:var(--gll);color:var(--gold)':'';
-    return '<button onclick="showWkTab(\''+w.id+'\')" data-wid="'+w.id+'" style="padding:5px 12px;border:1px solid var(--bd);border-radius:16px;background:var(--card);color:var(--txt2);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;'+active+'">W'+w.n+'</button>';
+    var isActive=curWkTab===w.id;
+    var isCur=w.id===cur;
+    var isPast=today>new Date(w.end.getTime()+86400000);
+    var submitted=S.logs&&S.logs[w.id]&&S.logs[w.id].submitted;
+    var style='padding:5px 12px;border:1px solid var(--bd);border-radius:16px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:.12s;';
+    var label='W'+w.n;
+    if(isActive){
+      style+='border-color:var(--gold);background:var(--gll);color:var(--gold)';
+    } else if(isPast&&submitted){
+      style+='border-color:rgba(48,209,88,.4);background:rgba(48,209,88,.08);color:var(--ok)';
+      label='W'+w.n+' ✓';
+    } else if(isPast&&!submitted){
+      style+='border-color:rgba(239,68,68,.3);background:rgba(239,68,68,.06);color:var(--err)';
+      label='W'+w.n+' !';
+    } else if(isCur){
+      style+='border-color:rgba(201,168,76,.5);background:rgba(201,168,76,.06);color:var(--gold)';
+    } else {
+      style+='background:var(--card);color:var(--mu)';
+    }
+    return '<button onclick="showWkTab(\''+w.id+'\')" data-wid="'+w.id+'" style="'+style+'">'+label+'</button>';
   }).join('');
 }
 
