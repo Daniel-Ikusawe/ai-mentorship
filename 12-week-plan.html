@@ -1354,7 +1354,7 @@ function showPanel(id){
   var sid=id.replace('panel-','');
   var sbBtn=document.getElementById('nb-'+sid)||document.getElementById('nb-curwk');
   if(sbBtn)sbBtn.classList.add('on');
-  document.querySelector('.main').scrollTop=0;
+  var mainEl=document.querySelector('.main');if(mainEl)mainEl.scrollTop=0;
   closeSidebar();
 }
 
@@ -1419,8 +1419,8 @@ function setView(v){
   });
   // Highlight sidebar buttons
   document.querySelectorAll('.sb-btn').forEach(function(b){b.classList.remove('on');});
-  // Hide all panels
-  document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on');});
+  // Hide all panels (clear both CSS class and inline style)
+  document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on');p.style.display='';});
   if(v==='thisweek'){
     // Delegate to showThisWeek — week panels are now .wk-src (not .panel)
     showThisWeek();
@@ -1440,7 +1440,7 @@ function setView(v){
     showWkTab(curWkTab);
   }
   if(v==='reference') renderReference();
-  document.querySelector('.main').scrollTop=0;
+  var mainEl=document.querySelector('.main');if(mainEl)mainEl.scrollTop=0;
   closeSidebar();
 }
 
@@ -1556,7 +1556,7 @@ function nav(id,el){
   if(el2)el2.classList.add('on');
   curPanel=id;
   closeSidebar();
-  document.querySelector('.main').scrollTop=0;
+  var mainEl=document.querySelector('.main');if(mainEl)mainEl.scrollTop=0;
 }
 
 // ─── DATE HELPERS ─────────────────────────────────────────────────────────────
