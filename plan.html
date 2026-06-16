@@ -537,65 +537,15 @@ body.light .card{box-shadow:0 1px 3px rgba(0,0,0,.07)}
 <!-- FUTURE SELF -->
 <div id="panel-future" class="panel"></div>
 
-<!-- OVERVIEW -->
-<div id="panel-overview" class="panel">
-  <div class="pg-eye">Command Centre</div>
-  <div class="pg-h">Dashboard</div>
-  <div class="pg-desc" id="ov-desc"></div>
-  <div id="ov-banner"></div>
-  <div class="stats-grid" id="ov-stats"></div>
-  <div class="card">
-    <div class="flex-bc mb8"><span class="sec-lbl" style="margin:0">Programme progress</span><span id="ov-wk-lbl" style="font-size:12px;font-weight:700"></span></div>
-    <div class="prog-bar mb4"><div class="prog-fill fill-gold" id="ov-wk-bar" style="width:0%"></div></div>
-    <div class="flex-bc mb8" style="margin-top:10px"><span class="sec-lbl" style="margin:0">Tasks completed</span><span id="ov-task-lbl" style="font-size:12px;font-weight:700"></span></div>
-    <div class="prog-bar"><div class="prog-fill fill-ok" id="ov-task-bar" style="width:0%"></div></div>
-  </div>
-  <div class="card">
-    <span class="sec-lbl">Money — 3 scenarios (budget base, chase target, bank stretch)</span>
-    <div id="ov-money" style="margin-top:8px"></div>
-  </div>
-  <div class="card">
-    <span class="sec-lbl">What success looks like by 30 August</span>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:10px">
-      <div>
-        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px">Mentorship</div>
-        <ul style="font-size:13px;color:var(--txt2);line-height:1.85;padding-left:16px">
-          <li>Terminal, Git, GCP, Claude Code fluency</li>
-          <li>2+ apps deployed to live URLs</li>
-          <li>One agentic build (MCP-connected)</li>
-          <li>MVP built, deployed, Loom demoed</li>
-          <li>12/12 Fridays submitted</li>
-          <li>CCA Foundations done, exam attempted</li>
-        </ul>
-      </div>
-      <div>
-        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--ok);margin-bottom:8px">Vekora</div>
-        <ul style="font-size:13px;color:var(--txt2);line-height:1.85;padding-left:16px">
-          <li>£2,500–4,000 total banked</li>
-          <li>2+ Foundation builds delivered</li>
-          <li>1–2 GBP retainers live (£250/mo each)</li>
-          <li>Ltd, ICO, business bank all done</li>
-          <li>Demo 1 rebuilt — 10/10 consecutive</li>
-          <li>Stage 2 conversation started</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- OFFER LADDER -->
 <div id="panel-offer" class="panel"></div>
-<!-- MARKETS --><div id="panel-markets" class="panel"></div>
 <!-- BUILD PIPELINE --><div id="panel-pipeline" class="panel"></div>
 <!-- INCOME STREAMS --><div id="panel-income" class="panel"></div>
-<!-- LEGAL --><div id="panel-legal" class="panel"></div>
 <div id="panel-w3" class="panel"></div>
 <div id="panel-w4" class="panel"></div>
 <!-- TIER TRACKER --><div id="panel-tier" class="panel"></div>
-<!-- CLIENT OFFERS --><div id="panel-offermenu" class="panel"></div>
 <!-- DESTINATION --><div id="panel-dest" class="panel"></div>
 <!-- SKILLS & PROOFS --><div id="panel-skills" class="panel"></div>
-<!-- CV TRACKER --><div id="panel-cv" class="panel"></div>
 <!-- TRAJECTORY --><div id="panel-trajectory" class="panel"></div>
 
 <!-- WEEK PANELS -->
@@ -609,14 +559,6 @@ body.light .card{box-shadow:0 1px 3px rgba(0,0,0,.07)}
 <div id="panel-w10" class="panel"></div>
 <div id="panel-w11" class="panel"></div>
 <div id="panel-w12" class="panel"></div>
-
-<!-- PROJECTS -->
-<div id="panel-projects" class="panel">
-  <div class="pg-eye">Builds &amp; Portfolio</div>
-  <div class="pg-h">Projects</div>
-  <div class="pg-desc">One active side project at a time in summer (W7+). Friday deliverables always come first. "Built" = deployed, has a README, has a Loom.</div>
-  <div id="projects-list"></div>
-</div>
 
 <!-- GOALS MATRIX -->
 <div id="panel-goals" class="panel">
@@ -641,34 +583,11 @@ body.light .card{box-shadow:0 1px 3px rgba(0,0,0,.07)}
   <div id="goals-cols"></div>
 </div>
 
-<!-- SOPS -->
-<div id="panel-sops" class="panel">
-  <div class="pg-eye">Standard Operating Procedures</div>
-  <div class="pg-h">Vekora SOPs v1.0</div>
-  <div class="pg-desc">10 procedures. Claude-native stack: Claude · Claude Code · GCP Cloud Run · Firestore · Vercel · Twilio. A trained VA or AI agent can execute any of these without asking questions.</div>
-  <div class="card card-gold">
-    <span class="sec-lbl">Demo 1 system architecture — SOP 01</span>
-    <div class="arch" id="demo-arch"></div>
-    <div class="g3" style="margin-top:4px">
-      <div style="background:var(--card2);border:1px solid var(--bd);border-radius:7px;padding:12px;text-align:center"><div style="font-size:24px;font-weight:900;color:var(--gold)">30s</div><div style="font-size:11px;color:var(--mu)">Form → SMS max</div></div>
-      <div style="background:var(--card2);border:1px solid var(--bd);border-radius:7px;padding:12px;text-align:center"><div style="font-size:24px;font-weight:900;color:var(--gold)">4 min</div><div style="font-size:11px;color:var(--mu)">Demo from memory</div></div>
-      <div style="background:var(--card2);border:1px solid var(--bd);border-radius:7px;padding:12px;text-align:center"><div style="font-size:24px;font-weight:900;color:var(--gold)">10×</div><div style="font-size:11px;color:var(--mu)">Consecutive passes before first call</div></div>
-    </div>
-  </div>
-  <div class="card"><span class="sec-lbl">Tool requirements</span><div class="g2" id="sop-tools"></div></div>
-  <div class="sop-grid" id="sop-list"></div>
-</div>
+<!-- OVERVIEW — shown in goals view -->
+<div id="panel-overview" class="panel"></div>
 
 <!-- ACTION PLAN -->
 <div id="panel-action" class="panel"></div>
-
-<!-- GUARDRAILS -->
-<div id="panel-guardrails" class="panel">
-  <div class="pg-eye">Non-Negotiable</div>
-  <div class="pg-h">Guardrails</div>
-  <div class="pg-desc">These don't flex. If you're reasoning around one of them, that's the problem — not the guardrail.</div>
-  <div class="guard-grid" id="guard-list"></div>
-</div>
 
 <!-- WEEKS — merged panel with internal week-switcher -->
 <div id="panel-weeks" class="panel">
@@ -1308,7 +1227,7 @@ var VIEW_PANELS={
   weeks:      ['weeks'],
   learning:   ['learning'],
   reference:  ['reference'],
-  goals:      ['goals'],
+  goals:      ['goals','overview'],
 };
 var curView='thisweek';
 var curWkTab='';  // active week tab within weeks view
