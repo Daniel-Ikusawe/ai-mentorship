@@ -67,6 +67,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',system-ui,s
 .main::-webkit-scrollbar-thumb{background:var(--bd);border-radius:2px}
 .panel{display:none;max-width:860px}
 .panel.on{display:block}
+.traj-sub{display:block}
 
 /* Page header */
 .pg-eye{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--gold);margin-bottom:8px;opacity:.7}
@@ -543,10 +544,14 @@ body.light .card{box-shadow:0 1px 3px rgba(0,0,0,.07)}
 <!-- INCOME STREAMS --><div id="panel-income" class="panel"></div>
 <div id="panel-w3" class="panel"></div>
 <div id="panel-w4" class="panel"></div>
-<!-- TIER TRACKER --><div id="panel-tier" class="panel"></div>
-<!-- DESTINATION --><div id="panel-dest" class="panel"></div>
-<!-- SKILLS & PROOFS --><div id="panel-skills" class="panel"></div>
-<!-- TRAJECTORY --><div id="panel-trajectory" class="panel"></div>
+<!-- TRAJECTORY -->
+<div id="panel-trajectory" class="panel">
+  <div class="traj-sub" id="panel-tier"></div>
+  <div class="div"></div>
+  <div class="traj-sub" id="panel-dest"></div>
+  <div class="div"></div>
+  <div class="traj-sub" id="panel-skills"></div>
+</div>
 
 <!-- WEEK PANELS -->
 <div id="panel-w1" class="panel"></div>
@@ -1222,7 +1227,7 @@ var VIEW_PANELS={
   pipeline:   ['pipeline'],
   imperial:   ['imperial'],
   future:     ['future'],
-  trajectory: ['trajectory','tier','dest','skills'],
+  trajectory: ['trajectory'],
   income:     ['income'],
   weeks:      ['weeks'],
   learning:   ['learning'],
@@ -1234,6 +1239,7 @@ var curWkTab='';  // active week tab within weeks view
 
 function setView(v){
   curView=v;
+  S.view=v; saveS();
   // Highlight top nav buttons
   ALL_VIEWS.forEach(function(k){
     var t=document.getElementById('vt-'+k);
@@ -1309,7 +1315,8 @@ function showWkTab(wid){
 }
 
 function initView(){
-  setView('thisweek');
+  var saved=S.view&&ALL_VIEWS.indexOf(S.view)>=0?S.view:'thisweek';
+  setView(saved);
 }
 
 // Legacy nav() helper — still used in cross-links
