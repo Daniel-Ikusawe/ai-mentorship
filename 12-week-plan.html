@@ -460,6 +460,13 @@ body.light .card{box-shadow:0 1px 3px rgba(0,0,0,.07)}
   .vt-btn.on{border-color:var(--gold);background:var(--gll);color:var(--gold)}
   .vt-icon{font-size:13px}
 }
+
+/* ── Top nav (failsafe, always visible) ── */
+#top-nav{overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap;flex-wrap:nowrap!important}
+.tn-btn{display:inline-flex;align-items:center;gap:4px;padding:6px 12px;border:1px solid var(--bd);border-radius:16px;background:var(--card);color:var(--txt2);font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap;flex-shrink:0;transition:all .12s}
+.tn-btn:hover,.tn-btn.on{border-color:var(--gold);background:var(--gll);color:var(--gold)}
+.wk-src{display:none!important}
+@media(max-width:680px){#top-nav{padding:8px 12px 4px}}
 </style>
 </head>
 <body>
@@ -519,20 +526,20 @@ body.light .card{box-shadow:0 1px 3px rgba(0,0,0,.07)}
 <main class="main">
 <div class="mob-bar"><span class="mob-bar-t">Daniel — 12 Week Plan</span><button class="hbg" onclick="toggleSidebar()">&#9776;</button></div>
 
-<!-- VIEW SWITCHER — top (desktop) -->
-<div class="view-tabs-top" id="view-tabs-top">
-  <button class="vt-btn" id="vt-thisweek" onclick="setView('thisweek')"><span class="vt-icon">📅</span>This Week</button>
-  <button class="vt-btn" id="vt-actionplan" onclick="setView('actionplan')"><span class="vt-icon">⚡</span>Action Plan</button>
-  <button class="vt-btn" id="vt-offer" onclick="setView('offer')"><span class="vt-icon">💰</span>Offer</button>
-  <button class="vt-btn" id="vt-pipeline" onclick="setView('pipeline')"><span class="vt-icon">🔄</span>Pipeline</button>
-  <button class="vt-btn" id="vt-imperial" onclick="setView('imperial')"><span class="vt-icon">📐</span>Imperial</button>
-  <button class="vt-btn" id="vt-future" onclick="setView('future')"><span class="vt-icon">★</span>Future Self</button>
-  <button class="vt-btn" id="vt-trajectory" onclick="setView('trajectory')"><span class="vt-icon">▲</span>Trajectory</button>
-  <button class="vt-btn" id="vt-income" onclick="setView('income')"><span class="vt-icon">£</span>Income</button>
-  <button class="vt-btn" id="vt-weeks" onclick="setView('weeks')"><span class="vt-icon">📋</span>Weeks</button>
-  <button class="vt-btn" id="vt-learning" onclick="setView('learning')"><span class="vt-icon">📖</span>Learning</button>
-  <button class="vt-btn" id="vt-reference" onclick="setView('reference')"><span class="vt-icon">⊖</span>Reference</button>
-  <button class="vt-btn" id="vt-goals" onclick="setView('goals')"><span class="vt-icon">◎</span>Goals</button>
+<!-- VIEW SWITCHER — top (always visible) -->
+<div id="top-nav" style="display:flex;flex-wrap:wrap;gap:6px;padding:10px 20px 6px;background:var(--sb);border-bottom:1px solid var(--sbd);position:sticky;top:0;z-index:30">
+  <button class="tn-btn" id="tn-thisweek" onclick="showThisWeek()">📅 This Week</button>
+  <button class="tn-btn" id="tn-weeks" onclick="showPanel('panel-weeks')">📋 Weeks</button>
+  <button class="tn-btn" id="tn-offer" onclick="showPanel('panel-offer')">💰 Offer</button>
+  <button class="tn-btn" id="tn-pipeline" onclick="showPanel('panel-pipeline')">🔄 Pipeline</button>
+  <button class="tn-btn" id="tn-imperial" onclick="showPanel('panel-imperial')">📐 Imperial</button>
+  <button class="tn-btn" id="tn-learning" onclick="showPanel('panel-learning')">📖 Learning</button>
+  <button class="tn-btn" id="tn-trajectory" onclick="showPanel('panel-trajectory')">▲ Trajectory</button>
+  <button class="tn-btn" id="tn-future" onclick="showPanel('panel-future')">★ Future</button>
+  <button class="tn-btn" id="tn-income" onclick="showPanel('panel-income')">£ Income</button>
+  <button class="tn-btn" id="tn-action" onclick="showPanel('panel-action')">⚡ Action Plan</button>
+  <button class="tn-btn" id="tn-reference" onclick="showPanel('panel-reference')">⊖ Reference</button>
+  <button class="tn-btn" id="tn-goals" onclick="showPanel('panel-goals')">◎ Goals</button>
 </div>
 
 <!-- FUTURE SELF -->
@@ -542,8 +549,8 @@ body.light .card{box-shadow:0 1px 3px rgba(0,0,0,.07)}
 <div id="panel-offer" class="panel"></div>
 <!-- BUILD PIPELINE --><div id="panel-pipeline" class="panel"></div>
 <!-- INCOME STREAMS --><div id="panel-income" class="panel"></div>
-<div id="panel-w3" class="panel"></div>
-<div id="panel-w4" class="panel"></div>
+<div id="panel-w3" class="wk-src" style="display:none"></div>
+<div id="panel-w4" class="wk-src" style="display:none"></div>
 <!-- TRAJECTORY -->
 <div id="panel-trajectory" class="panel">
   <div class="pg-eye">Long Game</div>
@@ -576,17 +583,17 @@ body.light .card{box-shadow:0 1px 3px rgba(0,0,0,.07)}
   </div>
 </div>
 
-<!-- WEEK PANELS -->
-<div id="panel-w1" class="panel"></div>
-<div id="panel-w2" class="panel"></div>
-<div id="panel-w5" class="panel"></div>
-<div id="panel-w6" class="panel"></div>
-<div id="panel-w7" class="panel"></div>
-<div id="panel-w8" class="panel"></div>
-<div id="panel-w9" class="panel"></div>
-<div id="panel-w10" class="panel"></div>
-<div id="panel-w11" class="panel"></div>
-<div id="panel-w12" class="panel"></div>
+<!-- WEEK DATA SOURCES (not navigable panels — content cloned into wk-content) -->
+<div id="panel-w1" class="wk-src" style="display:none"></div>
+<div id="panel-w2" class="wk-src" style="display:none"></div>
+<div id="panel-w5" class="wk-src" style="display:none"></div>
+<div id="panel-w6" class="wk-src" style="display:none"></div>
+<div id="panel-w7" class="wk-src" style="display:none"></div>
+<div id="panel-w8" class="wk-src" style="display:none"></div>
+<div id="panel-w9" class="wk-src" style="display:none"></div>
+<div id="panel-w10" class="wk-src" style="display:none"></div>
+<div id="panel-w11" class="wk-src" style="display:none"></div>
+<div id="panel-w12" class="wk-src" style="display:none"></div>
 
 <!-- GOALS MATRIX -->
 <div id="panel-goals" class="panel">
@@ -682,11 +689,11 @@ body.light .card{box-shadow:0 1px 3px rgba(0,0,0,.07)}
 
 <!-- VIEW SWITCHER — bottom (mobile) 5 key views -->
 <div class="view-tabs-bottom" id="view-tabs-bottom">
-  <button class="vt-btn" id="vtb-thisweek" onclick="setView('thisweek')"><span class="vt-icon">📅</span>This Week</button>
-  <button class="vt-btn" id="vtb-actionplan" onclick="setView('actionplan')"><span class="vt-icon">⚡</span>Action</button>
-  <button class="vt-btn" id="vtb-offer" onclick="setView('offer')"><span class="vt-icon">💰</span>Offer</button>
-  <button class="vt-btn" id="vtb-imperial" onclick="setView('imperial')"><span class="vt-icon">📐</span>Imperial</button>
-  <button class="vt-btn" id="vtb-weeks" onclick="setView('weeks')"><span class="vt-icon">📋</span>Weeks</button>
+  <button class="vt-btn" id="vtb-thisweek" onclick="showThisWeek()"><span class="vt-icon">📅</span>This Week</button>
+  <button class="vt-btn" id="vtb-action" onclick="showPanel('panel-action')"><span class="vt-icon">⚡</span>Action</button>
+  <button class="vt-btn" id="vtb-offer" onclick="showPanel('panel-offer')"><span class="vt-icon">💰</span>Offer</button>
+  <button class="vt-btn" id="vtb-imperial" onclick="showPanel('panel-imperial')"><span class="vt-icon">📐</span>Imperial</button>
+  <button class="vt-btn" id="vtb-weeks" onclick="showPanel('panel-weeks')"><span class="vt-icon">📋</span>Weeks</button>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -1282,6 +1289,70 @@ function navCurWk(el){
   setView('thisweek');
 }
 
+// ─── SIMPLE NAV (failsafe — works regardless of render state) ─────────────────
+function showPanel(id){
+  document.querySelectorAll('.panel').forEach(function(p){
+    p.classList.remove('on');
+    p.style.display='';
+  });
+  var el=document.getElementById(id);
+  if(!el)return;
+  el.classList.add('on');
+  el.style.display='block';
+  // Special: goals also shows panel-overview below it
+  if(id==='panel-goals'){
+    var ov=document.getElementById('panel-overview');
+    if(ov){ov.classList.add('on');ov.style.display='block';}
+  }
+  // Special: weeks needs its picker + default week
+  if(id==='panel-weeks'){
+    try{renderWkPicker();}catch(e){}
+    try{
+      var wt=curWkTab||getCurWk()||'w1';
+      showWkTab(wt);
+    }catch(e){}
+  }
+  // Special: reference renders lazily
+  if(id==='panel-reference'){try{renderReference();}catch(e){}}
+  // Persist
+  try{localStorage.setItem('sp_lastPanel',id);}catch(e){}
+  // Highlight top nav
+  document.querySelectorAll('.tn-btn').forEach(function(b){b.classList.remove('on');});
+  var tnKey=id.replace('panel-','');
+  var tnBtn=document.getElementById('tn-'+tnKey);
+  if(tnBtn)tnBtn.classList.add('on');
+  // thisweek special case
+  if(id.startsWith('panel-w')&&id!=='panel-weeks'){
+    var tw=document.getElementById('tn-thisweek');
+    if(tw)tw.classList.add('on');
+  }
+  // Sync sidebar highlight
+  document.querySelectorAll('.sb-btn').forEach(function(b){b.classList.remove('on');});
+  var sid=id.replace('panel-','');
+  var sbBtn=document.getElementById('nb-'+sid)||document.getElementById('nb-curwk');
+  if(sbBtn)sbBtn.classList.add('on');
+  document.querySelector('.main').scrollTop=0;
+  closeSidebar();
+}
+
+function showThisWeek(){
+  showPanel('panel-weeks');
+  try{
+    var cur=getCurWk();
+    showWkTab(cur);
+    // Update week picker highlight
+    var picker=document.getElementById('wk-picker');
+    if(picker){
+      picker.querySelectorAll('button').forEach(function(b){
+        var active=b.getAttribute('data-wid')===cur;
+        b.style.borderColor=active?'var(--gold)':'var(--bd)';
+        b.style.background=active?'var(--gll)':'var(--card)';
+        b.style.color=active?'var(--gold)':'var(--txt2)';
+      });
+    }
+  }catch(e){}
+}
+
 // ─── VIEW SWITCHER ────────────────────────────────────────────────────────────
 // 12 views — each maps to one or more panels shown simultaneously
 var ALL_VIEWS=['thisweek','actionplan','offer','pipeline','imperial','future','trajectory','income','weeks','learning','reference','goals'];
@@ -1381,8 +1452,21 @@ function showWkTab(wid){
 }
 
 function initView(){
-  var saved=S.view&&ALL_VIEWS.indexOf(S.view)>=0?S.view:'thisweek';
-  setView(saved);
+  try{
+    var saved='';
+    try{saved=localStorage.getItem('sp_lastPanel')||'';}catch(e){}
+    var valid=['panel-weeks','panel-offer','panel-pipeline','panel-income','panel-action',
+               'panel-trajectory','panel-imperial','panel-learning','panel-reference',
+               'panel-goals','panel-future'];
+    // Also accept panel-w1..w12
+    if(saved&&valid.indexOf(saved)<0&&!saved.match(/^panel-w\d+$/))saved='';
+    if(!saved){showPanel('panel-weeks');showThisWeek();return;}
+    showPanel(saved);
+  }catch(e){
+    // Absolute fallback — show first panel
+    var panels=document.querySelectorAll('.panel');
+    if(panels.length){panels[0].style.display='block';}
+  }
 }
 
 // Legacy nav() helper — still used in cross-links
@@ -3383,33 +3467,33 @@ function renderLearning(){
 // ─── INIT ─────────────────────────────────────────────────────────────────────
 
 loadS();
-setTheme(S.dark);
-document.getElementById('themeChk').checked=S.dark;
-WKS.forEach(w=>w.tasks.forEach((t,i)=>{if(t.pre)S.tasks[w.id+'-'+i]=true;}));
+try{setTheme(S.dark);}catch(e){console.warn('render error',e);}
+try{document.getElementById('themeChk').checked=S.dark;}catch(e){}
+try{WKS.forEach(w=>w.tasks.forEach((t,i)=>{if(t.pre)S.tasks[w.id+'-'+i]=true;}));}catch(e){}
 saveS();
-WKS.forEach(w=>renderWk(w));
-renderProjects();
-renderGoals();
-renderFutureSelf();
-renderSkillsProofs();
-renderTrajectory();
-renderSOPs();
-renderGuards();
-renderOffer();
-renderTierTracker();
-renderOfferMenu();
-renderDestination();
-renderMarkets();
-renderPipeline();
-renderIncome();
-renderLegal();
-renderOverview();
-renderCVTracker();
-renderActionPlan();
-renderImperial();
-renderLearning();
-updateDots();
-updateSbStats();
+try{WKS.forEach(w=>renderWk(w));}catch(e){console.warn('render error',e);}
+try{renderProjects();}catch(e){console.warn('render error',e);}
+try{renderGoals();}catch(e){console.warn('render error',e);}
+try{renderFutureSelf();}catch(e){console.warn('render error',e);}
+try{renderSkillsProofs();}catch(e){console.warn('render error',e);}
+try{renderTrajectory();}catch(e){console.warn('render error',e);}
+try{renderSOPs();}catch(e){console.warn('render error',e);}
+try{renderGuards();}catch(e){console.warn('render error',e);}
+try{renderOffer();}catch(e){console.warn('render error',e);}
+try{renderTierTracker();}catch(e){console.warn('render error',e);}
+try{renderOfferMenu();}catch(e){console.warn('render error',e);}
+try{renderDestination();}catch(e){console.warn('render error',e);}
+try{renderMarkets();}catch(e){console.warn('render error',e);}
+try{renderPipeline();}catch(e){console.warn('render error',e);}
+try{renderIncome();}catch(e){console.warn('render error',e);}
+try{renderLegal();}catch(e){console.warn('render error',e);}
+try{renderOverview();}catch(e){console.warn('render error',e);}
+try{renderCVTracker();}catch(e){console.warn('render error',e);}
+try{renderActionPlan();}catch(e){console.warn('render error',e);}
+try{renderImperial();}catch(e){console.warn('render error',e);}
+try{renderLearning();}catch(e){console.warn('render error',e);}
+try{updateDots();}catch(e){console.warn('render error',e);}
+try{updateSbStats();}catch(e){console.warn('render error',e);}
 // Default landing: This Week view
 initView();
 </script>
